@@ -1,3 +1,3 @@
 # Projektpraktikum Webscience WS24-25 - Stimmungsanalyse mit Twitter
 
-Data-Source: https://www.kaggle.com/datasets/jp797498e/twitter-entity-sentiment-analysis
+Data-Source: [Sentiment104 Dataset](https://www.kaggle.com/datasets/kazanova/sentiment140)
