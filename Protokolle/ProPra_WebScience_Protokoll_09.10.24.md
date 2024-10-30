@@ -1,11 +1,11 @@
 
 ==============================================
 
-**ProPra Web Science Protokoll 09.10.24**
+### ProPra Web Science Protokoll 09.10.24
 
-Datum: 09.10.24 19:00 - 19:30
-Ort: Zoom
-Teilnehmer: Andreas, Anne, Burak, Felix, Milo
+Datum: 09.10.24 19:00 - 19:30  
+Ort: Zoom  
+Teilnehmer: Andreas, Anne, Burak, Felix, Milo  
 Fehlende Personen: niemand
 
 ==============================================

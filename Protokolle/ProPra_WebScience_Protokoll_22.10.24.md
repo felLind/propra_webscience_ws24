@@ -1,11 +1,11 @@
 
 ==============================================
 
-**ProPra Web Science Protokoll 22.10.24**
+### ProPra Web Science Protokoll 22.10.24
 
-Datum: 22.10.24 20:00 - 21:00
-Ort: Discord
-Teilnehmer: Andreas, Anne, Burak, Felix, Milo
+Datum: 22.10.24 20:00 - 21:00  
+Ort: Discord  
+Teilnehmer: Andreas, Anne, Burak, Felix, Milo  
 Fehlende Personen: niemand
 
 ==============================================
