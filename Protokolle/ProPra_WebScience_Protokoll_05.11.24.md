@@ -3,9 +3,9 @@
 
 ### ProPra Web Science Protokoll 05.11.24
 
-Datum: 05.11.24 19:00 - 20:15
-Ort: Discord
-Teilnehmer: Andreas, Anne, Burak, Felix, Milo
+Datum: 05.11.24 19:00 - 20:15  
+Ort: Discord  
+Teilnehmer: Andreas, Anne, Burak, Felix, Milo  
 Fehlende Personen: niemand
 
 ==============================================
