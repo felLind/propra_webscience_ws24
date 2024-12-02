@@ -1,7 +1,8 @@
 # Copied from the GitHub released .gitignore templates (Python version): https://github.com/github/gitignore/blob/main/Python.gitignore
 
 # our datasets
-datasets/sentiment140/**
+datasets/sentiment140
+
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

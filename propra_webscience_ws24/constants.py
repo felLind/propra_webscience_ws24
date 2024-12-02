@@ -45,8 +45,20 @@ GLOVE_EMBEDDING_27B_200D_FILE_PATH = (
     DATASETS_ROOT_PATH / "word_embeddings" / "glove.twitter.27B.200d.txt"
 )
 
+# Models
+MODELS_PATH = DATASETS_ROOT_PATH / "models"
+MODELS_PATH.mkdir(parents=True, exist_ok=True)
+
 
 # Results
-CLASSIFICATION_RESULTS_OUTPUT_FILE_PATH = (
-    DATASETS_ROOT_PATH / "classification-results.json"
+RESULTS_PATH = DATASETS_ROOT_PATH / "results"
+RESULTS_PATH.mkdir(parents=True, exist_ok=True)
+
+CLASSIFICATION_RESULTS_PARQUET_PATH = RESULTS_PATH / "classification-results.parquet"
+CLASSIFICATION_RESULTS_SAVED_PARQUET_PATH = (
+    RESULTS_PATH / "classification-results.parquet"
 )
+
+# Visualization
+PLOTS_PATH = RESULTS_PATH / "plots"
+PLOTS_PATH.mkdir(parents=True, exist_ok=True)

@@ -1,21 +1,88 @@
 import dataclasses
-import json
-from typing import Literal
+from enum import Enum
+import joblib
 from sklearn.model_selection import train_test_split
-from sklearn.feature_extraction.text import TfidfVectorizer
+from sklearn.feature_extraction.text import (
+    CountVectorizer,
+    HashingVectorizer,
+    TfidfVectorizer,
+)
 from sklearn.svm import LinearSVC
 from sklearn.metrics import classification_report
+import pandas as pd
+import time
+import humanize
 
-from propra_webscience_ws24.constants import CLASSIFICATION_RESULTS_OUTPUT_FILE_PATH
+from propra_webscience_ws24 import constants
 
 
-@dataclasses.dataclass
+class NGramRange(Enum):
+    UNIGRAMS = (1, 1)
+    UNI_AND_BIGRAMS = (1, 2)
+    UNI_AND_BI_AND_TRIGRAMS = (1, 3)
+
+
+@dataclasses.dataclass(frozen=True)
+class TrainingCombination:
+    normalization_strategy: str
+    remove_stopwords: bool
+    vectorizer: CountVectorizer | TfidfVectorizer | HashingVectorizer
+    max_features: int | None
+    ngram_range: NGramRange
+
+    @property
+    def vectorizer_name(self) -> str:
+        return self.vectorizer.__class__.__name__
+
+    @property
+    def should_combination_be_discarded(self) -> bool:
+        if (
+            self.ngram_range == NGramRange.UNIGRAMS
+            or self.ngram_range == NGramRange.UNI_AND_BIGRAMS
+        ):
+            return self.max_features is not None and self.max_features > 100_000
+        if self.ngram_range == NGramRange.UNI_AND_BI_AND_TRIGRAMS:
+            return self.max_features is not None and self.max_features > 300_000
+        raise ValueError(f"Unknown ngram_range: {self.ngram_range}")
+
+    def __hash__(self) -> int:
+        return hash(
+            (
+                self.normalization_strategy,
+                self.remove_stopwords,
+                self.vectorizer_name,
+                self.max_features,
+                self.ngram_range,
+            )
+        )
+
+    def __eq__(self, other: object) -> bool:
+        if not isinstance(other, TrainingCombination):
+            return NotImplemented
+        return (
+            self.normalization_strategy == other.normalization_strategy
+            and self.remove_stopwords == other.remove_stopwords
+            and self.vectorizer_name == other.vectorizer_name
+            and self.max_features == other.max_features
+            and self.ngram_range == other.ngram_range
+        )
+
+    @property
+    def model_name(self) -> str:
+        return (
+            f"{self.normalization_strategy}_{'wo' if self.remove_stopwords else 'w'}"
+            f"_stopwords_{self.vectorizer_name}_"
+            f"{self.ngram_range.name.lower()}_{self.max_features}"
+        )
+
+
+@dataclasses.dataclass(frozen=True)
 class ClassificationResult:
-    column_name: str
+    training_combination: TrainingCombination
     report_training_data_test_split: dict
     report_test_data: dict
-    embedding: Literal["TFIDF", "GLOVE"]
-    max_tokens: int | None = None
+    processing_duration: float
+    y_pred: list[int]
     num_tokens: int | None = None
 
     @property
@@ -27,12 +94,41 @@ class ClassificationResult:
         return self.report_training_data_test_split["accuracy"]
 
 
-@dataclasses.dataclass
-class ClassificationResults:
-    results: list[ClassificationResult]
+def train_linear_svc(
+    df_train: pd.DataFrame,
+    df_test: pd.DataFrame,
+    training_combination: TrainingCombination,
+) -> ClassificationResult:
+    print(f"{training_combination}", end=" |")
+
+    start_time = time.perf_counter()
+
+    X_train = training_combination.vectorizer.fit_transform(df_train["processed_text"])
+    X_test = training_combination.vectorizer.transform(df_test["processed_text"])
+
+    report, model = _train_linear_svc(X_train, df_train.sentiment)
+    y_pred = model.predict(X_test)
+    test_report = classification_report(df_test.sentiment, y_pred, output_dict=True)
+
+    processing_duration = time.perf_counter() - start_time
+
+    print(
+        f" processing_duration={humanize.precisedelta(processing_duration, minimum_unit='seconds')} | test_accuracy={test_report['accuracy']:.3f}"
+    )
+
+    _save_model(model, training_combination)
+
+    return ClassificationResult(
+        training_combination=training_combination,
+        num_tokens=len(getattr(training_combination.vectorizer, "vocabulary_", {})),
+        processing_duration=processing_duration,
+        report_training_data_test_split=report,
+        report_test_data=test_report,
+        y_pred=y_pred,
+    )
 
 
-def train_linear_svc(X, y) -> tuple[dict, LinearSVC]:
+def _train_linear_svc(X, y) -> tuple[dict, LinearSVC]:
     X_train, X_test, y_train, y_test = train_test_split(
         X, y, test_size=0.2, random_state=42
     )
@@ -44,64 +140,9 @@ def train_linear_svc(X, y) -> tuple[dict, LinearSVC]:
     return classification_report(y_test, y_pred, output_dict=True), model
 
 
-def train_with_tf_idf_vectorizer(
-    df_train, df_test
-) -> tuple[list[ClassificationResult], str, LinearSVC, TfidfVectorizer]:
-    best_model = None
-    best_accuracy = 0.0
-    classification_results = []
-    col_name_for_model = ""
-    for max_tokens in [
-        None,
-        1_000,
-        5_000,
-        10_000,
-        15_000,
-    ]:
-        for column in [
-            "lemmatized_tokens_wo_stop_words",
-            "lemmatized_tokens_w_stop_words",
-            "stemmed_tokens_wo_stop_words",
-            "stemmed_tokens_w_stop_words",
-        ]:
-            print(f"{max_tokens=} | {column=}", end="")
-            tfidf_vectorizer = TfidfVectorizer(max_features=max_tokens)
-
-            X_train = tfidf_vectorizer.fit_transform(df_train[column])
-            y_train = df_train["sentiment"]
-            report, trained_model = train_linear_svc(X_train, y_train)
-
-            X_test = tfidf_vectorizer.transform(df_test[column])
-            y_test = df_test["sentiment"]
-            y_pred = trained_model.predict(X_test)
-            report_test_data = classification_report(
-                y_test, y_pred, zero_division=0, output_dict=True
-            )
-
-            print(
-                f" | accuracy_train={report['accuracy']:.3f} | accuracy_test={report_test_data['accuracy']:.3f}"
-            )
-            if report_test_data["accuracy"] > best_accuracy:
-                best_accuracy = report_test_data["accuracy"]
-                best_model = trained_model
-                vectorizer = tfidf_vectorizer
-                col_name_for_model = column
-            classification_results.append(
-                ClassificationResult(
-                    max_tokens=max_tokens,
-                    num_tokens=len(tfidf_vectorizer.vocabulary_),
-                    column_name=column,
-                    embedding="TFIDF",
-                    report_training_data_test_split=report,
-                    report_test_data=report_test_data,
-                )
-            )
-
-    return classification_results, col_name_for_model, best_model, vectorizer
-
-
-def dump_classification_results(classification_results):
-    with open(CLASSIFICATION_RESULTS_OUTPUT_FILE_PATH, "w") as f:
-        json.dump(
-            dataclasses.asdict(ClassificationResults(results=classification_results)), f
-        )
+def _save_model(model: LinearSVC, training_combination: TrainingCombination):
+    """Save the trained LinearSVC model to a file."""
+    model_path = (
+        f"{constants.MODELS_PATH}/{training_combination.model_name}_model.joblib"
+    )
+    joblib.dump(model, model_path)
