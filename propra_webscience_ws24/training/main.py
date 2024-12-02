@@ -24,7 +24,6 @@ from propra_webscience_ws24.training.svm import (
 
 class VectorizerConfig(Enum):
     TFIDF = TfidfVectorizer
-    # COUNT = CountVectorizer
     HASHING = HashingVectorizer
 
 
@@ -32,7 +31,7 @@ N_PARALLEL_JOBS = os.cpu_count() // 2
 NGRAM_RANGES = [
     NGramRange.UNIGRAMS,
     NGramRange.UNI_AND_BIGRAMS,
-    # NGramRange.UNI_AND_BI_AND_TRIGRAMS,
+    NGramRange.UNI_AND_BI_AND_TRIGRAMS,
 ]
 MAX_FEATURES_LIST = [None, 10_000, 25_000, 50_000, 100_000, 150_000]
 
