@@ -1,21 +1,34 @@
 import pathlib
+from typing import Literal
 
 # Datasets
-DATASETS_ROOT_PATH = pathlib.Path(".").absolute().parent / "datasets" / "sentiment140"
+DATASETS_ROOT_PATH = pathlib.Path(__file__).parent.parent / "datasets" / "sentiment140"
+
 TRAIN_DATASET_FILE_NAME = "train-data.parquet"
 TEST_DATASET_FILE_NAME = "test-data.parquet"
 
 TRAIN_DATASET_FILE_PATH = DATASETS_ROOT_PATH / TRAIN_DATASET_FILE_NAME
 TEST_DATASET_FILE_PATH = DATASETS_ROOT_PATH / TEST_DATASET_FILE_NAME
 
-PREPARED_TRAIN_DATASET_FILE_PATH = TRAIN_DATASET_FILE_PATH.with_stem(
-    f"{TRAIN_DATASET_FILE_PATH.stem}-prepared"
-)
-PREPARED_TEST_DATASET_FILE_PATH = TEST_DATASET_FILE_PATH.with_stem(
-    f"{TEST_DATASET_FILE_PATH.stem}-prepared"
-)
+# cleaned tweets
+CLEANED_TWEETS_PATH = DATASETS_ROOT_PATH / "cleaned_tweets"
+CLEANED_TWEETS_PATH.mkdir(parents=True, exist_ok=True)
 
-# Datasets with Embedding
+CLEANED_TRAIN_TWEETS = CLEANED_TWEETS_PATH / "cleaned-train-tweets.parquet"
+CLEANED_TEST_TWEETS = CLEANED_TWEETS_PATH / "cleaned-test-tweets.parquet"
+
+# processed tweets
+PROCESSED_TWEETS_PATH = DATASETS_ROOT_PATH / "processed_tweets"
+PROCESSED_TWEETS_PATH.mkdir(parents=True, exist_ok=True)
+
+
+def get_processed_filepath(
+    normalization_strategy: str, remove_stopwords: bool, split: Literal["test", "train"]
+) -> pathlib.Path:
+    """Generate standardized filepath for processed tweets"""
+
+    filename = f"{split}-tweets-{normalization_strategy}-{'wo' if remove_stopwords else 'w'}-stopwords.parquet"
+    return PROCESSED_TWEETS_PATH / filename
 
 
 # Word Embeddings

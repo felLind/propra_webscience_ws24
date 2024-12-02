@@ -18,6 +18,7 @@ scikit-learn = "^1.5.2"
 pyarrow = "^18.0.0"
 transformers = "^4.46.3"
 torch = "^2.5.1"
+wordcloud = "^1.9.4"
 
 
 [tool.poetry.group.dev.dependencies]
