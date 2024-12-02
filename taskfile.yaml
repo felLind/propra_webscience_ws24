@@ -1,0 +1,24 @@
+version: '3'
+
+tasks:
+  setup-project:
+    desc: 'Sets up pre-commit and installs all dependencies.'
+    cmds:
+      - poetry env use python3.11
+      - poetry install
+      - task: install-pre-commit
+
+  install-pre-commit:
+    desc: 'Installs the pre-commit hooks.'
+    cmds:
+      - poetry run pre-commit install --hook-type pre-commit
+
+  run-pre-commit-checks:
+    desc: 'Run the pre-commit checks on all files.'
+    cmds:
+      - poetry run pre-commit run --all-files
+
+  quality-checks:
+    desc: 'Run all quality checks.'
+    cmds:
+      - task: run-pre-commit-checks
