@@ -1,0 +1,148 @@
+%%% Choose between 16:9 and 4:3 format by commenting out/uncommenting one of the following lines:
+\documentclass[aspectratio=169]{beamer} % 16:9
+% \documentclass{beamer} % 4:3
+
+%=========================================================================================================================
+
+\usepackage[ngerman]{babel} % Für neue deutsche Rechtschreibung
+\usepackage[utf8]{inputenc}
+\usepackage{tikz}               % For creating graphics
+\usepackage{url}                % For including urls
+\usepackage{tabularx}           % For better tables
+\usepackage{colortbl}  % Für \rowcolors und farbige Tabellen
+\usepackage{array}     % Für zusätzliche Tabellen-Layouts
+\usepackage{xcolor}    % Für Farben
+
+\usetheme{aig}                  % Set beamer theme
+
+%=========================================================================================================================
+\title{Stimmungsanalyse mit Twitter}
+
+\author[Team Twitter Sentiment]{Anne Huber, Andreas Franke, Felix Lindner, Burak Özkan, Milomir Soknic}
+\institute{Projektpraktikum Web Science,\\Artificial Intelligence Group,\\
+University of Hagen, Germany}
+\date{17. Dezember 2024}
+%=========================================================================================================================
+\logo{\includegraphics[width=3cm]{figures/logoaig.png}}
+%=========================================================================================================================
+
+\begin{document}
+
+%=========================================================================================================================
+
+\begin{frame}
+  \titlepage
+\end{frame}
+\nologo
+
+\begin{frame}{Motivation}
+  \Large
+  \begin{itemize}
+      \item Stimmungsanalyse mit Twitter
+      \item Besonderheiten der Tweets
+      \item Relevanz zu Web Science
+  \end{itemize}
+  \vspace{0.5cm} % Fügt einen vertikalen Abstand ein
+  \textbf{Zielsetzung}
+  \begin{itemize}
+      \item Vergleich unterschiedlicher ML-Ansätze
+  \end{itemize}
+\end{frame}
+
+%=========================================================================================================================
+\section{Daten}
+
+
+\begin{frame}{Datenauswahl}
+  \Large
+  \begin{itemize}
+      \item Prüfung diverser Datensätze 
+      \item Entscheidung für \glqq Sentiment140\grqq
+      \item Besonderheiten:
+      \begin{itemize}
+          \item Emojis als Sentiment-Indikatoren
+          \item Ausbalancierte Klassen
+          \item Bessere Datenqualität
+          \item Artikel: \glqq Twitter Sentiment Classification using Distant Supervision\grqq
+      \end{itemize}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Datenaufbereitung}
+  \Large
+  \begin{itemize}
+      \item Bereinigung
+      \item Tokenisierung
+      \item Transformation
+      \item Merkmalsextraktion
+  \end{itemize}
+\end{frame}
+
+%=========================================================================================================================
+\section{Methodik}
+
+\begin{frame}{Klassische Methoden}
+  \Large
+  \begin{itemize}
+      \item Logistische Regression
+      \item \textit{Support Vector Machine}
+      \item Entscheidungsbäume
+      \item Naiver Bayes Klassifikator
+      \item K-nächste Nachbarn
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Deep Learning}
+  \Large
+  \begin{itemize}
+      \item \glqq RoBERTa\grqq
+      \item vortrainiert
+      \item BERT-basiert
+      \item bildet die Referenz
+  \end{itemize}
+\end{frame}
+
+%=========================================================================================================================
+\section{Ergebnisse}
+
+\begin{frame}{Ergebnisse}
+  \Large
+  \begin{tabularx}{\textwidth}{|X|c|}
+      \hline
+      \rowcolor{aigblue!40} % Kopfzeile
+      \textcolor{white}{\textbf{Algorithmus}} & \textcolor{white}{\textbf{Genauigkeit}} \\ \hline
+      K-nächste Nachbarn & 0.68 \\ \hline
+      Entscheidungsbäume & 0.78 \\ \hline
+      Logistische Regression & 0.79 \\ \hline
+      Naiver Bayes Klassifikator & 0.83 \\ \hline
+      \textit{Support Vector Machine} & 0.84 \\ \hline
+      \rowcolor{aigyellow!30} % Baseline-Hervorhebung
+      \textbf{Twitter-RoBERTa-BaseSentiment } & \textbf{0.87} \\ \hline
+  \end{tabularx}
+\end{frame}
+
+%=========================================================================================================================
+\section{Zusammenfassung}
+
+\begin{frame}{Zusammenfassung}
+  \Large
+  \begin{itemize}
+      \item Datensatzauswahl und Bereinigung
+      \item Training klassischer ML-Verfahren
+      \item Tests zeigen bessere Ergebnisse mit \textit{Deep Learning} Ansatz
+      \item Ausblick:
+      \begin{itemize}
+          \item Optimierung der Modelle
+          \item \textit{Deep Learning} Ansatz fokussieren
+      \end{itemize}
+  \end{itemize}
+
+  \vspace{1cm}
+  \Large
+  \pause Vielen Dank für Ihre Aufmerksamkeit!
+  \vspace{0.5cm}
+  \textit{Offene Fragen?}
+\end{frame}
+
+
+\end{document}
