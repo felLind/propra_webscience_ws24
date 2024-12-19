@@ -194,11 +194,7 @@ def _get_custom_stopwords():
             "daren't",
             "hadn't",
         }
-        _CUSTOM_STOPWORDS = {
-            word
-            for word in stop_words
-            if not any([negation in word for negation in negation_words])
-        }
+        _CUSTOM_STOPWORDS = stop_words - negation_words
     return _CUSTOM_STOPWORDS
 
 

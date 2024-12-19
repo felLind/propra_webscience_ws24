@@ -1,11 +1,10 @@
+import pathlib
 import re
 
-from loguru import logger
-from propra_webscience_ws24 import constants
-
-
 import pandas as pd
+from loguru import logger
 
+from propra_webscience_ws24 import constants
 
 # RegEx patterns used to sanitize tweets
 URL_PATTERN = re.compile(r"http\S+|www\S+|https\S+")
@@ -32,38 +31,38 @@ def load_or_clean_tweet_data(
         A tuple of DataFrames containing the cleaned tweets for the training and test data.
     """
 
+    train_dataframe_created, df_train_cleaned = _get_or_create_cleaned_tweet_data(
+        constants.CLEANED_TRAIN_TWEETS, "train", text_column
+    )
+    test_dataframe_created, df_test_cleaned = _get_or_create_cleaned_tweet_data(
+        constants.CLEANED_TEST_TWEETS, "test", text_column
+    )
+
+    return (
+        train_dataframe_created or test_dataframe_created,
+        df_train_cleaned,
+        df_test_cleaned,
+    )
+
+
+def _get_or_create_cleaned_tweet_data(
+    cleaned_df_file_path: pathlib.Path, split: str, text_column: str
+) -> tuple[bool, pd.DataFrame]:
     dataframe_created = False
-    if constants.CLEANED_TRAIN_TWEETS.exists():
+    if cleaned_df_file_path.exists():
         logger.debug(
-            "Loading cleaned training tweets from "
-            f"{constants.CLEANED_TRAIN_TWEETS.relative_to(constants.DATASETS_ROOT_PATH.parent.parent)}"
+            f"Loading cleaned {split} tweets from "
+            f"{cleaned_df_file_path.relative_to(constants.DATASETS_ROOT_PATH.parent.parent)}"
         )
-        df_train_cleaned = pd.read_parquet(constants.CLEANED_TRAIN_TWEETS)
+        df_cleaned = pd.read_parquet(cleaned_df_file_path)
     else:
-        logger.info("Cleaning training tweets...")
+        logger.info(f"Cleaning {split} tweets...")
         dataframe_created = True
-        df_train_cleaned = pd.read_parquet(constants.TRAIN_DATASET_FILE_PATH)
-        df_train_cleaned["cleaned_text"] = df_train_cleaned[text_column].apply(
-            _sanitize_tweets
-        )
-        df_train_cleaned.to_parquet(constants.CLEANED_TRAIN_TWEETS)
+        df_cleaned = pd.read_parquet(constants.TRAIN_DATASET_FILE_PATH)
+        df_cleaned["cleaned_text"] = df_cleaned[text_column].apply(_sanitize_tweets)
+        df_cleaned.to_parquet(cleaned_df_file_path)
 
-    if constants.CLEANED_TEST_TWEETS.exists():
-        logger.debug(
-            "Loading cleaned test tweets from "
-            f"{constants.CLEANED_TEST_TWEETS.relative_to(constants.DATASETS_ROOT_PATH.parent.parent)}"
-        )
-        df_test_cleaned = pd.read_parquet(constants.CLEANED_TEST_TWEETS)
-    else:
-        logger.info("Cleaning test tweets...")
-        dataframe_created = True
-        df_test_cleaned = pd.read_parquet(constants.TEST_DATASET_FILE_PATH)
-        df_test_cleaned["cleaned_text"] = df_test_cleaned[text_column].apply(
-            _sanitize_tweets
-        )
-        df_test_cleaned.to_parquet(constants.CLEANED_TEST_TWEETS)
-
-    return dataframe_created, df_train_cleaned, df_test_cleaned
+    return dataframe_created, df_cleaned
 
 
 def _sanitize_tweets(text):
