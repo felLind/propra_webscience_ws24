@@ -41,4 +41,3 @@ Fehlende Personen: niemand
 
 ### Nächster Termin: 
 - Mo, 16.12.24 20:00, Discord Voicy
-
