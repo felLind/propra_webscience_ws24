@@ -130,7 +130,9 @@ def _normalize_text(
     normalization_strategy: TextNormalizationStrategy,
     stopwords_removal_strategy: StopwordRemovalStrategy,
 ) -> str:
-    tweet_tokenizer = TweetTokenizer(preserve_case=False, strip_handles=True, reduce_len=True)
+    tweet_tokenizer = TweetTokenizer(
+        preserve_case=False, strip_handles=True, reduce_len=True
+    )
     tokens = tweet_tokenizer.tokenize(text)
 
     text_normalization_function = _get_normalization_function(normalization_strategy)

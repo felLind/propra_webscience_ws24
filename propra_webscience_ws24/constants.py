@@ -45,6 +45,7 @@ def get_processed_filepath(
     )
     return PROCESSED_TWEETS_PATH / filename
 
+
 # Models
 MODELS_PATH = DATASETS_ROOT_PATH / "models"
 MODELS_PATH.mkdir(parents=True, exist_ok=True)
