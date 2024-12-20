@@ -4,6 +4,13 @@
 # our datasets
 datasets/sentiment140
 
+# preliminary report
+Abschlussbericht
+!Abschlussbericht/figures
+!Abschlussbericht/abschlussbericht-stimmungsanalyse-mit-twitter.tex
+!Abschlussbericht/AIGpaper.cls
+!Abschlussbericht/Makefile
+!Abschlussbericht/references.bib
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
