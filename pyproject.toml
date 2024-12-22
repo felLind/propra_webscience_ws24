@@ -7,27 +7,25 @@ readme = "README.md"
 
 [tool.poetry.dependencies]
 python = "^3.11"
-pandas = "^2.2.3"
-nltk = "^3.9.1"
+humanize = "^4.11.0"
 jupyter = "^1.1.1"
-matplotlib = "^3.9.2"
-seaborn = "^0.13.2"
-contractions = "^0.1.73"
-rich = "^13.9.3"
-scikit-learn = "^1.5.2"
-pyarrow = "^18.0.0"
-transformers = {extras = ["torch"], version = "^4.47.0"}
-torch = "^2.5.1"
-wordcloud = "^1.9.4"
-joblib = "^1.4.2"
 loguru = "^0.7.3"
+matplotlib = "^3.9.2"
+nltk = "^3.9.1"
+pandas = "^2.2.3"
+pyarrow = "^18.0.0"
+scikit-learn = "^1.5.2"
+seaborn = "^0.13.2"
+torch = "^2.5.1"
+transformers = {extras = ["torch"], version = "^4.47.0"}
+click = "^8.1.8"
 
 
 [tool.poetry.group.dev.dependencies]
 black = "^24.10.0"
 mypy = "^1.12.1"
-ruff = "^0.7.0"
 pre-commit = "^4.0.1"
+ruff = "^0.7.0"
 
 [build-system]
 requires = ["poetry-core"]
