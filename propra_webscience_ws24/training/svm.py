@@ -53,7 +53,7 @@ def train_linear_svc(
     _save_model(model_type, model, training_combination)
 
     return ClassificationResult(
-        model_type="LinearSVC",
+        model_type=model_type,
         training_combination=training_combination,
         processing_duration=processing_duration,
         report_training_data=report,
