@@ -1,0 +1,31 @@
+default_stages:
+  - pre-commit
+repos:
+- repo: https://github.com/pre-commit/pre-commit-hooks
+  rev: v5.0.0
+  hooks:
+  - id: trailing-whitespace
+    exclude: ".*.md"
+  - id: end-of-file-fixer
+  - id: debug-statements
+  - id: check-added-large-files
+    args: [ '--maxkb=30000' ]
+  - id: check-yaml
+  - id: check-json
+  - id: check-toml
+  - id: check-xml
+- repo: https://github.com/charliermarsh/ruff-pre-commit
+  rev: v0.8.3
+  hooks:
+    - id: ruff
+      args: [ --extend-select=RUF100, --fix, --exit-non-zero-on-fix ]
+- repo: https://github.com/psf/black
+  rev: 24.10.0
+  hooks:
+    - id: black
+- repo: https://github.com/pre-commit/mirrors-mypy
+  rev: v1.13.0
+  hooks:
+    - id: mypy
+      additional_dependencies:
+        - types-requests
