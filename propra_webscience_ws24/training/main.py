@@ -2,7 +2,6 @@
 This module provides functionality to train different ml models.
 """
 
-from enum import Enum
 from typing import Iterator
 import pandas as pd
 from loguru import logger
@@ -11,7 +10,8 @@ import click
 
 from propra_webscience_ws24 import constants
 from propra_webscience_ws24.data import data_preprocessing
-from propra_webscience_ws24.training import svm
+from propra_webscience_ws24.training.model.model_base import ModelType
+from propra_webscience_ws24.training.model.model_factory import  model_factory
 from propra_webscience_ws24.training.training_combinations import (
     USE_ALL_FEATURES_SPECIFIER,
     TrainingCombination,
@@ -26,9 +26,6 @@ from propra_webscience_ws24.training.training_results import (
     get_existing_classification_results,
 )
 
-
-class ModelType(Enum):
-    LINEAR_SVC = "LinearSVC"
 
 
 MAX_WORKERS_DEFAULT = 1
@@ -183,12 +180,7 @@ def _train_single_combination(
         training_combination.stopword_removal_strategy,
     )
 
-    if model_type == ModelType.LINEAR_SVC:
-        return svm.train_linear_svc(
-            df_train, df_test, model_type.value, training_combination
-        )
-    else:
-        raise ValueError(f"Unsupported model type: {model_type}")
+    return model_factory(model_type, df_train, df_test, training_combination).train_model()
 
 
 def _load_preprocessed_datasets(
