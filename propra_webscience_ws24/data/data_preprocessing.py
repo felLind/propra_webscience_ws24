@@ -232,6 +232,6 @@ if __name__ == "__main__":
     )
 
     with Pool() as pool:
-        logger.info("Starting multiprocessing for tweet processing")
+        logger.info("Starting multiprocessing for tweet pre-processing...")
         pool.starmap(process_func, args_list)
-        logger.info("Completed multiprocessing for tweet processing")
+        logger.info("Completed multiprocessing for tweet pre-processing.")
