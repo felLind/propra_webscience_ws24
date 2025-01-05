@@ -141,15 +141,13 @@ def main(
     )
 
 def _parse_model_args(model_args: str) -> dict:
+    result = {}
     if model_args is not None:
-        result = {}
         model_args = model_args.replace(" ", "").replace("=", ":")
         for key_value in model_args.split(","):
             kv = key_value.split(":")
             result[kv[0]] = kv[1]
-        return result
-    else:
-        return {}
+    return result
 
 def _train_all_combinations(
     model_type: ModelType,
