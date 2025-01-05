@@ -143,7 +143,7 @@ def main(
 def _parse_model_args(model_args: str) -> dict:
     if model_args is not None:
         result = {}
-        model_args = model_args.replace(" ", "")
+        model_args = model_args.replace(" ", "").replace("=", ":")
         for key_value in model_args.split(","):
             kv = key_value.split(":")
             result[kv[0]] = kv[1]
