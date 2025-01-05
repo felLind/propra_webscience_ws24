@@ -32,15 +32,16 @@ class ModelBase(Generic[T], metaclass=ABCMeta):
     def __init__(self,
                 df_train: pd.DataFrame,
                 df_test: pd.DataFrame,
-                training_combination: TrainingCombination):
+                training_combination: TrainingCombination,
+                model_args: dict,):
         self.df_train = df_train
         self.df_test = df_test
         self.model_type = self._get_model_type()
-        self.model = self._get_model()
+        self.model = self._get_model(model_args)
         self.training_combination = training_combination
 
     @abstractmethod
-    def _get_model(self) -> T:
+    def _get_model(self, model_args) -> T:
         pass
 
     @abstractmethod

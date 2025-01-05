@@ -10,18 +10,19 @@ from propra_webscience_ws24.training.training_combinations import TrainingCombin
 
 
 models = {
-    ModelType.LINEAR_SVC: lambda df_train, df_test, training_combination : SVM(df_train, df_test, training_combination),
-    ModelType.DECISION_TREE: lambda df_train, df_test, training_combination : DecisionTree(df_train, df_test, training_combination),
-    ModelType.KNN: lambda df_train, df_test, training_combination : KNN(df_train, df_test, training_combination),
-    ModelType.LOGISTIC_REGRESSION: lambda df_train, df_test, training_combination : LogisticRegressionModel(df_train, df_test, training_combination),
-    ModelType.NAIVE_BAYES: lambda df_train, df_test, training_combination : NaiveBayes(df_train, df_test, training_combination),
+    ModelType.LINEAR_SVC: lambda df_train, df_test, training_combination, model_args : SVM(df_train, df_test, training_combination, model_args),
+    ModelType.DECISION_TREE: lambda df_train, df_test, training_combination, model_args : DecisionTree(df_train, df_test, training_combination, model_args),
+    ModelType.KNN: lambda df_train, df_test, training_combination, model_args : KNN(df_train, df_test, training_combination, model_args),
+    ModelType.LOGISTIC_REGRESSION: lambda df_train, df_test, training_combination, model_args : LogisticRegressionModel(df_train, df_test, training_combination, model_args),
+    ModelType.NAIVE_BAYES: lambda df_train, df_test, training_combination, model_args : NaiveBayes(df_train, df_test, training_combination, model_args),
 }
 
 
 def model_factory(model_type: ModelType,
                   df_train: pd.DataFrame,
                   df_test: pd.DataFrame,
-                  training_combination: TrainingCombination) -> ModelBase:
+                  training_combination: TrainingCombination,
+                  model_args: dict,) -> ModelBase:
     if model_type in models:
-        return models[model_type](df_train, df_test, training_combination)
+        return models[model_type](df_train, df_test, training_combination, model_args)
     raise ValueError(f"Unsupported model type: {model_type}")

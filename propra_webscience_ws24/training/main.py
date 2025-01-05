@@ -74,6 +74,14 @@ MAX_WORKERS_DEFAULT = 1
     type=int,
     help="Number of workers to use.",
 )
+
+@click.option(
+    "--model-args",
+    required=False,
+    type=str,
+    help="Arguments to pass to the model used for training.(Key1:value,Key2:value,...)",
+)
+
 def main(
     model_type: str,
     normalization_strategy: str | None,
@@ -82,6 +90,7 @@ def main(
     max_features: str | None,
     ngram_range: str | None,
     max_workers: int,
+    model_args: str | None
 ):
     """
     Train a model using the specified configurations.
@@ -94,6 +103,7 @@ def main(
         max_features (str | None): Maximum number of features for the vectorizer.
         ngram_range (str | None): N-gram range for the vectorizer.
         max_workers (int): Number of workers to use, the default is one.
+        model_args (str | None): Arguments to pass to the model used for training. (Key1:value,Key2:value,...)
 
     Returns:
         pd.DataFrame: DataFrame containing the results of the training.
@@ -113,6 +123,7 @@ def main(
     logger.info(f"\tVectorizer: {vectorizer}")
     logger.info(f"\tMax features: {max_features_}")
     logger.info(f"\tN-gram range: {ngram_range}")
+    logger.info(f"\tModel Arguments: {model_args}")
 
     training_combinations = TrainingCombination.create_training_combination_subset(
         normalization_strategy=normalization_strategy,
@@ -125,13 +136,25 @@ def main(
     return _train_all_combinations(
         model_type_,
         training_combinations,
+        _parse_model_args(model_args),
         max_workers=max_workers,
     )
 
+def _parse_model_args(model_args: str) -> dict:
+    if model_args is not None:
+        result = {}
+        model_args = model_args.replace(" ", "")
+        for key_value in model_args.split(","):
+            kv = key_value.split(":")
+            result[kv[0]] = kv[1]
+        return result
+    else:
+        return {}
 
 def _train_all_combinations(
     model_type: ModelType,
     training_combinations: Iterator[TrainingCombination],
+    model_args: dict,
     max_workers: int = MAX_WORKERS_DEFAULT,
 ) -> pd.DataFrame:
     trained_combinations_df = get_existing_classification_results()
@@ -154,7 +177,7 @@ def _train_all_combinations(
 
         futures = {
             executor.submit(
-                _train_single_combination, training_combination, model_type
+                _train_single_combination, training_combination, model_type, model_args
             ): training_combination
             for training_combination in all_training_combinations - skipped_combinations
         }
@@ -173,14 +196,14 @@ def _train_all_combinations(
 
 
 def _train_single_combination(
-    training_combination: TrainingCombination, model_type: ModelType
+    training_combination: TrainingCombination, model_type: ModelType, model_args: dict
 ) -> ClassificationResult:
     df_train, df_test = _load_preprocessed_datasets(
         training_combination.normalization_strategy,
         training_combination.stopword_removal_strategy,
     )
 
-    return model_factory(model_type, df_train, df_test, training_combination).train_model()
+    return model_factory(model_type, df_train, df_test, training_combination, model_args).train_model()
 
 
 def _load_preprocessed_datasets(
