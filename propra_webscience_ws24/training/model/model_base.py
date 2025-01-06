@@ -5,6 +5,7 @@ from enum import Enum
 
 import joblib
 from loguru import logger
+from sklearn.base import BaseEstimator
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import classification_report
 import pandas as pd
@@ -26,7 +27,7 @@ class ModelType(Enum):
     NAIVE_BAYES = "NaiveBayes"
 
 
-T = TypeVar('T', bound='BaseEstimator')
+T = TypeVar('T', bound=BaseEstimator)
 
 class ModelBase(Generic[T], metaclass=ABCMeta):
     def __init__(self,
@@ -37,7 +38,7 @@ class ModelBase(Generic[T], metaclass=ABCMeta):
         self.df_train = df_train
         self.df_test = df_test
         self.model_type = self._get_model_type()
-        self.model = self._get_model(model_args)
+        self.model = self._get_model(self._get_default_model_args() | model_args)
         self.training_combination = training_combination
 
     @abstractmethod
@@ -48,14 +49,13 @@ class ModelBase(Generic[T], metaclass=ABCMeta):
     def _get_model_type(self) -> ModelType:
         pass
 
+    @abstractmethod
+    def _get_default_model_args(self) -> dict:
+        pass
+
     def train_model(self) -> ClassificationResult:
         """
-        Train a linear SVC model using the specified training combination.
-
-        Args:
-            df_train (pd.DataFrame): Training data with 'processed_text' and 'sentiment' columns.
-            df_test (pd.DataFrame): Test data with 'processed_text' for evaluation.
-            training_combination (TrainingCombination): Holds vectorizer and related configurations.
+        Train a model using the specified training combination.
 
         Returns:
             ClassificationResult: Object containing metrics, model details, and runtime information.
@@ -80,7 +80,7 @@ class ModelBase(Generic[T], metaclass=ABCMeta):
         self._save_model()
 
         return ClassificationResult(
-            model_type=self.model_type,
+            model_type=self.model_type.value,
             training_combination=self.training_combination,
             processing_duration=processing_duration,
             report_training_data=report,

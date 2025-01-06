@@ -140,13 +140,14 @@ def main(
         max_workers=max_workers,
     )
 
-def _parse_model_args(model_args: str) -> dict:
+def _parse_model_args(model_args: str | None) -> dict:
+    if model_args is None:
+        return {}
+    model_args = model_args.replace(" ", "").replace("=", ":")
     result = {}
-    if model_args is not None:
-        model_args = model_args.replace(" ", "").replace("=", ":")
-        for key_value in model_args.split(","):
-            kv = key_value.split(":")
-            result[kv[0]] = kv[1]
+    for key_value in model_args.split(","):
+        key, value = key_value.split(":")
+        result[key] = value
     return result
 
 def _train_all_combinations(

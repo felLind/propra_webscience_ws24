@@ -83,8 +83,11 @@ Bei den Vectorizer-Varianten können die Parameter für die Anzahl der Merkmale 
 
 Es können die folgenden ML Methoden trainiert werden:
 
-- _Support-Vector-Machines_
-- ...
+- `LINEAR_SVC`: _Support-Vector-Machines_
+- `DECISION_TREE`: Entscheidungsbum
+- `KNN`: k-nächste Nachbarn
+- `LOGISTIC_REGRESSION`: logistische Regression
+- `NAIVE_BAYES`: naiver Bayes(Bernoulli)
 
 #### Ausführung des Trainings
 
@@ -110,6 +113,7 @@ Es können die folgenden ML Methoden trainiert werden:
   | `--max-features`              | Maximale Anzahl der Merkmale für den Vectorizer | `ALL_FEATURES`, `10000`, `50000`, `250000`                                         |
   | `--ngram-range`               | N-Gramm-Bereich für den Vectorizer              | `UNIGRAMS`, `UNI_AND_BIGRAMS`, `UNI_AND_BI_AND_TRIGRAMS`                           |
   | `--max-workers`               | Anzahl der zu verwendenden Worker               | Positive ganze Zahl (default `1`, d.h. sequentiell)                                |
+  | `--model-args`                | spezifische Argumente für die Modelle           | "Key1:value,Key2:value,..."                                                        |
 
   Beispiel um alle Kombinationen für ein lineares _SUport-Vector-Machine_ Modell zu trainieren, bei dem die Token nicht normlisiert wurden, alle Stoppwörter enthalten sind und ein `TfidfVectorizer` verwendet wird:
   ```bash
