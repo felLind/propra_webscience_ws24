@@ -12,6 +12,4 @@ class KNN(ModelBase[KNeighborsClassifier]):
         return ModelType.KNN
 
     def _get_default_model_args(self) -> dict:
-        return {
-            'n_neighbors': 5
-        }
+        return {"n_neighbors": 5}

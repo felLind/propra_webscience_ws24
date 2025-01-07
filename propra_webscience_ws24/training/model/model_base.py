@@ -1,6 +1,7 @@
 """
 This module provides functions for training SVM models using scikit-learn’s LinearSVC.
 """
+
 from enum import Enum
 
 import joblib
@@ -27,14 +28,17 @@ class ModelType(Enum):
     NAIVE_BAYES = "NaiveBayes"
 
 
-T = TypeVar('T', bound=BaseEstimator)
+T = TypeVar("T", bound=BaseEstimator)
+
 
 class ModelBase(Generic[T], metaclass=ABCMeta):
-    def __init__(self,
-                df_train: pd.DataFrame,
-                df_test: pd.DataFrame,
-                training_combination: TrainingCombination,
-                model_args: dict,):
+    def __init__(
+        self,
+        df_train: pd.DataFrame,
+        df_test: pd.DataFrame,
+        training_combination: TrainingCombination,
+        model_args: dict,
+    ):
         self.df_train = df_train
         self.df_test = df_test
         self.model_type = self._get_model_type()
@@ -49,9 +53,8 @@ class ModelBase(Generic[T], metaclass=ABCMeta):
     def _get_model_type(self) -> ModelType:
         pass
 
-    @abstractmethod
     def _get_default_model_args(self) -> dict:
-        pass
+        return {}
 
     def train_model(self) -> ClassificationResult:
         """
@@ -62,12 +65,18 @@ class ModelBase(Generic[T], metaclass=ABCMeta):
         """
         start_time = time.perf_counter()
 
-        X_train = self.training_combination.vectorizer.fit_transform(self.df_train["processed_text"])
-        X_test = self.training_combination.vectorizer.transform(self.df_test["processed_text"])
+        X_train = self.training_combination.vectorizer.fit_transform(
+            self.df_train["processed_text"]
+        )
+        X_test = self.training_combination.vectorizer.transform(
+            self.df_test["processed_text"]
+        )
 
         report, model = self._train_model(X_train, self.df_train.sentiment)
         y_pred = model.predict(X_test)
-        test_report = classification_report(self.df_test.sentiment, y_pred, output_dict=True)
+        test_report = classification_report(
+            self.df_test.sentiment, y_pred, output_dict=True
+        )
 
         processing_duration = time.perf_counter() - start_time
 
@@ -101,4 +110,3 @@ class ModelBase(Generic[T], metaclass=ABCMeta):
     def _save_model(self):
         model_path = f"{constants.MODELS_PATH}/{self.model_type}-{self.training_combination.model_name}_model.joblib"
         joblib.dump(self.model, model_path)
-

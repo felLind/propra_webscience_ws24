@@ -12,6 +12,4 @@ class LogisticRegressionModel(ModelBase[LogisticRegression]):
         return ModelType.LOGISTIC_REGRESSION
 
     def _get_default_model_args(self) -> dict:
-        return {
-            'random_state':42
-        }
+        return {"random_state": 42}

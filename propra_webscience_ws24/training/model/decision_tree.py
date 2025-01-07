@@ -10,9 +10,5 @@ class DecisionTree(ModelBase[DecisionTreeClassifier]):
     def _get_model_type(self) -> ModelType:
         return ModelType.DECISION_TREE
 
-
     def _get_default_model_args(self) -> dict:
-        return {
-            'random_state':42,
-            'ccp_alpha':0.0
-        }
+        return {"random_state": 42, "ccp_alpha": 0.0}

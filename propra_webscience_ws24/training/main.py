@@ -11,7 +11,7 @@ import click
 from propra_webscience_ws24 import constants
 from propra_webscience_ws24.data import data_preprocessing
 from propra_webscience_ws24.training.model.model_base import ModelType
-from propra_webscience_ws24.training.model.model_factory import  model_factory
+from propra_webscience_ws24.training.model.model_factory import model_factory
 from propra_webscience_ws24.training.training_combinations import (
     USE_ALL_FEATURES_SPECIFIER,
     TrainingCombination,
@@ -25,7 +25,6 @@ from propra_webscience_ws24.training.training_results import (
     add_classification_results_to_df,
     get_existing_classification_results,
 )
-
 
 
 MAX_WORKERS_DEFAULT = 1
@@ -74,14 +73,12 @@ MAX_WORKERS_DEFAULT = 1
     type=int,
     help="Number of workers to use.",
 )
-
 @click.option(
     "--model-args",
     required=False,
     type=str,
     help="Arguments to pass to the model used for training.(Key1:value,Key2:value,...)",
 )
-
 def main(
     model_type: str,
     normalization_strategy: str | None,
@@ -90,7 +87,7 @@ def main(
     max_features: str | None,
     ngram_range: str | None,
     max_workers: int,
-    model_args: str | None
+    model_args: str | None,
 ):
     """
     Train a model using the specified configurations.
@@ -140,6 +137,7 @@ def main(
         max_workers=max_workers,
     )
 
+
 def _parse_model_args(model_args: str | None) -> dict:
     if model_args is None:
         return {}
@@ -149,6 +147,7 @@ def _parse_model_args(model_args: str | None) -> dict:
         key, value = key_value.split(":")
         result[key] = value
     return result
+
 
 def _train_all_combinations(
     model_type: ModelType,
@@ -202,7 +201,9 @@ def _train_single_combination(
         training_combination.stopword_removal_strategy,
     )
 
-    return model_factory(model_type, df_train, df_test, training_combination, model_args).train_model()
+    return model_factory(
+        model_type, df_train, df_test, training_combination, model_args
+    ).train_model()
 
 
 def _load_preprocessed_datasets(
