@@ -12,21 +12,11 @@ from propra_webscience_ws24.training.training_combinations import TrainingCombin
 
 
 models = {
-    ModelType.LINEAR_SVC: lambda df_train, df_test, training_combination, model_args: SVM(
-        df_train, df_test, training_combination, model_args
-    ),
-    ModelType.DECISION_TREE: lambda df_train, df_test, training_combination, model_args: DecisionTree(
-        df_train, df_test, training_combination, model_args
-    ),
-    ModelType.KNN: lambda df_train, df_test, training_combination, model_args: KNN(
-        df_train, df_test, training_combination, model_args
-    ),
-    ModelType.LOGISTIC_REGRESSION: lambda df_train, df_test, training_combination, model_args: LogisticRegressionModel(
-        df_train, df_test, training_combination, model_args
-    ),
-    ModelType.NAIVE_BAYES: lambda df_train, df_test, training_combination, model_args: NaiveBayes(
-        df_train, df_test, training_combination, model_args
-    ),
+    ModelType.LINEAR_SVC: SVM,
+    ModelType.DECISION_TREE: DecisionTree,
+    ModelType.KNN: KNN,
+    ModelType.LOGISTIC_REGRESSION: LogisticRegressionModel,
+    ModelType.NAIVE_BAYES: NaiveBayes,
 }
 
 
