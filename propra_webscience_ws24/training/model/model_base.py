@@ -26,6 +26,7 @@ class ModelType(Enum):
     KNN = "KNeighborsClassifier"
     LOGISTIC_REGRESSION = "LogisticRegression"
     NAIVE_BAYES = "NaiveBayes"
+    RANDOM_FOREST = "RandomForestClassifier"
 
 
 T = TypeVar("T", bound=BaseEstimator)

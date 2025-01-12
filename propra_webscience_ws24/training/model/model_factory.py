@@ -1,5 +1,6 @@
 import pandas as pd
 
+from propra_webscience_ws24.training.model import RandomForest
 from propra_webscience_ws24.training.model.model_base import ModelType, ModelBase
 from propra_webscience_ws24.training.model.svm import SVM
 from propra_webscience_ws24.training.model.decision_tree import DecisionTree
@@ -17,6 +18,7 @@ models = {
     ModelType.KNN: KNN,
     ModelType.LOGISTIC_REGRESSION: LogisticRegressionModel,
     ModelType.NAIVE_BAYES: NaiveBayes,
+    ModelType.RANDOM_FOREST: RandomForest,
 }
 
 
