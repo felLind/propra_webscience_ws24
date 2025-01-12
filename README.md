@@ -88,6 +88,7 @@ Es können die folgenden ML Methoden trainiert werden:
 - `KNN`: k-nächste Nachbarn
 - `LOGISTIC_REGRESSION`: logistische Regression
 - `NAIVE_BAYES`: naiver Bayes(Bernoulli)
+- `RANDOM_FOREST`: Entscheidungswald
 
 #### Ausführung des Trainings
 
