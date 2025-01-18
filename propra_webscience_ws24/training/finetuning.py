@@ -7,11 +7,11 @@ from transformers import DataCollatorWithPadding
 from transformers import AutoModelForSequenceClassification
 from transformers import TrainingArguments, Trainer
 
+model_name = "cardiffnlp/twitter-roberta-base-sentiment"
+
 print(f"cuda enabled: {torch.cuda.is_available()}")
 
 sentiment140 = load_dataset("sentiment140", trust_remote_code=True)
-
-print(sentiment140["train"].info)
 
 small_train_dataset = (
     sentiment140["train"].shuffle(seed=42).select([i for i in list(range(10000))])
@@ -21,7 +21,22 @@ small_test_dataset = sentiment140["test"]
 small_train_dataset = small_train_dataset.rename_column("sentiment", "label")
 small_test_dataset = small_test_dataset.rename_column("sentiment", "label")
 
-tokenizer = AutoTokenizer.from_pretrained("distilbert-base-uncased")
+sentiment_map = {
+    0: 0,
+    2: 1,
+    4: 2,
+}
+
+
+def map_sentiment(example):
+    example["label"] = sentiment_map[example["label"]]
+    return example
+
+
+small_train_dataset = small_train_dataset.map(map_sentiment)
+small_test_dataset = small_test_dataset.map(map_sentiment)
+
+tokenizer = AutoTokenizer.from_pretrained(model_name)
 
 
 def preprocess_function(examples):
@@ -33,9 +48,7 @@ tokenized_test = small_test_dataset.map(preprocess_function, batched=True)
 
 data_collator = DataCollatorWithPadding(tokenizer=tokenizer)
 
-model = AutoModelForSequenceClassification.from_pretrained(
-    "distilbert-base-uncased", num_labels=2
-)
+model = AutoModelForSequenceClassification.from_pretrained(model_name)
 
 
 def compute_metrics(eval_pred):
@@ -44,10 +57,8 @@ def compute_metrics(eval_pred):
 
     logits, labels = eval_pred
     predictions = np.argmax(logits, axis=-1)
-    accuracy = load_accuracy.compute(predictions=predictions, references=labels)[
-        "accuracy"
-    ]
-    f1 = load_f1.compute(predictions=predictions, references=labels)["f1"]
+    accuracy = load_accuracy.compute(predictions=predictions, references=labels)
+    f1 = load_f1.compute(predictions=predictions, references=labels, average=None)
     return {"accuracy": accuracy, "f1": f1}
 
 
@@ -66,11 +77,11 @@ trainer = Trainer(
     args=training_args,
     train_dataset=tokenized_train,
     eval_dataset=tokenized_test,
-    tokenizer=tokenizer,
+    processing_class=tokenizer,
     data_collator=data_collator,
     compute_metrics=compute_metrics,
 )
 
 trainer.train()
 
-trainer.evaluate()
+print(trainer.evaluate())
