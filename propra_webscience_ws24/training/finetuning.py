@@ -36,6 +36,8 @@ def map_sentiment(example):
 small_train_dataset = small_train_dataset.map(map_sentiment)
 small_test_dataset = small_test_dataset.map(map_sentiment)
 
+small_test_dataset = small_test_dataset.filter(lambda example: example["label"] != 1)
+
 tokenizer = AutoTokenizer.from_pretrained(model_name)
 
 
