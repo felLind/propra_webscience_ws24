@@ -1,6 +1,6 @@
 import torch
 import numpy as np
-from datasets import load_dataset  # type: ignore[attr-defined]
+from datasets import combine, load_dataset  # type: ignore[attr-defined]
 from evaluate import load
 from transformers import AutoTokenizer
 from transformers import DataCollatorWithPadding
@@ -13,9 +13,28 @@ print(f"cuda enabled: {torch.cuda.is_available()}")
 
 sentiment140 = load_dataset("sentiment140", trust_remote_code=True)
 
-small_train_dataset = (
-    sentiment140["train"].shuffle(seed=42).select([i for i in list(range(10000))])
+dataset_size = 10000
+
+positive = (
+    sentiment140["train"]
+    .select([i for i in list(range(0, 799999))])
+    .shuffle(seed=42)
+    .select([i for i in list(range(int(dataset_size / 2)))])
 )
+negative = (
+    sentiment140["train"]
+    .select([i for i in list(range(800000, 1599999))])
+    .shuffle(seed=42)
+    .select([i for i in list(range(int(dataset_size / 2)))])
+)
+
+small_train_dataset = combine.concatenate_datasets([positive, negative])
+
+
+#
+# small_train_dataset = (
+#     sentiment140["train"].shuffle(seed=42).select([i for i in list(range(10000))])
+# )
 small_test_dataset = sentiment140["test"]
 
 small_train_dataset = small_train_dataset.rename_column("sentiment", "label")
@@ -66,11 +85,10 @@ def compute_metrics(eval_pred):
 
 training_args = TrainingArguments(
     output_dir="output/",
-    learning_rate=2e-5,
+    learning_rate=1e-5,
     per_device_train_batch_size=16,
     per_device_eval_batch_size=16,
     num_train_epochs=2,
-    weight_decay=0.01,
     save_strategy="epoch",
 )
 
@@ -83,6 +101,9 @@ trainer = Trainer(
     data_collator=data_collator,
     compute_metrics=compute_metrics,
 )
+
+
+print(trainer.evaluate())
 
 trainer.train()
 
