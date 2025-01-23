@@ -28,7 +28,7 @@ def map_sentiment(example, mapper):
     return example
 
 
-def train_parans(
+def train_params(
     train_dataset,
     test_dataset,
     model_name,
@@ -130,7 +130,7 @@ def train_model(model_name, dataset, mapper, dataset_sizes, learning_rates):
     for dataset_size in dataset_sizes:
         for learning_rate in learning_rates:
             print(f"learning rate: {learning_rate}, dataset size: {dataset_size}")
-            train_parans(
+            train_params(
                 train_dataset,
                 tokenized_test,
                 model_name,
