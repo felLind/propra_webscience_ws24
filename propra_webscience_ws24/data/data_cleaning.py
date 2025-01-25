@@ -58,7 +58,11 @@ def _get_or_create_cleaned_tweet_data(
     else:
         logger.info(f"Cleaning {split} tweets...")
         dataframe_created = True
-        df_cleaned = pd.read_parquet(constants.TRAIN_DATASET_FILE_PATH)
+        df_cleaned = pd.read_parquet(
+            constants.TRAIN_DATASET_FILE_PATH
+            if split == "train"
+            else constants.TEST_DATASET_FILE_PATH
+        )
         df_cleaned["cleaned_text"] = df_cleaned[text_column].apply(_sanitize_tweets)
         df_cleaned.to_parquet(cleaned_df_file_path)
 
