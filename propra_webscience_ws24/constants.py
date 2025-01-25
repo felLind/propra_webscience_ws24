@@ -57,9 +57,6 @@ RESULTS_PATH = DATASETS_ROOT_PATH / "results"
 RESULTS_PATH.mkdir(parents=True, exist_ok=True)
 
 CLASSIFICATION_RESULTS_PARQUET_PATH = RESULTS_PATH / "classification-results.parquet"
-CLASSIFICATION_RESULTS_SAVED_PARQUET_PATH = (
-    RESULTS_PATH / "classification-results.parquet"
-)
 
 # Visualization
 PLOTS_PATH = RESULTS_PATH / "plots"
