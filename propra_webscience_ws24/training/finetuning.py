@@ -1,11 +1,16 @@
 import torch
+import statistics
 import numpy as np
+import pandas as pd
+import time
 from datasets import combine, load_dataset  # type: ignore[attr-defined]
 from evaluate import load
 from transformers import AutoTokenizer
 from transformers import DataCollatorWithPadding
 from transformers import AutoModelForSequenceClassification
 from transformers import TrainingArguments, Trainer
+
+untrained_eval = "untrained_eval"
 
 
 def compute_metrics(eval_pred):
@@ -28,6 +33,17 @@ def map_sentiment(example, mapper):
     return example
 
 
+def add_data_row(rows, model_name, data_size, learning_rate, result):
+    row = {
+        "model_name": model_name,
+        "data_size": data_size,
+        "learning_rate": learning_rate,
+        "accuracy": result["eval_accuracy"]["accuracy"],
+        "f1": statistics.mean(result["eval_f1"]["f1"]),
+    }
+    rows.append(row)
+
+
 def train_params(
     train_dataset,
     test_dataset,
@@ -36,6 +52,7 @@ def train_params(
     learning_rate,
     tokenizer,
     mapper,
+    data_rows,
 ):
     positive = (
         train_dataset.select([i for i in list(range(0, 799999))])
@@ -67,7 +84,7 @@ def train_params(
         per_device_train_batch_size=16,
         per_device_eval_batch_size=16,
         num_train_epochs=2,
-        save_strategy="epoch",
+        save_strategy="no",
     )
 
     trainer = Trainer(
@@ -81,11 +98,14 @@ def train_params(
     )
 
     trainer.train()
+    result = trainer.evaluate()
+    print(result)
+    add_data_row(data_rows, model_name, dataset_size, learning_rate, result)
 
-    print(trainer.evaluate())
 
-
-def train_model(model_name, dataset, mapper, dataset_sizes, learning_rates):
+def train_model(
+    model_name, model_args, dataset, mapper, dataset_sizes, learning_rates, data_rows
+):
     train_dataset = dataset["train"]
     test_dataset = dataset["test"]
 
@@ -104,7 +124,9 @@ def train_model(model_name, dataset, mapper, dataset_sizes, learning_rates):
 
     data_collator = DataCollatorWithPadding(tokenizer=tokenizer)
 
-    model = AutoModelForSequenceClassification.from_pretrained(model_name, num_labels=2)
+    model = AutoModelForSequenceClassification.from_pretrained(
+        model_name, **model_args[model_name]
+    )
 
     tokenized_train = small_train_dataset.map(
         lambda example: preprocess_function(example, tokenizer), batched=True
@@ -115,6 +137,7 @@ def train_model(model_name, dataset, mapper, dataset_sizes, learning_rates):
 
     training_args = TrainingArguments(
         output_dir="output/",
+        save_strategy="no",
     )
 
     trainer = Trainer(
@@ -126,10 +149,17 @@ def train_model(model_name, dataset, mapper, dataset_sizes, learning_rates):
         data_collator=data_collator,
         compute_metrics=compute_metrics,
     )
-    print(trainer.evaluate())
+    result = trainer.evaluate()
+
+    print(result)
+
+    add_data_row(data_rows, model_name, untrained_eval, untrained_eval, result)
+
     for dataset_size in dataset_sizes:
         for learning_rate in learning_rates:
-            print(f"learning rate: {learning_rate}, dataset size: {dataset_size}")
+            print(
+                f"model: {model_name}, learning rate: {learning_rate}, dataset size: {dataset_size}"
+            )
             train_params(
                 train_dataset,
                 tokenized_test,
@@ -138,6 +168,7 @@ def train_model(model_name, dataset, mapper, dataset_sizes, learning_rates):
                 learning_rate,
                 tokenizer,
                 mapper,
+                data_rows,
             )
 
 
@@ -145,6 +176,8 @@ print(f"cuda enabled: {torch.cuda.is_available()}")
 
 roberta = "cardiffnlp/twitter-roberta-base-sentiment"
 distilbert = "distilbert-base-uncased"
+
+model_names = [distilbert, roberta]
 
 sentiment140 = load_dataset("sentiment140", trust_remote_code=True)
 
@@ -158,22 +191,39 @@ sentiment_map_distilbert = {
     4: 1,
 }
 
-model_names = [distilbert, roberta]
-
 sentiment_maps = {
     roberta: sentiment_map_roberta,
     distilbert: sentiment_map_distilbert,
+}
+
+model_args_distilbert = {
+    "num_labels": 2,
+}
+
+model_args_roberta = {}  # type: ignore[var-annotated]
+
+model_args = {
+    roberta: model_args_roberta,
+    distilbert: model_args_distilbert,
 }
 
 learning_rates = [1e-3, 1e-4, 1e-5, 1e-6]
 
 dataset_sizes = [2500, 5000, 7500, 10000]
 
+rows = []  # type: ignore[var-annotated]
+
 for model_name in model_names:
     train_model(
         model_name,
+        model_args,
         sentiment140,
         sentiment_maps[model_name],
         dataset_sizes,
         learning_rates,
+        rows,
     )
+
+df = pd.DataFrame(rows)
+timestr = time.strftime("%Y%m%d-%H%M%S")
+df.to_csv(f"results/fine_tuning_{timestr}.csv", index=False)
