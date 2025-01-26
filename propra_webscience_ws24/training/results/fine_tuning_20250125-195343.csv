@@ -1,0 +1,5 @@
+model_name,data_size,learning_rate,accuracy,f1
+distilbert-base-uncased,untrained_eval,untrained_eval,0.415041782729805,0.3952156334231806
+distilbert-base-uncased,10000,1e-07,0.5292479108635098,0.5206791123189837
+cardiffnlp/twitter-roberta-base-sentiment,untrained_eval,untrained_eval,0.83008356545961,0.5807085489712216
+cardiffnlp/twitter-roberta-base-sentiment,10000,1e-07,0.9052924791086351,0.6094544302795154
