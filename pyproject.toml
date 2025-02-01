@@ -19,6 +19,8 @@ seaborn = "^0.13.2"
 torch = "^2.5.1"
 transformers = {extras = ["torch"], version = "^4.47.0"}
 click = "^8.1.8"
+evaluate = "^0.4.3"
+datasets = "^3.2.0"
 
 
 [tool.poetry.group.dev.dependencies]
