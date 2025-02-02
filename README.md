@@ -54,7 +54,7 @@ Durch Aufruf dieses Befehls werden die folgenden Schritte (nach Download des Tra
     - Entfernung der Stopp-Wörter gemäß  `nltk.corpus.stopwords.words("english")` 
     - Entfernung der Stopp-Wörter mit angepasster Menge an Stopp-Wörtern (s. `_get_custom_stopwords` für Details)
 
-### Training von ML Modellen
+### Training von klassischen ML Modellen
 
 #### Auswahl Vectorizer Varianten
 
@@ -120,3 +120,28 @@ Es können die folgenden ML Methoden trainiert werden:
   ```bash
   python main.py --model-type LINEAR_SVC --normalization-strategy=NONE --stopword-removal-strategy=KEEP --vectorizer=TFIDF --max-workers 4
   ```
+
+### Fine-Tuning von BERT-basierten Modellen
+
+Für das Fine-Tuning von BERT-basierten Modellen wird die Bibliothek `transformers` von _Hugging Face_ verwendet, um auf bereits vortrainierte Modell zuzugreifen.
+Es werden die vortrainierten Modelle `bert-base-uncased` und `roberta-base` verwendet.
+
+- [`cardiffnlp/twitter-roberta-base-sentiment`](https://huggingface.co/cardiffnlp/twitter-roberta-base-sentiment)
+
+- [`distilbert-base-uncased`](https://huggingface.co/distilbert-base-uncased)
+
+#### Parameter für das Fine-Tuning
+
+Um die Auswirkung unterschiedlicher Parameter auf das Fine-Tuning zu untersuchen, werden die folgenden Parameter verwendet:
+
+- Initiale Lernrate: `[1e-4, 1e-5, 1e-6, 2 * 1e-6, 3 * 1e-6, 4 * 1e-6, 5 * 1e-6]`
+- Daten-Größe (Anzahl aus Beispielen aus dem Gesamt-Datensatz): `[2_500, 5_000, 7_500, 10_000, 15_000, 20_000]`
+
+#### Ausführung des Fine-Tunings für die beiden Modelle
+
+Um das Fine-Tuning für die beiden Modelle durchzuführen, kann der folgende Befehl ausgeführt werden:
+
+```bash
+# In einer Poetry shell und nachdem die restlichen Python Pakete installiert wurden
+python -m propra_webscience_ws24.training.llm.finetuning_bert_based 
+```
