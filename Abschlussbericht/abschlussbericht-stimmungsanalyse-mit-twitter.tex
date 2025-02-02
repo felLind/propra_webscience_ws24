@@ -9,6 +9,9 @@
 
 %%%% optional packages
 \usepackage{tikz}                           % creating graphs and other structures
+\usepackage{glossaries}                     % glossaries package for glossary entries
+\usepackage{soul}                           % for highlighting text (temporary usage)
+\newcommand{\redhl}{\sethlcolor{red}\hl}
 
 
 %%%% Author and Title Information %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -16,11 +19,13 @@
 
 \title{Stimmungsanalyse mit Twitter}
 
+%%%% Glossary %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newacronym{svm}{SVM}{\textit{Support Vector Machine}}
 
 %%%% Abstract %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \germanabstract{
-    TODO: Zusammenfassung formulieren...
+    \redhl{TODO: Zusammenfassung formulieren...}
 }
 
 \begin{document}
@@ -57,7 +62,8 @@
 \subsection{Datensätze}
 
 Es wurden zwei Datensätze verwendet, die in den beiden folgenden Unterabschnitten beschrieben werden.
-TODO: Lizenzinformationen hinzufügen
+
+\redhl{TODO: Lizenzinformationen hinzufügen}
 
 \subsubsection{Trainingsdatensatz}
 Der verwendete Datensatz \glqq Sentiment140\grqq{} wurde von Go et al. \cite{go2009twitter} erzeugt und enthält 1.600.000 modifizierte Tweets.
@@ -115,17 +121,76 @@ Darüber hinaus sollen die Herausforderungen und Limitationen der Stimmungsanaly
 
 \subsection{Klassische Ansätze}
 
+Als klassische Ansätze zur Stimmungsanalyse von Tweets wurden folgende überwachten Lernverfahren ausgewählt, weil diese besonders häufig in der Literatur zu finden sind \cite{wankhade2022survey, medhat2014sentiment, zimbra2018state}:
+
+\begin{itemize}
+    \item Logistische Regression
+    \item \gls{svm}
+    \item Naiver Bayes Klassifikator
+\end{itemize}
+
+\redhl{TODO: Ggf. Anmerkung ergänzen, dass zwei weitere klassische Ansätze evaluiert wurden.}
+
 \subsubsection{Logistische Regression}
+
 \subsubsection{\textit{Support Vector Machine}}
-\subsubsection{Entscheidungsbäume}
+
+Die \gls{svm} wird oftmals zur Klassifikation verwendet.
+Die Klassifikation erfolgt dabei durch die Bestimmung einer Hyperebene, die die Daten in zwei Klassen trennt.
+Eine Hyperebene in $\mathbb{R}^{n}$ ist definiert als die Menge aller Punkte $x\in\mathbb{R}^n$ für die gilt:
+\begin{equation*}
+    \theta \cdot x - b = 0, \text{ wobei } \theta \in \mathbb{R}^{n}, b\in\mathbb{R}
+\end{equation*}
+
+Für linear nicht separierbare Datensätze, lässt sich keine Hyperebene finden, die die Daten perfekt trennt.
+Stattdessen wird versucht eine Hyperebene zu bestimmen, die die Daten unter Berücksichtigung der \textit{Hinge}-Fehlerfunktion\footnote{
+Die \textit{Hinge}-Fehlerfunktion ist definiert als:
+\begin{equation*}
+    L^{hinge}(D, \theta, b) = \sum_{1}^{m}\max\lbrace0, 1 - y_i(\theta \cdot x_i - b)\rbrace
+\end{equation*}
+} möglichst gut trennt.
+Die optimalen Parameter zur Bestimmung der Hyperebene können durch folgendes Minimierungsproblem, für einen Regularisierungsparameter $C\geq0$, bestimmt werden:
+\begin{equation*}
+    \min_{w, b} \lvert\lvert \theta \rvert\rvert + C \frac{1}{m}\sum_{i=1}^{m} \max\lbrace0, 1 - y_i(\theta \cdot x_i - b)\rbrace
+\end{equation*}
+
+Die binäre Klassifikation von Datenpunkten erfolgt dann durch die Bestimmung der Klasse des Datenpunktes $x$ durch:
+\begin{equation*}
+        clf_{\theta, b}(x) =
+        \begin{cases}
+        1, & \text{wenn } \theta \cdot x - b \geq 0 \\
+        -1, & \text{sonst}
+    \end{cases}
+\end{equation*}
+
+
 \subsubsection{Naiver Bayes Klassifikator}
-\subsubsection{K-nächste Nachbarn}
 
 \subsection{Deep Learning Ansätze}
 
 \section{Experimente}
 % Wie ist der Experimentaufbau, welche Evaluationsmetriken betrachten Sie?
 % Beschreibung und Interpretation der Ergebnisse
+
+\subsection{Experimentaufbau}
+
+\subsection{Klassische Ansätze}
+
+\subsubsection{\gls{svm}}
+
+Als Modell-Parameter wurden die Standardwerte für die \textit{LinearSVC}-Implementierung in der Python-Bibliothek \textit{scikit-learn} verwendet.
+Die Standardwerte sind:
+
+\begin{itemize}
+    \item $C = 1.0$
+    \item Fehlerfunktion: quadrierte Hinge-Fehlerfunktion
+\end{itemize}
+
+\subsection{Deep Learning Ansätze}
+
+\subsection{Evalutionsmetriken}
+
+\subsection{Ergebnisse}
 
 \section{Ausblick}
 % Was wurde nicht geschafft bzw. hat nicht funktioniert? Warum?
