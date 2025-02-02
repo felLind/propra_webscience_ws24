@@ -31,6 +31,11 @@ SENTIMENT_MAPPING = {
     4: 1,
 }
 
+ORIGINAL_MODEL_OUTPUT_DIM = {
+    DEEPSEEK_MODEL_NAME_1_5B: 1536,
+    DEEPSEEK_MODEL_NAME_8B: 4096,
+}
+
 LEARNING_RATES = [1e-4, 1e-5]
 
 DATASET_SIZES = [2_500, 5_000]
@@ -81,10 +86,22 @@ def create_deepseek_classifier_model(model_name, output_dim=1536, n_labels=2):
     return model
 
 
+def get_original_model_output_dim(model_name) -> int:
+    try:
+        return ORIGINAL_MODEL_OUTPUT_DIM[model_name]
+    except KeyError:
+        raise ValueError(
+            f"Model {model_name} not defined in the 'ORIGINAL_MODEL_OUTPUT_DIM' map. "
+            f"New models must be specified in the map."
+        )
+
+
 def train_classifier_and_evaluate(
     model_name, ds_train, ds_eval, ds_test, learning_rate
 ):
-    model = create_deepseek_classifier_model(model_name)
+    model = create_deepseek_classifier_model(
+        model_name, output_dim=get_original_model_output_dim(model_name)
+    )
     model.config.pad_token_id = model.config.eos_token_id
     tokenizer = AutoTokenizer.from_pretrained(model_name)
     tokenizer.pad_token = tokenizer.eos_token
