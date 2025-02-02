@@ -22,17 +22,18 @@ from propra_webscience_ws24.training.llm.data_splits import (
 from propra_webscience_ws24.training.llm.utils import tokenize_text, compute_metrics
 
 SEED = 42
-# DEEPSEEK_MODEL_NAME = 'deepseek-ai/DeepSeek-R1-Distill-Llama-8B'
-DEEPSEEK_MODEL_NAME = "deepseek-ai/DeepSeek-R1-Distill-Qwen-1.5B"
+DEEPSEEK_MODEL_NAME_8B = "deepseek-ai/DeepSeek-R1-Distill-Llama-8B"
+DEEPSEEK_MODEL_NAME_1_5B = "deepseek-ai/DeepSeek-R1-Distill-Qwen-1.5B"
+MODEL_NAMES = [DEEPSEEK_MODEL_NAME_1_5B, DEEPSEEK_MODEL_NAME_8B]
 
 SENTIMENT_MAPPING = {
     0: 0,
     4: 1,
 }
 
-LEARNING_RATES = [1e-4]
+LEARNING_RATES = [1e-4, 1e-5]
 
-DATASET_SIZES = [1_000]
+DATASET_SIZES = [2_500, 5_000]
 
 logger.info(f"cuda enabled: {torch.cuda.is_available()}")
 
@@ -80,10 +81,12 @@ def create_deepseek_classifier_model(model_name, output_dim=1536, n_labels=2):
     return model
 
 
-def train_classifier_and_evaluate(ds_train, ds_eval, ds_test, learning_rate):
-    model = create_deepseek_classifier_model(DEEPSEEK_MODEL_NAME)
+def train_classifier_and_evaluate(
+    model_name, ds_train, ds_eval, ds_test, learning_rate
+):
+    model = create_deepseek_classifier_model(model_name)
     model.config.pad_token_id = model.config.eos_token_id
-    tokenizer = AutoTokenizer.from_pretrained(DEEPSEEK_MODEL_NAME)
+    tokenizer = AutoTokenizer.from_pretrained(model_name)
     tokenizer.pad_token = tokenizer.eos_token
 
     tokenized_train = ds_train.map(
@@ -103,7 +106,7 @@ def train_classifier_and_evaluate(ds_train, ds_eval, ds_test, learning_rate):
         learning_rate=learning_rate,
         per_device_train_batch_size=16,
         per_device_eval_batch_size=16,
-        num_train_epochs=4,
+        num_train_epochs=2,
         save_strategy="no",
     )
 
@@ -124,7 +127,7 @@ def train_classifier_and_evaluate(ds_train, ds_eval, ds_test, learning_rate):
     result = trainer.evaluate(tokenized_test)
 
     eval_result = EvalResult(
-        model_name=DEEPSEEK_MODEL_NAME,
+        model_name=model_name,
         data_size=len(ds_train) + len(ds_eval),
         learning_rate=learning_rate,
         accuracy=result["eval_accuracy"]["accuracy"],
@@ -139,20 +142,23 @@ if __name__ == "__main__":
 
     eval_results = []
 
-    for dataset_size in DATASET_SIZES:
-        ds_train_, ds_test = get_train_and_test_datasets(SENTIMENT_MAPPING)
+    for model_name in MODEL_NAMES:
+        logger.info(f"Fine tuning model: {model_name}")
+        for dataset_size in DATASET_SIZES:
+            ds_train_, ds_test = get_train_and_test_datasets(SENTIMENT_MAPPING)
 
-        ds_train, ds_eval = create_train_and_eval_split(
-            ds_train_, SENTIMENT_MAPPING[4], dataset_size=dataset_size
-        )
-        for learning_rate in LEARNING_RATES:
-            result = train_classifier_and_evaluate(
-                ds_train,
-                ds_eval,
-                ds_test,
-                learning_rate,
+            ds_train, ds_eval = create_train_and_eval_split(
+                ds_train_, SENTIMENT_MAPPING[4], dataset_size=dataset_size
             )
-            eval_results.append(result)
+            for learning_rate in LEARNING_RATES:
+                result = train_classifier_and_evaluate(
+                    model_name,
+                    ds_train,
+                    ds_eval,
+                    ds_test,
+                    learning_rate,
+                )
+                eval_results.append(result)
 
     logger.info("fine tuning done")
 
