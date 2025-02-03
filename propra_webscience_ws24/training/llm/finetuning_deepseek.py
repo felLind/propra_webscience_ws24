@@ -36,9 +36,9 @@ ORIGINAL_MODEL_OUTPUT_DIM = {
     DEEPSEEK_MODEL_NAME_8B: 4096,
 }
 
-LEARNING_RATES = [1e-4, 1e-5]
+LEARNING_RATES = [1e-4, 1e-5, 1e-6, 2 * 1e-6, 3 * 1e-6, 4 * 1e-6, 5 * 1e-6]
 
-DATASET_SIZES = [2_500, 5_000]
+DATASET_SIZES = [2_500, 5_000, 7_500, 10_000, 15_000, 20_000]
 
 logger.info(f"cuda enabled: {torch.cuda.is_available()}")
 
