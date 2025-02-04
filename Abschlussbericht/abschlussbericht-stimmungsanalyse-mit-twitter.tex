@@ -133,6 +133,42 @@ Als klassische Ansätze zur Stimmungsanalyse von Tweets wurden folgende überwac
 
 \subsubsection{Logistische Regression}
 
+Die logistische Regression ist ein Verfahren zur Klassifikation, das auf der \Sigmoid-Funktion basiert. Diese Funktion ist definiert als:
+
+\begin{equation*}
+    \sigma(z) = \frac{1}{1 + e^{-z}}
+\end{equation*}
+
+wodurch Werte aus dem gesamten Zahlenraum auf das Intervall $(0,1)$ abgebildet werden. Die Entscheidungsregel für einen Datenpunkt $x$ ergibt sich durch:
+
+\begin{equation*}
+    h_{\theta}(x) = \sigma(\theta \cdot x + b), \text{ wobei } \theta \in \mathbb{R}^{n}, b \in \mathbb{R}
+\end{equation*}
+
+Ein Datenpunkt wird dabei der Klasse 1 zugeordnet, wenn $h_{\theta}(x) \geq 0.5$, ansonsten der Klasse 0:
+
+\begin{equation*}
+    clf_{\theta, b}(x) =
+    \begin{cases}
+        1, & \text{wenn } h_{\theta}(x) \geq 0.5 \\
+        0, & \text{sonst}
+    \end{cases}
+\end{equation*}
+
+Zur Bestimmung der Parameter $\theta$ und $b$ wird die logistische Verlustfunktion minimiert:
+
+\begin{equation*}
+    \min_{\theta, b} \frac{1}{m} \sum_{i=1}^{m} \left[-y_i \log h_{\theta}(x_i) - (1 - y_i) \log(1 - h_{\theta}(x_i))\right]
+\end{equation*}
+
+Dieses Optimierungsproblem ist konvex und wird mithilfe des \textit{Gradient Descent} gelöst. Dabei werden die Parameter iterativ durch:
+
+\begin{equation*}
+    \theta \leftarrow \theta - \alpha \nabla_{\theta} L
+\end{equation*}
+
+aktualisiert, wobei $\alpha > 0$ die Lernrate ist. Eine Regularisierung kann durch einen zusätzlichen Term $\lambda \lVert\theta\rVert^2$ eingeführt werden, um Überanpassung zu vermeiden.
+
 \subsubsection{\textit{Support Vector Machine}}
 
 Die \gls{svm} wird oftmals zur Klassifikation verwendet.
