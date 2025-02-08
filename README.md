@@ -145,3 +145,27 @@ Um das Fine-Tuning für die beiden Modelle durchzuführen, kann der folgende Bef
 # In einer Poetry shell und nachdem die restlichen Python Pakete installiert wurden
 python -m propra_webscience_ws24.training.llm.finetuning_bert_based 
 ```
+
+## Direkte Verwendung von DeepSeek R1 über lokale Installation
+
+Um DeepSeek R1 lokal zu verwenden, muss zunächst Ollama installiert werden:
+> [!WARNING]
+> Der nachfolgende Befehl installiert Ollama ohne Prüfung der Quelle. Es wird empfohlen, die Quelle zu überprüfen, bevor der Befehl ausgeführt wird.
+
+```bash
+curl -fsSL https://ollama.com/install.sh | sh
+```
+
+> [!NOTE]
+> [Ollama](https://github.com/ollama/ollama) empfiehlt mindestens 16 GB RAM für die Verwendung von Modellen mit 13 Milliarden Parametern und 32 GB für Modelle mit 33 Milliarden Parametern.
+
+Anschließend kann das DeepSeek R1 mit 32 Milliarden Parametern wie folgt geladen werden:
+```bash
+ollama pull deepseek-r1:32b
+```
+
+_ollama_ kann mit dem Befehl `ollama serve` gestartet werden.
+Mit dem nachfolgenden Aufruf können die Tweets des Testdatensatzes über die exponierte (lokale) REST-API and das ausgewählte Deepseek R1 Modell übergeben werden:
+```bash
+python -m propra_webscience_ws24.local_inference.deepseek
+```
