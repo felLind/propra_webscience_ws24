@@ -7,20 +7,21 @@ readme = "README.md"
 
 [tool.poetry.dependencies]
 python = "^3.11"
+click = "^8.1.8"
+datasets = "^3.2.0"
+evaluate = "^0.4.3"
 humanize = "^4.11.0"
 jupyter = "^1.1.1"
 loguru = "^0.7.3"
 matplotlib = "^3.9.2"
 nltk = "^3.9.1"
+ollama = "^0.4.7"
 pandas = "^2.2.3"
 pyarrow = "^18.0.0"
 scikit-learn = "^1.5.2"
 seaborn = "^0.13.2"
 torch = "^2.5.1"
 transformers = {extras = ["torch"], version = "^4.47.0"}
-click = "^8.1.8"
-evaluate = "^0.4.3"
-datasets = "^3.2.0"
 
 
 [tool.poetry.group.dev.dependencies]
