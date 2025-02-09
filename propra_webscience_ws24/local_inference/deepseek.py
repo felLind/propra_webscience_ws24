@@ -173,7 +173,8 @@ def save_results(results: list[EnrichedModelOutput]):
         results (list[EnrichedModelOutput]): The results to be saved.
     """
     with open(
-        f'{datetime.now().strftime("%Y%m%d-%H%M%S")}-{MODEL_NAME.lower()}-prompts-results.json',
+        f"{MODEL_NAME.replace(':', '-').lower()}-prompts-results-"
+        f'{datetime.now().strftime("%Y%m%d-%H%M%S")}.json',
         "w",
     ) as f:
         json.dump([result.model_dump() for result in results], f, indent=4)
