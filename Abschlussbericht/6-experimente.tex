@@ -1,0 +1,166 @@
+\section{Experimente}
+% Wie ist der Experimentaufbau, welche Evaluationsmetriken betrachten Sie?
+% Beschreibung und Interpretation der Ergebnisse
+
+\subsection{Experimentaufbau}
+
+Für die Experimente wurden unterschiedliche Schritte in Abhängigkeit der Verfahren durchgeführt.
+
+Für die klassischen Verfahren wurde neben der Genauigkeit der Klassifikation für unterschiedliche Modelle auch analysiert, inwiefern Vorverarbeitungsschritte und Token\-isier\-ungs\-verfahren die Genauigkeit der Klassifikation beeinflussen.
+Die Schritte für die Experimente sind in Unterabschnitt~\ref{sec:klassische-ansaetze} beschrieben.
+
+Für die \gls{dl} Ansätze wurden die Standard-Tokenizer der \textit{Hugging Face} Modelle verwendet, so dass keine weiteren Vorverarbeitungsschritte oder Tokenisierungsverfahren durchgeführt wurden.
+Die Schritte für die Experimente sind in Unterabschnitt~\ref{sec:deep-learning-ansaetze} beschrieben.
+
+\subsubsection{Klassische Ansätze}\label{sec:klassische-ansaetze}
+
+Für die klassischen Ansätze wurden für das Training und die Evaluierung der Modelle folgende Schritte durchgeführt:
+\begin{enumerate}
+    \item Vorverarbeitung der Trainings- und Testdaten
+    \item Modell-Training
+    \begin{enumerate}
+        \item Umwandlung der Textdaten in Vektoren
+        \item Training des Modells auf den Vektorrepräsentationen der Trainingsdaten (dabei 90\% der Trainingsdaten für das Training und 10\% für die Validierung)
+    \end{enumerate}
+    \item Evaluation des Modells mit den Testdaten
+\end{enumerate}
+
+Für alle Modelle wurden Sensitivitätsanalysen durchgeführt, um die Auswirkung unterschiedlicher Parameter und Verfahren auf die Genauigkeit der Klassifikation zu untersuchen.
+Dabei wurden die folgenden Parameter und Verfahren variiert:
+\begin{itemize}
+    \item Vorverarbeitungsschritte
+    \begin{itemize}
+        \item Umgang mit Stoppwörtern
+        \begin{itemize}
+            \item Keine Entfernung von Stoppwörtern
+            \item Entfernung von Stoppwörtern gemäß der \gls{nltk} Stoppwortliste
+            \item Entfernung von Stoppwörtern gemäß einer selbst erstellten Stoppwortliste
+        \end{itemize}
+        \item Normalisierungsverfahren der einzelnen Worte
+        \begin{itemize}
+            \item Keine Normalisierung
+            \item Lemmatisierung mit \textit{WordNet} Lemmatizer
+            \item Stemming mit \textit{Porter} Stemmer
+        \end{itemize}
+    \end{itemize}
+    \item Tokenisierungsverfahren
+    \begin{itemize}
+        \item \gls{tfidf} und Hash-basiertes Tokenisierungsverfahren
+        \item unterschiedlichen N-Gramm Konfigurationen
+
+        N-Gramme bezeichnen, bei Bezug auf Wörter, die Kombination von $n$ aufeinanderfolgenden Wörtern in einem Text.
+        Der Satz \glqq Das ist ein Test\grqq  hat die folgenden N-Gramme:
+        \begin{itemize}
+            \item 1-Gramme (Unigramme): \glqq Das\grqq, \glqq ist\grqq, \glqq ein\grqq, \glqq Test\grqq
+            \item 2-Gramme (Bigramme): \glqq Das ist\grqq, \glqq ist ein\grqq, \glqq ein Test\grqq
+            \item 3-Gramme (Trigramme): \glqq Das ist ein\grqq, \glqq ist ein Test\grqq
+        \end{itemize}
+    \end{itemize}
+    \item Modell-Parameter
+
+    Die jeweils optimalen Modell-Parameter wurden durch Grid-Search ermittelt (siehe Abschnitt~\ref{sec:modell-parameter}).
+\end{itemize}
+
+\subsubsection{Deep Learning Ansätze} \label{sec:deep-learning-ansaetze}
+
+\subsection{Modell-Parameter}\label{sec:modell-parameter}
+
+\redhl{Beschreibung der Modell-Parameter für die klassischen Ansätze. Wurde Grid-Search für alle Modelle verwendet? Auf Basis welcher Vorverarbeitungsschritte?}
+
+\subsubsection{\gls{svm}}
+
+Als Modell-Parameter wurden die Standardwerte für die \textit{LinearSVC}-Implementierung in der Python-Bibliothek \textit{scikit-learn} verwendet.
+Die Standardwerte sind:
+
+\begin{itemize}
+    \item $C = 1.0$
+    \item Fehlerfunktion: quadrierte Hinge-Fehlerfunktion
+\end{itemize}
+
+\subsection{Evalutionsmetriken}
+
+Nach~\cite{wankhade2022survey} werden für die Evaluierung von Klassifikationsmodellen vor allem das \textit{Genauigkeitsmaß}, die \textit{Präzision} oder das \textit{F1-Maß} verwendet.
+
+Weil die Klassenverteilung für die Trainingsdaten ausgeglichen ist, wurde aufgrund der einfachen Interpretierbarkeit das \textit{Genauigkeitsmaß} als Evaluationsmetrik verwendet.
+\redhl{ToDo: Die Klassen im Testdatensatz sind nicht ausgeglichen. Ergeben sich signifikante Unterschiede in der Genauigkeit der Modelle, wenn die Klassen ausbalanciert werden?}
+\redhl{ToDo: Prüfen, ob Trainings- und Validierungsdaten balanciert bzgl. der Klassen sind? Falls nein, prüfen, ob das Auswirkungen auf die Genauigkeit hat.}
+
+\subsection{Ergebnisse}
+
+\subsubsection{Klassische Ansätze}
+
+\begin{table}
+    \begin{tabular}{lllllllrr}
+        \toprule
+        Modell & Normalisierung & Stoppwortliste   & Anz. Merkmale & N-Gramme & Genauigkeit \\
+        \midrule
+        LR     & Porter         & eig. Liste       & 250.000       & (1,2)    & 0.861       \\
+        LR     & WordNet        & -                & maximal       & (1,3)    & 0.858       \\
+        SVM    & Porter         & -                & maximal       & (1,3)    & 0.858       \\
+        SVM    & WordNet        & -                & maximal       & (1,3)    & 0.858       \\
+        SVM    & Porter         & eig. Liste       & 50.000        & (1,2)    & 0.858       \\
+        LR     & Porter         & eig. Liste       & 250.000       & (1,3)    & 0.855       \\
+        LR     & -              & \gls{nltk} Liste & maximal       & (1,3)    & 0.855       \\
+        SVM    & Porter         & -                & maximal       & (1,2)    & 0.855       \\
+        LR     & Porter         & eig. Liste       & 50.000        & (1,2)    & 0.852       \\
+        SVM    & -              & -                & maximal       & (1,3)    & 0.852       \\
+        NB     & -              & -                & maximal       & (1,2)    & 0.852       \\
+        \bottomrule
+    \end{tabular}
+    \caption{
+        Top 10 Modelle nach Testgenauigkeit.
+        Die Modelle \textit{LR}, \textit{SVM} und \textit{NB} bezeichnen die Modelle \textit{Logistische Regression}, \textit{Support Vector Machine} und \textit{Naiver Bayes Klassifikator}.
+        Die Bezeichner (1, k) in der Spalte \textit{N-Gramme} geben an, dass N-Gramme mit $N\in\lbrace1,\cdots,k\rbrace$ verwendet wurden.
+    }
+    \label{tab:top-10-models}
+\end{table}
+
+In Tabelle~\ref{tab:top-10-models} sind die Top 10 Modelle nach Testgenauigkeit aufgeführt.
+Die maximal erzielte Genauigkeit beträgt $0,861$.
+Diese Genauigkeit wurde für ein Modell erzielt, bei dem die Normalisierung der Worte mit dem \textit{Porter} Stemmer durchgeführt wurde, die Stoppwörter gemäß einer eigens erstellten Stoppwortliste entfernt wurden, die Anzahl der Merkmale auf $250.000$ beschränkt wurde und Unigramme und Bigramme berücksichtigt wurden.
+
+\paragraph{Sensitivität Modell}
+In Tabelle~\ref{tab:stats-per-model} sind die Statistiken der Test Genauigkeit für die Modelle \textit{LinearSVC}, \textit{LogisticRegression} und \textit{NaiveBayes} über alle Parameter-Kombinationen aufgeführt.
+
+Die Logistische Regressions-Modelle erzielen die höchsten Genauigkeiten über alle Parameter-Kombinationen.
+Weiterhin ist die Standardabweichung der Genauigkeiten für die Logistische Regression mit $0,022$ am niedrigsten.
+
+Modelle auf Basis der \gls{svm} erzielen im Mittel die zweithöchsten Genauigkeiten, wobei Mittelwert und Median $~1\%$ niedriger liegen.
+
+Die Naive Bayes Modelle erzielen im Mittel die niedrigsten Genauigkeiten, wobei die Standardabweichung mit $0,049$ am höchsten ist.
+\begin{table}
+    \center
+
+    \begin{tabular}{lccccc}
+        \toprule
+        & \multicolumn{5}{c}{Test Genauigkeit} \\
+        Modell             & Mittelwert & Median & Std.-Abweichung & Minimum & Maximum \\
+        \midrule
+        LinearSVC          & 0.809      & 0.813  & 0.024           & 0.730   & 0.858   \\
+        LogisticRegression & 0.818      & 0.820  & 0.022           & 0.727   & 0.861   \\
+        NaiveBayes         & 0.778      & 0.784  & 0.049           & 0.685   & 0.852   \\
+        \bottomrule
+    \end{tabular}
+    \caption{Statistiken der Test Genauigkeit für die Modelle \textit{LinearSVC}, \textit{LogisticRegression} und \textit{NaiveBayes} über alle Parameter-Kombinationen.}
+    \label{tab:stats-per-model}
+\end{table}
+
+\paragraph{Sensitivität Umgang mit Stoppwörtern}
+
+Über alle Parameter-Kombinationen ist die Genauigkeit im Mittel für die Modelle mit Entfernung der Stoppwörter höher als für die Modelle ohne Entfernung der Stoppwörter.
+Weiterhin ist die Genauigkeit für die Modelle, bei der die Stoppwörter entfernt wurden, die in der eigens definierten Stoppwortliste enthalten sind, höher als bei Verwendung der \gls{nltk} Stoppwortliste.
+
+\paragraph{Sensitivität Normalisierungsverfahren}
+
+Für die unterschiedlichen Normalisierungsverfahren ergeben sich keine signifikanten Unterschiede in der Genauigkeit der Modelle.
+
+\paragraph{Sensitivität Tokenisierungsverfahren und N-Gramme}
+
+Für alle Modelle ist die Genauigkeit höher, wenn der \gls{tfidf}-Tokenizer, anstelle des Hash-basierten verwendet wird
+
+Für alle Modelle steigt die Genauigkeit mit der Anzahl an berücksichtigten Merkmalen.
+
+Für alle Modelle ist die Genauigkeit höher, wenn zusätzlich Bi- und Trigramme berücksichtigt werden.
+Die Berücksichtigung von Bi- und Trigrammen führt im Mittel zu den höchsten Genauigkeiten.
+
+\subsubsection{Deep Learning Ansätze}
