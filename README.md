@@ -24,7 +24,6 @@ Um das Projekt lokal aufzusetzen, müssen folgende Schritte ausgeführt werden:
 Um den ursprünglichen Datensatz zu bereinigen und die Daten vorzuverarbeiten kann der folgende Befehl ausgeführt werden:
 
 ```bash
-# In einer Poetry shell und nachdem die restlichen Python Pakete installiert wurden
 python -m propra_webscience_ws24.data.data_preprocessing
 ```
 
@@ -99,7 +98,6 @@ Es können die folgenden ML Methoden trainiert werden:
 - Um eine ML Methode auf allen erstellten Datensätzen mit den Vectorizer-Varianten zu trainieren, kann der folgende Befehl ausgeführt werden:
 
   ```bash
-  # In einer Poetry shell und nachdem die restlichen Python Pakete installiert wurden
   python -m propra_webscience_ws24.training.classical.main --model-type=LINEAR_SVC
   ```
 
@@ -142,8 +140,30 @@ Um die Auswirkung unterschiedlicher Parameter auf das Fine-Tuning zu untersuchen
 Um das Fine-Tuning für die beiden Modelle durchzuführen, kann der folgende Befehl ausgeführt werden:
 
 ```bash
-# In einer Poetry shell und nachdem die restlichen Python Pakete installiert wurden
 python -m propra_webscience_ws24.training.llm.finetuning_bert_based 
+```
+
+### Fine-Tuning von Deepseek-basierten Modellen
+
+Für das Fine-Tuning von Deepseek-basierten Modellen, können die Modelle analog zum Vorgehen für BERT-basierte Modelle geladen werden (s. [Fine-Tuning von BERT-basierten Modellen](#fine-tuning-von-bert-basierten-modellen)).
+Es wird aufgrund der Speicheranforderung lediglich das kleinste distilled Modell verwendet (alle anderen Modelle können nicht ohne Anpassung auf ein GPU mit 40GB RAM geladen werden):
+
+- [`deepseek-ai/DeepSeek-R1-Distill-Qwen-1.5B`](https://huggingface.co/deepseek-ai/DeepSeek-R1-Distill-Qwen-1.5B)
+
+#### Parameter für das Fine-Tuning
+
+Um die Auswirkung unterschiedlicher Parameter auf das Fine-Tuning zu untersuchen, werden die gleichen Parameter verwendet, wie für das Fine-Tuning von BERT-basierten Modellen.
+Die Lernrate angepasst, weil die Klassifikationsschicht des Modells nicht vorab trainiert wurde und daher eine höhere Lernrate zu besseren Ergebnissen fürht.
+
+- Initiale Lernrate: `[1e-3, 5 * 1e-3, 1e-4, 1e-5, 1e-6, 5 * 1e-6]`
+- Daten-Größe (Anzahl aus Beispielen aus dem Gesamt-Datensatz): `[2_500, 5_000, 7_500, 10_000, 15_000, 20_000]`
+
+#### Ausführung des Fine-Tunings für die beiden Modelle
+
+Um das Fine-Tuning für die beiden Modelle durchzuführen, kann der folgende Befehl ausgeführt werden:
+
+```bash
+python -m propra_webscience_ws24.training.llm.finetuning_deepseek 
 ```
 
 ## Direkte Verwendung von DeepSeek R1 über lokale Installation

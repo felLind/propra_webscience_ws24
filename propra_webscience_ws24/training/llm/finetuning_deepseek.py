@@ -24,7 +24,8 @@ from propra_webscience_ws24.training.llm.utils import tokenize_text, compute_met
 SEED = 42
 DEEPSEEK_MODEL_NAME_8B = "deepseek-ai/DeepSeek-R1-Distill-Llama-8B"
 DEEPSEEK_MODEL_NAME_1_5B = "deepseek-ai/DeepSeek-R1-Distill-Qwen-1.5B"
-MODEL_NAMES = [DEEPSEEK_MODEL_NAME_1_5B, DEEPSEEK_MODEL_NAME_8B]
+# MODEL_NAMES = [DEEPSEEK_MODEL_NAME_1_5B, DEEPSEEK_MODEL_NAME_8B]
+MODEL_NAMES = [DEEPSEEK_MODEL_NAME_1_5B]
 
 SENTIMENT_MAPPING = {
     0: 0,
@@ -36,7 +37,7 @@ ORIGINAL_MODEL_OUTPUT_DIM = {
     DEEPSEEK_MODEL_NAME_8B: 4096,
 }
 
-LEARNING_RATES = [1e-4, 1e-5, 1e-6, 2 * 1e-6, 3 * 1e-6, 4 * 1e-6, 5 * 1e-6]
+LEARNING_RATES = [1e-3, 5 * 1e-3, 1e-4, 1e-5, 1e-6, 5 * 1e-6]
 
 DATASET_SIZES = [2_500, 5_000, 7_500, 10_000, 15_000, 20_000]
 
