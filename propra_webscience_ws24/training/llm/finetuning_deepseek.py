@@ -99,7 +99,7 @@ def get_original_model_output_dim(model_name) -> int:
 
 
 def train_classifier_and_evaluate(
-    model_name, ds_train, ds_eval, ds_test, learning_rate
+    model_name, dataset_size, ds_train, ds_eval, ds_test, learning_rate
 ):
     model = create_deepseek_classifier_model(
         model_name, output_dim=get_original_model_output_dim(model_name)
@@ -120,11 +120,16 @@ def train_classifier_and_evaluate(
 
     data_collator = DataCollatorWithPadding(tokenizer=tokenizer)
 
+    batch_size = DEFAULT_BATCH_SIZE
+    if dataset_size > 5_000:
+        # For larger datasets, the batch size must be reduced to avoid memory errors
+        batch_size = DEFAULT_BATCH_SIZE // 2
+
     training_args = TrainingArguments(
         output_dir="output/",
         learning_rate=learning_rate,
-        per_device_train_batch_size=DEFAULT_BATCH_SIZE,
-        per_device_eval_batch_size=DEFAULT_BATCH_SIZE,
+        per_device_train_batch_size=batch_size,
+        per_device_eval_batch_size=batch_size,
         num_train_epochs=2,
         save_strategy="no",
         fp16=True,
@@ -173,6 +178,7 @@ if __name__ == "__main__":
             for learning_rate in LEARNING_RATES:
                 result = train_classifier_and_evaluate(
                     model_name,
+                    dataset_size,
                     ds_train,
                     ds_eval,
                     ds_test,
