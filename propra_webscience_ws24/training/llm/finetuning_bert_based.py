@@ -39,7 +39,7 @@ SENTIMENT_MAPS = {
     },
 }
 
-LEARNING_RATES = [1e-4, 1e-5, 1e-6, 2 * 1e-6, 3 * 1e-6, 4 * 1e-6, 5 * 1e-6]
+LEARNING_RATES = [1e-4, 5 * 1e-5, 1e-5, 5 * 1e-6, 1e-6]
 
 DATASET_SIZES = [2_500, 5_000, 7_500, 10_000, 15_000, 20_000]
 

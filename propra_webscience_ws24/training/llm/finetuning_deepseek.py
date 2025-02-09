@@ -22,6 +22,7 @@ from propra_webscience_ws24.training.llm.data_splits import (
 from propra_webscience_ws24.training.llm.utils import tokenize_text, compute_metrics
 
 SEED = 42
+DEFAULT_BATCH_SIZE = 16
 DEEPSEEK_MODEL_NAME_8B = "deepseek-ai/DeepSeek-R1-Distill-Llama-8B"
 DEEPSEEK_MODEL_NAME_1_5B = "deepseek-ai/DeepSeek-R1-Distill-Qwen-1.5B"
 # MODEL_NAMES = [DEEPSEEK_MODEL_NAME_1_5B, DEEPSEEK_MODEL_NAME_8B]
@@ -37,7 +38,7 @@ ORIGINAL_MODEL_OUTPUT_DIM = {
     DEEPSEEK_MODEL_NAME_8B: 4096,
 }
 
-LEARNING_RATES = [1e-3, 5 * 1e-3, 1e-4, 1e-5, 1e-6, 5 * 1e-6]
+LEARNING_RATES = [1e-4, 5 * 1e-5, 1e-5, 5 * 1e-6, 1e-6]
 
 DATASET_SIZES = [2_500, 5_000, 7_500, 10_000, 15_000, 20_000]
 
@@ -122,10 +123,11 @@ def train_classifier_and_evaluate(
     training_args = TrainingArguments(
         output_dir="output/",
         learning_rate=learning_rate,
-        per_device_train_batch_size=16,
-        per_device_eval_batch_size=16,
+        per_device_train_batch_size=DEFAULT_BATCH_SIZE,
+        per_device_eval_batch_size=DEFAULT_BATCH_SIZE,
         num_train_epochs=2,
         save_strategy="no",
+        fp16=True,
     )
 
     trainer = Trainer(
