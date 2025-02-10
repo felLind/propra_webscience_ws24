@@ -22,9 +22,11 @@ from propra_webscience_ws24.training.llm.data_splits import (
 from propra_webscience_ws24.training.llm.utils import tokenize_text, compute_metrics
 
 SEED = 42
+DEFAULT_BATCH_SIZE = 16
 DEEPSEEK_MODEL_NAME_8B = "deepseek-ai/DeepSeek-R1-Distill-Llama-8B"
 DEEPSEEK_MODEL_NAME_1_5B = "deepseek-ai/DeepSeek-R1-Distill-Qwen-1.5B"
-MODEL_NAMES = [DEEPSEEK_MODEL_NAME_1_5B, DEEPSEEK_MODEL_NAME_8B]
+# MODEL_NAMES = [DEEPSEEK_MODEL_NAME_1_5B, DEEPSEEK_MODEL_NAME_8B]
+MODEL_NAMES = [DEEPSEEK_MODEL_NAME_1_5B]
 
 SENTIMENT_MAPPING = {
     0: 0,
@@ -36,7 +38,7 @@ ORIGINAL_MODEL_OUTPUT_DIM = {
     DEEPSEEK_MODEL_NAME_8B: 4096,
 }
 
-LEARNING_RATES = [1e-4, 1e-5, 1e-6, 2 * 1e-6, 3 * 1e-6, 4 * 1e-6, 5 * 1e-6]
+LEARNING_RATES = [1e-4, 5 * 1e-5, 1e-5, 5 * 1e-6, 1e-6]
 
 DATASET_SIZES = [2_500, 5_000, 7_500, 10_000, 15_000, 20_000]
 
@@ -97,7 +99,7 @@ def get_original_model_output_dim(model_name) -> int:
 
 
 def train_classifier_and_evaluate(
-    model_name, ds_train, ds_eval, ds_test, learning_rate
+    model_name, dataset_size, ds_train, ds_eval, ds_test, learning_rate
 ):
     model = create_deepseek_classifier_model(
         model_name, output_dim=get_original_model_output_dim(model_name)
@@ -118,13 +120,19 @@ def train_classifier_and_evaluate(
 
     data_collator = DataCollatorWithPadding(tokenizer=tokenizer)
 
+    batch_size = DEFAULT_BATCH_SIZE
+    if dataset_size > 5_000:
+        # For larger datasets, the batch size must be reduced to avoid memory errors
+        batch_size = DEFAULT_BATCH_SIZE // 2
+
     training_args = TrainingArguments(
         output_dir="output/",
         learning_rate=learning_rate,
-        per_device_train_batch_size=16,
-        per_device_eval_batch_size=16,
+        per_device_train_batch_size=batch_size,
+        per_device_eval_batch_size=batch_size,
         num_train_epochs=2,
         save_strategy="no",
+        fp16=True,
     )
 
     trainer = Trainer(
@@ -170,6 +178,7 @@ if __name__ == "__main__":
             for learning_rate in LEARNING_RATES:
                 result = train_classifier_and_evaluate(
                     model_name,
+                    dataset_size,
                     ds_train,
                     ds_eval,
                     ds_test,

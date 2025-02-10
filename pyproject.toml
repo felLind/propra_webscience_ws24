@@ -30,6 +30,9 @@ mypy = "^1.12.1"
 pre-commit = "^4.0.1"
 ruff = "^0.7.0"
 
+[tool.poetry.virtualenvs]
+in-project = true
+
 [build-system]
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
