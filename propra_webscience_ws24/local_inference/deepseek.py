@@ -2,7 +2,6 @@
 
 import asyncio
 import itertools
-import json
 from datetime import datetime
 from typing import Iterator, Literal, get_args
 
@@ -16,17 +15,17 @@ from propra_webscience_ws24.constants import TEST_DATASET_FILE_PATH
 
 N_PARALLEL_PROMPTS = 10
 
-MODEL_NAME = "deepseek-r1:32b"
 # MODEL_NAME = 'deepseek-r1:1.5b'
+MODEL_NAME = "deepseek-r1:8b"
+# MODEL_NAME = "deepseek-r1:32b"
 
 SENTIMENT_LITERAL = Literal["positive", "negative"]
 
-PROMPT_TEMPLATE = """
-Given the following tweet, what is the sentiment of the tweet?
-Answer either with positive or negative. Return the reasoning and the sentiment in JSON format.
-
-Tweet: '{tweet}'
-"""
+QUERY_TERM_TEMPLATE = "Sentiment topic: '{query}'\n"
+PROMPT_TEMPLATE = (
+    "Tweet sentiment?\n{query_term_prompt}Answer with positive or "
+    "negative. Provide reasoning in JSON.\nTweet: '{tweet}'\n"
+)
 
 PROMPT_OPTIONS = {
     "seed": 42,
@@ -83,22 +82,36 @@ class ModelOutput(BaseModel):
 class EnrichedModelOutput(ModelOutput):
     tweet: str
     ground_truth: SENTIMENT_LITERAL
+    query_term: str | None
 
 
-async def process_tweet_w_model(client: AsyncClient, text: str) -> str:
+class InferenceResults(BaseModel):
+    accuracy: float
+    with_query_term: bool
+    results: list[EnrichedModelOutput]
+
+
+async def process_tweet_w_model(
+    client: AsyncClient, text: str, query_term: str | None = None
+) -> str:
     """
     Process a single tweet with the model.
 
     Args:
         client (AsyncClient): The async client to use for the model.
         text (str): The tweet text to be processed.
+        query_term (str): The query term to be used if not None.
 
     Returns:
         str: The model's response.
     """
+    query_term_part = (
+        QUERY_TERM_TEMPLATE.format(query=query_term) if query_term is not None else ""
+    )
+    prompt = PROMPT_TEMPLATE.format(tweet=text, query_term_prompt=query_term_part)
     response = await client.chat(
         model=MODEL_NAME,
-        messages=[{"role": "user", "content": PROMPT_TEMPLATE.format(tweet=text)}],
+        messages=[{"role": "user", "content": prompt}],
         options=PROMPT_OPTIONS,
         format=ModelOutput.model_json_schema(),
     )
@@ -106,7 +119,7 @@ async def process_tweet_w_model(client: AsyncClient, text: str) -> str:
 
 
 def create_enriched_model_output(
-    tweet: str, ground_truth: int, model_output: ModelOutput
+    tweet: str, ground_truth: int, query_term: str | None, model_output: ModelOutput
 ) -> EnrichedModelOutput:
     """
     Create an enriched model output.
@@ -114,6 +127,7 @@ def create_enriched_model_output(
     Args:
         tweet (str): The original tweet text.
         ground_truth (int): The ground truth sentiment value.
+        query_term (str): The query term or None
         model_output (ModelOutput): The model output.
 
     Returns:
@@ -122,11 +136,12 @@ def create_enriched_model_output(
     return EnrichedModelOutput(
         tweet=tweet,
         ground_truth=SENTIMENT_MAPPING[ground_truth],
+        query_term=query_term,
         **model_output.model_dump(),
     )
 
 
-async def process_tweets() -> list[EnrichedModelOutput]:
+async def process_tweets(with_query_term: bool = False) -> list[EnrichedModelOutput]:
     """
     Process tweets in batches and get model outputs.
 
@@ -143,20 +158,32 @@ async def process_tweets() -> list[EnrichedModelOutput]:
         tweets = [tweet[1]["text"] for tweet in tweet_data]
         sentiments = [tweet[1]["sentiment"] for tweet in tweet_data]
 
+        if with_query_term:
+            query_terms = [
+                tweet[1]["query"] if with_query_term else None for tweet in tweet_data
+            ]
+        else:
+            query_terms = [None] * len(tweets)
+
         logger.info(f"Batch {idx=}")
         idx += 1
 
         prompt_results = await asyncio.gather(
-            *[process_tweet_w_model(client, tweet) for tweet in tweets]
+            *[
+                process_tweet_w_model(client, tweet, query_terms[idx])
+                for idx, tweet in enumerate(tweets)
+            ]
         )
         prompt_result_models = [
             ModelOutput.model_validate_json(result.strip()) for result in prompt_results
         ]
 
         results += [
-            create_enriched_model_output(tweet, ground_truth, prompt_result_model)
-            for tweet, ground_truth, prompt_result_model in zip(
-                tweets, sentiments, prompt_result_models
+            create_enriched_model_output(
+                tweet, ground_truth, query_term, prompt_result_model
+            )
+            for tweet, ground_truth, query_term, prompt_result_model in zip(
+                tweets, sentiments, query_terms, prompt_result_models
             )
         ]
 
@@ -165,19 +192,28 @@ async def process_tweets() -> list[EnrichedModelOutput]:
     return results
 
 
-def save_results(results: list[EnrichedModelOutput]):
+def save_results(
+    results: list[EnrichedModelOutput], accuracy: float, with_query_term: bool
+):
     """
     Save the results to a JSON file.
 
     Args:
         results (list[EnrichedModelOutput]): The results to be saved.
+        accuracy (float): The accuracy of the model output.
+        with_query_term (bool): Whether the query term was used.
     """
     with open(
         f"{MODEL_NAME.replace(':', '-').lower()}-prompts-results-"
+        f"{'with' if with_query_term else 'without'}-query-term-"
         f'{datetime.now().strftime("%Y%m%d-%H%M%S")}.json',
         "w",
     ) as f:
-        json.dump([result.model_dump() for result in results], f, indent=4)
+        f.write(
+            InferenceResults(
+                accuracy=accuracy, with_query_term=with_query_term, results=results
+            ).model_dump_json(indent=4)
+        )
 
 
 async def calculate_accuracy_for_model_output(
@@ -206,13 +242,15 @@ async def calculate_accuracy_for_model_output(
 
 async def main():
     logger.info(f"Start sending prompts to model {MODEL_NAME=}")
-    model_output = await process_tweets()
+    for with_query_term in [False, True]:
+        logger.info(f"Processing tweets with query term: {with_query_term=}")
+        model_output = await process_tweets(with_query_term)
 
-    accuracy = await calculate_accuracy_for_model_output(model_output)
+        accuracy = await calculate_accuracy_for_model_output(model_output)
 
-    logger.info(f"Accuracy: {accuracy}")
+        logger.info(f"Accuracy: {accuracy}")
 
-    save_results(model_output)
+        save_results(model_output, accuracy, with_query_term)
 
     logger.info("Finished")
 
