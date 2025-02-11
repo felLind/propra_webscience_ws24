@@ -1,0 +1,138 @@
+========================================================================================================================
+model_name='deepseek-r1-8b', query_usage='with-query-term'
+Entries without reasoning entry: 0
+
+┌────────────┬───────────┐
+│   accuracy │   support │
+├────────────┼───────────┤
+│   0.955432 │       359 │
+└────────────┴───────────┘
+┌──────────┬─────────────┬──────────┬───────┬───────────┐
+│ class    │   precision │   recall │    f1 │   support │
+├──────────┼─────────────┼──────────┼───────┼───────────┤
+│ negative │       0.955 │    0.955 │ 0.955 │       177 │
+│ positive │       0.956 │    0.956 │ 0.956 │       182 │
+└──────────┴─────────────┴──────────┴───────┴───────────┘
+
+First 5 tweets with wrong classifications:
+┌──────────────┬────────────────┬──────────────┬────────────────────────────────────────────────────────────────────────┐
+│ query_term   │ ground_truth   │ prediction   │ tweet                                                                  │
+├──────────────┼────────────────┼──────────────┼────────────────────────────────────────────────────────────────────────┤
+│ "night at    │ positive       │ negative     │ no watching The Night At The Museum. Getting Really Good               │
+│ the museum"  │                │              │                                                                        │
+├──────────────┼────────────────┼──────────────┼────────────────────────────────────────────────────────────────────────┤
+│ "night at    │ negative       │ positive     │ Night at the Museum tonite instead of UP. :( oh well. that 4 yr old    │
+│ the museum"  │                │              │ better enjoy it. LOL                                                   │
+├──────────────┼────────────────┼──────────────┼────────────────────────────────────────────────────────────────────────┤
+│ 40d          │ positive       │ negative     │ @SoChi2 I current use the Nikon D90 and love it, but not as much as    │
+│              │                │              │ the Canon 40D/50D. I chose the D90 for the  video feature. My mistake. │
+├──────────────┼────────────────┼──────────────┼────────────────────────────────────────────────────────────────────────┤
+│ dentist      │ positive       │ negative     │ My wrist still hurts. I have to get it looked at. I HATE the           │
+│              │                │              │ dr/dentist/scary places. :( Time to watch Eagle eye. If you want to    │
+│              │                │              │ join, txt!                                                             │
+├──────────────┼────────────────┼──────────────┼────────────────────────────────────────────────────────────────────────┤
+│ dentist      │ negative       │ positive     │ @kirstiealley my dentist is great but she's expensive...=(             │
+└──────────────┴────────────────┴──────────────┴────────────────────────────────────────────────────────────────────────┘
+
+
+========================================================================================================================
+model_name='deepseek-r1-8b', query_usage='without-query-term'
+Entries without reasoning entry: 0
+
+┌────────────┬───────────┐
+│   accuracy │   support │
+├────────────┼───────────┤
+│   0.916435 │       359 │
+└────────────┴───────────┘
+┌──────────┬─────────────┬──────────┬───────┬───────────┐
+│ class    │   precision │   recall │    f1 │   support │
+├──────────┼─────────────┼──────────┼───────┼───────────┤
+│ negative │       0.902 │    0.932 │ 0.917 │       177 │
+│ positive │       0.932 │    0.901 │ 0.916 │       182 │
+└──────────┴─────────────┴──────────┴───────┴───────────┘
+
+First 5 tweets with wrong classifications:
+┌────────────────┬──────────────┬────────────────────────────────────────────────────────────────────────┐
+│ ground_truth   │ prediction   │ tweet                                                                  │
+├────────────────┼──────────────┼────────────────────────────────────────────────────────────────────────┤
+│ positive       │ negative     │ @richardebaker no. it is too big. I'm quite happy with the Kindle2.    │
+├────────────────┼──────────────┼────────────────────────────────────────────────────────────────────────┤
+│ positive       │ negative     │ #lebron best athlete of our generation, if not all time (basketball    │
+│                │              │ related) I don't want to get into inter-sport debates about   __1/2    │
+├────────────────┼──────────────┼────────────────────────────────────────────────────────────────────────┤
+│ positive       │ negative     │ @SoChi2 I current use the Nikon D90 and love it, but not as much as    │
+│                │              │ the Canon 40D/50D. I chose the D90 for the  video feature. My mistake. │
+├────────────────┼──────────────┼────────────────────────────────────────────────────────────────────────┤
+│ negative       │ positive     │ @sekseemess no. I'm not itchy for now. Maybe later, lol.               │
+├────────────────┼──────────────┼────────────────────────────────────────────────────────────────────────┤
+│ positive       │ negative     │ is going to sleep then on a bike ride:]                                │
+└────────────────┴──────────────┴────────────────────────────────────────────────────────────────────────┘
+
+5 tweets with wrong classification without query term but correct classification with query term:
+┌────────────────┬────────────────────────────────┬──────────────┬──────────────┬──────────────────────────────────────────┐
+│ ground_truth   │ tweet                          │ query_term   │ prediction   │ reasoning                                │
+├────────────────┼────────────────────────────────┼──────────────┼──────────────┼──────────────────────────────────────────┤
+│ positive       │ @richardebaker no. it is too   │ -            │ negative     │ The tweet mentions 'no' and describes    │
+│                │ big. I'm quite happy with the  │              │              │ something as 'too big,' which are        │
+│                │ Kindle2.                       │              │              │ negative indicators.                     │
+├────────────────┼────────────────────────────────┼──────────────┼──────────────┼──────────────────────────────────────────┤
+│                │                                │ kindle2      │ positive     │ The tweet mentions that the user is      │
+│                │                                │              │              │ 'quite happy' with the Kindle2,          │
+│                │                                │              │              │ indicating a positive sentiment.         │
+├────────────────┼────────────────────────────────┼──────────────┼──────────────┼──────────────────────────────────────────┤
+│ positive       │ #lebron best athlete of our    │ -            │ negative     │ The tweet starts by calling LeBron James │
+│                │ generation, if not all time    │              │              │ 'best athlete of our generation' which   │
+│                │ (basketball related) I don't   │              │              │ is a positive statement. However, the    │
+│                │ want to get into inter-sport   │              │              │ phrase 'if not all time' introduces      │
+│                │ debates about   __1/2          │              │              │ uncertainty and could imply that there   │
+│                │                                │              │              │ are athletes who might be better than    │
+│                │                                │              │              │ LeBron in basketball history. The use of │
+│                │                                │              │              │ 'I don't want to get into inter-sport    │
+│                │                                │              │              │ debates about __1/2' suggests the tweet  │
+│                │                                │              │              │ writer is cautious or unsure about       │
+│                │                                │              │              │ comparing across different sports,       │
+│                │                                │              │              │ possibly indicating some doubt or        │
+│                │                                │              │              │ hesitation regarding LeBron's status as  │
+│                │                                │              │              │ the best athlete overall.                │
+├────────────────┼────────────────────────────────┼──────────────┼──────────────┼──────────────────────────────────────────┤
+│                │                                │ lebron       │ positive     │ The tweet expresses admiration for       │
+│                │                                │              │              │ LeBron James by calling him 'the best    │
+│                │                                │              │              │ athlete of our generation, if not all    │
+│                │                                │              │              │ time.' This is a positive statement that │
+│                │                                │              │              │ highlights LeBron's exceptional talent   │
+│                │                                │              │              │ and impact in basketball. The use of an  │
+│                │                                │              │              │ emoji like a trophy or award could       │
+│                │                                │              │              │ further indicate achievement and         │
+│                │                                │              │              │ recognition.                             │
+├────────────────┼────────────────────────────────┼──────────────┼──────────────┼──────────────────────────────────────────┤
+│ negative       │ @sekseemess no. I'm not itchy  │ -            │ positive     │ The tweet uses a playful and             │
+│                │ for now. Maybe later, lol.     │              │              │ lighthearted tone, indicating the        │
+│                │                                │              │              │ speaker is comfortable and not in        │
+│                │                                │              │              │ distress.                                │
+├────────────────┼────────────────────────────────┼──────────────┼──────────────┼──────────────────────────────────────────┤
+│                │                                │ itchy        │ negative     │ The tweet mentions being 'not itchy'     │
+│                │                                │              │              │ which is a neutral statement regarding   │
+│                │                                │              │              │ the sentiment.                           │
+├────────────────┼────────────────────────────────┼──────────────┼──────────────┼──────────────────────────────────────────┤
+│ positive       │ is going to sleep then on a    │ -            │ negative     │ The tweet contains no clear indication   │
+│                │ bike ride:]                    │              │              │ of positive or negative emotions. It     │
+│                │                                │              │              │ simply describes an intention to go to   │
+│                │                                │              │              │ sleep after a bike ride, which is        │
+│                │                                │              │              │ neutral.                                 │
+├────────────────┼────────────────────────────────┼──────────────┼──────────────┼──────────────────────────────────────────┤
+│                │                                │ sleep        │ positive     │ The tweet mentions the act of sleeping   │
+│                │                                │              │              │ while on a bike ride, which could be     │
+│                │                                │              │              │ seen as an enjoyable and relaxing        │
+│                │                                │              │              │ activity.                                │
+├────────────────┼────────────────────────────────┼──────────────┼──────────────┼──────────────────────────────────────────┤
+│ positive       │ @robmalon Playing with Twitter │ -            │ negative     │ The tweet mentions that working with the │
+│                │ API sounds fun.  May need to   │              │              │ Twitter API is enjoyable and suggests    │
+│                │ take a class or find a new     │              │              │ that they might need assistance from     │
+│                │ friend who like to generate    │              │              │ someone else, possibly indicating a lack │
+│                │ results with API code.         │              │              │ of current knowledge or confidence in    │
+│                │                                │              │              │ using APIs.                              │
+├────────────────┼────────────────────────────────┼──────────────┼──────────────┼──────────────────────────────────────────┤
+│                │                                │ "twitter     │ positive     │ The tweet mentions 'Playing with Twitter │
+│                │                                │ api"         │              │ API sounds fun' which indicates a        │
+│                │                                │              │              │ positive sentiment towards the topic.    │
+└────────────────┴────────────────────────────────┴──────────────┴──────────────┴──────────────────────────────────────────┘

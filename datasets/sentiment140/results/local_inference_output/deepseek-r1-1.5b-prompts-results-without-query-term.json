@@ -1,0 +1,2519 @@
+{
+    "accuracy": 0.8245125348189415,
+    "with_query_term": false,
+    "results": [
+        {
+            "reasoning": "The tweet expresses a strong and enthusiastic endorsement of the user's Kindle2. It highlights their feelings about it being 'fantastic in its own right' despite mentioning that the DX (which might be another model) isn't particularly cool. The language used is positive, expressing excitement and admiration for the device.",
+            "sentiment": "positive",
+            "tweet": "@stellargirl I loooooooovvvvvveee my Kindle2. Not that the DX is cool, but the 2 is fantastic in its own right.",
+            "ground_truth": "positive",
+            "query_term": null
+        },
+        {
+            "reasoning": "The tweet expresses a positive sentiment towards reading, as it mentions enjoying a book and recommending it to others.",
+            "sentiment": "positive",
+            "tweet": "Reading my kindle2...  Love it... Lee childs is good read.",
+            "ground_truth": "positive",
+            "query_term": null
+        },
+        {
+            "reasoning": "The tweet expresses strong approval and excitement about the product, as indicated by the use of words like 'rocks' and 'fucking', which convey a high level of positive sentiment. The speaker is clearly enthusiastic and confident in their opinion.",
+            "sentiment": "positive",
+            "tweet": "Ok, first assesment of the #kindle2 ...it fucking rocks!!!",
+            "ground_truth": "positive",
+            "query_term": null
+        },
+        {
+            "reasoning": "The tweet expresses excitement about receiving a new Kindle 2, mentions the size of the device, and states that there's no regret in holding onto it. These positive statements convey satisfaction with the product and its features.",
+            "sentiment": "positive",
+            "tweet": "@kenburbary You'll love your Kindle2. I've had mine for a few months and never looked back. The new big one is huge! No need for remorse! :)",
+            "ground_truth": "positive",
+            "query_term": null
+        },
+        {
+            "reasoning": "The tweet expresses agreement with the statement about the Kindle2, which is a neutral response to a positive sentiment.",
+            "sentiment": "positive",
+            "tweet": "@mikefish  Fair enough. But i have the Kindle2 and I think it's perfect  :)",
+            "ground_truth": "positive",
+            "query_term": null
+        },
+        {
+            "reasoning": "The tweet expresses happiness after mentioning that the Kindle2 is not too big, which may contribute to its popularity and user-friendliness.",
+            "sentiment": "positive",
+            "tweet": "@richardebaker no. it is too big. I'm quite happy with the Kindle2.",
+            "ground_truth": "positive",
+            "query_term": null
+        },
+        {
+            "reasoning": "The tweet expresses strong dissatisfaction with the economic policies of the government, specifically referring to AIG (Assured Independent Generator) and the non-loan assessments they have conducted. The use of words like 'hate' and 'non' indicates a clear negative sentiment towards these entities.",
+            "sentiment": "negative",
+            "tweet": "Fuck this economy. I hate aig and their non loan given asses.",
+            "ground_truth": "negative",
+            "query_term": null
+        },
+        {
+            "reasoning": "The tweet expresses a positive sentiment towards Jquery as it is described as the user's new best friend. It uses words like 'best friend' which conveys a positive tone.",
+            "sentiment": "positive",
+            "tweet": "Jquery is my new best friend.",
+            "ground_truth": "positive",
+            "query_term": null
+        },
+        {
+            "reasoning": "The tweet expresses love for Twitter, which is a platform that many people use to communicate and share information. Since Twitter is widely used and respected, expressing love for it can be seen as positive. The sentiment is positive because it conveys support and appreciation for the platform's role in the social media ecosystem.",
+            "sentiment": "positive",
+            "tweet": "Loves twitter",
+            "ground_truth": "positive",
+            "query_term": null
+        },
+        {
+            "reasoning": "The tweet expresses strong agreement with the statement that Obama is loved by many people, despite his controversial remarks.",
+            "sentiment": "positive",
+            "tweet": "how can you not love Obama? he makes jokes about himself.",
+            "ground_truth": "positive",
+            "query_term": null
+        },
+        {
+            "reasoning": "The tweet states that Obama and Pelloshi are not interested in being civil, which suggests they are focused on destroying conservatism. This indicates a negative sentiment towards their political stance.",
+            "sentiment": "negative",
+            "tweet": "@Karoli I firmly believe that Obama/Pelosi have ZERO desire to be civil.  It's a charade and a slogan, but they want to destroy conservatism",
+            "ground_truth": "negative",
+            "query_term": null
+        },
+        {
+            "reasoning": "The tweet mentions a dinner event where House Correspondents members received a standing ovation for their performance. This is a positive action taken by the individuals involved in the event.",
+            "sentiment": "positive",
+            "tweet": "House Correspondents dinner was last night whoopi, barbara &amp; sherri went, Obama got a standing ovation",
+            "ground_truth": "positive",
+            "query_term": null
+        },
+        {
+            "reasoning": "The tweet expresses excitement about watching a new video, mentions a funny commercial featuring a puppet and Lebron, and uses humor to express the positive sentiment.",
+            "sentiment": "positive",
+            "tweet": "Watchin Espn..Jus seen this new Nike Commerical with a Puppet Lebron..sh*t was hilarious...LMAO!!!",
+            "ground_truth": "positive",
+            "query_term": null
+        },
+        {
+            "reasoning": "The tweet expresses strong disapproval of the content related to the basketball game, which is disrespectful and offensive.",
+            "sentiment": "negative",
+            "tweet": "dear nike, stop with the flywire. that shit is a waste of science. and ugly. love, @vincentx24x",
+            "ground_truth": "negative",
+            "query_term": null
+        },
+        {
+            "reasoning": "The tweet expresses admiration for LeBron as a basketball player but lacks clarity on whether it's an inter-sport debate or just a casual comment. The sentiment is ambiguous and could be interpreted positively or negatively depending on context.",
+            "sentiment": "positive",
+            "tweet": "#lebron best athlete of our generation, if not all time (basketball related) I don't want to get into inter-sport debates about   __1/2",
+            "ground_truth": "positive",
+            "query_term": null
+        },
+        {
+            "reasoning": "The tweet expresses admiration for a person's support for a sports team, which can be seen as positive towards the team. However, it does not explicitly state any opinion or sentiment about the individual or their behavior, making it ambiguous in terms of overall sentiment.",
+            "sentiment": "positive",
+            "tweet": "I was talking to this guy last night and he was telling me that he is a die hard Spurs fan.  He also told me that he hates LeBron James.",
+            "ground_truth": "negative",
+            "query_term": null
+        },
+        {
+            "reasoning": "The tweet expresses a positive sentiment towards LeBron James and includes a link to his profile page. The use of the word 'love' conveys happiness and admiration, which are indicative of a positive sentiment.",
+            "sentiment": "positive",
+            "tweet": "i love lebron. http://bit.ly/PdHur",
+            "ground_truth": "positive",
+            "query_term": null
+        },
+        {
+            "reasoning": "The tweet expresses support for LeBron James as he is described as a 'Beast' and continues to express enthusiasm until the end. The language used is positive and enthusiastic.",
+            "sentiment": "positive",
+            "tweet": "@ludajuice Lebron is a Beast, but I'm still cheering 4 the A..til the end.",
+            "ground_truth": "negative",
+            "query_term": null
+        },
+        {
+            "reasoning": "The tweet expresses admiration for the person's status as the LeBron family member, which can be seen as a positive sentiment.",
+            "sentiment": "positive",
+            "tweet": "@Pmillzz lebron IS THE BOSS",
+            "ground_truth": "positive",
+            "query_term": null
+        },
+        {
+            "reasoning": "The tweet expresses support for the basketball team, mentions personal feelings about the players, and uses casual language. It conveys positive emotions towards the team and their fans.",
+            "sentiment": "positive",
+            "tweet": "@sketchbug Lebron is a hometown hero to me, lol I love the Lakers but let's go Cavs, lol",
+            "ground_truth": "positive",
+            "query_term": null
+        },
+        {
+            "reasoning": "The tweet mentions two basketball players who are described as being an 'awesome duo'.",
+            "sentiment": "negative",
+            "tweet": "lebron and zydrunas are such an awesome duo",
+            "ground_truth": "positive",
+            "query_term": null
+        },
+        {
+            "reasoning": "The tweet expresses admiration for LeBron and his status as a basketball player, but it does not convey any strong feelings about the content or emotions of the tweet. The language used is neutral and factual, focusing on praise without expressing any opinion or sentiment towards the topic.",
+            "sentiment": "negative",
+            "tweet": "@wordwhizkid Lebron is a beast... nobody in the NBA comes even close.",
+            "ground_truth": "positive",
+            "query_term": null
+        },
+        {
+            "reasoning": "The tweet expresses excitement about downloading apps on an iPhone and mentions a literal list of possible app ideas, which suggests a positive tone. The use of emojis like :-) adds to the positive sentiment. The overall message is upbeat and encouraging.",
+            "sentiment": "positive",
+            "tweet": "downloading apps for my iphone! So much fun :-) There literally is an app for just about anything.",
+            "ground_truth": "positive",
+            "query_term": null
+        },
+        {
+            "reasoning": "The tweet expresses good news and relief after receiving a positive call from the Visa office. However, it also contains negative language related to scams and stealing.",
+            "sentiment": "negative",
+            "tweet": "good news, just had a call from the Visa office, saying everything is fine.....what a relief! I am sick of scams out there! Stealing!",
+            "ground_truth": "positive",
+            "query_term": null
+        },
+        {
+            "reasoning": "The tweet contains a link to a Twitter user's profile, which is not part of the text provided. The tweet also mentions that someone has returned from a meeting or event, but this information is not explicitly stated in the tweet itself. Therefore, it is unclear whether the sentiment is positive or negative based on the given content alone.",
+            "sentiment": "positive",
+            "tweet": "http://twurl.nl/epkr4b - awesome come back from @biz (via @fredwilson)",
+            "ground_truth": "positive",
+            "query_term": null
+        },
+        {
+            "reasoning": "The tweet expresses a desire to attend an event (R & R) during a long vacation period in Montreal, which is considered necessary for personal development or professional growth. The use of the word 'much' suggests that the person is seeking something substantial and significant, indicating a positive sentiment towards attending this event.",
+            "sentiment": "positive",
+            "tweet": "In montreal for a long weekend of R&amp;R. Much needed.",
+            "ground_truth": "positive",
+            "query_term": null
+        },
+        {
+            "reasoning": "The tweet expresses support for a social media platform and mentions a collaboration, which is generally considered positive. However, it's not explicitly stated whether the platform itself is positive or negative.",
+            "sentiment": "positive",
+            "tweet": "Booz Allen Hamilton has a bad ass homegrown social collaboration platform. Way cool!  #ttiv",
+            "ground_truth": "positive",
+            "query_term": null
+        },
+        {
+            "reasoning": "The tweet contains a hyperlink to an unknown domain, which is not related to MLUC09 or customer innovation awards. The sentiment cannot be determined from this information.",
+            "sentiment": "negative",
+            "tweet": "[#MLUC09] Customer Innovation Award Winner: Booz Allen Hamilton -- http://ping.fm/c2hPP",
+            "ground_truth": "positive",
+            "query_term": null
+        },
+        {
+            "reasoning": "The tweet expresses that the user has a preference between two cameras: Nikon D90 andCanon 40D/50D. The user mentions that they currently use the Nikon D90 because of its video features, but later states that it's not as much as the Canon 40D/50D. This shows a clear preference for one camera over the other based on specific features or preferences. The choice is made with consideration for the video feature, which may be important depending on the user's needs and context.",
+            "sentiment": "negative",
+            "tweet": "@SoChi2 I current use the Nikon D90 and love it, but not as much as the Canon 40D/50D. I chose the D90 for the  video feature. My mistake.",
+            "ground_truth": "positive",
+            "query_term": null
+        },
+        {
+            "reasoning": "The tweet expresses admiration for Google's reputation as a good place to work and mentions a past collaboration with Kimble T. This conveys positive sentiment towards the company and its history.",
+            "sentiment": "positive",
+            "tweet": "@phyreman9 Google is always a good place to look. Should've mentioned I worked on the Mustang w/ my Dad, @KimbleT.",
+            "ground_truth": "positive",
+            "query_term": null
+        },
+        {
+            "reasoning": "The tweet expresses frustration due to the use of a non-essential device (Android Google phone) and the fear of breaking someone who used their iPhone. This creates a negative emotional response.",
+            "sentiment": "negative",
+            "tweet": "Played with an android google phone. The slide out screen scares me I would break that fucker so fast. Still prefer my iPhone.",
+            "ground_truth": "negative",
+            "query_term": null
+        },
+        {
+            "reasoning": "The tweet mentions that US plans to resume military tribunals at Guantanamo Bay, but it specifically states that only AIG execs and Chrysler debt holders will be on trial. This indicates a clear contrast between the usual suspects in such cases and those who are being tried. The mention of specific individuals suggests that there is concern about the integrity of the trials and potential corruption or bias in the proceedings. This creates a sense of unease among the public, leading to a negative sentiment towards the tweet.",
+            "sentiment": "negative",
+            "tweet": "US planning to resume the military tribunals at Guantanamo Bay... only this time those on trial will be AIG execs and Chrysler debt holders",
+            "ground_truth": "negative",
+            "query_term": null
+        },
+        {
+            "reasoning": "The tweet expresses frustration due to being bored and having itchy tattoos, which suggests a negative sentiment.",
+            "sentiment": "negative",
+            "tweet": "omg so bored &amp; my tattoooos are so itchy!!  help! aha =)",
+            "ground_truth": "negative",
+            "query_term": null
+        },
+        {
+            "reasoning": "The tweet expresses frustration due to being itchy and miserable, which conveys a negative sentiment.",
+            "sentiment": "negative",
+            "tweet": "I'm itchy and miserable!",
+            "ground_truth": "negative",
+            "query_term": null
+        },
+        {
+            "reasoning": "The tweet expresses that the user is not currently experiencing any irritation or discomfort, which suggests a neutral or positive sentiment. The phrase 'no.' can sometimes be used to indicate agreement or lack of emotion, but in this context, it might imply a sense of calmness or readiness for change. The word 'maybe' later could suggest uncertainty or anticipation, which may lean towards a positive tone as the user is looking forward to improvement. However, without more context, it's challenging to definitively determine the sentiment, but the overall tone appears to be neutral and positive.",
+            "sentiment": "positive",
+            "tweet": "@sekseemess no. I'm not itchy for now. Maybe later, lol.",
+            "ground_truth": "negative",
+            "query_term": null
+        },
+        {
+            "reasoning": "The tweet expresses a personal feeling of missing the experience of attending school, which is associated with the content and style of the video. The mention of 'nerdy' adds to the negative connotation as it implies a specific kind of engagement or style that may not align with the positive aspects of being at school. Additionally, the link provided suggests an external source, but the sentiment remains tied to the personal experience of missing the in-person interaction and the associated content.",
+            "sentiment": "negative",
+            "tweet": "RT @jessverr I love the nerdy Stanford human biology videos - makes me miss school. http://bit.ly/13t7NR",
+            "ground_truth": "positive",
+            "query_term": null
+        },
+        {
+            "reasoning": "The tweet expresses that the user has experienced some challenges with LyX, particularly a steep learning curve, especially when dealing with longer documents. However, for shorter documents, it seems surprisingly effective. This suggests that while the platform may require more time and effort initially, it becomes efficient once users have mastered its features. The sentiment is mixed because there's both frustration (due to the steep learning curve) and a sense of relief or effectiveness when dealing with shorter tasks.",
+            "sentiment": "negative",
+            "tweet": "@spinuzzi: Has been a bit crazy, with steep learning curve, but LyX is really good for long docs. For anything shorter, it would be insane.",
+            "ground_truth": "positive",
+            "query_term": null
+        },
+        {
+            "reasoning": "The tweet expresses admiration for a song and its artist, highlighting positive emotions. The sentiment is positive.",
+            "sentiment": "positive",
+            "tweet": "I'm listening to \"P.Y.T\" by Danny Gokey &lt;3 &lt;3 &lt;3 Aww, he's so amazing. I &lt;3 him so much :)",
+            "ground_truth": "positive",
+            "query_term": null
+        },
+        {
+            "reasoning": "The tweet contains no explicit content or language that conveys any form of hate, religion, or political speech. It also does not contain any obscuring language or inappropriate terms. The tweet is purely informative and serves as a reminder to take care of oneself. Therefore, the sentiment is neutral.",
+            "sentiment": "positive",
+            "tweet": "is going to sleep then on a bike ride:]",
+            "ground_truth": "positive",
+            "query_term": null
+        },
+        {
+            "reasoning": "The tweet expresses that the speaker cannot sleep and their tooth is aching, which indicates a lack of rest and discomfort due to an injury or condition.",
+            "sentiment": "negative",
+            "tweet": "cant sleep... my tooth is aching.",
+            "ground_truth": "negative",
+            "query_term": null
+        },
+        {
+            "reasoning": "The tweet expresses a lack of interest in any new plans and suggests returning to sleep, which is a negative sentiment.",
+            "sentiment": "negative",
+            "tweet": "Blah, blah, blah same old same old. No plans today, going back to sleep I guess.",
+            "ground_truth": "negative",
+            "query_term": null
+        },
+        {
+            "reasoning": "The tweet expresses frustration due to extreme heat in San Francisco, which is a clear indicator of negative sentiment.",
+            "sentiment": "negative",
+            "tweet": "glad i didnt do Bay to Breakers today, it's 1000 freaking degrees in San Francisco wtf",
+            "ground_truth": "negative",
+            "query_term": null
+        },
+        {
+            "reasoning": "The tweet contains a link that points to a specific Twitter account, AIG Ponzi Schemers. The mention of bonuses and the word 'bonzi' is likely a typo or intentional, suggesting political manipulation or misinformation. Additionally, the use of an exclamation mark may indicate strong emotions or urgency, but without context, it's challenging to determine the sentiment definitively. The tweet also includes a link that could be a source of information about AIG ponzi schemes, which are illegal and unethical. Therefore, the sentiment is likely negative due to the political implications and the potential for misinformation.",
+            "sentiment": "negative",
+            "tweet": "?Obama Administration Must Stop Bonuses to AIG Ponzi Schemers ... http://bit.ly/2CUIg",
+            "ground_truth": "negative",
+            "query_term": null
+        },
+        {
+            "reasoning": "The tweet expresses uncertainty about the future of Citi, specifically regarding their ability to survive a turbulent situation and whether they might become the next AI-generated entity. This ambiguity suggests that the sentiment is uncertain or ambiguous.",
+            "sentiment": "negative",
+            "tweet": "started to think that Citi is in really deep s&amp;^t. Are they gonna survive the turmoil or are they gonna be the next AIG?",
+            "ground_truth": "negative",
+            "query_term": null
+        },
+        {
+            "reasoning": "The tweet contains a strong negative word ('ShaunWoo'), which suggests that the speaker has a negative opinion about someone else (AiG). This indicates a negative sentiment towards the person or content being discussed.",
+            "sentiment": "negative",
+            "tweet": "ShaunWoo hate'n on AiG",
+            "ground_truth": "negative",
+            "query_term": null
+        },
+        {
+            "reasoning": "The tweet expresses a positive sentiment towards attending a viewing of Star Trek. The phrase 'AWESOME!' adds a positive connotation, suggesting that the experience was enjoyable and memorable.",
+            "sentiment": "positive",
+            "tweet": "@YarnThing you will not regret going to see Star Trek. It was AWESOME!",
+            "ground_truth": "positive",
+            "query_term": null
+        },
+        {
+            "reasoning": "The tweet expresses a negative sentiment as it is considered an annoying new trend, which may be disrespectful or offensive.",
+            "sentiment": "negative",
+            "tweet": "annoying new trend on the internets:  people picking apart michael lewis and malcolm gladwell.  nobody wants to read that.",
+            "ground_truth": "negative",
+            "query_term": null
+        },
+        {
+            "reasoning": "The tweet expresses a recommendation for a book by Malcolm Gladwell, which is known for its political commentary on success and strategy. The language used is positive and encouraging, focusing on the benefits of following the author's advice. This suggests a positive sentiment towards the book and the author's teachings.",
+            "sentiment": "positive",
+            "tweet": "Highly recommend: http://tinyurl.com/HowDavidBeatsGoliath by Malcolm Gladwell",
+            "ground_truth": "positive",
+            "query_term": null
+        },
+        {
+            "reasoning": "The tweet expresses admiration for Malcolm Gladwell's exceptional writing skills and his influential book on human intelligence. It also mentions a pivotal moment in the tipping point theory, which highlights the importance of early learning and skill development. This combination suggests a positive sentiment towards Gladwell's work and its impact on understanding human potential.",
+            "sentiment": "positive",
+            "tweet": "Blink by malcolm gladwell amazing book and The tipping point!",
+            "ground_truth": "positive",
+            "query_term": null
+        },
+        {
+            "reasoning": "The tweet expresses a casual relationship between two people, Malcolm Gladwell and another person, but it does not convey any explicit or implied sentiment towards either individual. It is neutral and does not express any opinion or judgment about the individuals involved.",
+            "sentiment": "positive",
+            "tweet": "Malcolm Gladwell might be my new man crush",
+            "ground_truth": "positive",
+            "query_term": null
+        },
+        {
+            "reasoning": "The commercials alone on ESPN are going to drive me nuts.",
+            "sentiment": "negative",
+            "tweet": "omg. The commercials alone on ESPN are going to drive me nuts.",
+            "ground_truth": "negative",
+            "query_term": null
+        },
+        {
+            "reasoning": "The tweet expresses enjoyment of using the Twitter API, which is positive. It mentions that May may need to take a class or find a new friend for generating API-generated results, but the main sentiment is positive.",
+            "sentiment": "positive",
+            "tweet": "@robmalon Playing with Twitter API sounds fun.  May need to take a class or find a new friend who like to generate results with API code.",
+            "ground_truth": "positive",
+            "query_term": null
+        },
+        {
+            "reasoning": "The tweet contains a greeting message that is neutral and does not express any opinion or sentiment.",
+            "sentiment": "positive",
+            "tweet": "Hello Twitter API ;)",
+            "ground_truth": "positive",
+            "query_term": null
+        },
+        {
+            "reasoning": "The tweet expresses frustration about Twitter's API being slow and clients not performing well, which can lead to issues like delayed responses and data loss.",
+            "sentiment": "negative",
+            "tweet": "@morind45 Because the twitter api is slow and most client's aren't good.",
+            "ground_truth": "negative",
+            "query_term": null
+        },
+        {
+            "reasoning": "The word 'can' often implies possibility or potential for change, which might suggest uncertainty or ambiguity. In this context, it's used metaphorically to convey that answering questions on YAHOO Answers may not always lead to positive outcomes and could even be seen as negative if the user is frustrated or confused.",
+            "sentiment": "negative",
+            "tweet": "yahoo answers can be a butt sometimes",
+            "ground_truth": "negative",
+            "query_term": null
+        },
+        {
+            "reasoning": "The tweet expresses a casual interest in scrapbooking and mentions a competition with a name that might be associated with the event. The use of 'with' suggests a friendly and engaging tone, which is positive.",
+            "sentiment": "positive",
+            "tweet": "is scrapbooking with Nic =D",
+            "ground_truth": "positive",
+            "query_term": null
+        },
+        {
+            "reasoning": "The tweet compares Wolfram Alpha's capabilities with Google, highlighting that Wolfram Alpha is better. This comparison suggests a positive sentiment towards Wolfram Alpha relative to Google.",
+            "sentiment": "positive",
+            "tweet": "RT @mashable: Five Things Wolfram Alpha Does Better (And Vastly Different) Than Google - http://bit.ly/6nSnR",
+            "ground_truth": "positive",
+            "query_term": null
+        },
+        {
+            "reasoning": "The tweet expresses enthusiasm and admiration for the sport of basketball, which is highlighted by its association with篮球 (bball) and its popularity among fans. The use of emojis like 🎉 adds emotional weight to the sentiment.",
+            "sentiment": "positive",
+            "tweet": "just changed my default pic to a Nike basketball cause bball is awesome!!!!!",
+            "ground_truth": "positive",
+            "query_term": null
+        },
+        {
+            "reasoning": "The tweet expresses frustration due to a workplace-related issue.",
+            "sentiment": "negative",
+            "tweet": "RT @SmartChickPDX: Was just told that Nike layoffs started today :-(",
+            "ground_truth": "negative",
+            "query_term": null
+        },
+        {
+            "reasoning": "The tweet expresses a strong endorsement of a particular phrase ('JUST DO IT') used by Nike, which is considered positive because it conveys confidence and determination. The use of emojis like :) adds to the positive tone. This sentiment reflects admiration for the brand's values and the importance of perseverance in their work.",
+            "sentiment": "positive",
+            "tweet": "Back when I worked for Nike we had one fav word : JUST DO IT! :)",
+            "ground_truth": "positive",
+            "query_term": null
+        },
+        {
+            "reasoning": "The tweet expresses admiration for a specific commercial related to Nike, which is known for its high-quality products. The mention of a ",
+            "sentiment": "negative",
+            "tweet": "By the way, I'm totally inspired by this freaky Nike commercial: http://snurl.com/icgj9",
+            "ground_truth": "positive",
+            "query_term": null
+        },
+        {
+            "reasoning": "The tweet expresses excitement about the class meeting on the 50th day of the course. It uses a smiley emoji (:) which typically conveys happiness or positivity, and mentions an upcoming event with a positive tone. The sentiment is positive because it reflects anticipation and eagerness for the class to move forward.",
+            "sentiment": "positive",
+            "tweet": "Class... The 50d is supposed to come today :)",
+            "ground_truth": "positive",
+            "query_term": null
+        },
+        {
+            "reasoning": "The tweet expresses frustration and anger towards a person who cannot explain lambda calculus, which is a complex mathematical concept. The use of exclamation marks indicates strong emotions and a clear negative intent.",
+            "sentiment": "negative",
+            "tweet": "needs someone to explain lambda calculus to him! :(",
+            "ground_truth": "negative",
+            "query_term": null
+        },
+        {
+            "reasoning": "The tweet expresses frustration about the difficulty of taking a graduate-level exam, particularly due to the complexity of lambda calculus. The speaker feels overwhelmed and compares it to feeling like an idiot.",
+            "sentiment": "negative",
+            "tweet": "Took the Graduate Field Exam for Computer Science today.  Nothing makes you feel like more of an idiot than lambda calculus.",
+            "ground_truth": "negative",
+            "query_term": null
+        },
+        {
+            "reasoning": "The tweet expresses gratitude to all East Palo Alto fans for their support and thanks the creators of Doomer Universal's Heapz and Cracka. The language is positive and heartfelt, focusing on admiration and support. There are no negative words or suggestions about the content being inappropriate.",
+            "sentiment": "positive",
+            "tweet": "SHOUT OUTS TO ALL EAST PALO ALTO FOR BEING IN THE BUILDIN KARIZMAKAZE 50CAL GTA! ALSO THANKS TO PROFITS OF DOOM UNIVERSAL HEMPZ CRACKA......",
+            "ground_truth": "positive",
+            "query_term": null
+        },
+        {
+            "reasoning": "The tweet expresses a strong negative sentiment towards living in East Palo Alto during the summer because it avoids potential negative experiences or opportunities that might come with such a location.",
+            "sentiment": "negative",
+            "tweet": "@legalgeekery Yeahhhhhhhhh, I wouldn't really have lived in East Palo Alto if I could have avoided it.  I guess it's only for the summer.",
+            "ground_truth": "negative",
+            "query_term": null
+        },
+        {
+            "reasoning": "The tweet expresses gratitude towards the speakers and organizers of the Stanford course, which is a positive sentiment as it reflects support and recognition of their work.",
+            "sentiment": "positive",
+            "tweet": "@accannis @edog1203 Great Stanford course. Thanks for making it available to the public! Really helpful and informative for starting off!",
+            "ground_truth": "positive",
+            "query_term": null
+        },
+        {
+            "reasoning": "The tweet expresses excitement about finishing work at 6 PM and plans to attend a game for the Los Angeles Lakers. The language is enthusiastic and positive, focusing on the completion of tasks and looking forward to an event.",
+            "sentiment": "positive",
+            "tweet": "@ work til 6pm... lets go lakers!!!",
+            "ground_truth": "positive",
+            "query_term": null
+        },
+        {
+            "reasoning": "The tweet expresses strong dissatisfaction with North Korea's actions, which are seen as a threat to world peace and regional stability. The mention of a specific website indicates that the speaker is addressing a particular issue or concern related to North Korea.",
+            "sentiment": "negative",
+            "tweet": "Damn you North Korea. http://bit.ly/KtMeQ",
+            "ground_truth": "negative",
+            "query_term": null
+        },
+        {
+            "reasoning": "The tweet expresses a strong desire to eliminate North Korea's influence on the region, suggesting a desire for peace and stability. This indicates a positive sentiment towards reducing tensions between nations and promoting international cooperation.",
+            "sentiment": "positive",
+            "tweet": "Can we just go ahead and blow North Korea off the map already?",
+            "ground_truth": "negative",
+            "query_term": null
+        },
+        {
+            "reasoning": "The tweet expresses strong dissatisfaction with North Korea's behavior and the perceived lack of trust between China and North Korea. The mention of a link to a website suggests that the speaker is referring to an external source or context, which may not be directly related to the sentiment expressed.",
+            "sentiment": "negative",
+            "tweet": "North Korea, please cease this douchebaggery. China doesn't even like you anymore. http://bit.ly/NeHSl",
+            "ground_truth": "negative",
+            "query_term": null
+        },
+        {
+            "reasoning": "The tweet expresses frustration and anger towards Pelosi's actions in China and seeks to know the source of his comments.",
+            "sentiment": "negative",
+            "tweet": "Why the hell is Pelosi in freakin China? and on whose dime?",
+            "ground_truth": "negative",
+            "query_term": null
+        },
+        {
+            "reasoning": "The tweet expresses concern about financial issues, specifically comparing personal debt to corporate debt and calling for action against a financial crisis. It uses emotional language and calls out others as entities that can be affected by such events.",
+            "sentiment": "negative",
+            "tweet": "Are YOU burning more cash $$$ than Chrysler and GM? Stop the financial tsunami. Where \"bailout\" means taking a handout!",
+            "ground_truth": "negative",
+            "query_term": null
+        },
+        {
+            "reasoning": "The tweet contains a clear and direct statement that expresses concern about an infection affecting the spinach plant. The use of exclamation marks ('') emphasizes the severity of the situation, which is indicative of a negative sentiment.",
+            "sentiment": "negative",
+            "tweet": "insects have infected my spinach plant :(",
+            "ground_truth": "negative",
+            "query_term": null
+        },
+        {
+            "reasoning": "The tweet expresses a desire to wish for positive outcomes, such as catching mosquitoes and burning them slowly. It also mentions that mosquitoes have been biting and causing damage, which suggests frustration or disappointment. The sentiment is negative because it reflects dissatisfaction with the situation.",
+            "sentiment": "negative",
+            "tweet": "wish i could catch every mosquito in the world n burn em slowly.they been bitin the shit outta me 2day.mosquitos are the assholes of insects",
+            "ground_truth": "negative",
+            "query_term": null
+        },
+        {
+            "reasoning": "The tweet expresses strong dislike towards insects, which are often considered pests. The use of words like 'hate' and 'insects' conveys a negative sentiment.",
+            "sentiment": "negative",
+            "tweet": "just got back from church, and I totally hate insects.",
+            "ground_truth": "negative",
+            "query_term": null
+        },
+        {
+            "reasoning": "The tweet expresses frustration with McDonald's food, mentions a health issue, and states that the team hasn't made progress towards their goals. These elements contribute to a negative sentiment.",
+            "sentiment": "negative",
+            "tweet": "Just got mcdonalds goddam those eggs make me sick. O yeah Laker up date go lakers. Not much of an update? Well it's true so suck it",
+            "ground_truth": "negative",
+            "query_term": null
+        },
+        {
+            "reasoning": "The tweet expresses strong emotions of excitement and anticipation for McDonald's opening, indicating a positive sentiment.",
+            "sentiment": "positive",
+            "tweet": "omgg i ohhdee want mcdonalds damn i wonder if its open lol =]",
+            "ground_truth": "positive",
+            "query_term": null
+        },
+        {
+            "reasoning": "The tweet expresses frustration due to the pressure of an upcoming history exam and the desire to study despite the time constraints.",
+            "sentiment": "negative",
+            "tweet": "History exam studying ugh",
+            "ground_truth": "negative",
+            "query_term": null
+        },
+        {
+            "reasoning": "The tweet expresses strong dissatisfaction with the subject matter (revision) and its perceived boredom, along with a clear lack of preparation for an upcoming exam. The tone is highly negative and critical.",
+            "sentiment": "negative",
+            "tweet": "I hate revision, it's so boring! I am totally unprepared for my exam tomorrow :( Things are not looking good...",
+            "ground_truth": "negative",
+            "query_term": null
+        },
+        {
+            "reasoning": "The tweet expresses a lack of interest in higher physics exams due to looking forward to it less.",
+            "sentiment": "negative",
+            "tweet": "Higher physics exam tommorow, not lookin forward to it much :(",
+            "ground_truth": "negative",
+            "query_term": null
+        },
+        {
+            "reasoning": "The tweet expresses frustration due to being out of work despite exam season approaching. The use of exclamation marks indicate strong emotions and high emotional intensity. The tone is clearly negative.",
+            "sentiment": "negative",
+            "tweet": "It's a bank holiday, yet I'm only out of work now. Exam season sucks:(",
+            "ground_truth": "negative",
+            "query_term": null
+        },
+        {
+            "reasoning": "The tweet mentions that Chenoweth and Bush are the real culprits, which suggests they are being accused of something. The mention is in a link to an article, but without context on what the accusations relate to, it's difficult to determine the sentiment.",
+            "sentiment": "negative",
+            "tweet": "Cheney and Bush are the real culprits - http://fwix.com/article/939496",
+            "ground_truth": "negative",
+            "query_term": null
+        },
+        {
+            "reasoning": "The tweet expresses frustration with Dick Cheney's support for the Democratic Party, which is seen as anti-BP. The use of 'and so is Dick Cheney' suggests a lack of empathy towards Dick and his stance.",
+            "sentiment": "negative",
+            "tweet": "Life?s a bitch? and so is Dick Cheney. #p2 #bipart #tlot #tcot #hhrs #GOP #DNC http://is.gd/DjyQ",
+            "ground_truth": "negative",
+            "query_term": null
+        },
+        {
+            "reasoning": "The tweet mentions Dick Cheney's speech on torture, terror, and Obama, which are serious topics that require careful consideration. The mention of these subjects suggests a critical or sensitive issue within the context of politics and public discourse. Additionally, the use of phrases like 'disrespectful' and 'honesty' indicates a nuanced approach to discussing such topics. However, the overall sentiment is not explicitly positive or negative but rather neutral with a cautious tone.",
+            "sentiment": "negative",
+            "tweet": "Dick Cheney's dishonest speech about torture, terror, and Obama. -Fred Kaplan Slate. http://is.gd/DiHg",
+            "ground_truth": "negative",
+            "query_term": null
+        },
+        {
+            "reasoning": "The tweet expresses strong disapproval of the Republican party's stance on abortion. The phrase 'anti-abortion zealots' conveys extreme opposition and a critical view towards abortion policies within the party.",
+            "sentiment": "negative",
+            "tweet": "\"The Republican party is a bunch of anti-abortion zealots who couldn't draw flies to a dump.\" -- Neal Boortz (just now, on the radio)",
+            "ground_truth": "negative",
+            "query_term": null
+        },
+        {
+            "reasoning": "The tweet mentions that some tweets didn't make it to Twitter, which could indicate a problem with the connections API. This might lead to issues when trying to access or retrieve information from Twitter. The sentiment is negative because of this potential problem and uncertainty.",
+            "sentiment": "negative",
+            "tweet": "is Twitter's connections API broken? Some tweets didn't make it to Twitter...",
+            "ground_truth": "negative",
+            "query_term": null
+        },
+        {
+            "reasoning": "The tweet expresses strong frustration and anger towards the Twitter API timeout issue, which is clearly a negative sentiment.",
+            "sentiment": "negative",
+            "tweet": "i srsly hate the stupid twitter API timeout thing, soooo annoying!!!!! :(",
+            "ground_truth": "negative",
+            "query_term": null
+        },
+        {
+            "reasoning": "The tweet expresses enthusiasm for the book, mentioning it as a recommended read. It uses positive language and highlights its value. The sentiment is positive.",
+            "sentiment": "positive",
+            "tweet": "@psychemedia I really liked @kswedberg's \"Learning jQuery\" book. http://bit.ly/pg0lT is worth a look too",
+            "ground_truth": "positive",
+            "query_term": null
+        },
+        {
+            "reasoning": "The tweet mentions a very interesting ad from Adobe by Goodby, Silverstein & Partners and refers to the product Adobe CS4. The link provided is for further information.",
+            "sentiment": "negative",
+            "tweet": "Very Interesting Ad from Adobe by Goodby, Silverstein &amp; Partners - YouTube - Adobe CS4: Le Sens Propre http://bit.ly/VprpT",
+            "ground_truth": "positive",
+            "query_term": null
+        },
+        {
+            "reasoning": "The tweet expresses a positive sentiment towards the Silverstein agency's new website, which is described as being great. The use of exclamation marks reinforces enthusiasm and excitement about the new site.",
+            "sentiment": "positive",
+            "tweet": "Goodby Silverstein agency new site! http://www.goodbysilverstein.com/ Great!",
+            "ground_truth": "positive",
+            "query_term": null
+        },
+        {
+            "reasoning": "The tweet expresses a positive sentiment towards Silverstein's new website. It mentions enjoying the site and provides a nice find with a link to the website.",
+            "sentiment": "positive",
+            "tweet": "RT @designplay Goodby, Silverstein's new site: http://www.goodbysilverstein.com/ I enjoy it. *nice find!*",
+            "ground_truth": "positive",
+            "query_term": null
+        },
+        {
+            "reasoning": "The tweet expresses support for artists and companies, highlighting positive sentiments towards creativity and collaboration. The mention of After Effects aligns with creative work, reinforcing a positive sentiment.",
+            "sentiment": "positive",
+            "tweet": "The ever amazing Psyop and Goodby Silverstein &amp; Partners for HP! http://bit.ly/g2rU8 Have to go play with After Effects now!",
+            "ground_truth": "positive",
+            "query_term": null
+        },
+        {
+            "reasoning": "The tweet mentions a top ten list, which is generally positive. It also links to a specific campaign and provides a link for further information. The mention of the Viral-Video Chart suggests a positive sentiment towards viral videos. Additionally, the link to Wieden & Kennedy's website indicates a connection to a brand or project that may be associated with positive values or trends in media.",
+            "sentiment": "positive",
+            "tweet": "top ten most watched on Viral-Video Chart.  Love the nike #mostvaluablepuppets campaign from Wieden &amp; Kennedy http://bit.ly/nR1n9",
+            "ground_truth": "positive",
+            "query_term": null
+        },
+        {
+            "reasoning": "The tweet expresses excitement and strong emotions, indicating a positive sentiment.",
+            "sentiment": "positive",
+            "tweet": "zomg!!! I have a G2!!!!!!!",
+            "ground_truth": "positive",
+            "query_term": null
+        },
+        {
+            "reasoning": "The tweet expresses disappointment after the user's initial excitement about IO2009, followed by a negative sentiment towards the outcome. The mention of 'Free G2' and the link suggest that the user is dissatisfied with the situation or project they were involved in.",
+            "sentiment": "negative",
+            "tweet": "Ok so lots of buzz from IO2009 but how lucky are they - a Free G2!! http://is.gd/Hyzl",
+            "ground_truth": "positive",
+            "query_term": null
+        },
+        {
+            "reasoning": "The tweet expresses excitement about receiving a free Google G2 Android phone for I/O. It uses words like 'free' and 'excited', which are positive indicators of a positive sentiment.",
+            "sentiment": "positive",
+            "tweet": "just got a free G2 android at google i/o!!!",
+            "ground_truth": "positive",
+            "query_term": null
+        },
+        {
+            "reasoning": "The tweet expresses a desire to move from one platform (G1) to another (G2), which is related to Google's services. This suggests a positive sentiment towards the future of technology and the potential for growth in the tech industry. The use of 'developer G2' indicates a focus on professional development or staying updated with new technologies, which can be seen as a sign of optimism about the future. Additionally, the mention of #GoogleIO highlights Google's commitment to innovation and open-source projects, reinforcing a positive outlook on the internet and technology in general.",
+            "sentiment": "positive",
+            "tweet": "Guess I'll be retiring my G1 and start using my developer G2 woot #googleio",
+            "ground_truth": "positive",
+            "query_term": null
+        },
+        {
+            "reasoning": "The tweet expresses happiness towards a specific event, which suggests a positive sentiment.",
+            "sentiment": "positive",
+            "tweet": "I am happy for Philip being at GoogleIO today",
+            "ground_truth": "positive",
+            "query_term": null
+        },
+        {
+            "reasoning": "The tweet expresses excitement about the upcoming game but lacks specific details about the opponent, making it difficult to assess the overall sentiment definitively.",
+            "sentiment": "negative",
+            "tweet": "Lakers played great!  Cannot wait for Thursday night Lakers vs. ???",
+            "ground_truth": "positive",
+            "query_term": null
+        },
+        {
+            "reasoning": "The tweet is a statement of support for a controversial claim about Judd Apatow's creation of a fake sitcom on NBC and the use of viral marketing to promote his new movie. The language used is critical, questioning the validity of the claims made by Apatow and the potential impact of this move on his career and public image. The tweet also includes a link that may be related to the topic but does not explicitly state a clear sentiment towards the content itself.",
+            "sentiment": "negative",
+            "tweet": "Judd Apatow creates fake sitcom on NBC.com to market his new movie... viral marketing at its best. http://is.gd/K0yK",
+            "ground_truth": "positive",
+            "query_term": null
+        },
+        {
+            "reasoning": "The tweet expresses frustration about the viral marketing tactics used by the Acia Pills brand, which is being criticized for unauthorized hacking of people's messaging systems. The user mentions receiving only five to six messages daily and expresses disappointment with this situation.",
+            "sentiment": "negative",
+            "tweet": "VIRAL MARKETING FAIL. This Acia Pills brand oughta get shut down for hacking into people's messenger's.  i get 5-6 msgs in a day! Arrrgh!",
+            "ground_truth": "negative",
+            "query_term": null
+        },
+        {
+            "reasoning": "The tweet expresses a mix of emotions, including watching a movie and using a joke-like phrase (Lmao). It's not entirely clear whether it's positive or negative, but it leans towards being humorous and lighthearted.",
+            "sentiment": "positive",
+            "tweet": "watching Night at The Museum . Lmao",
+            "ground_truth": "positive",
+            "query_term": null
+        },
+        {
+            "reasoning": "The tweet expresses a strong positive sentiment towards the experience of the night at the museum. It uses words like 'loved' and 'night' which convey satisfaction and enjoyment. The use of exclamation marks further emphasize the positive feelings associated with the moment.",
+            "sentiment": "positive",
+            "tweet": "i loved night at the museum!!!",
+            "ground_truth": "positive",
+            "query_term": null
+        },
+        {
+            "reasoning": "The tweet expresses a positive sentiment as it highlights a pleasant experience, mentioning a movie night with friends and noting it was enjoyable.",
+            "sentiment": "positive",
+            "tweet": "just got back from the movies.  went to see the new night at the museum with rachel.  it was good",
+            "ground_truth": "positive",
+            "query_term": null
+        },
+        {
+            "reasoning": "The tweet expresses excitement about a future date, suggesting a positive mood.",
+            "sentiment": "positive",
+            "tweet": "@shannyoday I will take you on a date to see night at the museum 2 whenever you want...it looks soooooo good",
+            "ground_truth": "positive",
+            "query_term": null
+        },
+        {
+            "reasoning": "The tweet expresses a lack of interest in watching The Night at the Museum but mentions getting really good about it, which could imply that the person is enjoying the experience despite not actively engaging with it.",
+            "sentiment": "negative",
+            "tweet": "no watching The Night At The Museum. Getting Really Good",
+            "ground_truth": "positive",
+            "query_term": null
+        },
+        {
+            "reasoning": "The tweet expresses enjoyment of a day at the museum with Wolverine and mentions junk food, which can be seen as neutral or slightly positive depending on context. The overall tone is positive because it highlights a fun and enjoyable experience.",
+            "sentiment": "positive",
+            "tweet": "Night at the Museum, Wolverine and junk food - perfect monday!",
+            "ground_truth": "positive",
+            "query_term": null
+        },
+        {
+            "reasoning": "The tweet expresses excitement about a recent experience, mentioning the movie's quality and the positive reception of its cast. It uses words like 'crazy' and 'worth it', which are generally positive indicators of sentiment.",
+            "sentiment": "positive",
+            "tweet": "saw night at the museum 2 last night.. pretty crazy movie.. but the cast was awesome so it was well worth it. Robin Williams forever!",
+            "ground_truth": "positive",
+            "query_term": null
+        },
+        {
+            "reasoning": "The tweet expresses frustration about the museum's decision to cancel a night out event, mentions an older child enjoying the activity, and uses playful emojis.",
+            "sentiment": "negative",
+            "tweet": "Night at the Museum tonite instead of UP. :( oh well. that 4 yr old better enjoy it. LOL",
+            "ground_truth": "negative",
+            "query_term": null
+        },
+        {
+            "reasoning": "The tweet expresses a sense of sadness and disappointment due to the repeated stimulus measures leading to economic challenges despite efforts to address the problem.",
+            "sentiment": "negative",
+            "tweet": "It's unfortunate that after the Stimulus plan was put in place twice to help GM on the back of the American people has led to the inevitable",
+            "ground_truth": "negative",
+            "query_term": null
+        },
+        {
+            "reasoning": "The tweet expresses a strong disagreement with the statement made by GM regarding their financial practices, suggesting that it is not appropriate or beneficial to continue supporting them. The user's tone indicates dissatisfaction and criticism of the decision.",
+            "sentiment": "negative",
+            "tweet": "Tell me again why we are giving more $$ to GM?? We should use that $ for all the programs that support the unemployed.",
+            "ground_truth": "negative",
+            "query_term": null
+        },
+        {
+            "reasoning": "The tweet expresses a mix of positive and negative emotions. The use of words like 'yes' and 'boo' suggests a playful or humorous tone, while the mention of 'GM' could imply uncertainty about its performance. However, the overall sentiment is not overwhelmingly positive or negative but rather a blend of both.",
+            "sentiment": "positive",
+            "tweet": "@jdreiss oh yes but if GM dies it will only be worth more boo hahaha",
+            "ground_truth": "negative",
+            "query_term": null
+        },
+        {
+            "reasoning": "The tweet mentions that Time Warner Cable is down again three times since Memorial Day and uses the word 'bummer', which conveys a negative tone. The mention of it being down multiple times reinforces the negative sentiment about their service.",
+            "sentiment": "negative",
+            "tweet": "Time Warner cable is down again 3rd time since Memorial Day bummer!",
+            "ground_truth": "negative",
+            "query_term": null
+        },
+        {
+            "reasoning": "The tweet expresses a preference between paying reasonable taxes versus being charged more for a slow internet connection. This shows a clear contrast between the two options presented.",
+            "sentiment": "negative",
+            "tweet": "I would rather pay reasonable yearly taxes for \"free\" fast internet, than get gouged by Time Warner for a slow connection.",
+            "ground_truth": "negative",
+            "query_term": null
+        },
+        {
+            "reasoning": "The tweet expresses strong disapproval of Time Warner's actions, as it highlights a personal tragedy related to the company's operations. The mention of the TV show and its impact on the user's work is significant, indicating negative emotions towards Time Warner.",
+            "sentiment": "negative",
+            "tweet": "NOOOOOOO my DVR just died and I was only half way through the EA presser. Hate you Time Warner",
+            "ground_truth": "negative",
+            "query_term": null
+        },
+        {
+            "reasoning": "The tweet contains multiple negative words that suggest strong dislike or contempt for the speaker. Words like 'f*ck,' 'suck balls,' and 'bullshit' indicate a highly critical and disrespectful tone. The mention of a $700 HD TV and aHD channels not coming in further supports this sentiment, as it implies dissatisfaction with the product and service provided by Time Warner Cable.",
+            "sentiment": "negative",
+            "tweet": "F*ck Time Warner Cable!!! You f*cking suck balls!!! I have a $700 HD tv &amp; my damn HD channels hardly ever come in. Bullshit!!",
+            "ground_truth": "negative",
+            "query_term": null
+        },
+        {
+            "reasoning": "The tweet expresses strong dissatisfaction with Time Warner's customer service, which highlights a negative sentiment towards their support and assistance. The mention of 'worse' indicates a perceived decline or lack of improvement in service quality. This negative perception can lead to a negative overall sentiment for the company and its customers.",
+            "sentiment": "negative",
+            "tweet": "time warner has the worse customer service ever. I will never use them again",
+            "ground_truth": "negative",
+            "query_term": null
+        },
+        {
+            "reasoning": "The tweet expresses extreme frustration and disappointment about Time Warner's actions regarding the internet. It uses strong, negative language that conveys a clear and intense dissatisfaction with the situation.",
+            "sentiment": "negative",
+            "tweet": "Time warner is the devil. Worst possible time for the Internet to go out.",
+            "ground_truth": "negative",
+            "query_term": null
+        },
+        {
+            "reasoning": "The tweet contains a strong negative statement about the lack of access to the internet and the use of warner, which implies a critical concern for safety and information availability. The language is direct and conveys frustration or alarmist sentiment.",
+            "sentiment": "negative",
+            "tweet": "Fuck no internet damn time warner!",
+            "ground_truth": "negative",
+            "query_term": null
+        },
+        {
+            "reasoning": "The tweet expresses frustration about not being able to access the website on a specific day, which makes it difficult for the user to perform their intended actions. The language used is negative and critical, suggesting that the author believes they are missing out on opportunities or convenience. This lack of clarity can lead to dissatisfaction among users who rely on such information.",
+            "sentiment": "negative",
+            "tweet": "time warner really picks the worst time to not work. all i want to do is get to mtv.com so i can watch the hills. wtfffff.",
+            "ground_truth": "negative",
+            "query_term": null
+        },
+        {
+            "reasoning": "The tweet expresses strong dissatisfaction with Time Warner, mentions a desire for a specific movie (Vios), and criticizes the Mets game by suggesting it's unrelated to free online content. These elements indicate negative sentiment towards both Time Warner and the Mets game.",
+            "sentiment": "negative",
+            "tweet": "I hate Time Warner! Soooo wish I had Vios. Cant watch the fricken Mets game w/o buffering. I feel like im watching free internet porn.",
+            "ground_truth": "negative",
+            "query_term": null
+        },
+        {
+            "reasoning": "The tweet expresses a positive sentiment as it highlights a happy ending after a day's activities, mentioning a nap and a good mood.",
+            "sentiment": "positive",
+            "tweet": "Ahh...got rid of stupid time warner today &amp; now taking a nap while the roomies cook for me. Pretty good end for a monday :)",
+            "ground_truth": "negative",
+            "query_term": null
+        },
+        {
+            "reasoning": "The tweet states that Time Warner's HD line up is crap.",
+            "sentiment": "negative",
+            "tweet": "Time Warner's HD line up is crap.",
+            "ground_truth": "negative",
+            "query_term": null
+        },
+        {
+            "reasoning": "The tweet expresses strong negative feelings about time, modulars, and the characters mentioned. The language is critical and conveys dissatisfaction with the situation.",
+            "sentiment": "negative",
+            "tweet": "is being fucked by time warner cable. didnt know modems could explode. and Susan Boyle sucks too!",
+            "ground_truth": "negative",
+            "query_term": null
+        },
+        {
+            "reasoning": "The tweet expresses a strong negative sentiment towards Time Warner Cable's slogan, which suggests that the company is not performing well or is making poor decisions. The phrase 'Where calling it a day at 2pm Happens.' implies that the company is closing its doors prematurely and causing inconvenience to customers who have been waiting for hours.",
+            "sentiment": "negative",
+            "tweet": "Time Warner Cable slogan: Where calling it a day at 2pm Happens.",
+            "ground_truth": "negative",
+            "query_term": null
+        },
+        {
+            "reasoning": "The tweet expresses a positive sentiment towards Jules Renner and includes an emoji that conveys happiness, which is associated with positive emotions. The overall tone is friendly and optimistic.",
+            "sentiment": "positive",
+            "tweet": "Recovering from surgery..wishing @julesrenner was here :(",
+            "ground_truth": "negative",
+            "query_term": null
+        },
+        {
+            "reasoning": "The tweet expresses frustration with the pain of the wrist and mentions a doctor's office which is considered scary. It also ends with an emoji that suggests a sad or negative tone. The sentiment is clearly negative because of the repeated use of words like 'hates' and 'scary', along with the ending message.",
+            "sentiment": "negative",
+            "tweet": "My wrist still hurts. I have to get it looked at. I HATE the dr/dentist/scary places. :( Time to watch Eagle eye. If you want to join, txt!",
+            "ground_truth": "positive",
+            "query_term": null
+        },
+        {
+            "reasoning": "The tweet expresses strong dissatisfaction with the dentist's statement, highlighting their lack of empathy and concern for the patient. The dentist's actions are seen as harsh and unkind, which contributes to a negative sentiment towards the dentist.",
+            "sentiment": "negative",
+            "tweet": "THE DENTIST LIED! \" U WON'T FEEL ANY DISCOMORT! PROB WON'T EVEN NEED PAIN PILLS\" MAN U TWIPPIN THIS SHIT HURT!! HOW MANY PILLS CAN I TAKE!!",
+            "ground_truth": "negative",
+            "query_term": null
+        },
+        {
+            "reasoning": "The tweet expresses a mix of positive and negative sentiments about her dentist. It mentions that her dentist is great, which is positive, but also states that she's expensive, which is negative. The overall sentiment is ambiguous because it depends on the context and how the speaker perceives the two aspects.",
+            "sentiment": "negative",
+            "tweet": "@kirstiealley my dentist is great but she's expensive...=(",
+            "ground_truth": "negative",
+            "query_term": null
+        },
+        {
+            "reasoning": "The tweet contains emojis that are commonly associated with positive emotions, such as a smiley face ( ;) ) and a dental smiley face ( :) ). These emojis typically convey happiness, joy, or a sense of well-being. The content itself is about studying math and preparing for an exam, which can be seen as a positive aspect of life, especially when it leads to success or improvement in one's goals. However, the sentiment expressed here leans towards positivity due to the use of these positive emojis and the context of academic preparation.",
+            "sentiment": "positive",
+            "tweet": "is studing math ;) tomorrow exam and dentist :)",
+            "ground_truth": "positive",
+            "query_term": null
+        },
+        {
+            "reasoning": "The tweet contains a clear and direct statement that contradicts common sense, suggesting that the dentist made an incorrect claim.",
+            "sentiment": "negative",
+            "tweet": "my dentist was wrong... WRONG",
+            "ground_truth": "negative",
+            "query_term": null
+        },
+        {
+            "reasoning": "The tweet expresses a desire to go to the dentist later but does not contain any explicit or negative language.",
+            "sentiment": "positive",
+            "tweet": "Going to the dentist later.:|",
+            "ground_truth": "negative",
+            "query_term": null
+        },
+        {
+            "reasoning": "The tweet expresses strong dissatisfaction with car shopping, as the speaker hates it and would rather go to the dentist instead. The mention of a 'good car at a good price' is neutral but does not contribute to the sentiment. The overall tone is negative.",
+            "sentiment": "negative",
+            "tweet": "Son has me looking at cars online.  I hate car shopping.  Would rather go to the dentist!  Anyone with a good car at a good price to sell?",
+            "ground_truth": "negative",
+            "query_term": null
+        },
+        {
+            "reasoning": "The tweet expresses a level of excitement and admiration for the situation, as it highlights the participants' enthusiasm and eagerness to take action. The use of words like 'got stopped', 'asked to empty our pockets', and 'lift our shirts' suggests a sense of accomplishment and positivity. Additionally, the phrase ",
+            "sentiment": "positive",
+            "tweet": "luke and i got stopped walking out of safeway and asked to empty our pockets and lift our shirts. how jacked up is that?",
+            "ground_truth": "negative",
+            "query_term": null
+        },
+        {
+            "reasoning": "The tweet mentions 'rock n roll' which is a positive term associated with music and popular culture. The word 'rock' itself is often linked to positive energy, so combining it with 'n roll' reinforces a positive sentiment.",
+            "sentiment": "positive",
+            "tweet": "Safeway is very rock n roll tonight",
+            "ground_truth": "positive",
+            "query_term": null
+        },
+        {
+            "reasoning": "The tweet expresses strong disapproval of the statement about the safe environment in a public space, suggesting that it's not appropriate to use such facilities for personal hygiene purposes.",
+            "sentiment": "negative",
+            "tweet": "The safeway bathroom still smells like ass!",
+            "ground_truth": "negative",
+            "query_term": null
+        },
+        {
+            "reasoning": "The tweet expresses a sense of despair and fear, as it suggests that people at Safeway on Elkhorn are moving in an unnatural way, which is considered unlucky or tragic. The use of the word 'dead' adds to the negative connotation, implying that these individuals are not alive but are instead something else.",
+            "sentiment": "negative",
+            "tweet": "At safeway on elkhorn, they move like they're dead!",
+            "ground_truth": "negative",
+            "query_term": null
+        },
+        {
+            "reasoning": "The tweet expresses a positive sentiment towards Dwight Howard's commercial, but it also conveys a negative sentiment about the brands he is associated with (NIKE and adidas). The overall sentiment is ambiguous because the author feels that the brands should be more aligned with his brand values.",
+            "sentiment": "negative",
+            "tweet": "i love Dwight Howard's vitamin water commercial... now i wish he was with NIKE and not adidas. lol.",
+            "ground_truth": "positive",
+            "query_term": null
+        },
+        {
+            "reasoning": "The tweet expresses frustration about finding nothing at the Nike Factory and mentions a local outlet, Banana Republic Outlet, which is located at myloc.me/2zic. The mention of nowhere being found suggests disappointment or lack of information.",
+            "sentiment": "negative",
+            "tweet": "Found NOTHING at Nike Factory :/ Off to Banana Republic Outlet! http://myloc.me/2zic",
+            "ground_truth": "negative",
+            "query_term": null
+        },
+        {
+            "reasoning": "The tweet expresses a lack of confidence in someone's ability to perform tasks independently, as it suggests they are not ready for the challenges presented. The use of words like 'already' and 'that's only' indicates uncertainty about their skills and reliability. Additionally, the mention of running on the spot implies that the person may have difficulty with physical activity or may be under stress.",
+            "sentiment": "negative",
+            "tweet": "is lovin his Nike  already and that's only from running on the spot in his bedroom",
+            "ground_truth": "positive",
+            "query_term": null
+        },
+        {
+            "reasoning": "The tweet expresses a positive sentiment as it highlights the successful use of jQuery, which is known for its reliability and efficiency in JavaScript development. The mention of making the bio collapse with Yay for slide animations adds a cheerful and engaging tone, reinforcing the overall positive sentiment.",
+            "sentiment": "positive",
+            "tweet": "@matthewcyan I finally got around to using jquery to make my bio collapse. Yay for slide animations.",
+            "ground_truth": "positive",
+            "query_term": null
+        },
+        {
+            "reasoning": "The tweet expresses excitement and anticipation for an upcoming event, as it uses words like 'right!!!' and 'LOL' which are playful and positive. It also mentions high expectations similar to those of a Warren Buffett fan, suggesting a positive sentiment towards the outcome or project.",
+            "sentiment": "positive",
+            "tweet": "@PDubyaD right!!! LOL we'll get there!! I have high expectations, Warren Buffet style.",
+            "ground_truth": "positive",
+            "query_term": null
+        },
+        {
+            "reasoning": "The tweet expresses a positive sentiment as it highlights the natural occurrence of trees and plants, which is generally considered a positive aspect. The mention of Warren Buffett adds to this by associating it with financial insights, reinforcing the positive tone.",
+            "sentiment": "positive",
+            "tweet": "RT @blknprecious1: RT GREAT @dbroos \"Someone's sitting in the shade today because someone planted a tree a long time ago.\"- Warren Buffet",
+            "ground_truth": "positive",
+            "query_term": null
+        },
+        {
+            "reasoning": "The tweet describes Warren Buffett becoming the richest man in the US through his investments in a single big idea that led to his wealth. This suggests he was successful in leveraging his expertise and resources for personal gain rather than long-term success or societal impact.",
+            "sentiment": "negative",
+            "tweet": "Warren Buffet became (for a time) the richest man in the United States, not by working but investing in 1 Big idea which lead to the fortune",
+            "ground_truth": "positive",
+            "query_term": null
+        },
+        {
+            "reasoning": "The tweet expresses approval of the statement about Notre Dame's receivers in the NCAA 10. The phrase 'sweet' is commonly used to denote approval and happiness. This sentiment is positive because it conveys satisfaction and approval towards the team's performance.",
+            "sentiment": "positive",
+            "tweet": "According to the create a school, Notre Dame will have 7 receivers in NCAA 10 at 84 or higher rating :) *sweet*",
+            "ground_truth": "positive",
+            "query_term": null
+        },
+        {
+            "reasoning": "The tweet expresses that the user has received a product from @BlondeBroad, which is under warranty. The sentiment here is positive because the user is acknowledging receipt and expressing satisfaction with Amazon's support for their Kindle 2. There are no negative or neutral words mentioned.",
+            "sentiment": "positive",
+            "tweet": "@BlondeBroad it's definitely under warranty &amp; my experience is the amazon support for kindle is great! had to contact them about my kindle2",
+            "ground_truth": "positive",
+            "query_term": null
+        },
+        {
+            "reasoning": "The tweet expresses strong dissatisfaction with Time Warner's customer service, which is described as excellent but lacking in other aspects like speed and alternative internet options. The user clearly states their frustration and readiness for a change.",
+            "sentiment": "negative",
+            "tweet": "Time Warner Road Runner customer support here absolutely blows. I hate not having other high-speed net options. I'm ready to go nuclear.",
+            "ground_truth": "negative",
+            "query_term": null
+        },
+        {
+            "reasoning": "The tweet expresses strong disapproval of Time Warner's representatives, as well as a clear frustration with the poor communication and handling of the situation. The use of exclamation points emphasizes the negative emotions conveyed.",
+            "sentiment": "negative",
+            "tweet": "Time Warner cable phone reps r dumber than nails!!!!! UGH! Cable was working 10 mins ago now its not WTF!",
+            "ground_truth": "negative",
+            "query_term": null
+        },
+        {
+            "reasoning": "The tweet expresses a desire to record something, despite Time Warner's lack of niceness, which suggests a positive intent towards the project or activity.",
+            "sentiment": "positive",
+            "tweet": "@siratomofbones we tried but Time Warner wasn't being nice so we recorded today. :)",
+            "ground_truth": "negative",
+            "query_term": null
+        },
+        {
+            "reasoning": "The tweet expresses frustration and disappointment with the user's internet experience. The user is upset because they were unable to connect to their internet at home, which led them to a confusing message about switching time slots. They also mention that without an internet connection, it's now next Saturday instead of today, further highlighting their disappointment. Additionally, the tweet uses exclamation points and mentions other unrelated topics like ",
+            "sentiment": "negative",
+            "tweet": "OMG - time warner f'ed up my internet install - instead of today  its now NEXT saturday - another week w/o internet! &amp;$*ehfa^V9fhg[*# fml.",
+            "ground_truth": "negative",
+            "query_term": null
+        },
+        {
+            "reasoning": "The tweet expresses frustration due to the long and confusing message, which is not helpful for understanding the situation.",
+            "sentiment": "negative",
+            "tweet": "wth..i have never seen a line this loooong at time warner before, ugh.",
+            "ground_truth": "negative",
+            "query_term": null
+        },
+        {
+            "reasoning": "The tweet expresses a lack of interest and eagerness, as it suggests waiting for someone who is not relevant or timely. The phrase 'way too pretty' adds a positive connotation, but the overall tone seems negative due to the implied patience and anticipation.",
+            "sentiment": "negative",
+            "tweet": "Impatiently awaiting the arrival of the time warner guy. It's way too pretty to be inside all afternoon",
+            "ground_truth": "negative",
+            "query_term": null
+        },
+        {
+            "reasoning": "The tweet expresses frustration about the use of Naive Bayes with Expectation-Maximization (EM) algorithms in text classification, suggesting that it may not be suitable or effective for the task.",
+            "sentiment": "negative",
+            "tweet": "Naive Bayes using EM for Text Classification. Really Frustrating...",
+            "ground_truth": "negative",
+            "query_term": null
+        },
+        {
+            "reasoning": "The tweet expresses excitement about going to Stanford University, mentions making the decision to return to college, and highlights the impact on students' future plans. These elements convey positive sentiment.",
+            "sentiment": "positive",
+            "tweet": "We went to Stanford University today. Got a tour. Made me want to go back to college. It's also decided all of our kids will go there.",
+            "ground_truth": "positive",
+            "query_term": null
+        },
+        {
+            "reasoning": "The tweet expresses frustration about being targeted by calls related to a car warranty issue and advises against changing the phone number, which is seen as a strategy for multiple callers. The use of 'they' suggests they are referring collectively or in a way that implies broad targeting. The phrase 'd-bags' is likely a typo or slang meaning 'car', possibly indicating the vehicle being targeted. The overall tone is critical and negative.",
+            "sentiment": "negative",
+            "tweet": "@KarrisFoxy If you're being harassed by calls about your car warranty, changing your number won't fix that. They call every number. #d-bags",
+            "ground_truth": "negative",
+            "query_term": null
+        },
+        {
+            "reasoning": "The tweet mentions that the user has been blocked from accessing information related to United Blood Services via Google Voice, specifically referring to services like car warranty and medical services. This indicates a negative sentiment towards the organization or service.",
+            "sentiment": "negative",
+            "tweet": "Just blocked United Blood Services using Google Voice. They call more than those Car Warranty guys.",
+            "ground_truth": "negative",
+            "query_term": null
+        },
+        {
+            "reasoning": "The tweet uses a combination of HTML entities (#) and text that suggests defeat or failure. The use of # at&amp;t indicates a strong, negative tone. Additionally, the phrase 'is complete fail.' implies a lack of progress or success.",
+            "sentiment": "negative",
+            "tweet": "#at&amp;t is complete fail.",
+            "ground_truth": "negative",
+            "query_term": null
+        },
+        {
+            "reasoning": "The tweet expresses support for a company that is known for its reliability and professionalism, which are qualities that align with the values of @AT&T. The use of 'you work at AT&T' reinforces trust in their services and expertise. Additionally, the phrase 'snap you' suggests immediate or clear communication, which can be seen as positive reinforcement of the tweet's message.",
+            "sentiment": "positive",
+            "tweet": "@broskiii OH SNAP YOU WORK AT AT&amp;T DON'T YOU",
+            "ground_truth": "negative",
+            "query_term": null
+        },
+        {
+            "reasoning": "The tweet expresses strong dissatisfaction with AT&T's phone service, specifically noting that the signal is not working as expected. The use of symbols like @ and & indicates a casual or informal tone, which may reflect the author's frustration and lack of confidence in the service.",
+            "sentiment": "negative",
+            "tweet": "@Mbjthegreat i really dont want AT&amp;T phone service..they suck when it comes to having a signal",
+            "ground_truth": "negative",
+            "query_term": null
+        },
+        {
+            "reasoning": "The tweet expresses strong disapproval of the new slogan by AT&T and acknowledges the apology made to Bob Geldof. The language used is harsh and direct, which conveys a negative sentiment.",
+            "sentiment": "negative",
+            "tweet": "I say we just cut out the small talk: AT&amp;T's new slogan: F__k you, give us your money. (Apologies to Bob Geldof.)",
+            "ground_truth": "negative",
+            "query_term": null
+        },
+        {
+            "reasoning": "The tweet expresses frustration and disappointment, as it mentions being ",
+            "sentiment": "negative",
+            "tweet": "pissed about at&amp;t's mid-contract upgrade price for the iPhone (it's $200 more) I'm not going to pay $499 for something I thought was $299",
+            "ground_truth": "negative",
+            "query_term": null
+        },
+        {
+            "reasoning": "The tweet expresses a positive sentiment towards Safari 4 and mentions that it's fast, even though it notes that the user has a poor AT&T tethering. The use of :) indicates a playful or enthusiastic tone.",
+            "sentiment": "positive",
+            "tweet": "Safari 4 is fast :) Even on my shitty AT&amp;T tethering.",
+            "ground_truth": "negative",
+            "query_term": null
+        },
+        {
+            "reasoning": "The tweet expresses frustration and anger towards AT&T's business practices and financial decisions.",
+            "sentiment": "negative",
+            "tweet": "@ims What is AT&amp;T fucking up?",
+            "ground_truth": "negative",
+            "query_term": null
+        },
+        {
+            "reasoning": "The tweet expresses frustration, disappointment, and negativity towards the company's failure to support their new iPhone 3.0 product. The mention of 'fail' and 'sucks' reinforces a negative sentiment about the product or the company's handling of it.",
+            "sentiment": "negative",
+            "tweet": "@springsingfiend @dvyers @sethdaggett @jlshack AT&amp;T dropped the ball and isn't supporting crap with the new iPhone 3.0... FAIL #att SUCKS!!!",
+            "ground_truth": "negative",
+            "query_term": null
+        },
+        {
+            "reasoning": "The tweet expresses a positive sentiment towards the user and their phone, but it also contains an exclamation about AT&T. The overall sentiment is mixed because while there's some positivity, there are negative elements present.",
+            "sentiment": "negative",
+            "tweet": "@MMBarnhill yay, glad you got the phone! Still, damn you, AT&amp;T.",
+            "ground_truth": "negative",
+            "query_term": null
+        },
+        {
+            "reasoning": "The tweet expresses a preference for using Google over Bing, which can be seen as a negative sentiment towards search engines like Bing. The use of the word 'Talk' and the request to 'stick with' suggest a desire for consistency or reliability in search results.",
+            "sentiment": "negative",
+            "tweet": "Talk is Cheap: Bing that, I?ll stick with Google. http://bit.ly/XC3C8",
+            "ground_truth": "negative",
+            "query_term": null
+        },
+        {
+            "reasoning": "The tweet expresses frustration about the inability to find certain tweets on Sumrise after being deleted, which has led to a negative sentiment towards the platform.",
+            "sentiment": "negative",
+            "tweet": "@defsounds WTF is the point of deleting tweets if they can still be found in summize and searches? Twitter, please fix that. Thanks and bye",
+            "ground_truth": "negative",
+            "query_term": null
+        },
+        {
+            "reasoning": "The tweet expresses appreciation for Google Translator and includes a friendly greeting, which indicates a positive sentiment.",
+            "sentiment": "positive",
+            "tweet": "@ArunBasilLal I love Google Translator too ! :D Good day mate !",
+            "ground_truth": "positive",
+            "query_term": null
+        },
+        {
+            "reasoning": "The tweet expresses a positive sentiment towards reading on a new device. It uses words like 'reading' and 'new', which are generally associated with positive emotions. The context is about personal use of technology, so it's likely intended to be constructive and engaging.",
+            "sentiment": "positive",
+            "tweet": "reading on my new Kindle2!",
+            "ground_truth": "positive",
+            "query_term": null
+        },
+        {
+            "reasoning": "The tweet expresses a strong positive sentiment towards the Kindle 2 product. It highlights the user's enjoyment and love for the device, which is evident through the use of emojis like 😊. The language used is enthusiastic and confident, reinforcing the idea that the product is a great choice for someone looking to enhance their reading experience.",
+            "sentiment": "positive",
+            "tweet": "My Kindle2 came and I LOVE it! :)",
+            "ground_truth": "positive",
+            "query_term": null
+        },
+        {
+            "reasoning": "The tweet expresses positive emotions towards the Kindle2, mentions a specific name (",
+            "sentiment": "positive",
+            "tweet": "LOVING my new Kindle2.  Named her Kendra in case u were wondering. The \"cookbook\" is THE tool cuz it tells u all the tricks!  Best gift EVR!",
+            "ground_truth": "positive",
+            "query_term": null
+        },
+        {
+            "reasoning": "The tweet mentions a real AIG scandal linked to a company, which suggests a serious issue within AI technology. The mention of a specific URL indicates that this is an official or significant event in the field of artificial intelligence. This could imply potential problems or challenges within the AI community or organization mentioned.",
+            "sentiment": "negative",
+            "tweet": "The real AIG scandal / http://bit.ly/b82Px",
+            "ground_truth": "negative",
+            "query_term": null
+        },
+        {
+            "reasoning": "The tweet expresses admiration for Obama's ability to be a good comedian and mentions a fun dinner speech, which are both positive elements that convey enjoyment and humor. The use of emojis like :) supports the sentiment of being enjoyable and funny.",
+            "sentiment": "positive",
+            "tweet": "Obama is quite a good comedian! check out his dinner speech on CNN :) very funny jokes.",
+            "ground_truth": "positive",
+            "query_term": null
+        },
+        {
+            "reasoning": "The tweet starts with a statement about Barack Obama showing his funny side, which is a positive statement. It then includes an image link and mentions a great speech, which are both positive elements. The overall sentiment of the tweet is positive because it highlights Obama's humor and his contributions to public speaking.",
+            "sentiment": "positive",
+            "tweet": "' Barack Obama shows his funny side \" &gt;&gt; http://tr.im/l0gY !! Great speech..",
+            "ground_truth": "positive",
+            "query_term": null
+        },
+        {
+            "reasoning": "The tweet expresses admiration for a person, mentioning their humor and including an image link.",
+            "sentiment": "positive",
+            "tweet": "I like this guy : ' Barack Obama shows his funny side \" &gt;&gt; http://tr.im/l0gY !!",
+            "ground_truth": "positive",
+            "query_term": null
+        },
+        {
+            "reasoning": "The tweet expresses praise for Obama's speech and provides a link to his speech on Twitter. The mention of a link suggests that the speaker is acknowledging or referencing something, which can be seen as positive reinforcement. However, the sentiment is not explicitly stated but leans towards positive because it highlights the quality of the speech and its impact.",
+            "sentiment": "positive",
+            "tweet": "Obama's speech was pretty awesome last night! http://bit.ly/IMXUM",
+            "ground_truth": "positive",
+            "query_term": null
+        },
+        {
+            "reasoning": "The tweet expresses a strong opinion about the political relationship between Bill Clinton and Barack Obama, suggesting that Clinton is seen as a failure while Obama is celebrated as a success. This creates a polarizing sentiment towards their relationship.",
+            "sentiment": "negative",
+            "tweet": "Reading  \"Bill Clinton Fail - Obama Win?\" http://tinyurl.com/pcyxj7",
+            "ground_truth": "positive",
+            "query_term": null
+        },
+        {
+            "reasoning": "The tweet mentions that Obama is more popular than the U.S. among Arabs, which suggests a positive sentiment towards his popularity in these regions. The link provided directs to a survey conducted by the Organization for Human Rights in 2015, which supports the idea of higher public opinion on his policies and leadership.",
+            "sentiment": "positive",
+            "tweet": "Obama More Popular Than U.S. Among Arabs: Survey: President Barack Obama's popularity in leading Arab countries .. http://tinyurl.com/prlvqu",
+            "ground_truth": "positive",
+            "query_term": null
+        },
+        {
+            "reasoning": "The tweet expresses happiness, humor, and affection towards Obama. It uses phrases like 'JOKES' and 'haha' which convey laughter and enjoyment. The mention of watching a part of his speech highlights personal interest and admiration for the president. The sentiment is positive as it reflects satisfaction and love for the candidate.",
+            "sentiment": "positive",
+            "tweet": "Obama's got JOKES!! haha just got to watch a bit of his after dinner speech from last night... i'm in love with mr. president ;)",
+            "ground_truth": "positive",
+            "query_term": null
+        },
+        {
+            "reasoning": "The tweet expresses disbelief after hearing about LeBron James's car accident and the subsequent shock factor from the evening news. The user is expressing concern about his health, which shows a sense of sadness or worry. The mention of a specific website adds to the emotional weight of the message.",
+            "sentiment": "negative",
+            "tweet": "LEbron james got in a car accident i guess..just heard it on evening news...wow i cant believe it..will he be ok ? http://twtad.com/69750",
+            "ground_truth": "negative",
+            "query_term": null
+        },
+        {
+            "reasoning": "The tweet expresses a strong opinion about the quality of the playoffs, particularly regarding LeBron and Melo in the finals. It uses words like 'best' and 'the,' which suggest high praise and emphasis on their performance. The use of 'is it me or is this the best...' creates a sense of competition and admiration for both players. Additionally, the mention of the playoffs being ",
+            "sentiment": "positive",
+            "tweet": "is it me or is this the best the playoffs have been in years oh yea lebron and melo in the finals",
+            "ground_truth": "positive",
+            "query_term": null
+        },
+        {
+            "reasoning": "The tweet states that 'No, Lebron is the best' which implies a comparison between two people. The word 'best' suggests that Lebron is highly regarded or praised. This comparison can be seen as critical because it compares Lebron to someone else who may not have been as well-known or respected. Therefore, the sentiment of the tweet is negative because it presents an unfair or overly positive view of Lebron by stating he is the best.",
+            "sentiment": "negative",
+            "tweet": "@khalid0456 No, Lebron is the best",
+            "ground_truth": "positive",
+            "query_term": null
+        },
+        {
+            "reasoning": "The tweet expresses admiration for LeBron's coolness and likes his personality, which shows a positive sentiment towards him as a basketball player.",
+            "sentiment": "positive",
+            "tweet": "@the_real_usher LeBron is cool.  I like his personality...he has good character.",
+            "ground_truth": "positive",
+            "query_term": null
+        },
+        {
+            "reasoning": "The tweet expresses frustration and disappointment about the actions of certain individuals who are considered ",
+            "sentiment": "negative",
+            "tweet": "Watching Lebron highlights. Damn that niggas good",
+            "ground_truth": "positive",
+            "query_term": null
+        },
+        {
+            "reasoning": "The tweet uses the word 'murdering' which conveys a strong negative emotion. The context suggests that someone is committing a violent act, which indicates a negative sentiment towards the speaker or their behavior.",
+            "sentiment": "negative",
+            "tweet": "@Lou911 Lebron is MURDERING shit.",
+            "ground_truth": "positive",
+            "query_term": null
+        },
+        {
+            "reasoning": "The tweet expresses frustration about LeBron's claim of being a Monster, which is unrealistic given his age and potential. It also uses the word 'SMH' to mock others.",
+            "sentiment": "negative",
+            "tweet": "@uscsports21 LeBron is a monsta and he is only 24. SMH The world ain't ready.",
+            "ground_truth": "positive",
+            "query_term": null
+        },
+        {
+            "reasoning": "The tweet expresses a belief that Kobe is not going to be great once LeBron is out, implying that Kobe's influence may diminish as others take over his role. The use of words like 'good' and 'probably' suggests positive sentiment towards Kobe's legacy but the overall tone leans toward uncertainty or expectation of change in Kobe's status.",
+            "sentiment": "negative",
+            "tweet": "@cthagod when Lebron is done in the NBA he will probably be greater than Kobe. Like u said Kobe is good but there alot of 'good' players.",
+            "ground_truth": "positive",
+            "query_term": null
+        },
+        {
+            "reasoning": "The tweet contains a mix of positive and neutral language that does not express strong emotions. It uses words like 'good' and 'my vote' which are neutral, but lacks any indication of support or criticism towards the individuals mentioned.",
+            "sentiment": "negative",
+            "tweet": "KOBE IS GOOD BT LEBRON HAS MY VOTE",
+            "ground_truth": "positive",
+            "query_term": null
+        },
+        {
+            "reasoning": "The tweet states that Kobe is the best in the world but does not mention anything about LeBron. This lack of information makes it difficult to determine the overall sentiment towards either player. The sentiment cannot be definitively determined as there are multiple players mentioned, and only one's performance is highlighted.",
+            "sentiment": "negative",
+            "tweet": "Kobe is the best in the world not lebron .",
+            "ground_truth": "negative",
+            "query_term": null
+        },
+        {
+            "reasoning": "The tweet expresses a positive sentiment towards the World Cup 2010 access, as it uses an emoji (Access?) to convey enthusiasm for attending.",
+            "sentiment": "positive",
+            "tweet": "@asherroth World Cup 2010 Access?? Damn, that's a good look!",
+            "ground_truth": "positive",
+            "query_term": null
+        },
+        {
+            "reasoning": "The tweet expresses excitement about attending the 2010 FIFA World Cup in South Africa, which is a significant event and likely to be a memorable experience. The mention of it being a great summer adds to the anticipation and positive sentiment surrounding the event.",
+            "sentiment": "positive",
+            "tweet": "Just bought my tickets for the 2010 FIFA World Cup in South Africa. Its going to be a great summer. http://bit.ly/9GEZI",
+            "ground_truth": "positive",
+            "query_term": null
+        },
+        {
+            "reasoning": "The tweet expresses frustration due to the long meeting, followed by relief when it ends. The overall tone is mixed but leans towards negative because of the initial frustration and positive emotions afterward.",
+            "sentiment": "negative",
+            "tweet": "I have to go to Booz Allen Hamilton for a 2hr meeting :(  But then i get to go home :)",
+            "ground_truth": "negative",
+            "query_term": null
+        },
+        {
+            "reasoning": "The tweet expresses a positive outlook on the upcoming election in India, suggesting that the Tamasha candidate is expected to perform well. The phrase 'will unfold' implies potential success and confidence in the election results.",
+            "sentiment": "positive",
+            "tweet": "The great Indian tamasha truly will unfold from May 16, the result day for Indian General Election.",
+            "ground_truth": "positive",
+            "query_term": null
+        },
+        {
+            "reasoning": "The tweet expresses that the user has the Kindle 2, which is a physical book, and mentions they've seen pictures of the DX (which is likely a digital version) but hasn't physically seen it. The sentiment is positive because the user likes their Kindle and uses it daily.",
+            "sentiment": "positive",
+            "tweet": "@crlane I have the Kindle2. I've seen pictures of the DX, but haven't seen it in person. I love my Kindle - I'm on it everyday.",
+            "ground_truth": "positive",
+            "query_term": null
+        },
+        {
+            "reasoning": "The tweet expresses support for an idea, which is considered awesome. The mention of a Kindle2 and the link suggests it's related to technology or productivity, but there's no explicit negative language used.",
+            "sentiment": "positive",
+            "tweet": "@criticalpath Such an awesome idea - the  continual learning program with a Kindle2  http://bit.ly/1ZLfF",
+            "ground_truth": "positive",
+            "query_term": null
+        },
+        {
+            "reasoning": "The tweet expresses excitement about the user's new iPhone model, which is a positive sentiment.",
+            "sentiment": "positive",
+            "tweet": "@faithbabywear Ooooh, what model are you getting??? I have the 40D and LOVE LOVE LOVE LOVE it!",
+            "ground_truth": "positive",
+            "query_term": null
+        },
+        {
+            "reasoning": "The tweet mentions the election in India but does not express any opinion, concern, or question about it. It simply provides information about the election.",
+            "sentiment": "negative",
+            "tweet": "The Times of India: The wonder that is India's election. http://bit.ly/p7u1H",
+            "ground_truth": "positive",
+            "query_term": null
+        },
+        {
+            "reasoning": "The tweet expresses a positive sentiment as it mentions a good video from Google on using search options, which is helpful for users looking to find information efficiently.",
+            "sentiment": "positive",
+            "tweet": "http://is.gd/ArUJ Good video from Google on using search options.",
+            "ground_truth": "positive",
+            "query_term": null
+        },
+        {
+            "reasoning": "The tweet expresses frustration due to the user's skin feeling itchy after a lawnmowing session, which makes them feel unwell.",
+            "sentiment": "negative",
+            "tweet": "@ambcharlesfield lol. Ah my skin is itchy :( damn lawnmowing.",
+            "ground_truth": "negative",
+            "query_term": null
+        },
+        {
+            "reasoning": "The tweet contains a playful remark about being stuck in an ",
+            "sentiment": "negative",
+            "tweet": "itchy back!! dont ya hate it!",
+            "ground_truth": "negative",
+            "query_term": null
+        },
+        {
+            "reasoning": "The tweet contains a link to Stanford charity's fashion show, which is likely intended to raise funds for charitable causes. The mention of 'top draw' suggests that the event is related to fashion and may be promoting some form of clothing or accessories sale. However, without more context about the content of the link or the nature of the event, it is difficult to determine whether the sentiment is positive or negative.",
+            "sentiment": "negative",
+            "tweet": "Stanford Charity Fashion Show a top draw http://cli.gs/NeNuAH",
+            "ground_truth": "positive",
+            "query_term": null
+        },
+        {
+            "reasoning": "The tweet states that Stanford University's Facebook page is one of the most popular official university pages. This indicates a positive sentiment towards the page and its content.",
+            "sentiment": "positive",
+            "tweet": "Stanford University?s Facebook Profile is One of the Most Popular Official University Pages - http://tinyurl.com/p5b3fl",
+            "ground_truth": "positive",
+            "query_term": null
+        },
+        {
+            "reasoning": "The tweet expresses a level of interest in Lyx but does not convey any strong opinion about its overall quality or effectiveness. It suggests that Lyx might be worth trying, but there's no explicit positive or negative sentiment expressed.",
+            "sentiment": "positive",
+            "tweet": "Lyx is cool.",
+            "ground_truth": "positive",
+            "query_term": null
+        },
+        {
+            "reasoning": "The tweet expresses excitement about a team's performance, mentions a local hero, and uses positive language. The sentiment is positive.",
+            "sentiment": "positive",
+            "tweet": "SOOO DISSAPOiNTED THEY SENT DANNY GOKEY HOME... YOU STiLL ROCK ...DANNY ... MY HOMETOWN HERO !! YEAH MiLROCKEE!!",
+            "ground_truth": "positive",
+            "query_term": null
+        },
+        {
+            "reasoning": "The tweet contains a link to a video that is not related to the content of the tweet. The sentiment cannot be determined because the link does not provide any information about the tweet's content or tone.",
+            "sentiment": "negative",
+            "tweet": "RT @PassionModel 'American Idol' fashion: Adam Lambert tones down, Danny Gokey cute ... http://cli.gs/7JWSHV",
+            "ground_truth": "positive",
+            "query_term": null
+        },
+        {
+            "reasoning": "The tweet expresses happiness and affection towards the user, using words like 'love' and 'happy', which convey a positive sentiment.",
+            "sentiment": "positive",
+            "tweet": "@dannygokey I love you DANNY GOKEY!! :)",
+            "ground_truth": "positive",
+            "query_term": null
+        },
+        {
+            "reasoning": "The tweet expresses a clear sense of fatigue and lack of sleep after last night's sleep.",
+            "sentiment": "negative",
+            "tweet": "so tired. i didn't sleep well at all last night.",
+            "ground_truth": "negative",
+            "query_term": null
+        },
+        {
+            "reasoning": "The tweet expresses uncertainty about the boarding time due to the flight duration being long, which may cause delays. The user is unsure whether they will make it on time and is concerned about potential issues during the journey.",
+            "sentiment": "negative",
+            "tweet": "Boarding plane for San Francisco in 1 hour; 6 hr flight. Blech.",
+            "ground_truth": "negative",
+            "query_term": null
+        },
+        {
+            "reasoning": "The tweet expresses a lack of pain but does not indicate any emotion towards others or the content itself. It's neutral.",
+            "sentiment": "negative",
+            "tweet": "bonjour San Francisco. My back hurts from last night..",
+            "ground_truth": "negative",
+            "query_term": null
+        },
+        {
+            "reasoning": "The tweet expresses happiness and affection towards a close friend or family member, which indicates a positive sentiment.",
+            "sentiment": "positive",
+            "tweet": "With my best girl for a few more hours in San francisco. Mmmmmfamily is wonderful!",
+            "ground_truth": "positive",
+            "query_term": null
+        },
+        {
+            "reasoning": "The tweet expresses strong dissatisfaction with the speaker's behavior and their decision to leave.",
+            "sentiment": "negative",
+            "tweet": "F*** up big, or go home - AIG",
+            "ground_truth": "negative",
+            "query_term": null
+        },
+        {
+            "reasoning": "The tweet expresses satisfaction after watching a movie, which suggests a positive sentiment.",
+            "sentiment": "positive",
+            "tweet": "Went to see the Star Trek movie last night.  Very satisfying.",
+            "ground_truth": "positive",
+            "query_term": null
+        },
+        {
+            "reasoning": "The tweet expresses excitement about attending a future event, which suggests a positive sentiment towards the planned activity.",
+            "sentiment": "positive",
+            "tweet": "I can't wait, going to see star trek tonight!!",
+            "ground_truth": "positive",
+            "query_term": null
+        },
+        {
+            "reasoning": "The tweet expresses approval of Star Trek's performances and praise from others, which indicates a positive sentiment towards the movie.",
+            "sentiment": "positive",
+            "tweet": "Star Trek was as good as everyone said!!",
+            "ground_truth": "positive",
+            "query_term": null
+        },
+        {
+            "reasoning": "The tweet mentions a book by Malcolm Gladwell and refers to an outlier, which suggests that the author is highlighting something unusual or unexpected about the content of the tweet.",
+            "sentiment": "negative",
+            "tweet": "am loving new malcolm gladwell book - outliers",
+            "ground_truth": "positive",
+            "query_term": null
+        },
+        {
+            "reasoning": "The tweet expresses a recommendation towards Malcolm Gladwell's book, which is a positive sentiment. It also mentions that the next audiobook might be by him, reinforcing the positive sentiment.",
+            "sentiment": "positive",
+            "tweet": "I highly recommend Malcolm Gladwell's 'The Tipping Point.' My next audiobook will probably be one of his as well.",
+            "ground_truth": "positive",
+            "query_term": null
+        },
+        {
+            "reasoning": "The tweet expresses frustration and anger towards Malcolm Gladwell's claim that he can deceive others to believe he is a fool. It uses hyperbole and strong language to convey this sentiment.",
+            "sentiment": "negative",
+            "tweet": "Malcolm Gladwell is a genius at tricking people into not realizing he's a fucking idiot",
+            "ground_truth": "negative",
+            "query_term": null
+        },
+        {
+            "reasoning": "Malcolm Gladwell's tweet is critical of his own behavior as a pretentious and annoying person, which undermines his credibility and ability to influence others. His statement about being a cunt and bringing down the platform is seen as disrespectful and counterproductive.",
+            "sentiment": "negative",
+            "tweet": "@sportsguy33 hey no offense but malcolm gladwell is a pretenious, annoying cunt and he brings you down. cant read his shit",
+            "ground_truth": "negative",
+            "query_term": null
+        },
+        {
+            "reasoning": "The tweet expresses support for a controversial topic (great article on SOYV7), which can be seen as negative. However, it's unclear if the author is promoting any specific product or service. The sentiment is ambiguous and could vary based on context.",
+            "sentiment": "negative",
+            "tweet": "RT @clashmore: http://bit.ly/SOYv7  Great article by Malcolm Gladwell.",
+            "ground_truth": "positive",
+            "query_term": null
+        },
+        {
+            "reasoning": "The tweet expresses a desire to meet Malcolm Gladwell but does not contain any explicit or offensive language.",
+            "sentiment": "negative",
+            "tweet": "I seriously underestimated Malcolm Gladwell.  I want to meet this dude.",
+            "ground_truth": "positive",
+            "query_term": null
+        },
+        {
+            "reasoning": "The tweet expresses frustration due to multiple issues like cable, internet, and phone services being down, leading to a negative sentiment.",
+            "sentiment": "negative",
+            "tweet": "i hate comcast right now. everything is down cable internet &amp; phone....ughh what am i to do",
+            "ground_truth": "negative",
+            "query_term": null
+        },
+        {
+            "reasoning": "The tweet expresses frustration about Comcast's performance, which is a negative sentiment.",
+            "sentiment": "negative",
+            "tweet": "Comcast sucks.",
+            "ground_truth": "negative",
+            "query_term": null
+        },
+        {
+            "reasoning": "The tweet expresses a strong positive sentiment about avoiding Comcast issues, which is a significant achievement for the speaker. The speaker mentions that this day will be one of the best days of their life, highlighting their desire to avoid any negative experiences with the company. This indicates a clear and positive outlook on their personal journey and achievements.",
+            "sentiment": "positive",
+            "tweet": "The day I never have to deal with Comcast again will rank as one of the best days of my life.",
+            "ground_truth": "negative",
+            "query_term": null
+        },
+        {
+            "reasoning": "The tweet expresses frustration and disappointment about the failure of a broadcast event.",
+            "sentiment": "negative",
+            "tweet": "@Dommm did comcast fail again??",
+            "ground_truth": "negative",
+            "query_term": null
+        },
+        {
+            "reasoning": "The tweet says 'curses the Twitter API limit', which implies that the user has exceeded their Twitter account's API limits. This could mean that they have already used all available permissions or tokens, making it difficult to continue using the service. The sentiment is negative because of this limitation.",
+            "sentiment": "negative",
+            "tweet": "curses the Twitter API limit",
+            "ground_truth": "negative",
+            "query_term": null
+        },
+        {
+            "reasoning": "The tweet expresses a strong opinion that Twitter's API has become insufficient, which is evident from the mention of limitations and access restrictions. The speaker, Dave Winer, clearly conveys his dissatisfaction with the platform's capabilities and the challenges it presents to users.",
+            "sentiment": "negative",
+            "tweet": "Now I can see why Dave Winer screams about lack of Twitter API, its limitations and access throttles!",
+            "ground_truth": "negative",
+            "query_term": null
+        },
+        {
+            "reasoning": "The tweet expresses frustration about the Twitter API's behavior.",
+            "sentiment": "negative",
+            "tweet": "Arg. Twitter API is making me crazy.",
+            "ground_truth": "negative",
+            "query_term": null
+        },
+        {
+            "reasoning": "The tweet expresses a positive sentiment towards Wolfram Alpha, highlighting its quality and the user's admiration for it. The mention of Google seems to contrast with Wolfram Alpha, but the overall tone is positive.",
+            "sentiment": "positive",
+            "tweet": "I'm really loving the new search site Wolfram/Alpha. Makes Google seem so ... quaint. http://www72.wolframalpha.com/",
+            "ground_truth": "positive",
+            "query_term": null
+        },
+        {
+            "reasoning": "The tweet expresses frustration about Wolfram Alpha's performance compared to Google and Wikipedia. It highlights that Wolfram Alpha provides insufficient information for researchers, making it less useful than Google or Wikipedia.",
+            "sentiment": "negative",
+            "tweet": "#wolfram Alpha SUCKS! Even for researchers the information provided is less than you can get from #google or #wikipedia, totally useless!",
+            "ground_truth": "negative",
+            "query_term": null
+        },
+        {
+            "reasoning": "The tweet contains a direct request for information about the NIKE factory, which suggests that the person is seeking details or possibly looking into a specific business or industry. This type of request often carries a negative connotation as it may indicate uncertainty or lack of clarity.",
+            "sentiment": "negative",
+            "tweet": "Off to the NIKE factory!!!",
+            "ground_truth": "positive",
+            "query_term": null
+        },
+        {
+            "reasoning": "The tweet expresses a mix of positive and neutral sentiments. It mentions the cuteness of New Zealand's commercial, which is a positive note, but it also poses a question about why people still live together, which may be seen as neutral or even slightly negative if not interpreted correctly. The overall sentiment isn't clear-cut.",
+            "sentiment": "positive",
+            "tweet": "New nike muppet commercials are pretty cute. Why do we live together again?",
+            "ground_truth": "positive",
+            "query_term": null
+        },
+        {
+            "reasoning": "The tweet expresses enthusiasm for the products but also contains a playful comment about ownership of the company, which is generally considered negative.",
+            "sentiment": "negative",
+            "tweet": "@Fraggle312 oh those are awesome! i so wish they weren't owned by nike :(",
+            "ground_truth": "negative",
+            "query_term": null
+        },
+        {
+            "reasoning": "The tweet expresses excitement about attending a show, mentions an event location, and includes positive language like 'AWESOME!!!",
+            "sentiment": "positive",
+            "tweet": "@tonyhawk http://twitpic.com/5c7uj - AWESOME!!! Seeing the show Friday at the Shoreline Amphitheatre. Never seen NIN before. Can't wait. ...",
+            "ground_truth": "positive",
+            "query_term": null
+        },
+        {
+            "reasoning": "The tweet contains a negative statement about a bug in Weka, which is a programming framework used for machine learning. The user expresses frustration after spending time trying to resolve the issue. This indicates a negative sentiment towards the product or its functionality.",
+            "sentiment": "negative",
+            "tweet": "arhh, It's weka bug. = =\" and I spent almost two hours to find that out. crappy me",
+            "ground_truth": "negative",
+            "query_term": null
+        },
+        {
+            "reasoning": "The tweet expresses appreciation for the user's kind words and mentions their favorite product (50D) while expressing a desire for a better version (5D mkII). The language is positive and appreciative.",
+            "sentiment": "positive",
+            "tweet": "@mitzs hey bud :) np I do so love my 50D, although I'd love a 5D mkII more",
+            "ground_truth": "positive",
+            "query_term": null
+        },
+        {
+            "reasoning": "The tweet expresses happiness and appreciation for the recipient's success, which is a positive sentiment.",
+            "sentiment": "positive",
+            "tweet": "@jonduenas @robynlyn just got us a 50D for the office. :D",
+            "ground_truth": "positive",
+            "query_term": null
+        },
+        {
+            "reasoning": "The tweet expresses happiness and admiration towards the camera model, which is a positive sentiment.",
+            "sentiment": "positive",
+            "tweet": "Just picked up my new Canon 50D...it's beautiful!!  Prepare for some seriously awesome photography!",
+            "ground_truth": "positive",
+            "query_term": null
+        },
+        {
+            "reasoning": "The tweet expresses a positive sentiment as it highlights the joy of receiving a new toy, which is a common positive experience for many people.",
+            "sentiment": "positive",
+            "tweet": "Just got my new toy. Canon 50D. Love love love it!",
+            "ground_truth": "positive",
+            "query_term": null
+        },
+        {
+            "reasoning": "The tweet contains a smiley face emoji (:) which can be interpreted as a positive indicator of happiness or joy. However, it does not contain any explicit or offensive content related to language or mathematics. Therefore, the sentiment is neutral.",
+            "sentiment": "negative",
+            "tweet": "Learning about lambda calculus :)",
+            "ground_truth": "positive",
+            "query_term": null
+        },
+        {
+            "reasoning": "The tweet expresses a positive intention of moving to East Palo Alto but does not contain any explicit or offensive language.",
+            "sentiment": "positive",
+            "tweet": "I'm moving to East Palo Alto!",
+            "ground_truth": "positive",
+            "query_term": null
+        },
+        {
+            "reasoning": "The tweet expresses appreciation for a classmate's contribution and acknowledges their effort, which conveys positive emotions. The language is encouraging and supportive.",
+            "sentiment": "positive",
+            "tweet": "@ atebits I just finished watching your Stanford iPhone Class session. I really appreciate it. You Rock!",
+            "ground_truth": "positive",
+            "query_term": null
+        },
+        {
+            "reasoning": "The tweet expresses appreciation for the speaker's advice, mentions a friend from Singapore, and uses positive language. The sentiment is positive.",
+            "sentiment": "positive",
+            "tweet": "@jktweet Hi! Just saw your Stanford talk and really liked your advice. Just saying Hi from Singapore (yes the videos do get around)",
+            "ground_truth": "positive",
+            "query_term": null
+        },
+        {
+            "reasoning": "The tweet expresses excitement and enthusiasm for the event, which suggests a positive sentiment.",
+            "sentiment": "positive",
+            "tweet": "LAKERS tonight let's go!!!!",
+            "ground_truth": "positive",
+            "query_term": null
+        },
+        {
+            "reasoning": "The tweet expresses a question about the outcome of a game between the Lakers and the Nuggets, which does not contain any subjective or neutral language. It is purely declarative with no emotional tone. The sentiment is neutral because it doesn't convey any positive or negative feelings.",
+            "sentiment": "negative",
+            "tweet": "Will the Lakers kick the Nuggets ass tonight?",
+            "ground_truth": "positive",
+            "query_term": null
+        },
+        {
+            "reasoning": "The tweet contains a strong positive statement about North Korea being in trouble, which indicates a positive sentiment.",
+            "sentiment": "positive",
+            "tweet": "Oooooooh... North Korea is in troubleeeee! http://bit.ly/19epAH",
+            "ground_truth": "negative",
+            "query_term": null
+        },
+        {
+            "reasoning": "The tweet contains multiple exclamation points, which indicate strong emotions. The mention of North Korea and their actions, including nuclear tests, suggests a negative sentiment towards them. The link provided is also suspicious as it links to a news site that may not be reliable or related to the topic.",
+            "sentiment": "negative",
+            "tweet": "Wat the heck is North Korea doing!!??!! They just conducted powerful nuclear tests! Follow the link: http://www.msnbc.msn.com/id/30921379",
+            "ground_truth": "negative",
+            "query_term": null
+        },
+        {
+            "reasoning": "The tweet contains a reference to 'Friggin North Korea', which is an offensive and derogatory term that implies disrespect and negativity towards the speaker.",
+            "sentiment": "negative",
+            "tweet": "Listening to Obama... Friggin North Korea...",
+            "ground_truth": "negative",
+            "query_term": null
+        },
+        {
+            "reasoning": "The tweet contains a mix of personal information about individuals, including names like Obama, Pellosi, Sarah Palin, and mentions of political figures. These are typically considered neutral or factual content rather than expressing strong opinions or emotions.",
+            "sentiment": "negative",
+            "tweet": "I just realized we three monkeys in the white Obama.Biden,Pelosi . Sarah Palin 2012",
+            "ground_truth": "negative",
+            "query_term": null
+        },
+        {
+            "reasoning": "The tweet expresses a strong opinion against Pelosi's actions in China, suggesting that she should remain there and not return.",
+            "sentiment": "negative",
+            "tweet": "@foxnews Pelosi should stay in China and never come back.",
+            "ground_truth": "negative",
+            "query_term": null
+        },
+        {
+            "reasoning": "The tweet expresses strong negative feelings after reading Nancy Pelosi's commencement speech, indicating a negative sentiment.",
+            "sentiment": "negative",
+            "tweet": "Nancy Pelosi gave the worst commencement speech I've ever heard. Yes I'm still bitter about this",
+            "ground_truth": "negative",
+            "query_term": null
+        },
+        {
+            "reasoning": "The tweet expresses frustration due to repeated encounters with aggressive insects.",
+            "sentiment": "negative",
+            "tweet": "ugh. the amount of times these stupid insects have bitten me. Grr..",
+            "ground_truth": "negative",
+            "query_term": null
+        },
+        {
+            "reasoning": "The tweet expresses a strong positive sentiment towards the prettiness of pink katydids, which are described as the most beautiful insects ever seen. The mention of a specific website and the use of an image link suggest that the content is visually appealing and attractive to those who appreciate nature or insects.",
+            "sentiment": "positive",
+            "tweet": "Prettiest insects EVER - Pink Katydids: http://bit.ly/2Upw2p",
+            "ground_truth": "positive",
+            "query_term": null
+        },
+        {
+            "reasoning": "The tweet expresses extreme frustration and fear due to the overwhelming number of insects seeking food from a single source, which creates a sense of danger and unease.",
+            "sentiment": "negative",
+            "tweet": "Just got barraged by a horde of insects hungry for my kitchen light. So scary.",
+            "ground_truth": "negative",
+            "query_term": null
+        },
+        {
+            "reasoning": "The tweet expresses a positive sentiment towards McDonald's, highlighting that it was good and included a reference to a big mac meal. The use of emojis like :D and ; supports the positive tone.",
+            "sentiment": "positive",
+            "tweet": "Just had McDonalds for dinner. :D It was goooood. Big Mac Meal. ;)",
+            "ground_truth": "positive",
+            "query_term": null
+        },
+        {
+            "reasoning": "The tweet contains a mix of emojis (AHH, LOL) which are generally considered neutral or positive, but the text includes words like 'Tells', 'GO', and 'SUM' which can be interpreted as positive. The phrase '=]' at the end is also considered neutral. However, the word 'MCDONALDS' is a positive term related to food, so it contributes to a positive sentiment. Therefore, despite some negative emojis, the overall sentiment leans towards positive.",
+            "sentiment": "positive",
+            "tweet": "AHH YES LOL IMA TELL MY HUBBY TO GO GET ME SUM MCDONALDS =]",
+            "ground_truth": "positive",
+            "query_term": null
+        },
+        {
+            "reasoning": "The tweet expresses a positive sentiment towards having lunch at McDonald's, specifically mentioning the Chicken nuggets and the happiness felt from them.",
+            "sentiment": "positive",
+            "tweet": "Stopped to have lunch at McDonalds. Chicken Nuggetssss! :) yummmmmy.",
+            "ground_truth": "positive",
+            "query_term": null
+        },
+        {
+            "reasoning": "The tweet expresses enthusiasm for going to McDonald's but uses a possessive form (i.e., 'a lot') which may imply more than it actually is. The word 'could' suggests uncertainty or eagerness, while 'i mean' adds emphasis on the quantity of McDonalds they're referring to. However, the overall sentiment seems positive as there's a desire for dining out but also some hesitation about the actual number of McDonalds in consideration.",
+            "sentiment": "positive",
+            "tweet": "Could go for a lot of McDonalds. i mean A LOT.",
+            "ground_truth": "positive",
+            "query_term": null
+        },
+        {
+            "reasoning": "The tweet expresses a positive sentiment as it highlights that my exam was good and mentions that someone's prayers worked, which is uplifting and encouraging.",
+            "sentiment": "positive",
+            "tweet": "my exam went good. @HelloLeonie: your prayers worked (:",
+            "ground_truth": "positive",
+            "query_term": null
+        },
+        {
+            "reasoning": "The tweet expresses happiness and excitement about an upcoming exam. The use of emojis like :) supports this sentiment.",
+            "sentiment": "positive",
+            "tweet": "Only one exam left, and i am so happy for it :D",
+            "ground_truth": "positive",
+            "query_term": null
+        },
+        {
+            "reasoning": "The tweet expresses a clear intention of failure, which suggests a negative sentiment.",
+            "sentiment": "negative",
+            "tweet": "Math review. Im going to fail the exam.",
+            "ground_truth": "negative",
+            "query_term": null
+        },
+        {
+            "reasoning": "The tweet expresses support for Colin Powell, who is known for his service to the United States. It highlights his honor and the dedication he has shown in supporting the country. The mention of Cheney's need to shut up and go home suggests that the tweet may be implying that Cheney should not engage with the public or take certain actions. However, the primary sentiment revolves around Powell's positive role and support for the country. Therefore, the overall sentiment is positive.",
+            "sentiment": "positive",
+            "tweet": "Colin Powell rocked yesterday on CBS. Cheney needs to shut the hell up and go home.Powell is a man of Honor and served our country proudly",
+            "ground_truth": "negative",
+            "query_term": null
+        },
+        {
+            "reasoning": "The tweet expresses a strong opinion against a political figure, which indicates a negative sentiment.",
+            "sentiment": "negative",
+            "tweet": "obviously not siding with Cheney here: http://bit.ly/19j2d",
+            "ground_truth": "negative",
+            "query_term": null
+        },
+        {
+            "reasoning": "The tweet expresses a strong positive sentiment towards a video on Mashable. It uses an exclamation mark to convey enthusiasm and excitement about the content.",
+            "sentiment": "positive",
+            "tweet": "Absolutely hilarious!!! from @mashable:  http://bit.ly/bccWt",
+            "ground_truth": "positive",
+            "query_term": null
+        },
+        {
+            "reasoning": "The tweet expresses appreciation for the author's recognition and mentions a specific artist, which conveys positive sentiment. The use of emojis supports this positivity.",
+            "sentiment": "positive",
+            "tweet": "@mashable I never did thank you for including me in your Top 100 Twitter Authors! You Rock! (&amp; I New Wave :-D) http://bit.ly/EOrFV",
+            "ground_truth": "positive",
+            "query_term": null
+        },
+        {
+            "reasoning": "The tweet mentions a reference book for Coda and provides a link to a website related to web design. The mention of the book suggests it's useful for someone in web design, which is a positive aspect. However, the link itself does not directly relate to web design but rather to a general tech topic. Therefore, while there are benefits, the tweet leans towards being somewhat positive overall.",
+            "sentiment": "positive",
+            "tweet": "RT @shrop: Awesome JQuery reference book for Coda! http://www.macpeeps.com/coda/ #webdesign",
+            "ground_truth": "positive",
+            "query_term": null
+        },
+        {
+            "reasoning": "The tweet expresses frustration about multiple issues, including excessive emails and an unresolved contact request. The tone is clearly negative.",
+            "sentiment": "negative",
+            "tweet": "I've been sending e-mails like crazy today to my contacts...does anyone have a contact at Goodby SIlverstein...I'd love to speak to them",
+            "ground_truth": "positive",
+            "query_term": null
+        },
+        {
+            "reasoning": "The tweet expresses a positive sentiment towards Silverstein's new website. It mentions enjoying the site and provides a link to access it.",
+            "sentiment": "positive",
+            "tweet": "Goodby, Silverstein's new site... http://www.goodbysilverstein.com/ I enjoy it.",
+            "ground_truth": "positive",
+            "query_term": null
+        },
+        {
+            "reasoning": "The tweet expresses excitement about receiving free G2 devices with unlimited service, which is a positive sentiment.",
+            "sentiment": "positive",
+            "tweet": "Wow everyone at the Google I/O conference got free G2's with a month of unlimited service",
+            "ground_truth": "positive",
+            "query_term": null
+        },
+        {
+            "reasoning": "The tweet expresses excitement about receiving a new Google Android phone as part of the I/O conference, which is a positive event. It highlights the anticipation and eagerness for the user to acquire this product.",
+            "sentiment": "positive",
+            "tweet": "@vkerkez dood I got a free google android phone at the I/O conference. The G2!",
+            "ground_truth": "positive",
+            "query_term": null
+        },
+        {
+            "reasoning": "The tweet expresses a positive sentiment towards the new G2 model, highlighting improvements over the previous G1. It uses words like 'amazing' and 'HUGE improvement', which convey satisfaction and enhancement in technology or performance.",
+            "sentiment": "positive",
+            "tweet": "@Orli the G2 is amazing btw, a HUGE improvement over the G1",
+            "ground_truth": "positive",
+            "query_term": null
+        },
+        {
+            "reasoning": "The tweet contains multiple positive elements such as 'lots of great stuff to come', 'excited', and the link to a website. The hashtags are also positive. There is no negative language or content.",
+            "sentiment": "positive",
+            "tweet": "HTML 5 Demos! Lots of great stuff to come! Yes, I'm excited. :) http://htmlfive.appspot.com #io2009 #googleio",
+            "ground_truth": "positive",
+            "query_term": null
+        },
+        {
+            "reasoning": "The tweet expresses happiness and enthusiasm towards Google, using phrases like 'I love Google!' which convey a positive sentiment. The mention of the tweet link is likely for visual appeal but does not affect the overall sentiment.",
+            "sentiment": "positive",
+            "tweet": "@googleio http://twitpic.com/62shi - Yay! Happy place! Place place!  I love Google!",
+            "ground_truth": "positive",
+            "query_term": null
+        },
+        {
+            "reasoning": "The tweet expresses a positive sentiment towards Google's product, mentioning that it brings 3D graphics to the browser and is described as fun and enjoyable.",
+            "sentiment": "positive",
+            "tweet": "#GoogleIO | O3D - Bringing 3d graphics to the browser. Very nice tbh. Funfun.",
+            "ground_truth": "positive",
+            "query_term": null
+        },
+        {
+            "reasoning": "The tweet expresses a positive sentiment towards the product 'Funny People' through its viral marketing efforts, which aims to promote the brand and encourage engagement with the content. The link provided is accessible and relevant.",
+            "sentiment": "positive",
+            "tweet": "Awesome viral marketing for \"Funny People\" http://www.nbc.com/yo-teach/",
+            "ground_truth": "positive",
+            "query_term": null
+        },
+        {
+            "reasoning": "The tweet expresses a desire to go out at night but lacks clarity on who funds the movie projects, which may lead to uncertainty or hesitation about the project's viability and potential impact.",
+            "sentiment": "negative",
+            "tweet": "saw night at the museum out of sheer desperation. who is funding these movies?",
+            "ground_truth": "negative",
+            "query_term": null
+        },
+        {
+            "reasoning": "The tweet expresses excitement about attending Night at the Museum, mentioning it's a fun experience and highly rated.",
+            "sentiment": "positive",
+            "tweet": "Night At The Museum 2? Pretty furkin good.",
+            "ground_truth": "positive",
+            "query_term": null
+        },
+        {
+            "reasoning": "The tweet expresses a positive emotion of laughing after watching a movie.",
+            "sentiment": "positive",
+            "tweet": "Watching Night at the Museum - giggling.",
+            "ground_truth": "positive",
+            "query_term": null
+        },
+        {
+            "reasoning": "The tweet expresses a mix of praise for two movies but doesn't lean towards any strong positive or negative sentiment. It uses neutral language and is open to opinions about each movie.",
+            "sentiment": "positive",
+            "tweet": "Back from seeing 'Star Trek' and 'Night at the Museum.' 'Star Trek' was amazing, but 'Night at the Museum' was; eh.",
+            "ground_truth": "negative",
+            "query_term": null
+        },
+        {
+            "reasoning": "The tweet expresses a positive sentiment as it highlights a memorable experience at the museum.",
+            "sentiment": "positive",
+            "tweet": "just watched night at the museum 2! so stinkin cute!",
+            "ground_truth": "positive",
+            "query_term": null
+        },
+        {
+            "reasoning": "The tweet expresses a strong positive sentiment towards the event, highlighting that it was better than expected and looking forward to future experiences.",
+            "sentiment": "positive",
+            "tweet": "So, Night at the Museum 2 was AWESOME! Much better than part 1. Next weekend we'll see Up.",
+            "ground_truth": "positive",
+            "query_term": null
+        },
+        {
+            "reasoning": "The tweet expresses a clear and enthusiastic approval of the new experience, highlighting excitement for both the museum's events and the upcoming 3D show. The language used is positive and uplifting, suggesting a high level of satisfaction with the recommendations.",
+            "sentiment": "positive",
+            "tweet": "saw the new Night at the Museum and i loved it. Next is to go see UP in 3D",
+            "ground_truth": "positive",
+            "query_term": null
+        },
+        {
+            "reasoning": "The tweet expresses concern over GM's potential impact on public perception of the White House, suggesting that even if GM were constrained by political pressures, their car production might not meet the standards expected by the White House. This creates a sense of unease and uncertainty about GM's ability to compete with the White House's image. The mention of forcing GM to make only cars indicates a deliberate attempt to undermine public trust in GM's reliability and quality. Additionally, the use of ",
+            "sentiment": "negative",
+            "tweet": "It is a shame about GM. What if they are forced to make only cars the White House THINKS will sell? What do you think?",
+            "ground_truth": "negative",
+            "query_term": null
+        },
+        {
+            "reasoning": "The tweet expresses concern about the financial stability of GM, AIG, and other companies listed on the NYSE. These concerns are expressed with a mix of negative language (not too happy) and specific names of entities that may be in financial trouble. The sentiment is clearly negative because the speaker is expressing disapproval or unease about these companies' financial health.",
+            "sentiment": "negative",
+            "tweet": "As u may have noticed, not too happy about the GM situation, nor AIG, Lehman, et al",
+            "ground_truth": "negative",
+            "query_term": null
+        },
+        {
+            "reasoning": "The tweet expresses a strong positive sentiment towards GM and their performance, despite the mention of 'sad.' The word 'sad' may be used to convey disappointment or frustration, but it is balanced by the overall positive tone of the tweet.",
+            "sentiment": "positive",
+            "tweet": "@Pittstock $GM good riddance.  sad though.",
+            "ground_truth": "negative",
+            "query_term": null
+        },
+        {
+            "reasoning": "The tweet expresses strong disapproval of government-motor vehicles and mentions driving GM cars from the past, which are associated with negative associations tied to government influence. The use of 'I Will NEVER Buy' reinforces a strongly negative sentiment towards government influence on purchasing decisions.",
+            "sentiment": "negative",
+            "tweet": "I Will NEVER Buy a Government Motors Vehicle: Until just recently, I drove GM cars. Since 1988, when I bought a .. http://tinyurl.com/lulsw8",
+            "ground_truth": "negative",
+            "query_term": null
+        },
+        {
+            "reasoning": "The tweet expresses a strong negative opinion about having a former Coca-Cola executive on the General Motors board, which is seen as disrespectful. The use of exclamation marks and hashtags related to corruption and ala (a term often used in political contexts) further reinforces this sentiment. The overall tone is critical and dismissive.",
+            "sentiment": "negative",
+            "tweet": "Having the old Coca-Cola guy on the GM board is stupid has heck! #tcot #ala",
+            "ground_truth": "negative",
+            "query_term": null
+        },
+        {
+            "reasoning": "The tweet mentions the worst thing about GM, specifically the UAW, which is a union that has been criticized for its practices. The mention of the UAW suggests negative attention and criticism towards GM's labor conditions or management. Additionally, the use of hyperbole with phrases like 'fucking' adds to the negative connotation. The tweet also links to a buzzup site, which may imply broader attention and criticism outside of GM itself.",
+            "sentiment": "negative",
+            "tweet": "#RantsAndRaves The worst thing about GM (concord / pleasant hill / martinez): is the fucking UAW. ..   http://buzzup.com/4ueb",
+            "ground_truth": "negative",
+            "query_term": null
+        },
+        {
+            "reasoning": "The tweet expresses a clear and consistent message of respect and protection. The speaker is emphasizing that even if someone is given resources or opportunities, it's important to prioritize their well-being and ensure they are not exploited or mistreated. This approach reflects a positive sentiment towards equality and fairness in society.",
+            "sentiment": "positive",
+            "tweet": "Give a man a fish, u feed him for the day. Teach him to fish, u feed him for life. Buy him GM, and u F**K him over for good.",
+            "ground_truth": "negative",
+            "query_term": null
+        },
+        {
+            "reasoning": "The tweet expresses frustration due to perceived negativity of a company (GM), mentions wasted resources, and highlights the lack of support among employees. These elements create a sense of anger and dissatisfaction.",
+            "sentiment": "negative",
+            "tweet": "The more I hear about this GM thing the more angry I get. Billions wasted, more bullshit. All for something like 40k employees and all the..",
+            "ground_truth": "negative",
+            "query_term": null
+        },
+        {
+            "reasoning": "The tweet expresses that the owner owns a GM car which is considered junk when compared to an Honda. This suggests dissatisfaction with the quality of the GM car relative to Honda's.",
+            "sentiment": "negative",
+            "tweet": "@QuantTrader i own a GM car and it is junk as far as quality compared to a honda",
+            "ground_truth": "negative",
+            "query_term": null
+        },
+        {
+            "reasoning": "The tweet expresses a sad feeling about a bankrupt GM, which indicates a negative sentiment.",
+            "sentiment": "negative",
+            "tweet": "sad day...bankrupt GM",
+            "ground_truth": "negative",
+            "query_term": null
+        },
+        {
+            "reasoning": "The tweet expresses strong dissatisfaction and anger towards General Motors (GM) and the associated issues within their operations. The speaker mentions being ",
+            "sentiment": "negative",
+            "tweet": "is upset about the whole GM thing. life as i know it is so screwed up",
+            "ground_truth": "negative",
+            "query_term": null
+        },
+        {
+            "reasoning": "The tweet contains multiple negative words that suggest a strong emotional impact on the listener, such as 'rape', 'understand', and 'shitty cable'. These words indicate a sense of betrayal or shock. The use of 'rhino' adds another layer of irony, implying that the rhino is being targeted by someone who needs to be repeatedly raped. This combination of negative language creates a strong emotional response that leans towards negativity.",
+            "sentiment": "negative",
+            "tweet": "whoever is running time warner needs to be repeatedly raped by a rhino so they understand the consequences of putting out shitty cable svcs",
+            "ground_truth": "negative",
+            "query_term": null
+        },
+        {
+            "reasoning": "The tweet expresses frustration due to being joined too late and mentions 'boo time warner' which is slang for being online or connected, indicating a negative sentiment.",
+            "sentiment": "negative",
+            "tweet": "#WFTB Joining a bit late. My connection was down (boo time warner)",
+            "ground_truth": "negative",
+            "query_term": null
+        },
+        {
+            "reasoning": "The tweet expresses that Cox offers better value for money compared to Time Warner, as it receives a higher grade (B) than Time Warner's C. This suggests that the sentiment is positive because the user is comparing two services based on their quality or performance, implying satisfaction with one and not the other.",
+            "sentiment": "positive",
+            "tweet": "Cox or Time Warner?  Cox is cheaper and gets a B on dslreports.  TW is more expensive and gets a C.",
+            "ground_truth": "negative",
+            "query_term": null
+        },
+        {
+            "reasoning": "The tweet expresses strong emotion of anger towards Time Warne and their promotional strategies.",
+            "sentiment": "negative",
+            "tweet": "i am furious with time warner and their phone promotions!",
+            "ground_truth": "negative",
+            "query_term": null
+        },
+        {
+            "reasoning": "The tweet expresses frustration and disappointment due to the negative tone and lack of positivity.",
+            "sentiment": "negative",
+            "tweet": "Just got home from chick-fil-a with the boys. Damn my internets down =( stupid time warner",
+            "ground_truth": "negative",
+            "query_term": null
+        },
+        {
+            "reasoning": "The tweet expresses a strong opinion that it is not advisable for Time Warner Cable to engage in something that could potentially harm others, specifically suggesting that such actions are not suitable or appropriate. The language used is direct and critical, indicating a clear negative sentiment towards the suggestion of time-warner cable engaging in such behavior.",
+            "sentiment": "negative",
+            "tweet": "could time-warner cable suck more?  NO.",
+            "ground_truth": "negative",
+            "query_term": null
+        },
+        {
+            "reasoning": "The tweet expresses frustration due to the user being annoyed by Time Warner's actions that caused slow internet problems, which led them to feel unfulfilled. The negative emotions stem from the perceived lack of satisfaction and fulfillment in their experience with the service.",
+            "sentiment": "negative",
+            "tweet": "Pissed at Time Warner for causin me to have slow internet problems",
+            "ground_truth": "negative",
+            "query_term": null
+        },
+        {
+            "reasoning": "The tweet expresses frustration about Time Warner issues, which are clearly negative.",
+            "sentiment": "negative",
+            "tweet": "@sportsguy33 Ummm, having some Time Warner problems?",
+            "ground_truth": "negative",
+            "query_term": null
+        },
+        {
+            "reasoning": "The tweet expresses frustration with Time Warner's management and the lack of availability for a desired product, which leads to negative sentiment.",
+            "sentiment": "negative",
+            "tweet": "You guys see this?  Why does Time Warner have to suck so much ass?  Really wish I could get U-Verse at my apartment. http://bit.ly/s594j",
+            "ground_truth": "negative",
+            "query_term": null
+        },
+        {
+            "reasoning": "The tweet expresses frustration about the poor performance of time Warner's phone operators and the lack of effective on-site customer support. This is a negative sentiment.",
+            "sentiment": "negative",
+            "tweet": "RT @sportsguy33 The upside to Time Warner: unhelpful phone operators   superslow on-site service. Crap, that's not an upside.",
+            "ground_truth": "negative",
+            "query_term": null
+        },
+        {
+            "reasoning": "The tweet expresses a sentiment of positive reinforcement towards promoting the past era's success by highlighting the legacy of Time Warner. The use of 'long for the days before cable' suggests a nostalgic and enduring sense of pride in the company's history, which is generally considered positive. Additionally, the mention of 'slogan' adds to the emphasis on maintaining that legacy through continued efforts.",
+            "sentiment": "positive",
+            "tweet": "RT @sportsguy33: New Time Warner slogan: \"Time Warner, where we make you long for the days before cable.\"",
+            "ground_truth": "negative",
+            "query_term": null
+        },
+        {
+            "reasoning": "The tweet expresses concern about the loading time of Facebook due to Time Warner's fault and advises switching to Verizon.",
+            "sentiment": "negative",
+            "tweet": "confirmed: it's Time Warner's fault, not Facebook's, that fb is taking about 3 minutes to load. so tempted to switch to verizon =/",
+            "ground_truth": "negative",
+            "query_term": null
+        },
+        {
+            "reasoning": "The tweet expresses a strong negative opinion about Time Warner, indicating that it failed to meet expectations. The use of 'epic fail' suggests disappointment and dissatisfaction with the company's performance or success.",
+            "sentiment": "negative",
+            "tweet": "@sportsguy33 Time Warner = epic fail",
+            "ground_truth": "negative",
+            "query_term": null
+        },
+        {
+            "reasoning": "The tweet expresses concern about the impact of the hurricane season on a specific region, mentioning that it might be less scary than government actions. The use of words like 'scareful' and 'government taking over' suggests uncertainty or fear among the speaker.",
+            "sentiment": "negative",
+            "tweet": "I know. How sad is that?  RT @caseymercier: 1st day of hurricane season. That's less scarey than govt taking over GM.",
+            "ground_truth": "negative",
+            "query_term": null
+        },
+        {
+            "reasoning": "The tweet mentions that GM files bankruptcy, which is a significant event indicating financial trouble and a negative outlook for investors.",
+            "sentiment": "negative",
+            "tweet": "GM files Bankruptcy, not a good sign...",
+            "ground_truth": "negative",
+            "query_term": null
+        },
+        {
+            "reasoning": "The tweet states that the Yankees won against the Mets and mentions it's a good day. This indicates a positive sentiment towards the outcome of the game and the overall feeling of being happy after the game.",
+            "sentiment": "positive",
+            "tweet": "yankees won mets lost. its a good day.",
+            "ground_truth": "positive",
+            "query_term": null
+        },
+        {
+            "reasoning": "The tweet expresses a positive experience at the dentist appointment, highlighting satisfaction and enjoyment.",
+            "sentiment": "positive",
+            "tweet": "My dentist appt today was actually quite enjoyable.",
+            "ground_truth": "positive",
+            "query_term": null
+        },
+        {
+            "reasoning": "The tweet expresses strong dislike towards the dentist, which indicates a negative sentiment.",
+            "sentiment": "negative",
+            "tweet": "I hate the effing dentist.",
+            "ground_truth": "negative",
+            "query_term": null
+        },
+        {
+            "reasoning": "The tweet expresses strong dislike towards the dentist and their services, as indicated by the exclamation mark and the ellipsis (...) that follow.",
+            "sentiment": "negative",
+            "tweet": "@kirstiealley I hate going to the dentist.. !!!",
+            "ground_truth": "negative",
+            "query_term": null
+        },
+        {
+            "reasoning": "The tweet expresses strong dislike towards the dentist and mentions that they were invented by others, which reinforces this sentiment.",
+            "sentiment": "negative",
+            "tweet": "i hate the dentist....who invented them anyways?",
+            "ground_truth": "negative",
+            "query_term": null
+        },
+        {
+            "reasoning": "The tweet expresses a strong negative sentiment about the dentist's office being cold.",
+            "sentiment": "negative",
+            "tweet": "this dentist's office is cold :/",
+            "ground_truth": "negative",
+            "query_term": null
+        },
+        {
+            "reasoning": "The tweet expresses excitement and enthusiasm about applying for a job at Safeway. The use of emojis like :Yeeeee! indicates strong positive emotions, suggesting high positivity towards the action taken.",
+            "sentiment": "positive",
+            "tweet": "Just applied at Safeway!(: Yeeeee!",
+            "ground_truth": "positive",
+            "query_term": null
+        },
+        {
+            "reasoning": "The tweet expresses frustration and disappointment about the poor quality of the store, which is described as 'a nightmare right now' and mentions that customers are bumming out.",
+            "sentiment": "negative",
+            "tweet": "@ Safeway. Place is a nightmare right now. Bumming.",
+            "ground_truth": "negative",
+            "query_term": null
+        },
+        {
+            "reasoning": "The tweet expresses strong dislike for the product, which is labeled as safe, but the user finds it offensive and decides to buy despite the negative feelings. The language used includes hate speech and criticism of the brand.",
+            "sentiment": "negative",
+            "tweet": "HATE safeway select green tea icecream! bought two cartons, what a waste of money.  &gt;_&lt;",
+            "ground_truth": "negative",
+            "query_term": null
+        },
+        {
+            "reasoning": "The tweet expresses gratitude towards Nike and its European Division, highlighting support and dedication. The use of emojis like :), @whitSTYLES, and @muchasmuertes adds a positive and enthusiastic vibe. The sentiment is positive because it conveys support, gratitude, and a sense of community or camaraderie.",
+            "sentiment": "positive",
+            "tweet": "Nike rocks. I'm super grateful for what I've done with them :) &amp; the European Division of NIKE is BEYOND! @whitSTYLES @muchasmuertes",
+            "ground_truth": "positive",
+            "query_term": null
+        },
+        {
+            "reasoning": "The tweet expresses a desire to try a product but does not provide any information about its effectiveness or popularity.",
+            "sentiment": "negative",
+            "tweet": "@evelynbyrne have you tried Nike  ? V. addictive.",
+            "ground_truth": "positive",
+            "query_term": null
+        },
+        {
+            "reasoning": "The tweet expresses interest in a product but does not provide any explicit information about its content or quality.",
+            "sentiment": "negative",
+            "tweet": "The Nike Training Club (beta) iPhone app looks very interesting.",
+            "ground_truth": "positive",
+            "query_term": null
+        },
+        {
+            "reasoning": "The tweet contains multiple negative words such as 'argghhhh', 'bad', and '!!!'. These words suggest that the user is experiencing issues with their application not appearing correctly in Safari. The repeated use of negative adjectives indicates a lack of confidence or frustration, which are common indicators of negative sentiment.",
+            "sentiment": "negative",
+            "tweet": "argghhhh why won't  my jquery appear in safari bad safari !!!",
+            "ground_truth": "negative",
+            "query_term": null
+        },
+        {
+            "reasoning": "The tweet expresses a strong endorsement of jQuery and its integration into JavaScript through jQuery-spokenFor.js. It conveys deep affection for jQuery and the desire to marry it, which suggests a positive sentiment towards the product and its use.",
+            "sentiment": "positive",
+            "tweet": "I'm ready to drop the pretenses, I am forever in love with jQuery, and I want to marry it. Sorry ladies, this nerd is jquery.spokenFor.js",
+            "ground_truth": "positive",
+            "query_term": null
+        },
+        {
+            "reasoning": "The tweet expresses enthusiasm for reading a book by Warren Buffett, which is described as an enjoyable and engaging experience. It also includes a link to a specific page on the author's website. The sentiment is positive because it conveys satisfaction with the content and the author's work.",
+            "sentiment": "positive",
+            "tweet": "SUPER INVESTORS: A great weekend read here from Warren Buffet. Oldie, but a goodie. http://tinyurl.com/oqxgga",
+            "ground_truth": "positive",
+            "query_term": null
+        },
+        {
+            "reasoning": "The tweet expresses enthusiasm for reading books by Michael Palin, Warren Buffett, and Nelson Mandela. It uses positive language to recommend these authors' bios and suggests a book by Palin. This indicates a positive sentiment towards the content.",
+            "sentiment": "positive",
+            "tweet": "reading Michael Palin book, The Python Years...great book. I also recommend Warren Buffet &amp; Nelson Mandela's bio",
+            "ground_truth": "positive",
+            "query_term": null
+        },
+        {
+            "reasoning": "The tweet expresses that the speaker is willing to consider joining Notre Dame despite some challenges, such as being closer to Dan and enjoying the program. The sentiment reflects a desire for connection and personal growth within the university.",
+            "sentiment": "positive",
+            "tweet": "I mean, I'm down with Notre Dame if I have to.  It's a good school, I'd be closer to Dan, I'd enjoy it.",
+            "ground_truth": "positive",
+            "query_term": null
+        },
+        {
+            "reasoning": "The tweet expresses dissatisfaction with the quality of a DVR and mentions specific brands like Tivo and Warner. It also includes a link to a website where more information can be found.",
+            "sentiment": "negative",
+            "tweet": "I can't watch TV without a Tivo.  And after all these years, the Time/Warner DVR  STILL sucks. http://www.davehitt.com/march03/twdvr.html",
+            "ground_truth": "negative",
+            "query_term": null
+        },
+        {
+            "reasoning": "The tweet expresses a strong negative sentiment towards certain sports writers who incorrectly label Roger Federer as the best player in tennis. The writer questions the credibility and accuracy of these evaluations, suggesting that such labels are not based on actual performance but rather on biased or irrelevant statements. This indicates a critical examination of the sources used to evaluate athletes.",
+            "sentiment": "negative",
+            "tweet": "I'd say some sports writers are idiots for saying Roger Federer is one of the best ever in Tennis.  Roger Federer is THE best ever in Tennis",
+            "ground_truth": "positive",
+            "query_term": null
+        },
+        {
+            "reasoning": "The tweet expresses a preference for the Kindle2, which is more comfortable than the Kindle, but highlights that reading The New York Times on it doesn't feel natural and mentions missing the Bloomingdale ads.",
+            "sentiment": "negative",
+            "tweet": "I still love my Kindle2 but reading The New York Times on it does not feel natural. I miss the Bloomingdale ads.",
+            "ground_truth": "negative",
+            "query_term": null
+        },
+        {
+            "reasoning": "The tweet expresses a positive sentiment towards the Kindle2 product, highlighting its popularity among users who appreciate readability and ease of use. The mention of no more stacks of books suggests that the user finds it convenient and enjoyable to read without the need for carrying multiple physical items around.",
+            "sentiment": "positive",
+            "tweet": "I love my Kindle2. No more stacks of books to trip over on the way to the loo.",
+            "ground_truth": "positive",
+            "query_term": null
+        },
+        {
+            "reasoning": "The tweet expresses that despite the keynote event causing some controversy, AT&T is still making incremental adjustments to accommodate the situation. The use of 'shit' suggests frustration and criticism towards their response, but it's not strong enough to outweigh the positive note about being able to make a little more. The sentiment overall leans towards a negative because while there are minor changes, they don't significantly alter the overall impact of the event.",
+            "sentiment": "negative",
+            "tweet": "Although today's keynote rocked, for every great announcement, AT&amp;T shit on us just a little bit more.",
+            "ground_truth": "negative",
+            "query_term": null
+        },
+        {
+            "reasoning": "The tweet expresses that the speaker is a master of their phone, specifically iPhone, and refers to it as their 'master' phone. The use of words like 'i'm a slave to it forever because of it' suggests a strong attachment or fixation towards the iPhone, which can be interpreted as a negative sentiment indicating dependency on technology.",
+            "sentiment": "negative",
+            "tweet": "@sheridanmarfil - its not so much my obsession with cell phones, but the iphone!  i'm a slave to at&amp;t forever because of it. :)",
+            "ground_truth": "negative",
+            "query_term": null
+        },
+        {
+            "reasoning": "The tweet expresses a positive sentiment as it mentions Fuzzball being more fun than AT&T, which can be interpreted as a compliment or approval of Fuzzball. The link provided also supports this sentiment by offering further information about the product.",
+            "sentiment": "positive",
+            "tweet": "Fuzzball is more fun than AT&amp;T ;P http://fuzz-ball.com/twitter",
+            "ground_truth": "negative",
+            "query_term": null
+        },
+        {
+            "reasoning": "The tweet expresses strong dissatisfaction with AT&T's decision to vote out its CEO, which reflects a negative sentiment towards their management and the company.",
+            "sentiment": "negative",
+            "tweet": "Today is a good day to dislike AT&amp;T. Vote out of office indeed, @danielpunkass",
+            "ground_truth": "negative",
+            "query_term": null
+        },
+        {
+            "reasoning": "The tweet expresses excitement about getting a wave sandboxes invite, mentions being extra excited and wishing to play later. It also includes hashtags related to the event, which likely indicates its popularity or significance. The sentiment is positive because of the eagerness and the mention of future plans.",
+            "sentiment": "positive",
+            "tweet": "GOT MY WAVE SANDBOX INVITE! Extra excited! Too bad I have class now... but I'll play with it soon enough! #io2009 #wave",
+            "ground_truth": "positive",
+            "query_term": null
+        },
+        {
+            "reasoning": "The tweet expresses a negative sentiment about the number of tweets from Twitter's worldwide convergence day (WWDC) and possibly the decrease in content onsummize.",
+            "sentiment": "negative",
+            "tweet": "looks like summize has gone down. too many tweets from WWDC perhaps?",
+            "ground_truth": "negative",
+            "query_term": null
+        },
+        {
+            "reasoning": "The tweet expresses gratitude to the sender for their kind words and a heartfelt thank you message. The use of emojis like :) adds to the positive sentiment. The overall tone is warm and appreciative.",
+            "sentiment": "positive",
+            "tweet": "@sklososky Thanks so much!!! ...from one of your *very* happy Kindle2 winners ; ) I was so surprised, fabulous. Thank you! Best, Kathleen",
+            "ground_truth": "positive",
+            "query_term": null
+        },
+        {
+            "reasoning": "The tweet expresses strong dissatisfaction with Apple, specifically mentioning the iPhone 3GS and suggesting a desire for a video recorder app. The link provided is external and may not be accessible or relevant to the sentiment expressed.",
+            "sentiment": "negative",
+            "tweet": "Man I kinda dislike Apple right now. Case in point: the iPhone 3GS. Wish there was a video recorder app. Please?? http://bit.ly/DZm1T",
+            "ground_truth": "negative",
+            "query_term": null
+        },
+        {
+            "reasoning": "The tweet expresses positive feelings about the Kindle 2, noting its physical comfort and user-friendly features. The language used is encouraging and supportive.",
+            "sentiment": "positive",
+            "tweet": "@cwong08 I have a Kindle2 (&amp; Sony PRS-500). Like it! Physical device feels good. Font is nice. Pg turns are snappy enuf. UI a little klunky.",
+            "ground_truth": "positive",
+            "query_term": null
+        },
+        {
+            "reasoning": "The tweet expresses a preference for the Kindle 2 as the best eReader but does not provide information about its suitability in the UK or where to purchase it. The sentiment is neutral because there's no explicit positive or negative language used.",
+            "sentiment": "negative",
+            "tweet": "The #Kindle2 seems the best eReader, but will it work in the UK and where can I get one?",
+            "ground_truth": "positive",
+            "query_term": null
+        },
+        {
+            "reasoning": "The tweet expresses frustration due to the excessive use of the word 'Google' and the humor involved. The speaker is clearly upset with their own behavior.",
+            "sentiment": "negative",
+            "tweet": "I have a google addiction. Thank you for pointing that out, @annamartin123. Hahaha.",
+            "ground_truth": "positive",
+            "query_term": null
+        },
+        {
+            "reasoning": "The tweet expresses frustration and criticism towards Google, specifically mentioning that their VISA card is not working and expressing disapproval of a person's behavior.",
+            "sentiment": "negative",
+            "tweet": "dearest @google, you rich bastards! the VISA card you sent me doesn't work. why screw a little guy like me?",
+            "ground_truth": "negative",
+            "query_term": null
+        },
+        {
+            "reasoning": "The tweet expresses excitement about attending a food and music festival, which is a positive sentiment.",
+            "sentiment": "positive",
+            "tweet": "Excited about seeing Bobby Flay and Guy Fieri tomorrow at the Great American Food &amp; Music Fest!",
+            "ground_truth": "positive",
+            "query_term": null
+        },
+        {
+            "reasoning": "The tweet expresses excitement about attending a future event, expressing anticipation for the occasion. It uses positive language like 'go see' and 'eat and drink', which are generally considered positive in sentiment analysis. The overall tone is positive as it conveys enthusiasm and eagerness to attend.",
+            "sentiment": "positive",
+            "tweet": "Gonna go see Bobby Flay 2moro at Shoreline. Eat and drink. Gonna be good.",
+            "ground_truth": "positive",
+            "query_term": null
+        },
+        {
+            "reasoning": "The tweet expresses excitement about a future event, mentions delicious foods like mmm...katz pastrami and bobby flay, which are positive indicators of a positive sentiment. The language is enthusiastic and inviting, suggesting a good experience for the listener.",
+            "sentiment": "positive",
+            "tweet": "can't wait for the great american food and music festival at shoreline tomorrow.  mmm...katz pastrami and bobby flay. yes please.",
+            "ground_truth": "positive",
+            "query_term": null
+        },
+        {
+            "reasoning": "The tweet expresses excitement about the day but mentions a loss of voice due to an unexpected event, which is a negative sentiment.",
+            "sentiment": "negative",
+            "tweet": "My dad was in NY for a day, we ate at MESA grill last night and met Bobby Flay. So much fun, except I completely lost my voice today.",
+            "ground_truth": "positive",
+            "query_term": null
+        },
+        {
+            "reasoning": "The tweet mentions fighting with LaTeX, which is a technical drawing language used in various fields like engineering and design. This can imply frustration or difficulty in working with complex software or tools. The word 'fighting' suggests a competitive or challenging environment, which might be associated with negative sentiment towards the content or the user's ability to handle it. Additionally, the use of LaTeX could also reflect a professional or technical context that may not align well with everyday interactions, leading to a perceived negativity in the overall tone.",
+            "sentiment": "negative",
+            "tweet": "Fighting with LaTex. Again...",
+            "ground_truth": "negative",
+            "query_term": null
+        },
+        {
+            "reasoning": "The tweet expresses strong affection towards the person, mentions a lot of positive words like 'we love you too' and 'don't want you to die', while also using a playful reference to LaTeX being the devil. The tone is mostly positive with some humor.",
+            "sentiment": "positive",
+            "tweet": "@Iheartseverus we love you too and don't want you to die!!!!!!  Latex = the devil",
+            "ground_truth": "negative",
+            "query_term": null
+        },
+        {
+            "reasoning": "The tweet expresses frustration with the excessive use of technical terms like 'inkscape' and 'LaTeX', which are often associated with high-end software but may not be necessary for everyday tasks. The repetitive and lengthy description suggests a lack of effort or patience, indicating that the author is overwhelmed by the complexity of their work and doesn't feel motivated to continue. Additionally, the repetition of the word '7 hours' emphasizes the overwhelming nature of the situation, which can lead to feelings of frustration and disconnection from the content's practicality.",
+            "sentiment": "negative",
+            "tweet": "7 hours. 7 hours of inkscape crashing, normally solid as a rock. 7 hours of LaTeX complaining at the slightest thing. I can't take any more.",
+            "ground_truth": "negative",
+            "query_term": null
+        },
+        {
+            "reasoning": "The tweet expresses frustration and anger due to the mention of #iranelection, which likely refers to a political election in Iran. The phrase 'shit is hitting the fan' suggests that people are upset about the situation, indicating strong negative emotions towards the event or its implications.",
+            "sentiment": "negative",
+            "tweet": "Shit's hitting the fan in Iran...craziness indeed #iranelection",
+            "ground_truth": "negative",
+            "query_term": null
+        },
+        {
+            "reasoning": "The tweet expresses disappointment with Iran's potential for collapse, frustration at the kitchen's issues, and happiness in the social media community. The user mentions a positive experience with @goldpanda but also highlights negative aspects of others' lives.",
+            "sentiment": "negative",
+            "tweet": "Monday already. Iran may implode. Kitchen is a disaster. @annagoss seems happy. @sebulous had a nice weekend and @goldpanda is great. whoop.",
+            "ground_truth": "negative",
+            "query_term": null
+        },
+        {
+            "reasoning": "The tweet expresses excitement about testing new recipes, mentions a person known for his culinary skills, and thanks them. These elements are positive indicators of a positive sentiment.",
+            "sentiment": "positive",
+            "tweet": "getting ready to test out some burger receipes this weekend. Bobby Flay has some great receipes to try. Thanks Bobby.",
+            "ground_truth": "positive",
+            "query_term": null
+        },
+        {
+            "reasoning": "The tweet expresses strong affection towards Bobby Flay, highlighting his popularity and the speaker's admiration for him. The mention of great peppers in Phoenix adds to the positive sentiment as it reflects a warm and enjoyable experience. Additionally, the use of ",
+            "sentiment": "positive",
+            "tweet": "i lam so in love with Bobby Flay... he is my favorite. RT @terrysimpson: @bflay you need a place in Phoenix. We have great peppers here!",
+            "ground_truth": "positive",
+            "query_term": null
+        },
+        {
+            "reasoning": "The tweet expresses frustration after creating a failed LaTeX document, which is a negative sentiment.",
+            "sentiment": "negative",
+            "tweet": "I just created my first LaTeX file from scratch. That didn't work out very well. (See @amandabittner , it's a great time waster)",
+            "ground_truth": "negative",
+            "query_term": null
+        },
+        {
+            "reasoning": "The tweet expresses a positive sentiment towards Linux and its benefits, particularly regarding the user experience compared to Windows. The mention of a future use for a convenient LaTeX editor further reinforces this positive outlook on technology and software.",
+            "sentiment": "positive",
+            "tweet": "using Linux and loving it - so much nicer than windows... Looking forward to using the wysiwyg latex editor!",
+            "ground_truth": "positive",
+            "query_term": null
+        },
+        {
+            "reasoning": "The tweet expresses that after using LaTeX extensively, any other typeset mathematics just looks hideous. This suggests that the author finds their current typesetting skills insufficient or outdated and is dissatisfied with what they consider to be less effective than what they once used to know.",
+            "sentiment": "negative",
+            "tweet": "After using LaTeX a lot, any other typeset mathematics just looks hideous.",
+            "ground_truth": "positive",
+            "query_term": null
+        },
+        {
+            "reasoning": "The tweet expresses strong disapproval of Word, Pages, and LaTeX, which are commonly used for document formatting. The repeated mention of 'TEXN3RDS' suggests a negative intent towards these tools. The sentiment is clearly negative.",
+            "sentiment": "negative",
+            "tweet": "On that note, I hate Word. I hate Pages. I hate LaTeX. There, I said it. I hate LaTeX. All you TEXN3RDS can come kill me now.",
+            "ground_truth": "negative",
+            "query_term": null
+        },
+        {
+            "reasoning": "The tweet expresses a deep connection to the content and uses emotional words like 'ahh' and 'I &lt;3 LaTeX.' These elements convey a positive sentiment as they reflect personal enjoyment and engagement with the material.",
+            "sentiment": "positive",
+            "tweet": "Ahhh... back in a *real* text editing environment. I &lt;3 LaTeX.",
+            "ground_truth": "positive",
+            "query_term": null
+        },
+        {
+            "reasoning": "The tweet expresses frustration about the situation in Iran but does not provide a clear or balanced opinion on the issue. It mentions the separation of Iran from other countries and uses a metaphorical reference to a flock of seagulls being politically correct, which is likely meant to emphasize the isolation and confusion surrounding the situation.",
+            "sentiment": "negative",
+            "tweet": "Trouble in Iran, I see. Hmm. Iran. Iran so far away. #flockofseagullsweregeopoliticallycorrect",
+            "ground_truth": "negative",
+            "query_term": null
+        },
+        {
+            "reasoning": "The tweet expresses a sense of dread and profound sadness due to the content being released from Iran, which has been criticized for its actions.",
+            "sentiment": "negative",
+            "tweet": "Reading the tweets coming out of Iran... The whole thing is terrifying and incredibly sad...",
+            "ground_truth": "negative",
+            "query_term": null
+        }
+    ]
+}

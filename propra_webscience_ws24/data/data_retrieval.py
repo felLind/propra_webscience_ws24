@@ -5,6 +5,8 @@ import requests
 import shutil
 import zipfile
 from loguru import logger
+from typing_extensions import get_args
+
 from propra_webscience_ws24.constants import (
     DATASETS_ROOT_PATH,
     RAW_TRAIN_DATASET_FILE_PATH,
@@ -88,11 +90,16 @@ def _create_dataframe_for_split(split_name: SPLITS_LITERAL):
     )
 
     logger.info("Converting {} dataset into dataframe...", split_name)
+    columns = DATASET_COLUMNS
+    use_cols = [0, 5]
+    if split_name == get_args(SPLITS_LITERAL)[1]:
+        columns.insert(1, "query")
+        use_cols.insert(1, 3)
     df = pd.read_csv(
         f"{raw_dataset_file_path}",
         encoding="latin-1",
-        names=DATASET_COLUMNS,
-        usecols=[0, 5],
+        names=columns,
+        usecols=use_cols,
         header=None,
     )
     df.to_parquet(file_path)

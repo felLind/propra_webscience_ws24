@@ -1,0 +1,151 @@
+========================================================================================================================
+model_name='deepseek-r1-1.5b', query_usage='with-query-term'
+Entries without reasoning entry: 0
+
+┌────────────┬───────────┐
+│   accuracy │   support │
+├────────────┼───────────┤
+│   0.883008 │       359 │
+└────────────┴───────────┘
+┌──────────┬─────────────┬──────────┬───────┬───────────┐
+│ class    │   precision │   recall │    f1 │   support │
+├──────────┼─────────────┼──────────┼───────┼───────────┤
+│ negative │       0.861 │    0.910 │ 0.885 │       177 │
+│ positive │       0.907 │    0.857 │ 0.881 │       182 │
+└──────────┴─────────────┴──────────┴───────┴───────────┘
+
+First 5 tweets with wrong classifications:
+┌──────────────┬────────────────┬──────────────┬────────────────────────────────────────────────────────────────────────┐
+│ query_term   │ ground_truth   │ prediction   │ tweet                                                                  │
+├──────────────┼────────────────┼──────────────┼────────────────────────────────────────────────────────────────────────┤
+│ "booz allen" │ negative       │ positive     │ I have to go to Booz Allen Hamilton for a 2hr meeting :(  But then i   │
+│              │                │              │ get to go home :)                                                      │
+├──────────────┼────────────────┼──────────────┼────────────────────────────────────────────────────────────────────────┤
+│ "night at    │ positive       │ negative     │ watching Night at The Museum . Lmao                                    │
+│ the museum"  │                │              │                                                                        │
+├──────────────┼────────────────┼──────────────┼────────────────────────────────────────────────────────────────────────┤
+│ "night at    │ positive       │ negative     │ no watching The Night At The Museum. Getting Really Good               │
+│ the museum"  │                │              │                                                                        │
+├──────────────┼────────────────┼──────────────┼────────────────────────────────────────────────────────────────────────┤
+│ "night at    │ positive       │ negative     │ Night at the Museum, Wolverine and junk food - perfect monday!         │
+│ the museum"  │                │              │                                                                        │
+├──────────────┼────────────────┼──────────────┼────────────────────────────────────────────────────────────────────────┤
+│ 40d          │ positive       │ negative     │ @SoChi2 I current use the Nikon D90 and love it, but not as much as    │
+│              │                │              │ the Canon 40D/50D. I chose the D90 for the  video feature. My mistake. │
+└──────────────┴────────────────┴──────────────┴────────────────────────────────────────────────────────────────────────┘
+
+
+========================================================================================================================
+model_name='deepseek-r1-1.5b', query_usage='without-query-term'
+Entries without reasoning entry: 0
+
+┌────────────┬───────────┐
+│   accuracy │   support │
+├────────────┼───────────┤
+│   0.824513 │       359 │
+└────────────┴───────────┘
+┌──────────┬─────────────┬──────────┬───────┬───────────┐
+│ class    │   precision │   recall │    f1 │   support │
+├──────────┼─────────────┼──────────┼───────┼───────────┤
+│ negative │       0.791 │    0.876 │ 0.831 │       177 │
+│ positive │       0.865 │    0.775 │ 0.817 │       182 │
+└──────────┴─────────────┴──────────┴───────┴───────────┘
+
+First 5 tweets with wrong classifications:
+┌────────────────┬──────────────┬───────────────────────────────────────────────────────────────────────┐
+│ ground_truth   │ prediction   │ tweet                                                                 │
+├────────────────┼──────────────┼───────────────────────────────────────────────────────────────────────┤
+│ negative       │ positive     │ I was talking to this guy last night and he was telling me that he is │
+│                │              │ a die hard Spurs fan.  He also told me that he hates LeBron James.    │
+├────────────────┼──────────────┼───────────────────────────────────────────────────────────────────────┤
+│ negative       │ positive     │ @ludajuice Lebron is a Beast, but I'm still cheering 4 the A..til the │
+│                │              │ end.                                                                  │
+├────────────────┼──────────────┼───────────────────────────────────────────────────────────────────────┤
+│ positive       │ negative     │ lebron and zydrunas are such an awesome duo                           │
+├────────────────┼──────────────┼───────────────────────────────────────────────────────────────────────┤
+│ positive       │ negative     │ @wordwhizkid Lebron is a beast... nobody in the NBA comes even close. │
+├────────────────┼──────────────┼───────────────────────────────────────────────────────────────────────┤
+│ positive       │ negative     │ good news, just had a call from the Visa office, saying everything is │
+│                │              │ fine.....what a relief! I am sick of scams out there! Stealing!       │
+└────────────────┴──────────────┴───────────────────────────────────────────────────────────────────────┘
+
+5 tweets with wrong classification without query term but correct classification with query term:
+┌────────────────┬────────────────────────────────┬──────────────┬──────────────┬──────────────────────────────────────────┐
+│ ground_truth   │ tweet                          │ query_term   │ prediction   │ reasoning                                │
+├────────────────┼────────────────────────────────┼──────────────┼──────────────┼──────────────────────────────────────────┤
+│ negative       │ I was talking to this guy last │ -            │ positive     │ The tweet expresses admiration for a     │
+│                │ night and he was telling me    │              │              │ person's support for a sports team,      │
+│                │ that he is a die hard Spurs    │              │              │ which can be seen as positive towards    │
+│                │ fan.  He also told me that he  │              │              │ the team. However, it does not           │
+│                │ hates LeBron James.            │              │              │ explicitly state any opinion or          │
+│                │                                │              │              │ sentiment about the individual or their  │
+│                │                                │              │              │ behavior, making it ambiguous in terms   │
+│                │                                │              │              │ of overall sentiment.                    │
+├────────────────┼────────────────────────────────┼──────────────┼──────────────┼──────────────────────────────────────────┤
+│                │                                │ lebron       │ negative     │ The tweet expresses admiration for the   │
+│                │                                │              │              │ speaker's respect for the Spurs team,    │
+│                │                                │              │              │ which supports the positive sentiment    │
+│                │                                │              │              │ towards basketball. The mention of       │
+│                │                                │              │              │ LeBron James highlights his influence    │
+│                │                                │              │              │ but does not convey support or           │
+│                │                                │              │              │ disapproval. Therefore, this is a        │
+│                │                                │              │              │ neutral statement.                       │
+├────────────────┼────────────────────────────────┼──────────────┼──────────────┼──────────────────────────────────────────┤
+│ positive       │ lebron and zydrunas are such   │ -            │ negative     │ The tweet mentions two basketball        │
+│                │ an awesome duo                 │              │              │ players who are described as being an    │
+│                │                                │              │              │ 'awesome duo'.                           │
+├────────────────┼────────────────────────────────┼──────────────┼──────────────┼──────────────────────────────────────────┤
+│                │                                │ lebron       │ positive     │ The tweet mentions two basketball        │
+│                │                                │              │              │ players, LeBron and Zydrunas,            │
+│                │                                │              │              │ highlighting their teamwork and mutual   │
+│                │                                │              │              │ respect. This suggests a positive        │
+│                │                                │              │              │ sentiment towards the team's unity and   │
+│                │                                │              │              │ support for each other.                  │
+├────────────────┼────────────────────────────────┼──────────────┼──────────────┼──────────────────────────────────────────┤
+│ positive       │ @wordwhizkid Lebron is a       │ -            │ negative     │ The tweet expresses admiration for       │
+│                │ beast... nobody in the NBA     │              │              │ LeBron and his status as a basketball    │
+│                │ comes even close.              │              │              │ player, but it does not convey any       │
+│                │                                │              │              │ strong feelings about the content or     │
+│                │                                │              │              │ emotions of the tweet. The language used │
+│                │                                │              │              │ is neutral and factual, focusing on      │
+│                │                                │              │              │ praise without expressing any opinion or │
+│                │                                │              │              │ sentiment towards the topic.             │
+├────────────────┼────────────────────────────────┼──────────────┼──────────────┼──────────────────────────────────────────┤
+│                │                                │ lebron       │ positive     │ The tweet expresses admiration for       │
+│                │                                │              │              │ LeBron and highlights his dominance      │
+│                │                                │              │              │ within the league, suggesting a positive │
+│                │                                │              │              │ sentiment towards him.                   │
+├────────────────┼────────────────────────────────┼──────────────┼──────────────┼──────────────────────────────────────────┤
+│ positive       │ good news, just had a call     │ -            │ negative     │ The tweet expresses good news and relief │
+│                │ from the Visa office, saying   │              │              │ after receiving a positive call from the │
+│                │ everything is fine.....what a  │              │              │ Visa office. However, it also contains   │
+│                │ relief! I am sick of scams out │              │              │ negative language related to scams and   │
+│                │ there! Stealing!               │              │              │ stealing.                                │
+├────────────────┼────────────────────────────────┼──────────────┼──────────────┼──────────────────────────────────────────┤
+│                │                                │ visa         │ positive     │ The tweet expresses good news and        │
+│                │                                │              │              │ mentions receiving a call from the Visa  │
+│                │                                │              │              │ office regarding no issues found. It     │
+│                │                                │              │              │ also highlights that it's not being      │
+│                │                                │              │              │ scammed but instead dealing with         │
+│                │                                │              │              │ legitimate problems like visa            │
+│                │                                │              │              │ processing. The sentiment is positive    │
+│                │                                │              │              │ because the user feels reassured, avoids │
+│                │                                │              │              │ scams, and looks forward to handling     │
+│                │                                │              │              │ their visa smoothly.                     │
+├────────────────┼────────────────────────────────┼──────────────┼──────────────┼──────────────────────────────────────────┤
+│ positive       │ [#MLUC09] Customer Innovation  │ -            │ negative     │ The tweet contains a hyperlink to an     │
+│                │ Award Winner: Booz Allen       │              │              │ unknown domain, which is not related to  │
+│                │ Hamilton --                    │              │              │ MLUC09 or customer innovation awards.    │
+│                │ http://ping.fm/c2hPP           │              │              │ The sentiment cannot be determined from  │
+│                │                                │              │              │ this information.                        │
+├────────────────┼────────────────────────────────┼──────────────┼──────────────┼──────────────────────────────────────────┤
+│                │                                │ "booz        │ positive     │ The tweet mentions the customer          │
+│                │                                │ allen"       │              │ innovation award and highlights that     │
+│                │                                │              │              │ Booz Allen is a leader in their field,   │
+│                │                                │              │              │ which indicates positive sentiment       │
+│                │                                │              │              │ towards the company. The link provided   │
+│                │                                │              │              │ supports this by offering further        │
+│                │                                │              │              │ information about their work. This       │
+│                │                                │              │              │ combination suggests support for Booz    │
+│                │                                │              │              │ Allen's contributions to innovation.     │
+└────────────────┴────────────────────────────────┴──────────────┴──────────────┴──────────────────────────────────────────┘
