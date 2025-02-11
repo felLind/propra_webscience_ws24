@@ -1,0 +1,129 @@
+========================================================================================================================
+model_name='deepseek-r1-32b', query_usage='with-query-term'
+Entries without reasoning entry: 0
+
+┌────────────┬───────────┐
+│   accuracy │   support │
+├────────────┼───────────┤
+│   0.966574 │       359 │
+└────────────┴───────────┘
+┌──────────┬─────────────┬──────────┬───────┬───────────┐
+│ class    │   precision │   recall │    f1 │   support │
+├──────────┼─────────────┼──────────┼───────┼───────────┤
+│ negative │       0.977 │    0.955 │ 0.966 │       177 │
+│ positive │       0.957 │    0.978 │ 0.967 │       182 │
+└──────────┴─────────────┴──────────┴───────┴───────────┘
+
+First 5 tweets with wrong classifications:
+┌──────────────┬────────────────┬──────────────┬────────────────────────────────────────────────────────────────────────┐
+│ query_term   │ ground_truth   │ prediction   │ tweet                                                                  │
+├──────────────┼────────────────┼──────────────┼────────────────────────────────────────────────────────────────────────┤
+│ 40d          │ positive       │ negative     │ @SoChi2 I current use the Nikon D90 and love it, but not as much as    │
+│              │                │              │ the Canon 40D/50D. I chose the D90 for the  video feature. My mistake. │
+├──────────────┼────────────────┼──────────────┼────────────────────────────────────────────────────────────────────────┤
+│ Danny Gokey  │ positive       │ negative     │ SOOO DISSAPOiNTED THEY SENT DANNY GOKEY HOME... YOU STiLL ROCK         │
+│              │                │              │ ...DANNY ... MY HOMETOWN HERO !! YEAH MiLROCKEE!!                      │
+├──────────────┼────────────────┼──────────────┼────────────────────────────────────────────────────────────────────────┤
+│ at&t         │ negative       │ positive     │ @broskiii OH SNAP YOU WORK AT AT&amp;T DON'T YOU                       │
+├──────────────┼────────────────┼──────────────┼────────────────────────────────────────────────────────────────────────┤
+│ dentist      │ positive       │ negative     │ My wrist still hurts. I have to get it looked at. I HATE the           │
+│              │                │              │ dr/dentist/scary places. :( Time to watch Eagle eye. If you want to    │
+│              │                │              │ join, txt!                                                             │
+├──────────────┼────────────────┼──────────────┼────────────────────────────────────────────────────────────────────────┤
+│ dentist      │ negative       │ positive     │ @kirstiealley my dentist is great but she's expensive...=(             │
+└──────────────┴────────────────┴──────────────┴────────────────────────────────────────────────────────────────────────┘
+
+
+========================================================================================================================
+model_name='deepseek-r1-32b', query_usage='without-query-term'
+Entries without reasoning entry: 0
+
+┌────────────┬───────────┐
+│   accuracy │   support │
+├────────────┼───────────┤
+│   0.927577 │       359 │
+└────────────┴───────────┘
+┌──────────┬─────────────┬──────────┬───────┬───────────┐
+│ class    │   precision │   recall │    f1 │   support │
+├──────────┼─────────────┼──────────┼───────┼───────────┤
+│ negative │       0.922 │    0.932 │ 0.927 │       177 │
+│ positive │       0.933 │    0.923 │ 0.928 │       182 │
+└──────────┴─────────────┴──────────┴───────┴───────────┘
+
+First 5 tweets with wrong classifications:
+┌────────────────┬──────────────┬────────────────────────────────────────────────────────────────────────┐
+│ ground_truth   │ prediction   │ tweet                                                                  │
+├────────────────┼──────────────┼────────────────────────────────────────────────────────────────────────┤
+│ positive       │ negative     │ @richardebaker no. it is too big. I'm quite happy with the Kindle2.    │
+├────────────────┼──────────────┼────────────────────────────────────────────────────────────────────────┤
+│ positive       │ negative     │ @sketchbug Lebron is a hometown hero to me, lol I love the Lakers but  │
+│                │              │ let's go Cavs, lol                                                     │
+├────────────────┼──────────────┼────────────────────────────────────────────────────────────────────────┤
+│ positive       │ negative     │ @SoChi2 I current use the Nikon D90 and love it, but not as much as    │
+│                │              │ the Canon 40D/50D. I chose the D90 for the  video feature. My mistake. │
+├────────────────┼──────────────┼────────────────────────────────────────────────────────────────────────┤
+│ negative       │ positive     │ omg so bored &amp; my tattoooos are so itchy!!  help! aha =)           │
+├────────────────┼──────────────┼────────────────────────────────────────────────────────────────────────┤
+│ positive       │ negative     │ RT @mashable: Five Things Wolfram Alpha Does Better (And Vastly        │
+│                │              │ Different) Than Google - http://bit.ly/6nSnR                           │
+└────────────────┴──────────────┴────────────────────────────────────────────────────────────────────────┘
+
+5 tweets with wrong classification without query term but correct classification with query term:
+┌────────────────┬────────────────────────────────┬──────────────┬──────────────┬──────────────────────────────────────────┐
+│ ground_truth   │ tweet                          │ query_term   │ prediction   │ reasoning                                │
+├────────────────┼────────────────────────────────┼──────────────┼──────────────┼──────────────────────────────────────────┤
+│ positive       │ @richardebaker no. it is too   │ -            │ negative     │ The tweet expresses dissatisfaction with │
+│                │ big. I'm quite happy with the  │              │              │ something being 'too big,' indicating a  │
+│                │ Kindle2.                       │              │              │ negative sentiment.                      │
+├────────────────┼────────────────────────────────┼──────────────┼──────────────┼──────────────────────────────────────────┤
+│                │                                │ kindle2      │ positive     │ The tweet mentions being 'quite happy'   │
+│                │                                │              │              │ with the Kindle2, which indicates a      │
+│                │                                │              │              │ positive sentiment.                      │
+├────────────────┼────────────────────────────────┼──────────────┼──────────────┼──────────────────────────────────────────┤
+│ positive       │ @sketchbug Lebron is a         │ -            │ negative     │ The tweet expresses support for both the │
+│                │ hometown hero to me, lol I     │              │              │ Lakers and the Cavaliers, indicating     │
+│                │ love the Lakers but let's go   │              │              │ mixed feelings.                          │
+│                │ Cavs, lol                      │              │              │                                          │
+├────────────────┼────────────────────────────────┼──────────────┼──────────────┼──────────────────────────────────────────┤
+│                │                                │ lebron       │ positive     │ The tweet expresses admiration for       │
+│                │                                │              │              │ LeBron James as a 'hometown hero', which │
+│                │                                │              │              │ indicates positive sentiment towards     │
+│                │                                │              │              │ him.                                     │
+├────────────────┼────────────────────────────────┼──────────────┼──────────────┼──────────────────────────────────────────┤
+│ negative       │ omg so bored &amp; my          │ -            │ positive     │ The tweet expresses feelings of boredom  │
+│                │ tattoooos are so itchy!!       │              │              │ and discomfort from itching tattoos, but │
+│                │ help! aha =)                   │              │              │ ends with an emoji suggesting relief or  │
+│                │                                │              │              │ positivity.                              │
+├────────────────┼────────────────────────────────┼──────────────┼──────────────┼──────────────────────────────────────────┤
+│                │                                │ itchy        │ negative     │ The tweet expresses boredom and an       │
+│                │                                │              │              │ itching sensation from tattoos, which    │
+│                │                                │              │              │ can be uncomfortable but the use of 'aha │
+│                │                                │              │              │ =)' suggests some humor or light-        │
+│                │                                │              │              │ heartedness. Overall, the sentiment is   │
+│                │                                │              │              │ mixed but leans towards negative due to  │
+│                │                                │              │              │ discomfort.                              │
+├────────────────┼────────────────────────────────┼──────────────┼──────────────┼──────────────────────────────────────────┤
+│ positive       │ RT @mashable: Five Things      │ -            │ negative     │ The tweet is neutral because it's        │
+│                │ Wolfram Alpha Does Better (And │              │              │ sharing an article about comparing two   │
+│                │ Vastly Different) Than Google  │              │              │ services without expressing a positive   │
+│                │ - http://bit.ly/6nSnR          │              │              │ or negative opinion.                     │
+├────────────────┼────────────────────────────────┼──────────────┼──────────────┼──────────────────────────────────────────┤
+│                │                                │ wolfram      │ positive     │ The tweet is a retweet of an article     │
+│                │                                │ alpha        │              │ highlighting five things that Wolfram    │
+│                │                                │              │              │ Alpha does better than Google. The use   │
+│                │                                │              │              │ of 'better' suggests a positive          │
+│                │                                │              │              │ sentiment towards Wolfram Alpha.         │
+├────────────────┼────────────────────────────────┼──────────────┼──────────────┼──────────────────────────────────────────┤
+│ positive       │ is studing math ;) tomorrow    │ -            │ negative     │ The tweet mentions studying for a math   │
+│                │ exam and dentist :)            │              │              │ exam and an upcoming dentist             │
+│                │                                │              │              │ appointment, both of which are stress-   │
+│                │                                │              │              │ inducing events. The use of smiley faces │
+│                │                                │              │              │ might indicate that the user is trying   │
+│                │                                │              │              │ to stay positive despite the challenges. │
+├────────────────┼────────────────────────────────┼──────────────┼──────────────┼──────────────────────────────────────────┤
+│                │                                │ dentist      │ positive     │ The tweet mentions studying for a math   │
+│                │                                │              │              │ exam and an upcoming dentist             │
+│                │                                │              │              │ appointment, both of which are neutral   │
+│                │                                │              │              │ activities. The use of smiley faces      │
+│                │                                │              │              │ suggests a positive mood.                │
+└────────────────┴────────────────────────────────┴──────────────┴──────────────┴──────────────────────────────────────────┘
