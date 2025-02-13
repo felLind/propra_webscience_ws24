@@ -1,0 +1,147 @@
+========================================================================================================================
+model_name='deepseek-r1-70b', query_usage='with-query-term'
+Entries without reasoning entry: 0
+
+┌────────────┬───────────┐
+│   accuracy │   support │
+├────────────┼───────────┤
+│   0.977716 │       359 │
+└────────────┴───────────┘
+┌──────────┬─────────────┬──────────┬───────┬───────────┐
+│ class    │   precision │   recall │    f1 │   support │
+├──────────┼─────────────┼──────────┼───────┼───────────┤
+│ negative │       0.977 │    0.977 │ 0.977 │       177 │
+│ positive │       0.978 │    0.978 │ 0.978 │       182 │
+└──────────┴─────────────┴──────────┴───────┴───────────┘
+
+First 5 tweets with wrong classifications:
+┌──────────────┬────────────────┬──────────────┬────────────────────────────────────────────────────────────────────────┐
+│ query_term   │ ground_truth   │ prediction   │ tweet                                                                  │
+├──────────────┼────────────────┼──────────────┼────────────────────────────────────────────────────────────────────────┤
+│ "night at    │ negative       │ positive     │ Night at the Museum tonite instead of UP. :( oh well. that 4 yr old    │
+│ the museum"  │                │              │ better enjoy it. LOL                                                   │
+├──────────────┼────────────────┼──────────────┼────────────────────────────────────────────────────────────────────────┤
+│ 40d          │ positive       │ negative     │ @SoChi2 I current use the Nikon D90 and love it, but not as much as    │
+│              │                │              │ the Canon 40D/50D. I chose the D90 for the  video feature. My mistake. │
+├──────────────┼────────────────┼──────────────┼────────────────────────────────────────────────────────────────────────┤
+│ dentist      │ positive       │ negative     │ My wrist still hurts. I have to get it looked at. I HATE the           │
+│              │                │              │ dr/dentist/scary places. :( Time to watch Eagle eye. If you want to    │
+│              │                │              │ join, txt!                                                             │
+├──────────────┼────────────────┼──────────────┼────────────────────────────────────────────────────────────────────────┤
+│ gm           │ negative       │ positive     │ @jdreiss oh yes but if GM dies it will only be worth more boo hahaha   │
+├──────────────┼────────────────┼──────────────┼────────────────────────────────────────────────────────────────────────┤
+│ indian       │ positive       │ negative     │ The great Indian tamasha truly will unfold from May 16, the result day │
+│ election     │                │              │ for Indian General Election.                                           │
+└──────────────┴────────────────┴──────────────┴────────────────────────────────────────────────────────────────────────┘
+
+
+========================================================================================================================
+model_name='deepseek-r1-70b', query_usage='without-query-term'
+Entries without reasoning entry: 0
+
+┌────────────┬───────────┐
+│   accuracy │   support │
+├────────────┼───────────┤
+│   0.930362 │       359 │
+└────────────┴───────────┘
+┌──────────┬─────────────┬──────────┬───────┬───────────┐
+│ class    │   precision │   recall │    f1 │   support │
+├──────────┼─────────────┼──────────┼───────┼───────────┤
+│ negative │       0.932 │    0.927 │ 0.929 │       177 │
+│ positive │       0.929 │    0.934 │ 0.932 │       182 │
+└──────────┴─────────────┴──────────┴───────┴───────────┘
+
+First 5 tweets with wrong classifications:
+┌────────────────┬──────────────┬────────────────────────────────────────────────────────────────────────┐
+│ ground_truth   │ prediction   │ tweet                                                                  │
+├────────────────┼──────────────┼────────────────────────────────────────────────────────────────────────┤
+│ negative       │ positive     │ @ludajuice Lebron is a Beast, but I'm still cheering 4 the A..til the  │
+│                │              │ end.                                                                   │
+├────────────────┼──────────────┼────────────────────────────────────────────────────────────────────────┤
+│ positive       │ negative     │ @sketchbug Lebron is a hometown hero to me, lol I love the Lakers but  │
+│                │              │ let's go Cavs, lol                                                     │
+├────────────────┼──────────────┼────────────────────────────────────────────────────────────────────────┤
+│ positive       │ negative     │ @SoChi2 I current use the Nikon D90 and love it, but not as much as    │
+│                │              │ the Canon 40D/50D. I chose the D90 for the  video feature. My mistake. │
+├────────────────┼──────────────┼────────────────────────────────────────────────────────────────────────┤
+│ negative       │ positive     │ Played with an android google phone. The slide out screen scares me I  │
+│                │              │ would break that fucker so fast. Still prefer my iPhone.               │
+├────────────────┼──────────────┼────────────────────────────────────────────────────────────────────────┤
+│ negative       │ positive     │ @sekseemess no. I'm not itchy for now. Maybe later, lol.               │
+└────────────────┴──────────────┴────────────────────────────────────────────────────────────────────────┘
+
+5 tweets with wrong classification without query term but correct classification with query term:
+┌────────────────┬───────────────────────────────┬──────────────┬──────────────┬──────────────────────────────────────────┐
+│ ground_truth   │ tweet                         │ query_term   │ prediction   │ reasoning                                │
+├────────────────┼───────────────────────────────┼──────────────┼──────────────┼──────────────────────────────────────────┤
+│ positive       │ @sketchbug Lebron is a        │ -            │ negative     │ The tweet expresses conflicting          │
+│                │ hometown hero to me, lol I    │              │              │ loyalties between two teams, which might │
+│                │ love the Lakers but let's go  │              │              │ indicate mixed emotions.                 │
+│                │ Cavs, lol                     │              │              │                                          │
+├────────────────┼───────────────────────────────┼──────────────┼──────────────┼──────────────────────────────────────────┤
+│                │                               │ lebron       │ positive     │ The tweet expresses admiration for       │
+│                │                               │              │              │ LeBron James by calling him a 'hometown  │
+│                │                               │              │              │ hero' and stating 'I love the Lakers.'   │
+│                │                               │              │              │ These are positive sentiments towards    │
+│                │                               │              │              │ LeBron.                                  │
+├────────────────┼───────────────────────────────┼──────────────┼──────────────┼──────────────────────────────────────────┤
+│ negative       │ Played with an android google │ -            │ positive     │ The tweet expresses a preference for the │
+│                │ phone. The slide out screen   │              │              │ iPhone over an Android Google phone,     │
+│                │ scares me I would break that  │              │              │ indicating satisfaction and loyalty      │
+│                │ fucker so fast. Still prefer  │              │              │ towards Apple products.                  │
+│                │ my iPhone.                    │              │              │                                          │
+├────────────────┼───────────────────────────────┼──────────────┼──────────────┼──────────────────────────────────────────┤
+│                │                               │ google       │ negative     │ The tweet expresses concern about the    │
+│                │                               │              │              │ durability of a Google Android phone's   │
+│                │                               │              │              │ sliding screen, stating it could easily  │
+│                │                               │              │              │ be broken. However, the user also        │
+│                │                               │              │              │ mentions preferring their iPhone, which  │
+│                │                               │              │              │ indicates dissatisfaction with the       │
+│                │                               │              │              │ Google product.                          │
+├────────────────┼───────────────────────────────┼──────────────┼──────────────┼──────────────────────────────────────────┤
+│ negative       │ @sekseemess no. I'm not itchy │ -            │ positive     │ The tweet uses the word 'lol', which     │
+│                │ for now. Maybe later, lol.    │              │              │ indicates a light-hearted and humorous   │
+│                │                               │              │              │ tone.                                    │
+├────────────────┼───────────────────────────────┼──────────────┼──────────────┼──────────────────────────────────────────┤
+│                │                               │ itchy        │ negative     │ The tweet mentions being 'not itchy'     │
+│                │                               │              │              │ which indicates a lack of the feeling.   │
+│                │                               │              │              │ However, the mention of 'maybe later'    │
+│                │                               │              │              │ suggests that there's a possibility in   │
+│                │                               │              │              │ the future. The overall sentiment is     │
+│                │                               │              │              │ neutral because it neither confirms nor  │
+│                │                               │              │              │ denies experiencing itchiness at present │
+│                │                               │              │              │ or in the future.                        │
+├────────────────┼───────────────────────────────┼──────────────┼──────────────┼──────────────────────────────────────────┤
+│ positive       │ @spinuzzi: Has been a bit     │ -            │ negative     │ The tweet mentions that LyX has a 'steep │
+│                │ crazy, with steep learning    │              │              │ learning curve' and describes using it   │
+│                │ curve, but LyX is really good │              │              │ for shorter documents as 'insane.' These │
+│                │ for long docs. For anything   │              │              │ negative aspects are present.            │
+│                │ shorter, it would be insane.  │              │              │                                          │
+├────────────────┼───────────────────────────────┼──────────────┼──────────────┼──────────────────────────────────────────┤
+│                │                               │ lyx          │ positive     │ The tweet mentions that LyX has a 'steep │
+│                │                               │              │              │ learning curve' and describes using it   │
+│                │                               │              │              │ as 'insane' for short documents.         │
+│                │                               │              │              │ However, the user also states that LyX   │
+│                │                               │              │              │ is 'really good for long docs.' The      │
+│                │                               │              │              │ overall sentiment leans towards being    │
+│                │                               │              │              │ positive because despite the challenges, │
+│                │                               │              │              │ the user acknowledges its effectiveness  │
+│                │                               │              │              │ for longer projects.                     │
+├────────────────┼───────────────────────────────┼──────────────┼──────────────┼──────────────────────────────────────────┤
+│ positive       │ is studing math ;) tomorrow   │ -            │ negative     │ The tweet contains both a smiley face    │
+│                │ exam and dentist :)           │              │              │ ;), which can indicate nervousness, and  │
+│                │                               │              │              │ a smiling face :), which indicates       │
+│                │                               │              │              │ happiness. However, the context of       │
+│                │                               │              │              │ having an exam and visiting the dentist  │
+│                │                               │              │              │ suggests that these events might be      │
+│                │                               │              │              │ causing stress or anxiety for the user.  │
+│                │                               │              │              │ The mixed emotions make it difficult to  │
+│                │                               │              │              │ determine whether the overall sentiment  │
+│                │                               │              │              │ is positive or negative.                 │
+├────────────────┼───────────────────────────────┼──────────────┼──────────────┼──────────────────────────────────────────┤
+│                │                               │ dentist      │ positive     │ The tweet mentions both an upcoming exam │
+│                │                               │              │              │ and a dentist appointment, but the use   │
+│                │                               │              │              │ of smiley faces ;), :) suggests that the │
+│                │                               │              │              │ user is handling these events            │
+│                │                               │              │              │ positively.                              │
+└────────────────┴───────────────────────────────┴──────────────┴──────────────┴──────────────────────────────────────────┘

@@ -12,11 +12,13 @@ REPORT_WIDTH = 120
 DEEPSEEK_MODEL_NAME_1_5B = "deepseek-r1-1.5b"
 DEEPSEEK_MODEL_NAME_8B = "deepseek-r1-8b"
 DEEPSEEK_MODEL_NAME_32B = "deepseek-r1-32b"
+DEEPSEEK_MODEL_NAME_70B = "deepseek-r1-70b"
 
 DEEPSEEK_MODEL_NAMES = [
     DEEPSEEK_MODEL_NAME_1_5B,
     DEEPSEEK_MODEL_NAME_8B,
     DEEPSEEK_MODEL_NAME_32B,
+    DEEPSEEK_MODEL_NAME_70B,
 ]
 
 
@@ -49,7 +51,7 @@ def main():
             inference_results_with_query, inference_results_wo_query, 5
         )
 
-        report_output_path.write_text(report_content)
+        report_output_path.write_text(report_content, 'UTF-8')
 
 
 def _get_inference_output_content(model_name):
