@@ -18,6 +18,7 @@ N_PARALLEL_PROMPTS = 10
 # MODEL_NAME = 'deepseek-r1:1.5b'
 MODEL_NAME = "deepseek-r1:8b"
 # MODEL_NAME = "deepseek-r1:32b"
+# MODEL_NAME = "deepseek-r1:70b"
 
 SENTIMENT_LITERAL = Literal["positive", "negative"]
 
