@@ -1,61 +1,65 @@
-%%% Choose between 16:9 and 4:3 format by commenting out/uncommenting one of the following lines:
+%%% Wähle zwischen 16:9 und 4:3 Format
 \documentclass[aspectratio=169]{beamer} % 16:9
 % \documentclass{beamer} % 4:3
 
-%=========================================================================================================================
-
-\usepackage[ngerman]{babel} % Für neue deutsche Rechtschreibung
+\usepackage[ngerman]{babel} % Deutsche Sprache
 \usepackage[utf8]{inputenc}
-\usepackage{tikz}               % For creating graphics
-\usepackage{url}                % For including urls
-\usepackage{tabularx}           % For better tables
-\usepackage{colortbl}  % Für \rowcolors und farbige Tabellen
-\usepackage{array}     % Für zusätzliche Tabellen-Layouts
-\usepackage{xcolor}    % Für Farben
+\usepackage{tikz}
+\usepackage{graphicx}
+\usepackage{array}
+\usepackage{booktabs}
 
-\usetheme{aig}                  % Set beamer theme
+\usetheme{aig}
 
-%=========================================================================================================================
 \title{Stimmungsanalyse mit Twitter}
-
 \author[Team Twitter Sentiment]{Anne Huber, Andreas Franke, Felix Lindner, Burak Özkan, Milomir Soknic}
-\institute{Projektpraktikum Web Science,\\Artificial Intelligence Group,\\
-University of Hagen, Germany}
+\institute{Projektpraktikum Web Science,\\Artificial Intelligence Group,\\Universität Hagen, Deutschland}
 \date{18. März 2025}
-%=========================================================================================================================
-\logo{\includegraphics[width=3cm]{figures/logoaig.png}}
-%=========================================================================================================================
 
 \begin{document}
 
-%=========================================================================================================================
-
+% --- Titlepage ---
 \begin{frame}
   \titlepage
 \end{frame}
-\nologo
 
-\begin{frame}{Motivation}
-  \Large
-  \begin{itemize}
-      \item Stimmungsanalyse auf Twitter
-      \item Besonderheiten von Tweets:
-      \item Relevanz für Web Science:
-  \end{itemize}
-  \vspace{0.5cm}
-  \textbf{Zielsetzung}
-  \begin{itemize}
-      \item Vergleich klassischer ML-Methoden mit Deep Learning für präzisere Stimmungsanalysen.
-  \end{itemize}
+% --- Tweet-Folie ---
+\begin{frame}
+  \centering
+  \includegraphics[width=\linewidth]{tweet.jpg}
 \end{frame}
 
+\begin{frame}{Motivation}
+  \begin{columns}
+    % Linke Spalte: Bilder
+    \column{0.5\textwidth}
+    \centering
+    \includegraphics[scale=0.2]{Tweets.png}
+
+    % Rechte Spalte: Stichpunkte zur Motivation
+    \column{0.5\textwidth}
+    \begin{itemize}
+        \item Twitter als Echtzeit-Plattform für Meinungen und Trends
+        \item Große Datenmengen für maschinelles Lernen nutzbar
+        \item Herausforderungen: Ironie, Sarkasmus, Emojis, Abkürzungen
+        \item Einsatz in Politik, Marketing und Krisenmanagement
+        \item Vergleich klassischer Methoden mit Deep Learning
+    \end{itemize}
+  \end{columns}
+\end{frame}
+
+\begin{frame}{Zielsetzung}
+  \Large
+  \begin{itemize}
+      \item Wie effektiv sind verschiedene maschinelle Lernverfahren bei der Stimmungsanalyse von Tweets?
+  \end{itemize}
+\end{frame}
 
 %=========================================================================================================================
 \section{Daten}
 
-
+\subsection{Datenauswahl}
 \begin{frame}{Datenauswahl}
-  \Large
   \begin{itemize}
       \item Prüfung diverser Datensätze
       \item Entscheidung für \glqq Sentiment140\grqq
@@ -66,255 +70,238 @@ University of Hagen, Germany}
           \item Bessere Datenqualität
           \item Artikel: \glqq Twitter Sentiment Classification using Distant Supervision\grqq
       \end{itemize}
+
+      \vspace{0.5cm}
+  \text{Beispieltweets:}
+  \vspace{0.2cm}
+
+  \text{Positiv:} \textit{“Just got my dream job! So excited! :)”} \\
+  \text{Negativ:} \textit{“Feeling so sick today... Worst day ever. :(”} \\
+  \text{Neutral:} \textit{“It's raining outside. Need to grab my umbrella.”}
+
   \end{itemize}
 \end{frame}
 
+\subsection{Testdatensatz}
+\begin{frame}{Testdatensatz}
+  \textbf{Eigenschaften:}
+  \begin{itemize}
+      \item Enthält \textbf{359} manuell gesammelte Tweets
+      \item \textbf{177} negative und \textbf{182} positive Tweets
+      \item Keine automatische Emoticon-Tagging-Strategie (bessere Qualität)
+      \item Dient zur unabhängigen Evaluierung von Modellen
+  \end{itemize}
+
+  \vspace{0.5cm}
+  \textbf{Beispieltweets:}
+  \vspace{0.2cm}
+
+  \textbf{Positiv:} \textit{“Had a fantastic time at the concert tonight! amazing”} \\
+  \textbf{Negativ:} \textit{“Stuck in traffic for 2 hours. This is the worst day ever.”}
+
+\end{frame}
+
+\subsection{Datenaufbereitung}
 \begin{frame}{Datenaufbereitung}
-  \fontsize{10pt}{12pt}\selectfont % Setzt die Schriftgröße auf 9pt mit 11pt Zeilenabstand
+  \fontsize{10pt}{12pt}\selectfont
   \vspace{0.3cm}
 
   \begin{table}[]
       \centering
-      \renewcommand{\arraystretch}{1.1}
-      \begin{tabular}{l|p{5.8cm}}
+      \renewcommand{\arraystretch}{1.2}
+      \begin{tabular}{l|p{7.5cm}}
           \hline
-          \textbf{Schritt} & \textbf{Beschreibung} \\
+          & \textbf{Beispiel (Sentiment140)} \\
           \hline
-          \textbf{Bereinigung} & Entfernen von URLs, Hashtags, Zahlen, Erwähnungen (`@user`) und Sonderzeichen \\
+          \textbf{Original-Tweet} & \texttt{"@user I love this movie! :) http://example.com"} \\
           \hline
-          \textbf{Tokenisierung} & Zerlegung der Tweets in einzelne Wörter (Token) \\
+          \textbf{Bereinigung} & \texttt{"I love this movie"} \\
           \hline
-          \textbf{Transformation} & Normalisierung: Keine, Lemmatization, Stemming \\
+          \textbf{Tokenisierung} & \texttt{["I", "love", "this", "movie"]} \\
           \hline
-          \textbf{Stopword-Handling} & Stoppwörter beibehalten oder entfernen (Standard/angepasst) \\
+          \textbf{Transformation} & Lemmatization: \texttt{["I", "love", "this", "movie"]} \newline
+          Stemming: \texttt{["I", "lov", "thi", "movi"]} \\
           \hline
-          \textbf{Merkmalsextraktion} & Numerische Repräsentation (TF-IDF, Bag-of-Words) \\
+          \textbf{Stopword-Handling} & Ohne Stoppwörter: \texttt{["love", "movie"]} \\
+          \hline
+          \textbf{Merkmalsextraktion} & TF-IDF Beispiel: \newline
+          \texttt{(love: 0.75, movie: 0.85)} \\
           \hline
       \end{tabular}
   \end{table}
 
 \end{frame}
+
 %=========================================================================================================================
-\section{Methodik}
+\section{Klassische Methoden}
 
 \begin{frame}{Klassische Methoden}
-  \Large
-  \begin{itemize}
-      \item Logistische Regression
-      \item \textit{Support Vector Machine}
-      \item Entscheidungsbäume
-      \item \textit Random Forests
-      \item Naiver Bayes Klassifikator
-      \item K-nächste Nachbarn
-  \end{itemize}
-
-  \vspace{0.5cm}
-  \textbf{Beurteilung:} Genauigkeit
-\end{frame}
-
-\begin{frame}{Klassische Methoden}
-  \centering
-  \small
-
+  \fontsize{10pt}{12pt}\selectfont
   \vspace{0.3cm}
-  \resizebox{\textwidth}{!}{
-      \renewcommand{\arraystretch}{1.1}
-      \begin{tabular}{l|p{4.5cm}|p{5.5cm}}
-          \hline
-          \textbf{Parameter} & \textbf{Beschreibung} & \textbf{Mögliche Argumente} \\
-          \hline
-          \texttt{--model-type} & Typ des zu trainierenden Modells & \texttt{LINEAR\_SVC, LOGISTIC\_REGRESSION, NAIVE\_BAYES, KNN, DECISION\_TREE, RANDOM\_FOREST} \\
-          \hline
-          \texttt{--normalization-strategy} & Text-Normalisierungsstrategie & \texttt{NONE, LEMMATIZER, PORTER} \\
-          \hline
-          \texttt{--stopword-removal-strategy} & Strategie zur Entfernung von Stoppwörtern & \texttt{KEEP, REMOVE\_DEFAULT\_NLTK, REMOVE\_CUSTOM} \\
-          \hline
-          \texttt{--vectorizer} & Vectorizer zur Umwandlung von Textdaten & \texttt{TFIDF, HASHING} \\
-          \hline
-          \texttt{--max-features} & Maximale Anzahl der Merkmale für den Vectorizer & \texttt{ALL\_FEATURES, 10000, 50000, 250000} \\
-          \hline
-          \texttt{--ngram-range} & N-Gramm-Bereich für den Vectorizer & \texttt{UNIGRAMS, UNI\_AND\_BIGRAMS, UNI\_AND\_BI\_AND\_TRIGRAMS} \\
-          \hline
-          \texttt{--max-workers} & Anzahl der zu verwendenden Worker & Positive ganze Zahl (default \texttt{1}, d.h. sequentiell) \\
-          \hline
-          \texttt{--model-args} & Spezifische Argumente für die Modelle & \texttt{"Key1:value,Key2:value,..."} \\
-          \hline
-      \end{tabular}
-  }
-  \vspace{0.3cm}
+
+  \begin{columns}
+      % Linke Spalte: Methoden
+      \column{0.45\textwidth}
+      \textbf{Klassische Methoden}
+      \vspace{0.3cm}
+      \begin{itemize}
+          \item \textbf{Logistische Regression}
+          \item \textbf{\textit{Support Vector Machine (SVM)}}
+          \item \textbf{Naiver Bayes}
+          \item \textcolor{gray}{Entscheidungsbäume}
+          \item \textcolor{gray}{Random Forests}
+          \item \textcolor{gray}{K-nächste Nachbarn}
+      \end{itemize}
+      \vspace{0.5cm}
+  \textbf{Metrik:} Genauigkeit
+    \vspace{-0.5cm}
+      % Rechte Spalte: Parameterarten
+      \column{0.55\textwidth}
+      \textbf{Parameter}
+      \vspace{0.3cm}
+      \begin{itemize}
+    \item \texttt{Vektorisierungsmethode}
+    \item \texttt{Normalisierungsstrategie}
+    \item \texttt{Strategie zur Entfernung von Stoppwörtern}
+    \item \texttt{N-Gramm-Bereich}
+    \item \texttt{Maximale Anzahl an Merkmalen}
+    \item \texttt{Anzahl der verwendeten Rechenkerne}
+\end{itemize}
+  \end{columns}
 \end{frame}
 
-\begin{frame}{Deep Learning}
-  \Large
-  \textbf{Fine-Tuning von BERT-Modellen sowie einem DeepSeek-Modell:}
-  \vspace{0.5cm}
-
-  \begin{itemize}
-      \item bert-base-uncased
-      \item roberta-base
-      \item DeepSeek-R1-Distill-Qwen-1.5B
-  \end{itemize}
-
-  \vspace{0.5cm}
-  \textbf{Beurteilung:} Genauigkeit und F1-Score
+\begin{frame}{Ergebnisse}
+    \centering
+    \includegraphics[width=0.8\textwidth]{Output.png}
 \end{frame}
 
-\begin{frame}{Deep Learning}
-  \Large
-  \textbf{Untersuchte Parameter für das Fine-Tuning:}
-  \vspace{0.5cm}
-
-  \centering
-  \renewcommand{\arraystretch}{1.2}
-  \begin{tabular}{l|l}
-      \hline
-      {Initiale Lernrate} & {Daten-Größe (Trainingsbeispiele)} \\
-      \hline
-      \texttt{1e-4}  & \texttt{2,500}  \\
-      \texttt{5 * 1e-5}  & \texttt{5,000}  \\
-      \texttt{1e-5}  & \texttt{7,500}  \\
-      \texttt{5 * 1e-6}  & \texttt{10,000}  \\
-      \texttt{1e-6}  & \texttt{15,000}  \\
-      & \texttt{20,000}  \\
-      \hline
-  \end{tabular}
-
+\begin{frame}{Ergebnisse}
+    \centering
+    \scriptsize
+    \begin{tabular}{|l|l|l|l|l|}
+        \hline
+        \textbf{Modell} & \textbf{Vektorisierer} & \textbf{Max Features} & \textbf{N-Gram Range} & \textbf{Test Accuracy} \\
+        \hline
+        Log. Regression & TfidfVectorizer & 250000 & Uni- und Bigramme & 0.8607 \\
+        SVM & TfidfVectorizer & Alle Features & Uni-, Bi- und Trigramme & 0.8579 \\
+        Naiver Bayes & TfidfVectorizer & Alle Features & Uni- und Bigramme & 0.8524 \\
+        \hline
+    \end{tabular}
 \end{frame}
+
+
 
 
 %=========================================================================================================================
-\section{Ergebnisse}
+\section{Deep Learning}
 
-\begin{frame}{Ergebnisse}
-  \centering
-  \small
+\subsection{RobertaBaseSentiment}
+\begin{frame}{Roberta Base Sentiment}
+\begin{itemize}
+      \item BERT-basiert
+      \item vortrainiert ohne unseren Datensatz
+      \item mit testdatensatz evaluirt
+      \vspace{0.5cm}
+      \item \textbf{Genauigkeit:} 0,87
+  \end{itemize}
+\end{frame}
 
+\subsection{Fine-Tuning BERT-Modelle}
+\begin{frame}{Fine-Tuning von BERT-Modellen}
+  \fontsize{10pt}{12pt}\selectfont
   \vspace{0.3cm}
-  \renewcommand{\arraystretch}{1.1}
-  \setlength{\tabcolsep}{4pt}
 
-  \resizebox{\textwidth}{!}{
-      \begin{tabular}{l|l|l|c|c|c}
-          \hline
-          \multicolumn{6}{c}{\textbf{Klassische Methoden:}} \\
-          \hline
-          \textbf{Modell} & \textbf{Normalisierung} & \textbf{Stoppwortliste} & \textbf{Merkmale} & \textbf{N-Gramme} & \textbf{Genauigkeit} \\
-          \hline
-          LR  & Porter    & Eigene Liste & 250k  & (1,2)  & 0.861 \\
-          LR  & WordNet   & -            & max   & (1,3)  & 0.858 \\
-          SVM & Porter    & -            & max   & (1,3)  & 0.858 \\
-          SVM & WordNet   & -            & max   & (1,3)  & 0.858 \\
-          SVM & Porter    & Eigene Liste & 50k   & (1,2)  & 0.858 \\
-          LR  & Porter    & Eigene Liste & 250k  & (1,3)  & 0.855 \\
-          LR  & -         & NLTK Liste   & max   & (1,3)  & 0.855 \\
-          SVM & Porter    & -            & max   & (1,2)  & 0.855 \\
-          LR  & Porter    & Eigene Liste & 50k   & (1,2)  & 0.852 \\
-          SVM & -         & -            & max   & (1,3)  & 0.852 \\
-          NB  & -         & -            & max   & (1,2)  & 0.852 \\
-          \hline
-      \end{tabular}
-  }
+  \begin{columns}
+      % Linke Spalte: Modelle
+      \column{0.45\textwidth}
+      \textbf{BERT-Modelle}
+      \vspace{0.3cm}
+      \begin{itemize}
+          \item \textbf{bert-base-uncased}
+          \item \textbf{roberta-base}
+      \end{itemize}
+      \vspace{0.5cm}
+      \textbf{Metrik:} Genauigkeit
+      \vspace{-1cm}
 
-  \vspace{0.2cm}
-  \tiny
-  LR = Logistische Regression, SVM = Support Vector Machine, NB = Naiver Bayes.
-  (1,k) in der N-Gramme-Spalte bedeutet, dass N-Gramme mit $N\in\lbrace1,\cdots,k\rbrace$ verwendet wurden.
-
+      % Rechte Spalte: Parameterarten
+      \column{0.55\textwidth}
+      \textbf{Untersuchte Parameter}
+      \vspace{0.3cm}
+      \begin{itemize}
+          \item \texttt{Initiale Lernrate}
+          \item \texttt{Daten-Größe (Trainingsbeispiele)}
+      \end{itemize}
+  \end{columns}
 \end{frame}
 
 \begin{frame}{Ergebnisse}
-  \centering
-  \small
-
-  \vspace{0.3cm}
-  \renewcommand{\arraystretch}{1.1}
-  \setlength{\tabcolsep}{4pt}
-
-  \resizebox{\textwidth}{!}{
-      \begin{tabular}{p{2.8cm}|p{2.4cm}|p{2.4cm}|p{2.4cm}|p{2.4cm}}
-          \hline
-          \multicolumn{5}{c}{\textbf{BERT-Modelle:}} \\
-          \hline
-          \textbf{Modell} & \textbf{Daten-Größe} & \textbf{Lernrate} & \textbf{Genauigkeit} & \textbf{F1-Score} \\
-          \hline
-          Twitter-RoBERTa & 7500  & 1e-6  & 0.922  & 0.922 \\
-          Twitter-RoBERTa & 2500  & 1e-5  & 0.919  & 0.919 \\
-          Twitter-RoBERTa & 2500  & 5e-6  & 0.919  & 0.919 \\
-          Twitter-RoBERTa & 10000 & 1e-6  & 0.919  & 0.919 \\
-          Twitter-RoBERTa & 15000 & 1e-6  & 0.919  & 0.919 \\
-          \hline
-          DistilBERT      & 5000  & 1e-5  & 0.875  & 0.875 \\
-          DistilBERT      & 7500  & 1e-6  & 0.870  & 0.870 \\
-          DistilBERT      & 10000 & 5e-5  & 0.865  & 0.865 \\
-          DistilBERT      & 5000  & 1e-4  & 0.860  & 0.860 \\
-          DistilBERT      & 2500  & 5e-6  & 0.855  & 0.855 \\
-          \hline
-      \end{tabular}
-  }
-
-  \vspace{0.3cm}
-  \tiny
-  Die Tabelle zeigt die besten durchläufe des RoBERTa- und DistilBERT-Modells nach Genauigkeit und F1-Score.
-
-\end{frame}
-
-
-\begin{frame}{Ergebnisse}
-  \centering
-  \includegraphics[height=0.7\textheight, keepaspectratio]{fine_tuning_results_bert_based.png}
-
-  \vspace{0.3cm}
-  \small
-  Die Grafik zeigt die Genauigkeit von \textbf{DistilBERT Base Uncased} und \textbf{RoBERTa Base Sentiment}
-  in Abhängigkeit der Datenmenge und Lernrate.
+    \centering
+     \includegraphics[scale=0.5]{bert.png}
 \end{frame}
 
 \begin{frame}{Ergebnisse}
-  \centering
-  \small
+    \centering
+    \scriptsize
+    \begin{tabular}{|l|l|l|l|}
+        \hline
+        \textbf{Modell} & \textbf{Daten-Größe} & \textbf{Lernrate} & \textbf{Test Accuracy} \\
+        \hline
+        DistilBERT & 20.000 & 0.0001 & 0.8496 \\
+        RoBerta-Twitter & 20.000 & 0.0001 & 0.9220 \\
+        \hline
+    \end{tabular}
+\end{frame}
 
+\subsection{Fine-Tuning DeepSeek}
+\begin{frame}{Fine-Tuning DeepSeek}
+  \fontsize{10pt}{12pt}\selectfont
   \vspace{0.3cm}
-  \renewcommand{\arraystretch}{1.1}
-  \setlength{\tabcolsep}{4pt}
 
-  \resizebox{\textwidth}{!}{
-      \begin{tabular}{p{3.8cm}|p{2.4cm}|p{2.4cm}|p{2.4cm}|p{2.4cm}}
-          \hline
-          \multicolumn{5}{c}{\textbf{DeepSeek-Modell:}} \\
-          \hline
-          \textbf{Modell} & \textbf{Daten-Größe} & \textbf{Lernrate} & \textbf{Genauigkeit} & \textbf{F1-Score} \\
-          \hline
-          DeepSeek-R1-Qwen & 10000  & 1e-5  & 0.866  & 0.866 \\
-          DeepSeek-R1-Qwen & 7500   & 1e-5  & 0.855  & 0.855 \\
-          DeepSeek-R1-Qwen & 5000   & 1e-5  & 0.855  & 0.855 \\
-          DeepSeek-R1-Qwen & 20000  & 5e-6  & 0.852  & 0.852 \\
-          DeepSeek-R1-Qwen & 15000  & 1e-5  & 0.852  & 0.852 \\
-          DeepSeek-R1-Qwen & 10000  & 5e-6  & 0.850  & 0.850 \\
-          DeepSeek-R1-Qwen & 7500   & 5e-6  & 0.849  & 0.849 \\
-          DeepSeek-R1-Qwen & 5000   & 5e-6  & 0.847  & 0.847 \\
-          DeepSeek-R1-Qwen & 20000  & 1e-6  & 0.846  & 0.846 \\
-          DeepSeek-R1-Qwen & 15000  & 5e-6  & 0.845  & 0.845 \\
-          \hline
-      \end{tabular}
-  }
+  \begin{columns}
+      % Linke Spalte: Modelle
+      \column{0.45\textwidth}
+      \textbf{DeepSeek-Modell}
+      \vspace{0.3cm}
+      \begin{itemize}
+          \item \textbf{DeepSeek-R1-Distill-Qwen-1.5B}
+      \end{itemize}
+      \vspace{0.5cm}
+      \textbf{Metrik:} Genauigkeit
+      \vspace{-0.6cm}
 
-  \vspace{0.3cm}
-  \tiny
-  Die Tabelle zeigt die besten durchläufe des DeepSeek-R1-Qwen-Modells nach Genauigkeit und F1-Score.
-
+      % Rechte Spalte: Parameterarten
+      \column{0.55\textwidth}
+      \textbf{Untersuchte Parameter}
+      \vspace{0.3cm}
+      \begin{itemize}
+          \item \texttt{Initiale Lernrate}
+          \item \texttt{Daten-Größe (Trainingsbeispiele)}
+      \end{itemize}
+  \end{columns}
 \end{frame}
 
 \begin{frame}{Ergebnisse}
-  \centering
-  \includegraphics[width=0.85\textwidth, keepaspectratio]{fine_tuning_results_deepseek.png}
-
-  \vspace{0.3cm}
-  \small
-  Die Grafik zeigt die Genauigkeit von \textbf{DeepSeek-R1-Distill-Qwen}
-  in Abhängigkeit der Datenmenge und Lernrate.
+    \centering
+    \includegraphics[scale=0.5]{bertdeepseek.png}
 \end{frame}
 
-\begin{frame}{Ergebnisse}
+\begin{frame}{Ergebnisse: BERT- und DeepSeek-Modelle}
+    \centering
+    \scriptsize
+    \begin{tabular}{|l|l|l|l|}
+        \hline
+        \textbf{Modell} & \textbf{Daten-Größe} & \textbf{Lernrate} & \textbf{Test Accuracy} \\
+        \hline
+        DistilBERT & 20.000 & 0.0001 & 0.8496 \\
+        RoBerta-Twitter & 20.000 & 0.0001 & 0.9220 \\
+        DeepSeek & 20.000 & 0.0001 & 0.8663 \\
+        \hline
+    \end{tabular}
+\end{frame}
+
+\subsection{Zero-shot}
+\begin{frame}{Zero-shot}
   \Large
   \textbf{Einschränkungen beim Fine-Tuning großer DeepSeek-Modelle:}
 
@@ -322,7 +309,6 @@ University of Hagen, Germany}
 
   \begin{itemize}
       \item Fine-Tuning größerer \textbf{DeepSeek-Modelle} war aufgrund hoher Hardware-Anforderungen nicht möglich.
-      \item Speicher- und Rechenkapazitäten reichten für diese Modelle nicht aus.
       \item Daher wurde für große DeepSeek-Modelle ein \textbf{Zero-Shot-Ansatz} gewählt.
       \item Modelle wurden ohne Training direkt auf Testdaten evaluiert.
       \item So konnte ihre Leistungsfähigkeit trotzdem verglichen werden.
@@ -331,118 +317,52 @@ University of Hagen, Germany}
 \end{frame}
 
 \begin{frame}{Ergebnisse}
-  \Large
-  \textbf{DeepSeek-R1-1.5B:}
-
-  \vspace{0.5cm}
-  \begin{itemize}
-      \item \textbf{Genauigkeit:} 88,3 \% (mit Query), 82,4 \% (ohne Query)
-      \item \textbf{F1-Score:} Negative: 0.885, Positive: 0.881
-      \item Bessere Ergebnisse bei Einbeziehung des Suchbegriffs.
-      \item Problematische Fälle: Tweets mit gemischten Emotionen oder Ironie.
-  \end{itemize}
+    \centering
+    \includegraphics[scale=0.5]{deepseekzero.png}
 \end{frame}
 
 \begin{frame}{Ergebnisse}
-  \Large
-  \textbf{DeepSeek-R1-8B:}
-
-  \vspace{0.5cm}
-  \begin{itemize}
-      \item \textbf{Genauigkeit:} 95,5 \% (mit Query), 91,6 \% (ohne Query)
-      \item \textbf{F1-Score:} Negative: 0.955, Positive: 0.956
-      \item Deutlich bessere Erkennung von negativen und positiven Sentiments.
-      \item Falsche Klassifikationen oft bei Mehrdeutigkeiten („beste Athlet“ vs. „beste aller Zeiten“).
-  \end{itemize}
+    \centering
+    \scriptsize
+    \begin{tabular}{|l|l|l|}
+        \hline
+        \textbf{Modell} & \textbf{Mit Query-Term} & \textbf{Ohne Query-Term} \\
+        \hline
+        DeepSeek-1.5B & 0.8830 & 0.8245 \\
+        DeepSeek-8B   & 0.9554 & 0.9164 \\
+        DeepSeek-32B  & 0.9666 & 0.9276 \\
+        DeepSeek-70B  & 0.9777 & 0.9304 \\
+        \hline
+    \end{tabular}
 \end{frame}
 
 \begin{frame}{Ergebnisse}
-  \Large
-  \textbf{DeepSeek-R1-32B:}
-
-  \vspace{0.5cm}
-  \begin{itemize}
-      \item \textbf{Genauigkeit:} 96,7 \% (mit Query), 92,7 \% (ohne Query)
-      \item \textbf{F1-Score:} Negative: 0.966, Positive: 0.967
-      \item Fast fehlerfreie Erkennung bei Tweets mit klarem Sentiment.
-      \item Schwächen bei Tweets mit Sarkasmus oder Wortspielen.
-  \end{itemize}
+    \centering
+    \includegraphics[scale=0.5]{all.png}
 \end{frame}
-
-\begin{frame}{Ergebnisse}
-  \Large
-  \textbf{DeepSeek-R1-70B:}
-
-  \vspace{0.5cm}
-  \begin{itemize}
-      \item \textbf{Genauigkeit:} 97,8 \% (mit Query), 93,0 \% (ohne Query)
-      \item \textbf{F1-Score:} Negative: 0.977, Positive: 0.978
-      \item Beste Performance unter den DeepSeek-Modellen.
-      \item Bleibt bei Ironie, doppeldeutigen Tweets und Wortspielen fehleranfällig.
-  \end{itemize}
-\end{frame}
-
-
-
-
-
-
-
 
 %=========================================================================================================================
 \section{Zusammenfassung}
 
 \begin{frame}{Zusammenfassung}
   \normalsize
+  \begin{itemize}
+      \item Sentiment140-Datensatz gewählt und Tweets bereinigt
+      \item Klassische Methoden trainiert und evaluiert
+      \item BERT-Modell untrainiert evaluirt
+      \item Fine-Tuning von BERT-Modellen durchgeführt
+      \item DeepSeek-Modell mit Fine-Tuning getestet
+      \item Zero-Shot-Ansatz für größere DeepSeek-Modelle verwendet
+      \item Vergleich von Accuracy-Werten zwischen allen Modellen
+      \item Skalierbarkeit und Hardware-Limits analysiert
+      \item \textbf{Ausblick:}Größere DeepSeek-Modelle zeigen potenzial
+  \end{itemize}
 
-  \begin{columns}[t]
-    \column{0.47\textwidth}
-      \textbf{Datenauswahl} \\[0.2cm]
-      \begin{itemize}
-          \item Sentiment140-Datensatz gewählt.
-          \item Tweets bereinigt und Merkmale extrahiert.
-      \end{itemize}
-
-      \vspace{0.4cm}
-
-      \textbf{Klassische Methoden} \\[0.2cm]
-      \begin{itemize}
-          \item Trainiert und evaluiert.
-      \end{itemize}
-
-      \vspace{0.4cm}
-
-      \textbf{Deep Learning} \\[0.2cm]
-      \begin{itemize}
-          \item BERT- und DeepSeek-Modelle getestet.
-          \item Größere Modelle liefern bessere Ergebnisse.
-      \end{itemize}
-
-    \column{0.47\textwidth}
-      \textbf{Skalierbarkeit} \\[0.2cm]
-      \begin{itemize}
-          \item Fine-Tuning großer DeepSeek-Modelle nicht möglich.
-          \item Zero-Shot-Ansatz genutzt.
-      \end{itemize}
-
-      \vspace{0.4cm}
-
-      \textbf{Ausblick} \\[0.2cm]
-      \begin{itemize}
-          \item Fine-Tuning auf größeren Modellen prüfen.
-          \item Optimierung bestehender Modelle.
-      \end{itemize}
-
-      \vspace{0.4cm}
-
-      \pause
-
-      {\large \textbf{Vielen Dank für Ihre Aufmerksamkeit!}} \\[0.1cm]
-      \textit{Fragen?}
-
-  \end{columns}
-
+  \vspace{0.5cm}
+  \centering
+  \pause
+  {\large \textbf{Vielen Dank für Ihre Aufmerksamkeit!}} \\[0.1cm]
+  \textit{Fragen?}
 \end{frame}
-
 
 \end{document}
