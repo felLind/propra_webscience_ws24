@@ -36,6 +36,11 @@
 % ===================== Beginning of the actual text section =====================
 \newpage
 \section{Einleitung}
+Twitter ist eine der wichtigsten Plattformen, auf der täglich Millionen von Menschen ihre Meinungen zu verschiedenen Themen teilen. Durch die enorme Menge an Tweets bietet die Plattform wertvolle Einblicke in die öffentliche Stimmung. Gleichzeitig stellt die Auswertung dieser Daten aufgrund ihrer Menge und unstrukturierten Form eine große Herausforderung dar. Die Stimmungsanalyse kann hier helfen, indem sie automatisch die Emotionen und Meinungen der Nutzer erkennt und kategorisiert. Diese Methode spielt besonders in der Web Science eine wichtige Rolle, da sie hilft, die Dynamiken in sozio-technischen Systemen besser zu verstehen.
+
+In diesem Projekt geht es darum, verschiedene Verfahren des maschinellen Lernens auf einen Twitter-Datensatz anzuwenden, um die Stimmung der Nutzer zu analysieren. Dazu verwenden wir den Datensatz \glqq Sentiment140\grqq{} von Kaggle. Wir wollen herausfinden, wie gut unterschiedliche Ansätze, darunter auch Deep-Learning-Methoden, die Stimmung in Tweets erkennen können.
+
+Der Bericht beschreibt zunächst die Aufgabenverteilung im Team sowie die genutzten Tools und Methoden. Danach folgen Abschnitte zur Datenaufbereitung, den angewendeten Modellen und den durchgeführten Experimenten. Zum Abschluss diskutieren wir die Ergebnisse und geben einen Ausblick auf mögliche Verbesserungen und weitere Forschungsmöglichkeiten.
 
 \section{Aufgabenverteilung}
 % Ein Abschnitt pro Teammitglied
@@ -225,7 +230,7 @@ mit
     P(c|D) = \frac{|\{(z,c)\in D\}|}{|D|}
 \end{equation*}
 \begin{equation*}
-    P(x_i|c,D) = \frac{|\{(z^\prime,c)\in D| z^\prime = (z_1, \dots, z_n), z_i=x_i \}|}{|\{(z,c)\in D\}|} \quad \text{für} \: i = 1, \dots, n 
+    P(x_i|c,D) = \frac{|\{(z^\prime,c)\in D| z^\prime = (z_1, \dots, z_n), z_i=x_i \}|}{|\{(z,c)\in D\}|} \quad \text{für} \: i = 1, \dots, n
 \end{equation*}
 
 Trotz der naiven Unabhängigkeitsannahme führt dieses Verfahren in der Praxis für eine Vielzahl von Anwendungsfällen zu guten Ergebnissen \cite{hand2001idiot}. Der naive Bayes-Klassifikator wird daher neben der Sentimentanalyse häufig auch für andere Textklassifikationsaufgaben eingesetzt. Eine typische Anwendung ist z.B. die Spam-Filterung \cite{sahami1998bayesian}.
