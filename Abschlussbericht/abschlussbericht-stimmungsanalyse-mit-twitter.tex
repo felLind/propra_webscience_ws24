@@ -262,6 +262,16 @@ Die Standardwerte sind:
 
 \section{Zusammenfassung und Fazit}
 
+In diesem Projekt wurden verschiedene Methoden des maschinellen Lernens zur Stimmungsanalyse auf dem Sentiment140-Twitter-Datensatz evaluiert. 
+Drei klassische Algorithmen – logistische Regression, Support Vector Machines (SVM) und Naive Bayes-Klassifikator – erreichten maximale Genauigkeiten von bis zu 86\,\%. 
+Zwei Transformer-Modelle (\emph{distilbert-base-uncased} und \emph{twitter-roberta-base-sentiment}) wurden durch Fine-Tuning angepasst und erzielten Genauigkeiten von 85\,\% bzw. 92\,\%. 
+Zusätzlich wurde versucht, das \emph{Deepseek-LLM} mittels Fine-Tuning anzupassen, was jedoch aufgrund begrenzter Hardware-Ressourcen nur für die kleinste Variante (\emph{Deepseek-R1-Distill-Qwen-1.5B}) möglich war. 
+Erwartungsgemäß erreichte das größte LLM (\emph{Deepseek-R1-70B}) im Zero-Shot-Ansatz (ohne anwendungsspezifisches Training) die beste Genauigkeit von bis zu 98\,\%.
+
+Klassische Methoden liefern respektable Ergebnisse und Metriken, die mit denen des \emph{distilbert-base-uncased}-Modells vergleichbar sind. 
+Die Ergebnisse unterstreichen jedoch die Überlegenheit domänenspezifischer Transformer-Modelle gegenüber allgemeineren Modellen. 
+Obwohl das LLM die höchste Genauigkeit erreichte, kann in der Praxis der Einsatz ressourceneffizienter vortrainierter Transformer-Modelle (z. B. \emph{twitter-roberta}) für Twitter-Stimmungsanalysen oft sinnvoller sein – insbesondere bei begrenzten Hardware-Ressourcen.
+
 % References
 \newpage
 \addreferences
