@@ -1,0 +1,55 @@
+\section{Algorithmen}
+
+\subsection{Datenaufbereitung}
+
+\textit{Hinweis}: Die Datensätze enthalten weitere Daten je Tweet, wie beispielsweise die Sentiment Klasse.
+Der Umgang mit diesen Daten wurde hier aus Gründen der Übersichtlichkeit nicht aufgeführt.
+
+Für die unterschiedlichen Parameter-Ausprägungen für die Normalisierungsverfahren und Stoppwortlisten wurden separate Datensätze erstellt.
+Die Datensätze wurden gemäß des folgenden Algorithmus erzeugt.
+\begin{algorithm}
+    \caption{Datenaufbereitung}
+    \begin{algorithmic}[1]
+        \Procedure{DatasetPreparation}{$dataset, normalizerFunction, stoppwords$}
+            \Function{SanitizeTweet}{$text$}
+                \State $text$ $\gets$ Entferne URLs, Nutzer, Hashtags und Sonderzeichen aus $text$
+                \State \Return $text$
+            \EndFunction
+
+            \Function{NormalizeTweet}{$text, normalizerFunction, stoppwords$}
+                \State $tokens$ $\gets$ Zerlege $text$ mit TweetTokenizer in Token
+                \For{$i \gets 1$ \textbf{to} $|tokens|$}
+                    \State $tokens$[$i$] $\gets$ $normalizerFunction$($tokens$[$i$])
+                \EndFor
+                \State $tokens$ $\gets$ Entferne Stoppwörter aus $tokens$ gemäß Stoppwortliste $stoppwords$
+                \State $text$ $\gets$ Füge Elemente aus $tokens$ zu einem Text zusammen
+                \State \Return $text$
+            \EndFunction
+
+            \For{$i \gets 1$ \textbf{to} $|dataset|$}
+                \State $dataset[i]$ $\gets$ \Call{SanitizeTweet}{$dataset[i]$}
+                \State $dataset[i]$ $\gets$ \Call{NormalizeTweet}{$dataset[i], normalizerFunction, stoppwords$}
+            \EndFor
+            \State save $dataset$
+        \EndProcedure
+    \end{algorithmic}
+    \label{alg:data-preparation}
+\end{algorithm}
+
+\subsection{Training und Evaluation der Modelle}
+
+Die Schritte für das Training und die Evaluation der Modelle sind, aufbauend auf dem durch Algorithmus \ref{alg:data-preparation} erzeugten Datensätzen wie folgt:
+\begin{algorithm}
+    \caption{Training und Evaluation der Modelle}
+    \begin{algorithmic}[1]
+        \Procedure{ModelTraining}{$dataset, vectorizer, model$}
+            \State $X, y \gets$ Extrahiere Texte und Labels aus $dataset$
+            \State $X \gets$ Transformiere Texte in $X$ in Vektoren mit Vektorizer $tokenizer$
+            \State $X_{train}, X_{test}, y_{train}, y_{test} \gets$ Teile $X$ und $y$ in Trainings- und Testdaten
+            \State $model \gets$ Trainiere $model$ auf $X_{train}$ und $y_{train}$
+            \State $accuracy \gets$ Evaluiere $model$ auf $X_{test}$ und $y_{test}$
+            \State \Return $accuracy$
+        \EndProcedure
+    \end{algorithmic}
+    \label{alg:model-training}
+\end{algorithm}
