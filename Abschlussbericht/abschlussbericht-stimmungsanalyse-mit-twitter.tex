@@ -6,6 +6,8 @@
 \usepackage{amsfonts}					    % math fonts
 \usepackage{amssymb}					    % math symbols
 \usepackage{amsmath}					    % overall enhancements to math environment
+\usepackage{multirow}					    % multirow for tables
+\usepackage{booktabs}					    % improved table design
 
 %%%% optional packages
 \usepackage{tikz}                           % creating graphs and other structures
@@ -20,7 +22,11 @@
 \title{Stimmungsanalyse mit Twitter}
 
 %%%% Glossary %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newacronym{dl}{DL}{\textit{Deep Learning}}
+\newacronym{nltk}{NLTK}{\textit{Natural Language Toolkit}}
 \newacronym{svm}{SVM}{\textit{Support Vector Machine}}
+\newacronym{tfidf}{TFIDF}{\textit{Term Frequency-Inverse Document Frequency}}
 
 %%%% Abstract %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -35,232 +41,21 @@
 
 % ===================== Beginning of the actual text section =====================
 \newpage
-\section{Einleitung}
+\input{1-einleitung}
 
-\section{Aufgabenverteilung}
-% Ein Abschnitt pro Teammitglied
-% Kurze Übersicht, was die Person innerhalb des Praktikums beigetragen hat, insbesondere
-% entwickelter Code, Beitrag zum Abschlussbericht, organisatorischer Beitrag, Beitrag zur
-% Abschlusspräsentation, etc.
+\input{2-aufgabenverteilung}
 
-\subsection{Anne Huber}
-\subsection{Andreas Franke}
-\subsection{Felix Lindner}
-\subsection{Burak Özkan}
-\subsection{Milomir Soknic}
+\input{3-teaminterne-organisation}
 
-\section{Teaminterne Organisation}
-% Wie wurde innerhalb des Teams kommuniziert?
-% Welche Programmiersprache? Warum?
-% Welche Tools/Techniken wurden verwendet?
-% etc.
+\input{4-datensaetze-und-problemstellung}
 
-\section{Datensätze und Problemstellung}
-% Kurze Beschreibung der Datensätze
-% Welches Problem soll mithilfe der Datensätze gelöst werden?
+\input{5-ansaetze}
 
-\subsection{Datensätze}
+\input{6-experimente}
 
-Es wurden zwei Datensätze verwendet, die in den beiden folgenden Unterabschnitten beschrieben werden.
+\input{7-ausblick}
 
-\redhl{TODO: Lizenzinformationen hinzufügen}
-
-\subsubsection{Trainingsdatensatz}
-Der verwendete Datensatz \glqq Sentiment140\grqq{} wurde von Go et al. \cite{go2009twitter} erzeugt und enthält 1.600.000 modifizierte Tweets.
-Die Tweets wurden im Zeitraum April 2009 bis Juni 2009 erstellt.
-Jedem Tweet im Datensatz ist eine Stimmungsklasse zugeordnet, die angibt, ob der Tweet eine positive oder negative Stimmung ausdrückt.
-
-Die Tweets wurden mit Hilfe der Twitter-API gesammelt, indem nach Tweets gesucht wurde, die bestimmte Emoticons mit positiver oder negativer Bedeutung enthalten.
-Die von Go et al. verwendeten Emoticons sind in Tabelle 3 \cite[S. 4]{go2009twitter} aufgeführt.
-Anhand der verwendeten Emoticons der Suchanfrage wurden die Tweets in Klassen mit positiver und negativer Stimmung eingeteilt.
-Tweets, die sowohl positive als auch negative Emoticons enthalten, sind nicht im Datensatz enthalten.
-Go et al. \cite{go2009twitter} weisen darauf hin, dass die Zuordnung der Stimmungsklassen nicht fehlerfrei ist\footnote{
-    Als Beispiel wird von Go et al. \cite{go2009twitter} ein Tweet mit dem Text \glqq @BATMANNN :( i love chutney.......\grqq{} genannt, der fälschlicherweise als negativ klassifiziert wird, dessen Inhalt aber eher als positiv angesehn würde.
-} und dass die Stimmungsklassen als Noisy Labels verwendet wurden.
-Für beide Stimmungsklassen enthält der Datensatz 800.000 Einträge.
-
-Die Tweet Texte im Datensatz wurden so angepasst, dass die Emoticons die zur Einteilung verwendet wurden, entfernt wurden.
-Weiterhin enthält der Datensatz keine Re-Tweets\footnote{
-    Zum Zeitpunkt der Datenerstellung gab es keine automatisierte Möglichkeit Tweets zu teilen.
-    Um Tweets zu teilen wurde deshalb dem Tweet Text die Kennzeichnung \textit{RT} und der Benutzername des ursprünglichen Autors vorangestellt.
-} und keine Duplikate.
-
-\subsubsection{Testdatensatz}
-
-Von Go et al. \cite{go2009twitter} wurde ein Testdatensatz mit 498 Tweets erstellt, der 177 Tweets mit positiver Stimmung und 189 Tweets mit negativer Stimmung enthält.
-Die restlichen Tweets sind als neutral klassifiziert.
-Die Tweets wurden manuell ausgewählt und enthielten nicht in jedem Fall Emoticons.
-
-\subsection{Problemstellung}
-
-Stimmungsanalyse befasst sich mit der automatischen Erkennung von Stimmungen und deren Polarität in Texten \cite{giachanou2016like, jianqiang2017comparison, zimbra2018state}.
-
-Die Stimmungsanalyse von Tweets ist eine spezielle Form der Stimmungsanalyse.
-Nach Zimbra et al. \cite{zimbra2018state} wird im Rahmen der Stimmungsanalyse für Twitter häufig versucht die Tweets in zwei oder mehr Klassen einzuteilen (wie in den ausgewählten Trainings- und Testdatensätzen).
-
-Die Analyse der Stimmung von Tweets wird als besonders herausfordernd angesehen \cite{agarwal2011sentiment, giachanou2016like, zimbra2018state}.
-Giachanou und Crestani \cite{giachanou2016like} nennen neben der Längenbeschränkung von Tweets auf 140 Zeichen\footnote{
-    Seit November 2017 sind 280 Unicode-Zeichen pro Tweet erlaubt.
-} insbesondere die informelle Art von Tweets als Herausforderung in Bezug auf Stimmungsanalysen.
-Agarwal et al. \cite{agarwal2011sentiment} und Zimbra et al. \cite{zimbra2018state} weisen darauf hin, dass aufgrund der Längenbeschränkung besonders häufig Abkürzungen, Emoticons und andere Zeichen mit spezieller Bedeutung oder Umgangssprache in Tweets verwendet werden.
-\newline
-
-
-Das Ziel dieser Arbeit ist es, bestehende Methoden zur automatischen Stimmungsanalyse von Tweets anzuwenden und zu evaluieren.
-Dabei sollen sowohl klassische maschinelle Lernverfahren als auch moderne Deep-Learning-Ansätze untersucht werden.
-
-Die zentrale Problemstellung lautet: Wie effektiv sind verschiedene maschinelle Lernverfahren bei der Stimmungsanalyse von Tweets?
-
-Insbesondere soll untersucht werden, welche Ansätze die besten Ergebnisse in Bezug auf Genauigkeit der Klassifikation liefern.
-Darüber hinaus sollen die Herausforderungen und Limitationen der Stimmungsanalyse von Tweets identifiziert und diskutiert werden.
-
-
-\section{Ansätze}
-% Welche klassischen, Deep Learning -, und eigenen Ansätze wurde verwendet?
-% Kurze Beschreibung neuer Techniken und Ideen
-
-\subsection{Klassische Ansätze}
-
-Als klassische Ansätze zur Stimmungsanalyse von Tweets wurden folgende überwachten Lernverfahren ausgewählt, weil diese besonders häufig in der Literatur zu finden sind \cite{wankhade2022survey, medhat2014sentiment, zimbra2018state}:
-
-\begin{itemize}
-    \item Logistische Regression
-    \item \gls{svm}
-    \item Naiver Bayes Klassifikator
-\end{itemize}
-
-\redhl{TODO: Ggf. Anmerkung ergänzen, dass zwei weitere klassische Ansätze evaluiert wurden.}
-
-\subsubsection{Logistische Regression}
-
-Die logistische Regression ist ein Verfahren zur Klassifikation, das auf der \Sigmoid-Funktion basiert. Diese Funktion ist definiert als:
-
-\begin{equation*}
-    \sigma(z) = \frac{1}{1 + e^{-z}}
-\end{equation*}
-
-wodurch Werte aus dem gesamten Zahlenraum auf das Intervall $(0,1)$ abgebildet werden. Die Entscheidungsregel für einen Datenpunkt $x$ ergibt sich durch:
-
-\begin{equation*}
-    h_{\theta}(x) = \sigma(\theta \cdot x + b), \text{ wobei } \theta \in \mathbb{R}^{n}, b \in \mathbb{R}
-\end{equation*}
-
-Ein Datenpunkt wird dabei der Klasse 1 zugeordnet, wenn $h_{\theta}(x) \geq 0.5$, ansonsten der Klasse 0:
-
-\begin{equation*}
-    clf_{\theta, b}(x) =
-    \begin{cases}
-        1, & \text{wenn } h_{\theta}(x) \geq 0.5 \\
-        0, & \text{sonst}
-    \end{cases}
-\end{equation*}
-
-Zur Bestimmung der Parameter $\theta$ und $b$ wird die logistische Verlustfunktion minimiert:
-
-\begin{equation*}
-    \min_{\theta, b} \frac{1}{m} \sum_{i=1}^{m} \left[-y_i \log h_{\theta}(x_i) - (1 - y_i) \log(1 - h_{\theta}(x_i))\right]
-\end{equation*}
-
-Dieses Optimierungsproblem ist konvex und wird mithilfe des \textit{Gradient Descent} gelöst. Dabei werden die Parameter iterativ durch:
-
-\begin{equation*}
-    \theta \leftarrow \theta - \alpha \nabla_{\theta} L
-\end{equation*}
-
-aktualisiert, wobei $\alpha > 0$ die Lernrate ist. Eine Regularisierung kann durch einen zusätzlichen Term $\lambda \lVert\theta\rVert^2$ eingeführt werden, um Überanpassung zu vermeiden.
-
-\subsubsection{\textit{Support Vector Machine}}
-
-Die \gls{svm} wird oftmals zur Klassifikation verwendet.
-Die Klassifikation erfolgt dabei durch die Bestimmung einer Hyperebene, die die Daten in zwei Klassen trennt.
-Eine Hyperebene in $\mathbb{R}^{n}$ ist definiert als die Menge aller Punkte $x\in\mathbb{R}^n$ für die gilt:
-\begin{equation*}
-    \theta \cdot x - b = 0, \text{ wobei } \theta \in \mathbb{R}^{n}, b\in\mathbb{R}
-\end{equation*}
-
-Für linear nicht separierbare Datensätze, lässt sich keine Hyperebene finden, die die Daten perfekt trennt.
-Stattdessen wird versucht eine Hyperebene zu bestimmen, die die Daten unter Berücksichtigung der \textit{Hinge}-Fehlerfunktion\footnote{
-Die \textit{Hinge}-Fehlerfunktion ist definiert als:
-\begin{equation*}
-    L^{hinge}(D, \theta, b) = \sum_{1}^{m}\max\lbrace0, 1 - y_i(\theta \cdot x_i - b)\rbrace
-\end{equation*}
-} möglichst gut trennt.
-Die optimalen Parameter zur Bestimmung der Hyperebene können durch folgendes Minimierungsproblem, für einen Regularisierungsparameter $C\geq0$, bestimmt werden:
-\begin{equation*}
-    \min_{w, b} \lvert\lvert \theta \rvert\rvert + C \frac{1}{m}\sum_{i=1}^{m} \max\lbrace0, 1 - y_i(\theta \cdot x_i - b)\rbrace
-\end{equation*}
-
-Die binäre Klassifikation von Datenpunkten erfolgt dann durch die Bestimmung der Klasse des Datenpunktes $x$ durch:
-\begin{equation*}
-        clf_{\theta, b}(x) =
-        \begin{cases}
-        1, & \text{wenn } \theta \cdot x - b \geq 0 \\
-        -1, & \text{sonst}
-    \end{cases}
-\end{equation*}
-
-
-\subsubsection{Naiver Bayes Klassifikator}
-Der \textit{naive Bayes-Klassifikator}, benannt nach dem englischen Mathematiker Thomas Bayes, ist ein maschinelles Lernverfahren, das aufgrund seiner Einfachheit und Effizienz häufig für Klassifikationsprobleme eingesetzt wird \cite{wankhade2022survey, medhat2014sentiment, zimbra2018state}.
-
-Das Ziel ist es, für einen \textit{Trainingsdatensatz} $D$ eine optimale \textit{Hypothese} $h$ zu finden. Das Verfahren basiert auf dem \textit{Bayes-Theorem}, welches uns ermöglicht, uns der gesuchten optimalen Wahrscheinlichkeit $P(h|D)$ anzunähern. Dabei ist $P(h|D)$ die Wahrscheinlichkeit von $h$, gegeben der Beobachtung $D$:
-
-\begin{equation*}
-    P(h|D) = \frac{P(D|h)P(h)}{P(D)}
-\end{equation*}
-
-Wir suchen also eine Hypothese $h^*$ die den Wert $P(h|D)$ maximiert:
-\begin{equation*}
-    h^* = \arg\max_{h} P(h|D)
-\end{equation*}
-
-Die Grundidee des naiven Bayes-Klassifikators ist die Annahme, dass die einzelnen Merkmale unabhängig voneinander sind.
-
-Sei $D = (x^{(1)}, y^{(1)}), \dots, (x^{(m)}, y^{(m)})$ ein Datensatz, $c$ eine Klasse im Merkmalsraum $Z$  und $x=(x_1, \dots,x_n)\in Z_1 \times \dots \times Z_n$ ein neuer Datenpunkt. Dann ist der Naive-Bayes-Klassifikator
-\begin{equation*}
-    clf_D^{NaiveBayes}(x) = \arg \max_{c\in Z} P(c|D)P(x_1|c,D)P(x_2|c,D) \dots P(x_n|c,D)
-\end{equation*}
-mit
-\begin{equation*}
-    P(c|D) = \frac{|\{(z,c)\in D\}|}{|D|}
-\end{equation*}
-\begin{equation*}
-    P(x_i|c,D) = \frac{|\{(z^\prime,c)\in D| z^\prime = (z_1, \dots, z_n), z_i=x_i \}|}{|\{(z,c)\in D\}|} \quad \text{für} \: i = 1, \dots, n 
-\end{equation*}
-
-Trotz der naiven Unabhängigkeitsannahme führt dieses Verfahren in der Praxis für eine Vielzahl von Anwendungsfällen zu guten Ergebnissen \cite{hand2001idiot}. Der naive Bayes-Klassifikator wird daher neben der Sentimentanalyse häufig auch für andere Textklassifikationsaufgaben eingesetzt. Eine typische Anwendung ist z.B. die Spam-Filterung \cite{sahami1998bayesian}.
-
-\subsection{Deep Learning Ansätze}
-
-\section{Experimente}
-% Wie ist der Experimentaufbau, welche Evaluationsmetriken betrachten Sie?
-% Beschreibung und Interpretation der Ergebnisse
-
-\subsection{Experimentaufbau}
-
-\subsection{Klassische Ansätze}
-
-\subsubsection{\gls{svm}}
-
-Als Modell-Parameter wurden die Standardwerte für die \textit{LinearSVC}-Implementierung in der Python-Bibliothek \textit{scikit-learn} verwendet.
-Die Standardwerte sind:
-
-\begin{itemize}
-    \item $C = 1.0$
-    \item Fehlerfunktion: quadrierte Hinge-Fehlerfunktion
-\end{itemize}
-
-\subsection{Deep Learning Ansätze}
-
-\subsection{Evalutionsmetriken}
-
-\subsection{Ergebnisse}
-
-\section{Ausblick}
-% Was wurde nicht geschafft bzw. hat nicht funktioniert? Warum?
-% Was kann noch verbessert werden? Wie?
-
-\section{Zusammenfassung und Fazit}
+\input{8-zusammenfassung-und-fazit}
 
 % References
 \newpage
