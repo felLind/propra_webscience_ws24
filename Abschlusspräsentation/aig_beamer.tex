@@ -43,7 +43,6 @@
         \item Große Datenmengen für maschinelles Lernen nutzbar
         \item Herausforderungen: Ironie, Sarkasmus, Emojis, Abkürzungen
         \item Einsatz in Politik, Marketing und Krisenmanagement
-        \item Vergleich klassischer Methoden mit Deep Learning
     \end{itemize}
   \end{columns}
 \end{frame}
@@ -75,9 +74,9 @@
   \text{Beispieltweets:}
   \vspace{0.2cm}
 
+  % Umwandlung mit Emoji => Tweet aus Datensatz
   \text{Positiv:} \textit{“Just got my dream job! So excited! :)”} \\
   \text{Negativ:} \textit{“Feeling so sick today... Worst day ever. :(”} \\
-  \text{Neutral:} \textit{“It's raining outside. Need to grab my umbrella.”}
 
   \end{itemize}
 \end{frame}
@@ -96,12 +95,16 @@
   \textbf{Beispieltweets:}
   \vspace{0.2cm}
 
+  % Anstelle von positiven und negativen Tweets, Besipiele aus Testdatensatz mit Query-Term
   \textbf{Positiv:} \textit{“Had a fantastic time at the concert tonight! amazing”} \\
   \textbf{Negativ:} \textit{“Stuck in traffic for 2 hours. This is the worst day ever.”}
 
 \end{frame}
 
 \subsection{Datenaufbereitung}
+
+% Überschrift anpassen?
+% Merkmassextraktion passt ggf. nicht zur Aufbereitung der Daten.
 \begin{frame}{Datenaufbereitung}
   \fontsize{10pt}{12pt}\selectfont
   \vspace{0.3cm}
@@ -115,7 +118,7 @@
           \hline
           \textbf{Original-Tweet} & \texttt{"@user I love this movie! :) http://example.com"} \\
           \hline
-          \textbf{Bereinigung} & \texttt{"I love this movie"} \\
+          \textbf{Bereinigung} & \texttt{\glqq I love this movie \grqq } \\
           \hline
           \textbf{Tokenisierung} & \texttt{["I", "love", "this", "movie"]} \\
           \hline
@@ -170,6 +173,9 @@
   \end{columns}
 \end{frame}
 
+% - Text Accuracy in Genauigkeit umändern
+% - Balken der Größe nach anordnen
+% - Anmerkung zu gekürzter Y-Achse | Y-Achse nicht kürzen?
 \begin{frame}{Ergebnisse}
     \centering
     \includegraphics[width=0.8\textwidth]{Output.png}
@@ -178,6 +184,14 @@
 \begin{frame}{Ergebnisse}
     \centering
     \scriptsize
+    % Tabelle durch Box-Plots ersetzen
+    % Gegebenenfalls auf top-k und bottom-k Parameterkombinationen beschränken
+
+    % Diagrammtypen ausprobieren
+    % - Box-Plot
+    % - Balkendiagramm
+    % - Heatmap
+
     \begin{tabular}{|l|l|l|l|l|}
         \hline
         \textbf{Modell} & \textbf{Vektorisierer} & \textbf{Max Features} & \textbf{N-Gram Range} & \textbf{Test Accuracy} \\
@@ -190,17 +204,15 @@
 \end{frame}
 
 
-
-
 %=========================================================================================================================
 \section{Deep Learning}
 
 \subsection{RobertaBaseSentiment}
-\begin{frame}{Roberta Base Sentiment}
+\begin{frame}{Twitter roberta-base-sentiment}
 \begin{itemize}
       \item BERT-basiert
       \item vortrainiert ohne unseren Datensatz
-      \item mit testdatensatz evaluirt
+      \item mit Testdatensatz evaluiert
       \vspace{0.5cm}
       \item \textbf{Genauigkeit:} 0,87
   \end{itemize}
@@ -240,6 +252,23 @@
      \includegraphics[scale=0.5]{bert.png}
 \end{frame}
 
+% BERT-basiert Modelle
+
+% Erläuterung BERT-Modelle
+% Fine-Tuning Ansatz
+% Verwendet Modelle + Parameter
+% Ergebnisse (jeweils ohne Fine-Tuning/Zero-Shot + Fine-Tuning)
+
+
+% DeepSeek R1
+
+% Modell-Erläuterung
+% Fine-Tuning Ansatz lediglich erwähnen
+% Verwendet Modelle + Prompt
+% Ergebnisse (mit/ohne token-basierten Ansatz)
+%  + Reasoning-Output
+
+%distilbert-base-uncased
 \begin{frame}{Ergebnisse}
     \centering
     \scriptsize
@@ -344,6 +373,9 @@
 %=========================================================================================================================
 \section{Zusammenfassung}
 
+% Stärkerer Fokus auf Ergebnisse
+% - Vergleich der Modelle / Übersichts-Diagramm
+% - Einschränkungen der einzelnen Modelle (Hardware, Trainingszeit)
 \begin{frame}{Zusammenfassung}
   \normalsize
   \begin{itemize}
