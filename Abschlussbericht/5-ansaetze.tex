@@ -113,3 +113,6 @@ mit
 Trotz der naiven Unabhängigkeitsannahme führt dieses Verfahren in der Praxis für eine Vielzahl von Anwendungsfällen zu guten Ergebnissen \cite{hand2001idiot}. Der naive Bayes-Klassifikator wird daher neben der Sentimentanalyse häufig auch für andere Textklassifikationsaufgaben eingesetzt. Eine typische Anwendung ist z.B. die Spam-Filterung \cite{sahami1998bayesian}.
 
 \subsection{Deep Learning Ansätze}
+Als Deep Learning Ansätze haben wir zuerst zwei auf \gls{bert} \cite{devlin2018bert} basierende Modelle ausgewählt, welche wir durch \textit{Finetuning} mit dem Datensatz sentiment140 trainiert haben. 
+Zum einen das auf Twitter-Daten vortrainierte Modell RoBERTa \cite{liu2019roberta} und zum anderen das von \gls{bert} destillierte Modell DistillBert \cite{sanh2019distilbert}. 
+BERT-Modelle basieren auf der von Vaswani et al. beschriebenen Architektur \textit{Multi-layer Bidirectional Transformer Encoder} \cite{vaswani2017attention}.
