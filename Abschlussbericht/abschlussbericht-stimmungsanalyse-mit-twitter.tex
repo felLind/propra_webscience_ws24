@@ -36,6 +36,18 @@
 % ===================== Beginning of the actual text section =====================
 \newpage
 \section{Einleitung}
+Twitter zählt zu den bedeutendsten sozialen Netzwerken, auf dem täglich Millionen von Nutzenden ihre Meinungen zu unterschiedlichen Themen äußern.
+Aufgrund der enormen Menge an Tweets bietet die Plattform wertvolle Einblicke in die öffentliche Meinung und gesellschaftliche Diskurse \cite{pak2010twitter}.
+Die Stimmungsanalyse, ein Teilgebiet der natürlichen Sprachverarbeitung (NLP), ermöglicht es, Emotionen und Meinungen automatisiert zu erkennen und zu kategorisieren.
+Insbesondere im Bereich der Web Science trägt diese Methode dazu bei, Dynamiken in sozio-technischen Systemen besser zu verstehen.
+
+Im Rahmen dieses Projekts werden verschiedene Verfahren des maschinellen Lernens auf einen Twitter-Datensatz angewendet, um die Stimmung der Nutzer zu analysieren.
+Als Datengrundlage dient der \glqq Sentiment140\grqq{}-Datensatz von \textit{HuggingFace}\footnote{https://huggingface.co/datasets/stanfordnlp/sentiment140}, der eine große Menge annotierter Tweets enthält \cite{go2009twitter}.
+Ziel der Analysen ist es, unterschiedliche Ansätze, einschließlich Deep-Learning-Methoden, hinsichtlich ihrer Fähigkeit zur Stimmungsanalyse zu evaluieren.
+
+Im Bericht wird zunächst die Aufgabenverteilung im Team sowie die genutzten Tools und Methoden beschrieben.
+Anschließend werden die Schritte der Datenaufbereitung, die eingesetzten Modelle und die durchgeführten Experimente erläutert.
+Abschließend erfolgt eine Diskussion der Ergebnisse, gefolgt von einem Ausblick auf mögliche Optimierungen und weiterführende Forschungsansätze.
 
 \section{Aufgabenverteilung}
 % Ein Abschnitt pro Teammitglied
@@ -133,7 +145,7 @@ Als klassische Ansätze zur Stimmungsanalyse von Tweets wurden folgende überwac
 
 \subsubsection{Logistische Regression}
 
-Die logistische Regression ist ein Verfahren zur Klassifikation, das auf der \Sigmoid-Funktion basiert. Diese Funktion ist definiert als:
+Die logistische Regression ist ein Verfahren zur Klassifikation, das auf der Sigmoid-Funktion basiert. Diese Funktion ist definiert als:
 
 \begin{equation*}
     \sigma(z) = \frac{1}{1 + e^{-z}}
@@ -225,7 +237,7 @@ mit
     P(c|D) = \frac{|\{(z,c)\in D\}|}{|D|}
 \end{equation*}
 \begin{equation*}
-    P(x_i|c,D) = \frac{|\{(z^\prime,c)\in D| z^\prime = (z_1, \dots, z_n), z_i=x_i \}|}{|\{(z,c)\in D\}|} \quad \text{für} \: i = 1, \dots, n 
+    P(x_i|c,D) = \frac{|\{(z^\prime,c)\in D| z^\prime = (z_1, \dots, z_n), z_i=x_i \}|}{|\{(z,c)\in D\}|} \quad \text{für} \: i = 1, \dots, n
 \end{equation*}
 
 Trotz der naiven Unabhängigkeitsannahme führt dieses Verfahren in der Praxis für eine Vielzahl von Anwendungsfällen zu guten Ergebnissen \cite{hand2001idiot}. Der naive Bayes-Klassifikator wird daher neben der Sentimentanalyse häufig auch für andere Textklassifikationsaufgaben eingesetzt. Eine typische Anwendung ist z.B. die Spam-Filterung \cite{sahami1998bayesian}.
