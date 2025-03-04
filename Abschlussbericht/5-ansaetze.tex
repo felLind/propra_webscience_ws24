@@ -127,14 +127,14 @@ welche die Ausgabe des \textit{Encoders} verarbeitet. \par
 Der \textit{Attention}-Mechanismus \cite{vaswani2017attention} bildet ein \textit{Query} und eine Menge von Schlüssel-Wert-Paaren auf eine Ausgabe ab. Alle Bestandteile sind Vektoren.
 %Bild Scaled Dot-Product Attention?
 Die von Vaswani et al. verwendete \textit{Attention}-Funktion ist die sogenannte \textit{Scaled Dot-Product Attention}. Die Eingabe besteht aus \textit{Queries} und Schlüsseln mit der Dimension $d_k$ und Werten mit der Dimension $d_v$.
-Zuerst wird das innere Produkt aus \textit{Queries} und Schlüsseln berechnet danach wird das Produkt durch $\sqrt{d_k}$ geteilt, also skaliert. Im nächsten Schritt wird von dem Ergebnis die \textit{Softmax}-Funktion berechnet, um die Gewichte zu erhalten, mit denen die Werte mutipliziert werden. 
+Zuerst wird das innere Produkt aus \textit{Queries} und Schlüsseln berechnet danach wird das Produkt durch $\sqrt{d_k}$ geteilt, also skaliert. Im nächsten Schritt wird von dem Ergebnis die \textit{Softmax}-Funktion berechnet, um die Gewichte zu erhalten, mit denen die Werte multipliziert werden. 
 In der Praxis werden mehrere \textit{Queries} parallel berechnet, indem sie in einer Matrix $Q$ zusammengefasst werden. Ebenso werden die Schlüssel in Matrix $K$ und die Werte in Matrix $V$ zusammengefasst.
-Daraus ergibt sich für die \textit{Attetion}-Funktion folgende Formel:
+Daraus ergibt sich für die \textit{Attention}-Funktion folgende Formel:
 \begin{equation*}
 Attention(Q,K,V) = softmax(\frac{QK^T}{\sqrt{d_k}})V    
 \end{equation*}
 Der \textit{Multi-head Attention}-Mechanismus erweitert dies um \textit{h} erlernte lineare Projektionen der einzelnen $d_{model}$-dimensionalen Vektoren auf die Dimensionen $d_k$, $d_k$ und $d_v$. 
-Diese parallel berechneten Werte werden konkateniert und ein weiteres mal linear Projiziert, um die Ausgabe der \textit{Multi-head Attention} zu erhalten.
+Diese parallel berechneten Werte werden konkateniert und ein weiteres mal linear projiziert, um die Ausgabe der \textit{Multi-head Attention} zu erhalten.
 \begin{align*}
    & \mathrm{MultiHead}(Q,K,V) = \mathrm{Concat}(\mathrm{head_1},...,\mathrm{head_h})W^O \\
    & \mathrm{where} \quad \mathrm{head_i} = \mathrm{Attention}(QW_i^Q,KW_i^K,VW_i^V)
