@@ -1,3 +1,33 @@
 \section{Ausblick}
 % Was wurde nicht geschafft bzw. hat nicht funktioniert? Warum?
 % Was kann noch verbessert werden? Wie?
+
+%- keine Noisy Labels verwenden, sondern bessere Sentiments verwenden
+%- Training mit Query Terms, vgl. Aspect-based Sentiment Analysis
+%??- andere LLMs verwenden BERT Varianten
+%- Besseres DeepSeek Modell verwenden (benötigt mehr Rechnerkapazitäten)
+%??- Modells for different languages or multiple languages
+
+Bei unserem Vorgehen gibt es mehrere Punkte an denen man ansetzen kann, um die Sentimentanalyse zu verbessern und möglicherweise bessere Ergebnisse zu erzielen.
+
+\subsection{Noisy Label}
+Wie in 4.1.1 beschrieben führt die Erstellung des Trainingsdatensatzen Noisy Label. Diese können beim Testen der klassischen Modelle oder nach dem Finetuning von \textit{Deep Learning} Modellen zu schlechteren Ergebnissen führen, da das Modell zum Teil mit falschen Beispielen trainiert wurde. 
+
+Man kann nun zum einen versuchen die Klassifizierung der Trainingsdaten zu verbessern.
+Zum anderen kann man Ensemble Methoden verwenden, die das Gewicht der Noisy Label modifizieren können, wie z.B. Bagging oder Boosting.
+
+\subsection{Aspect Based Sentiment Analysis}
+Insbesondere bei den Versuchen mit DeepSeek ist klar geworden, dass die Ergebnisse deutlich verbessert werden können, wenn nicht nur das Sentiment des Tweets an sich klassifiziert wird, sondern die sogenannte \textit{Aspect Based Sentiment Analysis} angewandt wird. Hier werden zunächst explizite oder implizite Begriffe (\textit{aspects}) aus dem Tweet extrahiert und dann das Sentiment bzgl. dieses Begiffs klassifiziert.
+Es kann also dazu kommen, dass einem Tweet je nach Begriff unterschiedliche Polaritäten zugeordnet werden.
+
+Beispielsweise wird der folgende Satz bzgl. des expliziten Begriffs "menu" als positiv und bzgl. des impliziten Begriffs "price" als negativ klassifiziert. \cite{Hua_2024}
+\begin{quote}
+"The restaurant was expensive, but the menu was great." 
+\end{quote}
+
+\subsection{\textit{Deep Learning} Modelle mit mehr Parameter}
+Bei dem Versuch unterschiedliche DeepSeek Modelle mit dem Sentiment140 Datensatz zu finetunen, kam es schnell zu Problemen, da sowohl die lokalen, als auch die von der Fernuiversität bereit gestellten Rechenkapazitäten nicht ausreicht haben. 
+Für das kleinste Modell DeepSeek R1 1.5B konnte das Finetuning noch durchführt werden. Alle größeren Modelle (DeepSeek R1 7B, 8B, 32B, 70) sind allerdings zu komplex. 
+Auch die Verwendung von Methoden wie \textit{Low Rank Adaptation} (LoRA) hat hier keinen Unterschied gemacht.
+
+Die Verwendung von mehr Rechenkapazitäten ist daher eine Möglichkeit Modelle mit höherer Parameteranzahl nutzen zu können. Diese liefern im Allgemeinen auch bessere Ergebnisse.??
