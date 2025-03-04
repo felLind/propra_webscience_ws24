@@ -36,11 +36,18 @@
 % ===================== Beginning of the actual text section =====================
 \newpage
 \section{Einleitung}
-Twitter ist eine der wichtigsten Plattformen, auf der täglich Millionen von Menschen ihre Meinungen zu verschiedenen Themen teilen. Durch die enorme Menge an Tweets bietet die Plattform wertvolle Einblicke in die öffentliche Stimmung. Gleichzeitig stellt die Auswertung dieser Daten aufgrund ihrer Menge und unstrukturierten Form eine große Herausforderung dar. Die Stimmungsanalyse kann hier helfen, indem sie automatisch die Emotionen und Meinungen der Nutzer erkennt und kategorisiert. Diese Methode spielt besonders in der Web Science eine wichtige Rolle, da sie hilft, die Dynamiken in sozio-technischen Systemen besser zu verstehen.
+Twitter zählt zu den bedeutendsten sozialen Netzwerken, auf dem täglich Millionen von Nutzenden ihre Meinungen zu unterschiedlichen Themen äußern.
+Aufgrund der enormen Menge an Tweets bietet die Plattform wertvolle Einblicke in die öffentliche Meinung und gesellschaftliche Diskurse \cite{pak2010twitter}.
+Die Stimmungsanalyse, ein Teilgebiet der natürlichen Sprachverarbeitung (NLP), ermöglicht es, Emotionen und Meinungen automatisiert zu erkennen und zu kategorisieren.
+Insbesondere im Bereich der Web Science trägt diese Methode dazu bei, Dynamiken in sozio-technischen Systemen besser zu verstehen.
 
-In diesem Projekt geht es darum, verschiedene Verfahren des maschinellen Lernens auf einen Twitter-Datensatz anzuwenden, um die Stimmung der Nutzer zu analysieren. Dazu verwenden wir den Datensatz \glqq Sentiment140\grqq{} von Kaggle. Wir wollen herausfinden, wie gut unterschiedliche Ansätze, darunter auch Deep-Learning-Methoden, die Stimmung in Tweets erkennen können.
+Im Rahmen dieses Projekts werden verschiedene Verfahren des maschinellen Lernens auf einen Twitter-Datensatz angewendet, um die Stimmung der Nutzer zu analysieren.
+Als Datengrundlage dient der \glqq Sentiment140\grqq{}-Datensatz von \textit{HuggingFace}\footnote{https://huggingface.co/datasets/stanfordnlp/sentiment140}, der eine große Menge annotierter Tweets enthält \cite{go2009twitter}.
+Ziel der Analysen ist es, unterschiedliche Ansätze, einschließlich Deep-Learning-Methoden, hinsichtlich ihrer Fähigkeit zur Stimmungsanalyse zu evaluieren.
 
-Der Bericht beschreibt zunächst die Aufgabenverteilung im Team sowie die genutzten Tools und Methoden. Danach folgen Abschnitte zur Datenaufbereitung, den angewendeten Modellen und den durchgeführten Experimenten. Zum Abschluss diskutieren wir die Ergebnisse und geben einen Ausblick auf mögliche Verbesserungen und weitere Forschungsmöglichkeiten.
+Im Bericht wird zunächst die Aufgabenverteilung im Team sowie die genutzten Tools und Methoden beschrieben.
+Anschließend werden die Schritte der Datenaufbereitung, die eingesetzten Modelle und die durchgeführten Experimente erläutert.
+Abschließend erfolgt eine Diskussion der Ergebnisse, gefolgt von einem Ausblick auf mögliche Optimierungen und weiterführende Forschungsansätze.
 
 \section{Aufgabenverteilung}
 % Ein Abschnitt pro Teammitglied
@@ -138,7 +145,7 @@ Als klassische Ansätze zur Stimmungsanalyse von Tweets wurden folgende überwac
 
 \subsubsection{Logistische Regression}
 
-Die logistische Regression ist ein Verfahren zur Klassifikation, das auf der \Sigmoid-Funktion basiert. Diese Funktion ist definiert als:
+Die logistische Regression ist ein Verfahren zur Klassifikation, das auf der Sigmoid-Funktion basiert. Diese Funktion ist definiert als:
 
 \begin{equation*}
     \sigma(z) = \frac{1}{1 + e^{-z}}
