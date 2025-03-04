@@ -1,0 +1,115 @@
+\section{Ansätze}
+% Welche klassischen, Deep Learning -, und eigenen Ansätze wurde verwendet?
+% Kurze Beschreibung neuer Techniken und Ideen
+
+\subsection{Klassische Ansätze}
+
+Als klassische Ansätze zur Stimmungsanalyse von Tweets wurden folgende überwachten Lernverfahren ausgewählt, weil diese besonders häufig in der Literatur zu finden sind \cite{wankhade2022survey, medhat2014sentiment, zimbra2018state}:
+
+\begin{itemize}
+    \item Logistische Regression
+    \item \gls{svm}
+    \item Naiver Bayes Klassifikator
+\end{itemize}
+
+\redhl{TODO: Ggf. Anmerkung ergänzen, dass zwei weitere klassische Ansätze evaluiert wurden.}
+
+\subsubsection{Logistische Regression}
+
+Die logistische Regression ist ein Verfahren zur Klassifikation, das auf der Sigmoid-Funktion basiert. Diese Funktion ist definiert als:
+
+\begin{equation*}
+    \sigma(z) = \frac{1}{1 + e^{-z}}
+\end{equation*}
+
+wodurch Werte aus dem gesamten Zahlenraum auf das Intervall $(0,1)$ abgebildet werden. Die Entscheidungsregel für einen Datenpunkt $x$ ergibt sich durch:
+
+\begin{equation*}
+    h_{\theta}(x) = \sigma(\theta \cdot x + b), \text{ wobei } \theta \in \mathbb{R}^{n}, b \in \mathbb{R}
+\end{equation*}
+
+Ein Datenpunkt wird dabei der Klasse 1 zugeordnet, wenn $h_{\theta}(x) \geq 0.5$, ansonsten der Klasse 0:
+
+\begin{equation*}
+    clf_{\theta, b}(x) =
+    \begin{cases}
+        1, & \text{wenn } h_{\theta}(x) \geq 0.5 \\
+        0, & \text{sonst}
+    \end{cases}
+\end{equation*}
+
+Zur Bestimmung der Parameter $\theta$ und $b$ wird die logistische Verlustfunktion minimiert:
+
+\begin{equation*}
+    \min_{\theta, b} \frac{1}{m} \sum_{i=1}^{m} \left[-y_i \log h_{\theta}(x_i) - (1 - y_i) \log(1 - h_{\theta}(x_i))\right]
+\end{equation*}
+
+Dieses Optimierungsproblem ist konvex und wird mithilfe des \textit{Gradient Descent} gelöst. Dabei werden die Parameter iterativ durch:
+
+\begin{equation*}
+    \theta \leftarrow \theta - \alpha \nabla_{\theta} L
+\end{equation*}
+
+aktualisiert, wobei $\alpha > 0$ die Lernrate ist. Eine Regularisierung kann durch einen zusätzlichen Term $\lambda \lVert\theta\rVert^2$ eingeführt werden, um Überanpassung zu vermeiden.
+
+\subsubsection{\textit{Support Vector Machine}}
+
+Die \gls{svm} wird oftmals zur Klassifikation verwendet.
+Die Klassifikation erfolgt dabei durch die Bestimmung einer Hyperebene, die die Daten in zwei Klassen trennt.
+Eine Hyperebene in $\mathbb{R}^{n}$ ist definiert als die Menge aller Punkte $x\in\mathbb{R}^n$ für die gilt:
+\begin{equation*}
+    \theta \cdot x - b = 0, \text{ wobei } \theta \in \mathbb{R}^{n}, b\in\mathbb{R}
+\end{equation*}
+
+Für linear nicht separierbare Datensätze, lässt sich keine Hyperebene finden, die die Daten perfekt trennt.
+Stattdessen wird versucht eine Hyperebene zu bestimmen, die die Daten unter Berücksichtigung der \textit{Hinge}-Fehlerfunktion\footnote{
+    Die \textit{Hinge}-Fehlerfunktion ist definiert als:
+    \begin{equation*}
+        L^{hinge}(D, \theta, b) = \sum_{1}^{m}\max\lbrace0, 1 - y_i(\theta \cdot x_i - b)\rbrace
+    \end{equation*}
+} möglichst gut trennt.
+Die optimalen Parameter zur Bestimmung der Hyperebene können durch folgendes Minimierungsproblem, für einen Regularisierungsparameter $C\geq0$, bestimmt werden:
+\begin{equation*}
+    \min_{w, b} \lvert\lvert \theta \rvert\rvert + C \frac{1}{m}\sum_{i=1}^{m} \max\lbrace0, 1 - y_i(\theta \cdot x_i - b)\rbrace
+\end{equation*}
+
+Die binäre Klassifikation von Datenpunkten erfolgt dann durch die Bestimmung der Klasse des Datenpunktes $x$ durch:
+\begin{equation*}
+    clf_{\theta, b}(x) =
+    \begin{cases}
+        1, & \text{wenn } \theta \cdot x - b \geq 0 \\
+        -1, & \text{sonst}
+    \end{cases}
+\end{equation*}
+
+\subsubsection{Naiver Bayes Klassifikator}
+Der \textit{naive Bayes-Klassifikator}, benannt nach dem englischen Mathematiker Thomas Bayes, ist ein maschinelles Lernverfahren, das aufgrund seiner Einfachheit und Effizienz häufig für Klassifikationsprobleme eingesetzt wird \cite{wankhade2022survey, medhat2014sentiment, zimbra2018state}.
+
+Das Ziel ist es, für einen \textit{Trainingsdatensatz} $D$ eine optimale \textit{Hypothese} $h$ zu finden. Das Verfahren basiert auf dem \textit{Bayes-Theorem}, welches uns ermöglicht, uns der gesuchten optimalen Wahrscheinlichkeit $P(h|D)$ anzunähern. Dabei ist $P(h|D)$ die Wahrscheinlichkeit von $h$, gegeben der Beobachtung $D$:
+
+\begin{equation*}
+    P(h|D) = \frac{P(D|h)P(h)}{P(D)}
+\end{equation*}
+
+Wir suchen also eine Hypothese $h^*$ die den Wert $P(h|D)$ maximiert:
+\begin{equation*}
+    h^* = \arg\max_{h} P(h|D)
+\end{equation*}
+
+Die Grundidee des naiven Bayes-Klassifikators ist die Annahme, dass die einzelnen Merkmale unabhängig voneinander sind.
+
+Sei $D = (x^{(1)}, y^{(1)}), \dots, (x^{(m)}, y^{(m)})$ ein Datensatz, $c$ eine Klasse im Merkmalsraum $Z$  und $x=(x_1, \dots,x_n)\in Z_1 \times \dots \times Z_n$ ein neuer Datenpunkt. Dann ist der Naive-Bayes-Klassifikator
+\begin{equation*}
+    clf_D^{NaiveBayes}(x) = \arg \max_{c\in Z} P(c|D)P(x_1|c,D)P(x_2|c,D) \dots P(x_n|c,D)
+\end{equation*}
+mit
+\begin{equation*}
+    P(c|D) = \frac{|\{(z,c)\in D\}|}{|D|}
+\end{equation*}
+\begin{equation*}
+    P(x_i|c,D) = \frac{|\{(z^\prime,c)\in D| z^\prime = (z_1, \dots, z_n), z_i=x_i \}|}{|\{(z,c)\in D\}|} \quad \text{für} \: i = 1, \dots, n
+\end{equation*}
+
+Trotz der naiven Unabhängigkeitsannahme führt dieses Verfahren in der Praxis für eine Vielzahl von Anwendungsfällen zu guten Ergebnissen \cite{hand2001idiot}. Der naive Bayes-Klassifikator wird daher neben der Sentimentanalyse häufig auch für andere Textklassifikationsaufgaben eingesetzt. Eine typische Anwendung ist z.B. die Spam-Filterung \cite{sahami1998bayesian}.
+
+\subsection{Deep Learning Ansätze}

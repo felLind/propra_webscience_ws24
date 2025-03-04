@@ -1,0 +1,148 @@
+\section{Experimente}
+% Wie ist der Experimentaufbau, welche Evaluationsmetriken betrachten Sie?
+% Beschreibung und Interpretation der Ergebnisse
+
+\subsection{Experimentaufbau}
+
+Für die Experimente wurden unterschiedliche Schritte in Abhängigkeit der Verfahren durchgeführt.
+
+Für die klassischen Verfahren wurde neben der Genauigkeit der Klassifikation für unterschiedliche Modelle auch analysiert, inwiefern Vorverarbeitungsschritte und Token\-isier\-ungs\-verfahren die Genauigkeit der Klassifikation beeinflussen.
+Die Schritte für die Experimente sind in Unterabschnitt~\ref{sec:klassische-ansaetze} beschrieben.
+
+Für die \gls{dl} Ansätze, bei denen \gls{bert}-basierte Modelle verwendet wurden, wurden die Standard-Tokenizer der \textit{Hugging Face} Modelle verwendet, so dass keine weiteren Vorverarbeitungsschritte oder Vektorisierungsverfahren durchgeführt wurden.
+Die Schritte für die Experimente sind in Unterabschnitt~\ref{sec:deep-learning-ansaetze} beschrieben.
+
+\subsubsection{Klassische Ansätze}\label{sec:klassische-ansaetze}
+
+Für die klassischen Ansätze wurden Sensitivitätsanalysen durchgeführt, um die Auswirkung unterschiedlicher Vorverarbeitungsschritte und Vektorisierungsverfahren auf die Genauigkeit zu analysieren.
+
+
+\paragraph{Datenvorverarbeitung}
+Im Rahmen der Datenvorverarbeitung wurden die verwendeten Stoppwörter und Normalisierungsverfahren variiert.
+
+Nach \cite[S.27]{manning2009introduction} werden unter dem Begriff Stoppwörter\footnote{Beispiele sind \textit{und} sowie \textit{oder}.} Wörter verstanden, die einen geringen Informationsgehalt haben und deshalb aus Texten entfernt werden.
+Es wurden die folgenden Ausprägungen von Stoppwortlisten verwendet:
+% TODO: Abschließend entscheiden - Listen ggf. durch platzsparendere Tabelle ersetzen
+\begin{itemize}
+    \item keine Stoppwortliste
+    \item Standard-\gls{nltk} Stoppwortliste
+    \item Eigene Stoppwortliste
+\end{itemize}
+
+Normalisierungsverfahren dienen dazu, die Worte oder Token in Texten zu vereinheitlichen \cite[S.28]{manning2009introduction}.
+Es wurden die folgenden Normalisierungsverfahren angewandt:
+\begin{itemize}
+    \item Keine Normalisierung
+    \item Lemmatisierung mit \textit{WordNet} Lemmatizer
+    \item Stemming mit \textit{Porter} Stemmer
+\end{itemize}
+
+Das Training der Modelle wurde auf Basis der vorverarbeiteten Daten durchgeführt.
+Zur Vorverarbeitung der Daten wurde Algorithmus~\ref{alg:data-preparation} durchgeführt.
+
+\paragraph{Training und Evaluation}
+Auf Basis der vorverarbeiteten Daten wurden die Modelle trainiert und evaluiert.
+
+Die Texte der vorverarbeiteten Tweets werden mittels Vektorisierungsverfahren in numerische Repräsentationen bzw. Vektoren transformiert.
+Aus den Vektoren der einzelnen Tweets setzt sich das Vokabular zusammen, das die Worte der Tweets enthält.
+Es wurden zwei Vektorisierungsverfahren verwendet:
+\begin{itemize}
+    \item \gls{tfidf}-Vektorisierung (mittels \textit{TfidfVectorizer} in der \textit{Python}-Bibliothek \textit{scikit-learn})
+    \item Hash-basierte Vektorisierung (mittels \textit{HashingVectorizer} in der \textit{Python}-Bibliothek \textit{scikit-learn})
+\end{itemize}
+Für die verwendeten Vektorisierungsverfahren wurden unterschiedliche Konfigurationen von n-Grammen verwendet.
+n-Gramme bezeichnen nach \cite[S.33]{jm3}, die Sequenz von $n$ aufeinanderfolgenden Wörtern.
+Für die Vektorisierungsverfahren wurden Instanzen mit Kombinationen von 1-Grammen, 2-Grammen und 3-Grammen\footnote{Diese n-Gramme werden auch als Uni-, Bi- und Trigramme bezeichnet.} verwendet.
+
+Während des Trainings werden die Modelle auf den Trainingsdaten trainiert und auf den Validierungsdaten evaluiert.
+Die Genauigkeit der Modelle wird abschließend auf den Testdaten evaluiert.
+Algorithmus~\ref{alg:model-training} beschreibt die Schritte für das Training und die Evaluation der Modelle.
+
+\subsubsection{Deep Learning Ansätze} \label{sec:deep-learning-ansaetze}
+
+\subsection{Modell-Parameter und Evaluationsmetriken}
+
+Für die ausgewählten Modelle wurden die Standard-Parameterwerte von \textit{scikit-learn} verwendet.
+
+Nach~\cite{wankhade2022survey} werden für die Evaluierung von Klassifikationsmodellen vor allem das \textit{Genauig\-keits\-maß}, die \textit{Präzision} oder das \textit{F1-Maß} verwendet.
+Weil die Klassenverteilung für die Trainingsdaten ausgeglichen ist, wurde aufgrund der einfachen Interpretierbarkeit das \textit{Genauigkeitsmaß} als Evaluationsmetrik verwendet.
+
+\subsection{Ergebnisse}
+
+\subsubsection{Klassische Ansätze}
+
+\begin{table}
+    \begin{tabular}{lllllllrr}
+        \toprule
+        Modell & Normalisierung & Stoppwortliste   & Anz. Merkmale & n-Gramme & Genauigkeit \\
+        \midrule
+        LR     & Porter         & eig. Liste       & 250.000       & (1,2)    & 0.861       \\
+        LR     & WordNet        & -                & maximal       & (1,3)    & 0.858       \\
+        SVM    & Porter         & -                & maximal       & (1,3)    & 0.858       \\
+        SVM    & WordNet        & -                & maximal       & (1,3)    & 0.858       \\
+        SVM    & Porter         & eig. Liste       & 50.000        & (1,2)    & 0.858       \\
+        LR     & Porter         & eig. Liste       & 250.000       & (1,3)    & 0.855       \\
+        LR     & -              & \gls{nltk} Liste & maximal       & (1,3)    & 0.855       \\
+        SVM    & Porter         & -                & maximal       & (1,2)    & 0.855       \\
+        LR     & Porter         & eig. Liste       & 50.000        & (1,2)    & 0.852       \\
+        SVM    & -              & -                & maximal       & (1,3)    & 0.852       \\
+        NB     & -              & -                & maximal       & (1,2)    & 0.852       \\
+        \bottomrule
+    \end{tabular}
+    \caption{
+        Top 10 Modelle nach Testgenauigkeit.
+        Die Modelle \textit{LR}, \textit{SVM} und \textit{NB} bezeichnen die Modelle \textit{Logistische Regression}, \textit{Support Vector Machine} und \textit{Naiver Bayes Klassifikator}.
+        Die Bezeichner (1, k) in der Spalte \textit{n-Gramme} geben an, dass n-Gramme mit $N\in\lbrace1,\cdots,k\rbrace$ verwendet wurden.
+    }
+    \label{tab:top-10-models}
+\end{table}
+
+In Tabelle~\ref{tab:top-10-models} sind die Top 10 Modelle nach Testgenauigkeit aufgeführt.
+Die maximal erzielte Genauigkeit beträgt $0,861$.
+Diese Genauigkeit wurde für ein Modell erzielt, bei dem die Normalisierung der Worte mit dem \textit{Porter} Stemmer durchgeführt wurde, die Stoppwörter gemäß einer eigens erstellten Stoppwortliste entfernt wurden, die Anzahl der Merkmale auf $250.000$ beschränkt wurde und Unigramme und Bigramme berücksichtigt wurden.
+
+\paragraph{Sensitivität Modell}
+In Tabelle~\ref{tab:stats-per-model} sind die Statistiken der Test Genauigkeit für die Modelle \textit{LinearSVC}, \textit{LogisticRegression} und \textit{NaiveBayes} über alle Parameter-Kombinationen aufgeführt.
+
+Die Logistische Regressions-Modelle erzielen im Mittel die höchsten Genauigkeiten über alle Parameter-Kombinationen.
+Weiterhin ist die Standardabweichung der Genauigkeiten für die Logistische Regression mit $0,022$ am niedrigsten.
+
+Modelle auf Basis der \gls{svm} erzielen im Mittel die zweithöchsten Genauigkeiten, wobei Mittelwert und Median $~1\%$ niedriger liegen.
+
+Die Naive Bayes Modelle erzielen im Mittel die niedrigsten Genauigkeiten, wobei die Standardabweichung mit $0,049$ am höchsten ist.
+\begin{table}
+    \center
+
+    \begin{tabular}{lccccc}
+        \toprule
+        & \multicolumn{5}{c}{Test Genauigkeit} \\
+        Modell             & Mittelwert & Median & Std.-Abweichung & Minimum & Maximum \\
+        \midrule
+        LogisticRegression & 0.818      & 0.820  & 0.022           & 0.727   & 0.861   \\
+        LinearSVC          & 0.809      & 0.813  & 0.024           & 0.730   & 0.858   \\
+        NaiveBayes         & 0.778      & 0.784  & 0.049           & 0.685   & 0.852   \\
+        \bottomrule
+    \end{tabular}
+    \caption{Statistiken der Test Genauigkeit für die Modelle \textit{LinearSVC}, \textit{LogisticRegression} und \textit{NaiveBayes} über alle Parameter-Kombinationen.}
+    \label{tab:stats-per-model}
+\end{table}
+
+\paragraph{Sensitivität Umgang mit Stoppwörtern}
+
+Über alle Parameter-Kombinationen ist die Genauigkeit im Mittel für die Datensätze mit Entfernung der Stoppwörter höher als für die Modelle ohne Entfernung der Stoppwörter.
+Weiterhin ist die Genauigkeit mit den Datensätzes, bei denen die Stoppwörter entfernt wurden, die in der eigens definierten Stoppwortliste enthalten sind, höher als bei Verwendung der \gls{nltk} Stoppwortliste.
+
+\paragraph{Sensitivität Normalisierungsverfahren}
+
+Für die unterschiedlichen Normalisierungsverfahren ergeben sich keine signifikanten Unterschiede in der Genauigkeit der Modelle.
+
+\paragraph{Sensitivität Vektorisierungsverfahren und n-Gramme}
+
+Für alle Modelle ist die Genauigkeit höher, wenn der \gls{tfidf}-Vektorizer, anstelle des Hash-basierten verwendet wird
+
+Für alle Modelle steigt die Genauigkeit mit der Anzahl an berücksichtigten Merkmalen.
+
+Für alle Modelle ist die Genauigkeit höher, wenn zusätzlich Bi- und Trigramme berücksichtigt werden.
+Die Berücksichtigung von Bi- und Trigrammen führt im Mittel zu den höchsten Genauigkeiten.
+
+\subsubsection{Deep Learning Ansätze}
