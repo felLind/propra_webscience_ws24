@@ -115,4 +115,29 @@ Trotz der naiven Unabhängigkeitsannahme führt dieses Verfahren in der Praxis f
 \subsection{Deep Learning Ansätze}
 Als Deep Learning Ansätze haben wir zuerst zwei auf \gls{bert} \cite{devlin2018bert} basierende Modelle ausgewählt, welche wir durch \textit{Finetuning} mit dem Datensatz sentiment140 trainiert haben. 
 Zum einen das auf Twitter-Daten vortrainierte Modell RoBERTa \cite{liu2019roberta} und zum anderen das von \gls{bert} destillierte Modell DistillBert \cite{sanh2019distilbert}. 
-BERT-Modelle basieren auf der von Vaswani et al. beschriebenen Architektur \textit{Multi-layer Bidirectional Transformer Encoder} \cite{vaswani2017attention}.
+BERT-Modelle basieren auf der von Vaswani et al. beschriebenen Architektur \textit{Multi-layer Bidirectional Transformer Encoder} \cite{vaswani2017attention}. 
+\subsubsection{Transformer}
+Die Architektur eines \textit{Multi-layer Bidirectional Transformer Encoder} besteht aus einen \textit{Encoder}, der eine Eingabe von Symbolen $(x_1,...,x_n)$ auf eine kontinuierliche Repräsentation $(z_1,...,z_n)$ abbildet 
+und einem \textit{Decoder}, der aus dieser kontinuierlichen Repräsentation eine Ausgabesequenz aus Symbolen $(y_1,...,y_n)$ generiert. Für jedem Schritt verwendet der 
+\textit{Decoder} seine Ausgabe aus dem vorherigen Schritt. \par
+%Bild Transformer?
+\textit{Encoder} besteht aus $N$ gleichen Schichten, die jeweils aus einem \textit{Multi-head Self-Attention}-Mechanismus und einem vollvernetzten Neuronalen Netz bestehen.
+Der \textit{Decoder} besteht aus $N$ gleichen Schichten, bestehend aus einer Schicht \textit{Multi-head Self-Attention} und einem vollvernetzten Neuronalen Netz. zusätzlich kommt eine weitere Schicht \textit{Multi-head Self-Attention},
+welche die Ausgabe des \textit{Encoders} verarbeitet. \par
+Der \textit{Attention}-Mechanismus \cite{vaswani2017attention} bildet ein \textit{Query} und eine Menge von Schlüssel-Wert-Paaren auf eine Ausgabe ab. Alle Bestandteile sind Vektoren.
+%Bild Scaled Dot-Product Attention?
+Die von Vaswani et al. verwendete \textit{Attention}-Funktion ist die sogenannte \textit{Scaled Dot-Product Attention}. Die Eingabe besteht aus \textit{Queries} und Schlüsseln mit der Dimension $d_k$ und Werten mit der Dimension $d_v$.
+Zuerst wird das innere Produkt aus \textit{Queries} und Schlüsseln berechnet danach wird das Produkt durch $\sqrt{d_k}$ geteilt, also skaliert. Im nächsten Schritt wird von dem Ergebnis die \textit{Softmax}-Funktion berechnet, um die Gewichte zu erhalten, mit denen die Werte mutipliziert werden. 
+In der Praxis werden mehrere \textit{Queries} parallel berechnet, indem sie in einer Matrix $Q$ zusammengefasst werden. Ebenso werden die Schlüssel in Matrix $K$ und die Werte in Matrix $V$ zusammengefasst.
+Daraus ergibt sich für die \textit{Attetion}-Funktion folgende Formel:
+\begin{equation*}
+Attention(Q,K,V) = softmax(\frac{QK^T}{\sqrt{d_k}})V    
+\end{equation*}
+Der \textit{Multi-head Attention}-Mechanismus erweitert dies um \textit{h} erlernte lineare Projektionen der einzelnen $d_{model}$-dimensionalen Vektoren auf die Dimensionen $d_k$, $d_k$ und $d_v$. 
+Diese parallel berechneten Werte werden konkateniert und ein weiteres mal linear Projiziert, um die Ausgabe der \textit{Multi-head Attention} zu erhalten.
+\begin{align*}
+   & \mathrm{MultiHead}(Q,K,V) = \mathrm{Concat}(\mathrm{head_1},...,\mathrm{head_h})W^O \\
+   & \mathrm{where} \quad \mathrm{head_i} = \mathrm{Attention}(QW_i^Q,KW_i^K,VW_i^V)
+\end{align*}
+Die Projektionen sind Gewichtsmatrizen $W_i^Q \in \mathbb{R}^{d_{model}\times d_k}$, $W_i^K \in \mathbb{R}^{d_{model}\times d_k}$, $W_i^V \in \mathbb{R}^{d_{model}\times d_v}$ und $W^O \in \mathbb{R}^{hd_v\times d_{model}}$
+\subsubsection{Finetuning}
