@@ -59,7 +59,21 @@ Die Genauigkeit der Modelle wird abschließend auf den Testdaten evaluiert.
 Algorithmus~\ref{alg:model-training} beschreibt die Schritte für das Training und die Evaluation der Modelle.
 
 \subsubsection{Deep Learning Ansätze} \label{sec:deep-learning-ansaetze}
-
+Die \gls{bert}-Modelle \textit{twitter-roberta-base-sentiment} und \textit{distilbert-base-uncased} wurden über die \textit{Hugging Face}-Python-Bibliothek trainiert und ausgeführt. Für das \textit{Finetuning} wurde die Standardkonfiguration der Bibliothek mit den Parametern Datensatzgröße und Lernrate in allen Kombinationen mit den Werten aus Tabelle \ref{tab:dl-params} verwendet.
+\begin{table}
+    \begin{tabular}{ll}
+        \toprule
+        Parameter       & Werte                                                   \\
+        \midrule
+        Datensatzgröße  & 2500, 5000, 7500, 10000, 15000, 20000                   \\
+        Lernrate        & $1e^{-4}$, $5e^{-5}$ , $1e^{-5}$, $5e^{-6}$, $1e^{-6}$  \\
+        \bottomrule
+    \end{tabular}
+    \caption{
+        Parameter für das \textit{Finetuning} der \gls{bert}-Modelle
+    }
+    \label{tab:dl-params}
+\end{table}
 \subsection{Modell-Parameter und Evaluationsmetriken}
 
 Für die ausgewählten Modelle wurden die Standard-Parameterwerte von \textit{scikit-learn} verwendet.
@@ -146,3 +160,5 @@ Für alle Modelle ist die Genauigkeit höher, wenn zusätzlich Bi- und Trigramme
 Die Berücksichtigung von Bi- und Trigrammen führt im Mittel zu den höchsten Genauigkeiten.
 
 \subsubsection{Deep Learning Ansätze}
+
+
