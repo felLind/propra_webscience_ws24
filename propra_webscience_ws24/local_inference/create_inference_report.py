@@ -51,7 +51,7 @@ def main():
             inference_results_with_query, inference_results_wo_query, 5
         )
 
-        report_output_path.write_text(report_content, 'UTF-8')
+        report_output_path.write_text(report_content, "UTF-8")
 
 
 def _get_inference_output_content(model_name):

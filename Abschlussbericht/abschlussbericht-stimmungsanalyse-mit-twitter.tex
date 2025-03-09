@@ -13,6 +13,9 @@
 \usepackage{tikz}                           % creating graphs and other structures
 \usepackage{glossaries}                     % glossaries package for glossary entries
 \usepackage{soul}                           % for highlighting text (temporary usage)
+\usepackage{algorithm}                      % for creating pseudo-code
+\usepackage{algpseudocode}                  % for creating pseudo-code
+
 \newcommand{\redhl}{\sethlcolor{red}\hl}
 
 
@@ -23,17 +26,18 @@
 
 %%%% Glossary %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+\newacronym{bert}{BERT}{\textit{Bidirectional Encoder Representations from Transformers}}
 \newacronym{dl}{DL}{\textit{Deep Learning}}
 \newacronym{nltk}{NLTK}{\textit{Natural Language Toolkit}}
 \newacronym{svm}{SVM}{\textit{Support Vector Machine}}
 \newacronym{tfidf}{TFIDF}{\textit{Term Frequency-Inverse Document Frequency}}
-\newacronym{bert}{BERT}{\textit{Bidirectional Encoder Representations from Transformers}}
 
 %%%% Abstract %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \germanabstract{
     \redhl{TODO: Zusammenfassung formulieren...}
 }
+
 
 \begin{document}
 
@@ -63,5 +67,12 @@
 \addreferences
 
 \makestatement{5}
+
+% ==== Appendix ====
+\appendix
+
+\input{9-appendix}
+
+
 
 \end{document}

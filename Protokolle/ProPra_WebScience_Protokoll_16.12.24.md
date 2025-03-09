@@ -40,4 +40,3 @@ Fehlende Personen: niemand
 ### Nächster Termin: 
 - Di, 17.12.24 nach den Zwischenpräsentationen, Discord Voicy
 - UPDATE: Di, 17.12.24 19:00, Discord Voicy
-
