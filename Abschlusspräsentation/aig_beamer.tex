@@ -83,7 +83,7 @@
         \begin{column}{0.45\textwidth}
             \centering
             \textbf{Original Tweet}\\
-            \textit{Just got my dream job! So excited! \textcolor{red}{:)}}
+            \textit{Just got my dream job! So excited! \yellowhighlight{:)}}
             \vspace{0.5cm}
         \end{column}
         
@@ -99,7 +99,7 @@
             \textbf{Datensatz}\\
             \textit{Just got my dream job! So excited!} \\
             \vspace{0.2cm}
-            \textbf{Sentiment: \textcolor{red}{Positive}}
+            \textbf{Sentiment: \yellowhighlight{Positive}}
             \vspace{0.5cm}
         \end{column}
     \end{columns}
@@ -116,6 +116,7 @@
       \item \textbf{177} negative und \textbf{182} positive Tweets
       \item Keine automatische Emoticon-Tagging-Strategie (bessere Qualität)
       \item Dient zur unabhängigen Evaluierung von Modellen
+      \item Testdatensatz enthält zusätzlich \textit{Query-Terms}
   \end{itemize}
 
   \vspace{0.5cm}
@@ -124,24 +125,29 @@
 
   % Anstelle von positiven und negativen Tweets, Besipiele aus Testdatensatz mit Query-Term
   \begin{center}
-    \glqq \textit{no. it is too big. I'm quite happy with the \textcolor{blue}{Kindle2}\grqq}
+    \glqq \textit{no. it is too big. I'm quite happy with the \yellowhighlight{Kindle2}\grqq}
     \vspace{0.25cm}
     \begin{columns}
         \begin{column}{0.45\textwidth}
-            \textbf{Ohne Query Term: \textcolor{red}{Negative}} 
+            \textbf{Ohne Query Term: \darkhighlight{Negative}} 
         \end{column}
         \begin{column}{0.45\textwidth}
-            \textbf{Mit Query Term: \textcolor{green}{Positive}} 
+            \textbf{Mit Query Term: \darkhighlight{Positive}} 
         \end{column}
     \end{columns}
   \end{center}
 \end{frame}
 
-\subsection{Datenaufbereitung}
+
+
+%=========================================================================================================================
+\section{Klassische Methoden}
+
+\subsection{Datenvorverarbeitung}
 
 % Überschrift anpassen?
 % Merkmassextraktion passt ggf. nicht zur Aufbereitung der Daten.
-\begin{frame}{Datenaufbereitung}
+\begin{frame}{Datenvorverarbeitung}
   \fontsize{10pt}{12pt}\selectfont
   \vspace{0.3cm}
 
@@ -171,8 +177,7 @@
 
 \end{frame}
 
-%=========================================================================================================================
-\section{Klassische Methoden}
+\subsection{Klassische Methoden}
 
 \begin{frame}{Klassische Methoden}
   \fontsize{10pt}{12pt}\selectfont
@@ -212,32 +217,33 @@
 % - Text Accuracy in Genauigkeit umändern
 % - Balken der Größe nach anordnen
 % - Anmerkung zu gekürzter Y-Achse | Y-Achse nicht kürzen?
-\begin{frame}{Ergebnisse}
-    \centering
-    \includegraphics[width=0.8\textwidth]{Output.png}
-\end{frame}
 
 \begin{frame}{Ergebnisse}
     \centering
-    \scriptsize
-    % Tabelle durch Box-Plots ersetzen
-    % Gegebenenfalls auf top-k und bottom-k Parameterkombinationen beschränken
-
-    % Diagrammtypen ausprobieren
-    % - Box-Plot
-    % - Balkendiagramm
-    % - Heatmap
-
-    \begin{tabular}{|l|l|l|l|l|}
-        \hline
-        \textbf{Modell} & \textbf{Vektorisierer} & \textbf{Max Features} & \textbf{N-Gram Range} & \textbf{Test Accuracy} \\
-        \hline
-        Log. Regression & TfidfVectorizer & 250000 & Uni- und Bigramme & 0.8607 \\
-        SVM & TfidfVectorizer & Alle Features & Uni-, Bi- und Trigramme & 0.8579 \\
-        Naiver Bayes & TfidfVectorizer & Alle Features & Uni- und Bigramme & 0.8524 \\
-        \hline
-    \end{tabular}
+    \includegraphics[width=0.79\textheight]{figures/klassische-ml-beste-genauigkeit-pro-modell-truncated-y-axis.png}
 \end{frame}
+
+% \begin{frame}{Ergebnisse}
+%     \centering
+%     \scriptsize
+%     % Tabelle durch Box-Plots ersetzen
+%     % Gegebenenfalls auf top-k und bottom-k Parameterkombinationen beschränken
+
+%     % Diagrammtypen ausprobieren
+%     % - Box-Plot
+%     % - Balkendiagramm
+%     % - Heatmap
+
+%     \begin{tabular}{|l|l|l|l|l|}
+%         \hline
+%         \textbf{Modell} & \textbf{Vektorisierer} & \textbf{Max Features} & \textbf{N-Gram Range} & \textbf{Test Accuracy} \\
+%         \hline
+%         Log. Regression & TfidfVectorizer & 250000 & Uni- und Bigramme & 0.8607 \\
+%         SVM & TfidfVectorizer & Alle Features & Uni-, Bi- und Trigramme & 0.8579 \\
+%         Naiver Bayes & TfidfVectorizer & Alle Features & Uni- und Bigramme & 0.8524 \\
+%         \hline
+%     \end{tabular}
+% \end{frame}
 
 
 %=========================================================================================================================
@@ -254,6 +260,16 @@
 %   \end{itemize}
 % \end{frame}
 
+\begin{frame}{BERT}
+    \begin{itemize}
+        \item 2018 von Google entwickelt
+        \item Bidirectional encoder representations from transformers (BERT)
+        \item LLM
+        \item Encoder
+    \end{itemize}
+\end{frame}
+
+% 100M Parameter
 \begin{frame}{Untersuchte BERT-Modelle}
 \begin{columns}[T]
     \column{0.5\textwidth}
@@ -277,7 +293,7 @@
         \item \textbf{Eigenschaften}:
           \begin{itemize}
           \item Mit 58M englischsprachigen Tweets weitertrainiert
-          \item Fine-Tuned mit einem Sentimentanalyse-Datensatz
+          \item Fine-Tuned mit einem Stimmungsanalyse-Datensatz
           \end{itemize}
         \end{itemize}
         \vfill
@@ -296,7 +312,7 @@
         \item \textbf{Untersuchte Parameter:}
         \begin{itemize}
             \item Initiale Lernrate
-            \item Größe des Trainingdatensatzes
+            \item Größe des Trainingsdatensatzes
         \end{itemize}
         \item \textbf{Evaluationsmetrik:}
         \begin{itemize}
@@ -305,22 +321,22 @@
 \end{itemize}  
 \end{frame}
 
-\begin{frame}{Ergebnisse}
-    \centering
-    \scriptsize
-    \begin{tabular}{|l|l|l|l|}
-        \hline
-        \textbf{Modell} & \textbf{Daten-Größe} & \textbf{Lernrate} & \textbf{Test Accuracy} \\
-        \hline
-        DistilBERT & 20.000 & 0.0001 & 0.8496 \\
-        RoBerta-Twitter & 20.000 & 0.0001 & 0.9220 \\
-        \hline
-    \end{tabular}
-\end{frame}
+% \begin{frame}{Ergebnisse}
+%     \centering
+%     \scriptsize
+%     \begin{tabular}{|l|l|l|l|}
+%         \hline
+%         \textbf{Modell} & \textbf{Daten-Größe} & \textbf{Lernrate} & \textbf{Test Accuracy} \\
+%         \hline
+%         DistilBERT & 20.000 & 0.0001 & 0.8496 \\
+%         RoBerta-Twitter & 20.000 & 0.0001 & 0.9220 \\
+%         \hline
+%     \end{tabular}
+% \end{frame}
 
 \begin{frame}{Ergebnisse}
     \centering
-     \includegraphics[scale=0.5]{bert.png}
+     \includegraphics[scale=0.3]{figures/bert-based-genauigkeit-bert-basierte-modelle_-default-vs.-fine-tuned-truncated-y-axis.png}
 \end{frame}
 
 % BERT-basiert Modelle
@@ -347,61 +363,20 @@
 \item \textbf{Reasoning-Modell}
 \item Basiert auf Transformer Architektur
 \item Trainiert mit Hilfe von Reinforcement Learning
-\item 671B Parameter
-\item Reasoning-Fähigkeit
+\item 671 Mrd. Parameter
 \item Destillierte Modelle verfügbar
-\item \textbf{Fine-Tuning Ansatz}
+\end{itemize}
+\vspace{0.4cm}
+
 \begin{itemize}
-    \item Kleinstes Destillierte Modell (Speicheranforderungen)
-    \item \textit{DeepSeek-R1-Distill-Qwen-1.5B}
+    \item \textbf{Fine-Tuning Ansatz}
+    \begin{itemize}
+        \item \textit{DeepSeek-R1-Distill-Qwen-1.5B}
+        \item Aufgrund von Hardwareanforderungen verworfen
 \end{itemize}
 \end{itemize}
 \end{frame}
 
-\begin{frame}{Beispiel}
-\begin{center}
-    \textbf{Prompt:} Tweet sentiment? Answer with positive or negative.\\
-    Tweet: \glqq \textit{no. it is too big. I'm quite happy with the \textcolor{blue}{Kindle2}\grqq}
-    \vspace{0.45cm}
-    \begin{columns}
-        \begin{column}{0.45\textwidth}
-            \textbf{Reasoning ohne Query Term} \\
-            \vspace{0.4cm}
-            \glqq \textit{The tweet expresses dissatisfaction with something being 'too big,' indicating a \textcolor{red}{negative sentiment}.\grqq}
-        \end{column}
-        \begin{column}{0.45\textwidth}
-            \textbf{Reasoning mit Query Term:} \\
-            \vspace{0.4cm}
-            \glqq \textit{The tweet mentions being 'quite happy' with the Kindle2, which indicates a \textcolor{green}{positive sentiment}.\grqq}
-        \end{column}
-    \end{columns}
-\end{center}
-    
-\end{frame}
-
-%distilbert-base-uncased
-
-
-\begin{frame}{Ergebnisse}
-    \centering
-    \includegraphics[scale=0.5]{bertdeepseek.png}
-\end{frame}
-
-\begin{frame}{Ergebnisse: BERT- und DeepSeek-Modelle}
-    \centering
-    \scriptsize
-    \begin{tabular}{|l|l|l|l|}
-        \hline
-        \textbf{Modell} & \textbf{Daten-Größe} & \textbf{Lernrate} & \textbf{Test Accuracy} \\
-        \hline
-        DistilBERT & 20.000 & 0.0001 & 0.8496 \\
-        RoBerta-Twitter & 20.000 & 0.0001 & 0.9220 \\
-        DeepSeek & 20.000 & 0.0001 & 0.8663 \\
-        \hline
-    \end{tabular}
-\end{frame}
-
-\subsection{Zero-shot}
 \begin{frame}{Zero-shot}
   \textbf{Zero-Shot-Ansatz:}
 
@@ -424,54 +399,106 @@
   Answer with positive or negative. Provide reasoning in JSON.\\
     Tweet: \glqq\{tweet\}\grqq
 \end{frame}
+
+\begin{frame}{Beispiel}
+\begin{center}
+    \textbf{Tweet:} \glqq \textit{no. it is too big. I'm quite happy with the \yellowhighlight{Kindle2}\grqq}
+    \vspace{0.45cm}
+    \begin{columns}
+        \begin{column}{0.45\textwidth}
+            \textbf{Reasoning ohne Query Term} \\
+            \vspace{0.4cm}
+            \glqq \textit{The tweet expresses dissatisfaction with something being 'too big,' indicating a \darkhighlight{negative sentiment}.\grqq}
+        \end{column}
+        \begin{column}{0.45\textwidth}
+            \textbf{Reasoning mit Query Term:} \\
+            \vspace{0.4cm}
+            \glqq \textit{The tweet mentions being 'quite happy' with the Kindle2, which indicates a \darkhighlight{positive sentiment}.\grqq}
+        \end{column}
+    \end{columns}
+\end{center}
+    
+\end{frame}
+
+%distilbert-base-uncased
+
+
+\begin{frame}{Ergebnisse}
+    \centering
+    \includegraphics[scale=0.3]{figures/deepseek-genauigkeit-deepseek-modelle_-einfluss-query-ausdruck-truncated-y-axis.png}
+\end{frame}
+
+% \begin{frame}{Ergebnisse: BERT- und DeepSeek-Modelle}
+%     \centering
+%     \scriptsize
+%     \begin{tabular}{|l|l|l|l|}
+%         \hline
+%         \textbf{Modell} & \textbf{Daten-Größe} & \textbf{Lernrate} & \textbf{Test Accuracy} \\
+%         \hline
+%         DistilBERT & 20.000 & 0.0001 & 0.8496 \\
+%         RoBerta-Twitter & 20.000 & 0.0001 & 0.9220 \\
+%         DeepSeek & 20.000 & 0.0001 & 0.8663 \\
+%         \hline
+%     \end{tabular}
+% \end{frame}
+
 % Prompt Options???
 
-\begin{frame}{Ergebnisse}
-    \centering
-    \includegraphics[scale=0.5]{deepseekzero.png}
-\end{frame}
+% \begin{frame}{Ergebnisse}
+%     \centering
+%     \includegraphics[scale=0.3]{deepseekzero.png}
+% \end{frame}
 
-\begin{frame}{Ergebnisse}
-    \centering
-    \scriptsize
-    \begin{tabular}{|l|l|l|}
-        \hline
-        \textbf{Modell} & \textbf{Mit Query-Term} & \textbf{Ohne Query-Term} \\
-        \hline
-        DeepSeek-1.5B & 0.8830 & 0.8245 \\
-        DeepSeek-8B   & 0.9554 & 0.9164 \\
-        DeepSeek-32B  & 0.9666 & 0.9276 \\
-        DeepSeek-70B  & 0.9777 & 0.9304 \\
-        \hline
-    \end{tabular}
-\end{frame}
+% \begin{frame}{Ergebnisse}
+%     \centering
+%     \scriptsize
+%     \begin{tabular}{|l|l|l|}
+%         \hline
+%         \textbf{Modell} & \textbf{Mit Query-Term} & \textbf{Ohne Query-Term} \\
+%         \hline
+%         DeepSeek-1.5B & 0.8830 & 0.8245 \\
+%         DeepSeek-8B   & 0.9554 & 0.9164 \\
+%         DeepSeek-32B  & 0.9666 & 0.9276 \\
+%         DeepSeek-70B  & 0.9777 & 0.9304 \\
+%         \hline
+%     \end{tabular}
+% \end{frame}
 
-\begin{frame}{Ergebnisse}
-    \centering
-    \includegraphics[scale=0.5]{all.png}
-\end{frame}
+
 
 %=========================================================================================================================
 \section{Zusammenfassung}
+
+\begin{frame}{Zusammenfassung}
+    \centering
+    \includegraphics[scale=0.3]{figures/alle-übersicht-genauigkeit-alle-modelle-truncated-y-axis.png}
+\end{frame}
 
 % Stärkerer Fokus auf Ergebnisse
 % - Vergleich der Modelle / Übersichts-Diagramm
 % - Einschränkungen der einzelnen Modelle (Hardware, Trainingszeit)
 \begin{frame}{Zusammenfassung}
   \normalsize
-  \begin{itemize}
-      \item Stimmungsanalyse auf dem Sentiment140-Datensatz
-      \item Klassische Methoden
-      \item BERT-Modelle Fine-Tuning
-      \item Zero-Shot-Ansatz für destillierte DeepSeek-Modelle
-      \pause
-      \item \textbf{Erkenntisse:}
+  % \begin{itemize}
+  %     \item Stimmungsanalyse auf dem Sentiment140-Datensatz
+  %     \item Klassische Methoden
+  %     \item BERT-Modelle Fine-Tuning
+  %     \item Zero-Shot-Ansatz für destillierte DeepSeek-Modelle
+  %     \pause
+  %     \end{itemize}
+      \item \textbf{Erkenntnisse:}
       \begin{itemize}
           \item Domänenspezifische Transformer Modelle besser als allgemeine Modelle
           \item Query-Terms erhöhen die Genauigkeit für LLMs erheblich
           \item LLMs haben viel größere Hardwareanforderungen und längere Inferenzzeiten
       \end{itemize}
-  \end{itemize}
+      \vspace{0.4cm}
+      \textbf{Ausblick:}
+      \begin{itemize}
+          \item Noisy-Label
+          \item Aspect-Based-Sentiment-Analysis (ABSA)
+          \item Große Deep Learning Modelle
+      \end{itemize}
 
   \vspace{0.5cm}
   \centering
