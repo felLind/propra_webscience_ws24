@@ -59,7 +59,7 @@ Die Genauigkeit der Modelle wird abschließend auf den Testdaten evaluiert.
 Algorithmus~\ref{alg:model-training} beschreibt die Schritte für das Training und die Evaluation der Modelle.
 
 \subsubsection{Deep Learning Ansätze} \label{sec:deep-learning-ansaetze}
-Die \gls{bert}-Modelle \textit{twitter-roberta-base-sentiment} und \textit{distilbert-base-uncased} wurden über die \textit{Hugging Face}-Python-Bibliothek trainiert und ausgeführt. Für das \textit{Finetuning} wurde die Standardkonfiguration der Bibliothek mit den Parametern Datensatzgröße und Lernrate in allen Kombinationen mit den Werten aus Tabelle \ref{tab:dl-params} verwendet.
+Die BERT-Modelle \textit{twitter-roberta-base-sentiment} und \textit{distilbert-base-uncased} wurden über die \textit{Hugging Face}-Python-Bibliothek trainiert und ausgeführt. Für das \textit{Finetuning} wurde die Standardkonfiguration der Bibliothek mit den Parametern Datensatzgröße und Lernrate in allen Kombinationen mit den Werten aus Tabelle \ref{tab:dl-params} verwendet.
 \begin{table}
     \begin{tabular}{ll}
         \toprule
@@ -74,6 +74,17 @@ Die \gls{bert}-Modelle \textit{twitter-roberta-base-sentiment} und \textit{disti
     }
     \label{tab:dl-params}
 \end{table}
+
+
+Für den eigenen Ansatz haben wir zuerst versucht, die von Deepseek-R1 destillierten Modelle durch \textit{Finetuning} auf den Datensatz zu trainieren. Dafür wurde dem Modell eine zusätzliche Schicht in Form eines KNN mit einer Eingabeschicht mit der Ausgabe des Modells als Eingabe und zwei Neuronen für die Sentimentklassifizierung als Ausgabe.
+Das war für für Deepseek-R1:1.5B noch möglich. Ab dem Modell Deepseek-R1:7B wurden die Hardware-Anforderungen zu groß. (Vgl. mit SGD Optimierung: 7Mrd. Parameter * 2 Byte je Gewicht * 2 Byte je Grandient = 26GB)
+Als weiteren Ansatz verwendeten wir die Deepseek-R1-Modelle nur in der Ausführung und ließen das Sentiment per Prompt klassifizieren. Die modelle wurden mit Ollama ausgeführt und per Pythonskript angefragt. Dabei verwendet wir den im Testdatensatz enthaltenen Query-Term um zusätzlich einen aspekt-basierten Ansatz zu testen.
+Die Modelle wurden jeweils mit und ohne dem Query-Term angefragt. Eine Anfrage mit dem Query-Term hat folgende Struktur:
+
+\textbf{Prompt:} \greyhl{Tweet sentiment? Sentiment Topic: \{Query-Term\} \\
+  Answer with positive or negative. Provide reasoning in JSON.\\
+    Tweet: \glqq\{tweet\}\grqq}
+
 \subsection{Modell-Parameter und Evaluationsmetriken}
 
 Für die ausgewählten Modelle wurden die Standard-Parameterwerte von \textit{scikit-learn} verwendet.
@@ -160,5 +171,3 @@ Für alle Modelle ist die Genauigkeit höher, wenn zusätzlich Bi- und Trigramme
 Die Berücksichtigung von Bi- und Trigrammen führt im Mittel zu den höchsten Genauigkeiten.
 
 \subsubsection{Deep Learning Ansätze}
-
-
