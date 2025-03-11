@@ -65,7 +65,7 @@ def add_classification_results_to_df(
     }
 
     result = pd.concat([df, pd.DataFrame([new_row])], ignore_index=True)
-    result.to_parquet(constants.CLASSIFICATION_RESULTS_PARQUET_PATH)
+    result.to_parquet(constants.CLASSICAL_ML_RESULTS_PARQUET_PATH)
 
     return result
 
@@ -79,7 +79,7 @@ def get_existing_classification_results() -> pd.DataFrame | None:
     Returns:
         The existing classification results.
     """
-    output_file = constants.CLASSIFICATION_RESULTS_PARQUET_PATH
+    output_file = constants.CLASSICAL_ML_RESULTS_PARQUET_PATH
     if os.path.exists(output_file):
         return pd.read_parquet(output_file)
 

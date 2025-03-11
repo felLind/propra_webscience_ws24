@@ -56,8 +56,11 @@ MODELS_PATH.mkdir(parents=True, exist_ok=True)
 RESULTS_PATH = DATASETS_ROOT_PATH / "results"
 RESULTS_PATH.mkdir(parents=True, exist_ok=True)
 
-CLASSIFICATION_RESULTS_PARQUET_PATH = RESULTS_PATH / "classification-results.parquet"
+CLASSICAL_ML_RESULTS_PARQUET_PATH = RESULTS_PATH / "classification-results.parquet"
+BERT_FINETUNING_RESULTS_CSV_PATH = RESULTS_PATH / "fine_tuning_bert_based.csv"
 
 # Visualization
 PLOTS_PATH = RESULTS_PATH / "plots"
 PLOTS_PATH.mkdir(parents=True, exist_ok=True)
+
+PLOTS_DATA_ALL_CSV_PATH = RESULTS_PATH / "plots_data_all.csv"

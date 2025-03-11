@@ -1,0 +1,16 @@
+Modell,Genauigkeit,Finetuning,Mit Query-Ausdruck
+LinearSVC,0.8579387186629527,,
+LogisticRegression,0.8607242339832869,,
+NaiveBayes,0.8523676880222841,,
+distilbert-base-uncased,0.49025069637883,False,
+cardiffnlp/twitter-roberta-base-sentiment,0.83008356545961,False,
+cardiffnlp/twitter-roberta-base-sentiment,0.9220055710306406,True,
+distilbert-base-uncased,0.8495821727019499,True,
+deepseek-r1-1.5b,0.883008,,with-query-term
+deepseek-r1-1.5b,0.824513,,without-query-term
+deepseek-r1-32b,0.966574,,with-query-term
+deepseek-r1-32b,0.927577,,without-query-term
+deepseek-r1-70b,0.977716,,with-query-term
+deepseek-r1-70b,0.930362,,without-query-term
+deepseek-r1-8b,0.955432,,with-query-term
+deepseek-r1-8b,0.916435,,without-query-term
