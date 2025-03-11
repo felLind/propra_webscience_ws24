@@ -1,6 +1,5 @@
 %%% Wähle zwischen 16:9 und 4:3 Format
 \documentclass[aspectratio=169]{beamer} % 16:9
-% \documentclass{beamer} % 4:3
 
 \usepackage[ngerman]{babel} % Deutsche Sprache
 \usepackage[utf8]{inputenc}
@@ -19,25 +18,16 @@
 
 \begin{document}
 
-% --- Titlepage ---
 \begin{frame}
   \titlepage
 \end{frame}
 
-% --- Tweet-Folie ---
-% \begin{frame}
-%   \centering
-%   \includegraphics[width=\linewidth]{tweet.jpg}
-% \end{frame}
-
 \begin{frame}{Motivation}
   \begin{columns}
-    % Linke Spalte: Bilder
     \column{0.5\textwidth}
     \centering
     \includegraphics[scale=0.2]{Tweets.png}
 
-    % Rechte Spalte: Stichpunkte zur Motivation
     \column{0.5\textwidth}
     \begin{itemize}
         \item Twitter als Echtzeit-Plattform für Meinungen und Trends
@@ -55,10 +45,13 @@
   \end{itemize}
 \end{frame}
 
+
 %=========================================================================================================================
 \section{Daten}
 
+
 \subsection{Datenauswahl}
+
 \begin{frame}{Datenauswahl}
   \begin{itemize}
       \item Prüfung diverser Datensätze
@@ -108,7 +101,9 @@
   \end{itemize}
 \end{frame}
 
+
 \subsection{Testdatensatz}
+
 \begin{frame}{Testdatensatz}
   \textbf{Eigenschaften:}
   \begin{itemize}
@@ -139,14 +134,12 @@
 \end{frame}
 
 
-
 %=========================================================================================================================
 \section{Klassische Methoden}
 
+
 \subsection{Datenvorverarbeitung}
 
-% Überschrift anpassen?
-% Merkmassextraktion passt ggf. nicht zur Aufbereitung der Daten.
 \begin{frame}{Datenvorverarbeitung}
   \fontsize{10pt}{12pt}\selectfont
   \vspace{0.3cm}
@@ -158,24 +151,25 @@
           \hline
           & \textbf{Beispiel (Sentiment140)} \\
           \hline
-          \textbf{Original-Tweet} & \texttt{'@user I love this movie! :) http://example.com'} \\
+          \textbf{Original-Tweet} & \textit{\glqq @user I love this movie! :) http://example.com\grqq{}} \\
           \hline
-          \textbf{Bereinigung} & \texttt{'I love this movie'} \\
+          \textbf{Bereinigung} & \textit{\glqq I love this movie\grqq} \\
           \hline
-          \textbf{Tokenisierung} & \texttt{['I', 'love', 'this', 'movie']} \\
+          \textbf{Tokenisierung} & \textit{[\glqq I\grqq, \glqq love\grqq, \glqq this\grqq, \glqq movie\grqq]} \\
           \hline
-          \textbf{Transformation} & Lemmatization: \texttt{['I', 'love', 'this', 'movie']} \newline
-          Stemming: \texttt{['I', 'lov', 'thi', 'movi']} \\
+          \textbf{Transformation} & Lemmatization: \textit{[\glqq I\grqq, \glqq love\grqq, \glqq this\grqq, \glqq movie\grqq]} \newline
+          Stemming: \textit{[\glqq I\grqq, \glqq lov\grqq, \glqq thi\grqq, \glqq movi\grqq]} \\
           \hline
-          \textbf{Stopword-Handling} & Ohne Stoppwörter: \texttt{['love', 'movie']} \\
+          \textbf{Stopword-Handling} & Ohne Stoppwörter: \textit{[\glqq love\grqq, \glqq movie\grq']} \\
           \hline
           \textbf{Merkmalsextraktion} & TF-IDF Beispiel: \newline
-          \texttt{(love: 0.75, movie: 0.85)} \\
+          \textit{(love: 0.75, movie: 0.85)} \\
           \hline
       \end{tabular}
   \end{table}
 
 \end{frame}
+
 
 \subsection{Klassische Methoden}
 
@@ -223,42 +217,12 @@
     \includegraphics[scale=0.65]{../datasets/sentiment140/results/plots/klassische-ml-beste-genauigkeit-pro-modell-truncated-y-axis.png}
 \end{frame}
 
-% \begin{frame}{Ergebnisse}
-%     \centering
-%     \scriptsize
-%     % Tabelle durch Box-Plots ersetzen
-%     % Gegebenenfalls auf top-k und bottom-k Parameterkombinationen beschränken
-
-%     % Diagrammtypen ausprobieren
-%     % - Box-Plot
-%     % - Balkendiagramm
-%     % - Heatmap
-
-%     \begin{tabular}{|l|l|l|l|l|}
-%         \hline
-%         \textbf{Modell} & \textbf{Vektorisierer} & \textbf{Max Features} & \textbf{N-Gram Range} & \textbf{Test Accuracy} \\
-%         \hline
-%         Log. Regression & TfidfVectorizer & 250000 & Uni- und Bigramme & 0.8607 \\
-%         SVM & TfidfVectorizer & Alle Features & Uni-, Bi- und Trigramme & 0.8579 \\
-%         Naiver Bayes & TfidfVectorizer & Alle Features & Uni- und Bigramme & 0.8524 \\
-%         \hline
-%     \end{tabular}
-% \end{frame}
-
 
 %=========================================================================================================================
 \section{Deep Learning}
 
+
 \subsection{Bert-Modelle}
-% \begin{frame}{Twitter roberta-base-sentiment}
-% \begin{itemize}
-%       \item BERT-basiert
-%       \item vortrainiert ohne unseren Datensatz
-%       \item mit Testdatensatz evaluiert
-%       \vspace{0.5cm}
-%       \item \textbf{Genauigkeit:} 0,87
-%   \end{itemize}
-% \end{frame}
 
 \begin{frame}{BERT}
     \begin{itemize}
@@ -269,7 +233,6 @@
     \end{itemize}
 \end{frame}
 
-% 100M Parameter
 \begin{frame}{Untersuchte BERT-Modelle}
 \begin{columns}[T]
     \column{0.5\textwidth}
@@ -301,6 +264,7 @@
 \end{columns}
 \end{frame}
 
+
 \subsection{Fine-Tuning BERT-Modelle}
 
 \begin{frame}{Fine-Tuning BERT-Modelle}
@@ -321,40 +285,11 @@
 \end{itemize}
 \end{frame}
 
-% \begin{frame}{Ergebnisse}
-%     \centering
-%     \scriptsize
-%     \begin{tabular}{|l|l|l|l|}
-%         \hline
-%         \textbf{Modell} & \textbf{Daten-Größe} & \textbf{Lernrate} & \textbf{Test Accuracy} \\
-%         \hline
-%         DistilBERT & 20.000 & 0.0001 & 0.8496 \\
-%         RoBerta-Twitter & 20.000 & 0.0001 & 0.9220 \\
-%         \hline
-%     \end{tabular}
-% \end{frame}
-
 \begin{frame}{Ergebnisse - BERT-Modelle}
     \centering
      \includegraphics[scale=0.65]{../datasets/sentiment140/results/plots/bert-based-genauigkeit-bert-basierte-modelle-default-vs.-fine-tuned-truncated-y-axis.png}
 \end{frame}
 
-% BERT-basiert Modelle
-
-% Erläuterung BERT-Modelle
-% Fine-Tuning Ansatz
-% Verwendet Modelle + Parameter
-% Ergebnisse (jeweils ohne Fine-Tuning/Zero-Shot + Fine-Tuning)
-
-
-
-% DeepSeek R1
-
-% Modell-Erläuterung
-% Fine-Tuning Ansatz lediglich erwähnen
-% Verwendet Modelle + Prompt
-% Ergebnisse (mit/ohne token-basierten Ansatz)
-%  + Reasoning-Output
 
 \subsection{DeepSeek}
 
@@ -420,50 +355,10 @@
 
 \end{frame}
 
-%distilbert-base-uncased
-
-
 \begin{frame}{Ergebnisse - DeepSeek-Modelle mit/ohne Query-Term}
     \centering
     \includegraphics[scale=0.65]{../datasets/sentiment140/results/plots/deepseek-genauigkeit-deepseek-modelle-einfluss-query-ausdruck-truncated-y-axis.png}
 \end{frame}
-
-% \begin{frame}{Ergebnisse: BERT- und DeepSeek-Modelle}
-%     \centering
-%     \scriptsize
-%     \begin{tabular}{|l|l|l|l|}
-%         \hline
-%         \textbf{Modell} & \textbf{Daten-Größe} & \textbf{Lernrate} & \textbf{Test Accuracy} \\
-%         \hline
-%         DistilBERT & 20.000 & 0.0001 & 0.8496 \\
-%         RoBerta-Twitter & 20.000 & 0.0001 & 0.9220 \\
-%         DeepSeek & 20.000 & 0.0001 & 0.8663 \\
-%         \hline
-%     \end{tabular}
-% \end{frame}
-
-% Prompt Options???
-
-% \begin{frame}{Ergebnisse}
-%     \centering
-%     \includegraphics[scale=0.3]{deepseekzero.png}
-% \end{frame}
-
-% \begin{frame}{Ergebnisse}
-%     \centering
-%     \scriptsize
-%     \begin{tabular}{|l|l|l|}
-%         \hline
-%         \textbf{Modell} & \textbf{Mit Query-Term} & \textbf{Ohne Query-Term} \\
-%         \hline
-%         DeepSeek-1.5B & 0.8830 & 0.8245 \\
-%         DeepSeek-8B   & 0.9554 & 0.9164 \\
-%         DeepSeek-32B  & 0.9666 & 0.9276 \\
-%         DeepSeek-70B  & 0.9777 & 0.9304 \\
-%         \hline
-%     \end{tabular}
-% \end{frame}
-
 
 
 %=========================================================================================================================
@@ -474,18 +369,8 @@
     \includegraphics[scale=0.65]{../datasets/sentiment140/results/plots/alle-übersicht-genauigkeit-alle-modelle-truncated-y-axis.png}
 \end{frame}
 
-% Stärkerer Fokus auf Ergebnisse
-% - Vergleich der Modelle / Übersichts-Diagramm
-% - Einschränkungen der einzelnen Modelle (Hardware, Trainingszeit)
 \begin{frame}{Zusammenfassung}
   \normalsize
-  % \begin{itemize}
-  %     \item Stimmungsanalyse auf dem Sentiment140-Datensatz
-  %     \item Klassische Methoden
-  %     \item BERT-Modelle Fine-Tuning
-  %     \item Zero-Shot-Ansatz für destillierte DeepSeek-Modelle
-  %     \pause
-  %     \end{itemize}
       \begin{itemize}
         \item \textbf{Erkenntnisse:}
         \begin{itemize}
