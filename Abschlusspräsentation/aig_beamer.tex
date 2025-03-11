@@ -86,13 +86,13 @@
             \textit{Just got my dream job! So excited! \yellowhighlight{:)}}
             \vspace{0.5cm}
         \end{column}
-        
+
         % Arrow
         \begin{column}{0.1\textwidth}
             \centering
             \LARGE $\Rightarrow$
         \end{column}
-        
+
         % Processed Tweet Column
         \begin{column}{0.45\textwidth}
             \centering
@@ -121,7 +121,7 @@
 
   \vspace{0.5cm}
   \textbf{Beispieltweet:}
-  
+
 
   % Anstelle von positiven und negativen Tweets, Besipiele aus Testdatensatz mit Query-Term
   \begin{center}
@@ -129,10 +129,10 @@
     \vspace{0.25cm}
     \begin{columns}
         \begin{column}{0.45\textwidth}
-            \textbf{Ohne Query Term: \darkhighlight{Negative}} 
+            \textbf{Ohne Query Term: \darkhighlight{Negative}}
         \end{column}
         \begin{column}{0.45\textwidth}
-            \textbf{Mit Query Term: \darkhighlight{Positive}} 
+            \textbf{Mit Query Term: \darkhighlight{Positive}}
         \end{column}
     \end{columns}
   \end{center}
@@ -218,9 +218,9 @@
 % - Balken der Größe nach anordnen
 % - Anmerkung zu gekürzter Y-Achse | Y-Achse nicht kürzen?
 
-\begin{frame}{Ergebnisse}
+\begin{frame}{Ergebnisse - Beste Genauigkeit pro Modell}
     \centering
-    \includegraphics[width=0.79\textheight]{figures/klassische-ml-beste-genauigkeit-pro-modell-truncated-y-axis.png}
+    \includegraphics[scale=0.65]{../datasets/sentiment140/results/plots/klassische-ml-beste-genauigkeit-pro-modell-truncated-y-axis.png}
 \end{frame}
 
 % \begin{frame}{Ergebnisse}
@@ -318,7 +318,7 @@
         \begin{itemize}
             \item Genauigkeit
         \end{itemize}
-\end{itemize}  
+\end{itemize}
 \end{frame}
 
 % \begin{frame}{Ergebnisse}
@@ -334,9 +334,9 @@
 %     \end{tabular}
 % \end{frame}
 
-\begin{frame}{Ergebnisse}
+\begin{frame}{Ergebnisse - BERT-Modelle}
     \centering
-     \includegraphics[scale=0.3]{figures/bert-based-genauigkeit-bert-basierte-modelle_-default-vs.-fine-tuned-truncated-y-axis.png}
+     \includegraphics[scale=0.65]{../datasets/sentiment140/results/plots/bert-based-genauigkeit-bert-basierte-modelle-default-vs.-fine-tuned-truncated-y-axis.png}
 \end{frame}
 
 % BERT-basiert Modelle
@@ -389,13 +389,13 @@
           \item DeepSeek-1.5B
           \item DeepSeek-8B
           \item DeepSeek-32B
-          \item DeepSeek-70B 
+          \item DeepSeek-70B
       \end{itemize}
       \item Inferenz mit und ohne Query-Terms
   \end{itemize}
   \vspace{0.2cm}
   \centering
-  \textbf{Prompt:} Tweet sentiment? Sentiment Topic: \{Query-Term\} \\ 
+  \textbf{Prompt:} Tweet sentiment? Sentiment Topic: \{Query-Term\} \\
   Answer with positive or negative. Provide reasoning in JSON.\\
     Tweet: \glqq\{tweet\}\grqq
 \end{frame}
@@ -417,15 +417,15 @@
         \end{column}
     \end{columns}
 \end{center}
-    
+
 \end{frame}
 
 %distilbert-base-uncased
 
 
-\begin{frame}{Ergebnisse}
+\begin{frame}{Ergebnisse - DeepSeek-Modelle mit/ohne Query-Term}
     \centering
-    \includegraphics[scale=0.3]{figures/deepseek-genauigkeit-deepseek-modelle_-einfluss-query-ausdruck-truncated-y-axis.png}
+    \includegraphics[scale=0.65]{../datasets/sentiment140/results/plots/deepseek-genauigkeit-deepseek-modelle-einfluss-query-ausdruck-truncated-y-axis.png}
 \end{frame}
 
 % \begin{frame}{Ergebnisse: BERT- und DeepSeek-Modelle}
@@ -469,9 +469,9 @@
 %=========================================================================================================================
 \section{Zusammenfassung}
 
-\begin{frame}{Zusammenfassung}
+\begin{frame}{Zusammenfassung - Überblick Ergebnisse alle Modelle}
     \centering
-    \includegraphics[scale=0.3]{figures/alle-übersicht-genauigkeit-alle-modelle-truncated-y-axis.png}
+    \includegraphics[scale=0.65]{../datasets/sentiment140/results/plots/alle-übersicht-genauigkeit-alle-modelle-truncated-y-axis.png}
 \end{frame}
 
 % Stärkerer Fokus auf Ergebnisse
@@ -486,19 +486,21 @@
   %     \item Zero-Shot-Ansatz für destillierte DeepSeek-Modelle
   %     \pause
   %     \end{itemize}
-      \item \textbf{Erkenntnisse:}
       \begin{itemize}
-          \item Domänenspezifische Transformer Modelle besser als allgemeine Modelle
-          \item Query-Terms erhöhen die Genauigkeit für LLMs erheblich
-          \item LLMs haben viel größere Hardwareanforderungen und längere Inferenzzeiten
-      \end{itemize}
-      \vspace{0.4cm}
-      \textbf{Ausblick:}
-      \begin{itemize}
-          \item Noisy-Label
-          \item Aspect-Based-Sentiment-Analysis (ABSA)
-          \item Große Deep Learning Modelle
-      \end{itemize}
+        \item \textbf{Erkenntnisse:}
+        \begin{itemize}
+            \item Domänenspezifische Transformer Modelle besser als allgemeine Modelle
+            \item Query-Terms erhöhen die Genauigkeit für LLMs erheblich
+            \item LLMs haben viel größere Hardwareanforderungen und längere Inferenzzeiten
+        \end{itemize}
+        \vspace{0.4cm}
+        \item \textbf{Ausblick:}
+        \begin{itemize}
+            \item Noisy-Label
+            \item Aspect-Based-Sentiment-Analysis (ABSA)
+            \item Große Deep Learning Modelle
+        \end{itemize}
+    \end{itemize}
 
   \vspace{0.5cm}
   \centering
