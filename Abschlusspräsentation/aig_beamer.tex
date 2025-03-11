@@ -58,10 +58,10 @@
       \item Entscheidung für \glqq Sentiment140\grqq
       \item Besonderheiten:
       \begin{itemize}
-          \item Emojis als Sentiment-Indikatoren
-          \item Ausbalancierte Klassen
-          \item Bessere Datenqualität
           \item Artikel: \glqq Twitter Sentiment Classification using Distant Supervision\grqq
+          \item Bessere Datenqualität
+          \item Ausbalancierte Klassen
+          \item Emoticons als Sentiment-Indikatoren         
       \end{itemize}
 
       \vspace{0.5cm}
@@ -92,7 +92,7 @@
             \textbf{Datensatz}\\
             \textit{Just got my dream job! So excited!} \\
             \vspace{0.2cm}
-            \textbf{Sentiment: \yellowhighlight{Positive}}
+            \textbf{Stimmung: \yellowhighlight{Positiv}}
             \vspace{0.5cm}
         \end{column}
     \end{columns}
@@ -109,7 +109,7 @@
   \begin{itemize}
       \item Enthält \textbf{359} manuell gesammelte Tweets
       \item \textbf{177} negative und \textbf{182} positive Tweets
-      \item Keine automatische Emoticon-Tagging-Strategie (bessere Qualität)
+      \item Keine automatische Annotation durch Emoticons
       \item Dient zur unabhängigen Evaluierung von Modellen
       \item Testdatensatz enthält zusätzlich \textit{Query-Terms}
   \end{itemize}
@@ -124,10 +124,10 @@
     \vspace{0.25cm}
     \begin{columns}
         \begin{column}{0.45\textwidth}
-            \textbf{Ohne Query Term: \darkhighlight{Negative}}
+            \textbf{Ohne Query Term: \darkhighlight{Negativ}}
         \end{column}
         \begin{column}{0.45\textwidth}
-            \textbf{Mit Query Term: \darkhighlight{Positive}}
+            \textbf{Mit Query Term: \darkhighlight{Positiv}}
         \end{column}
     \end{columns}
   \end{center}
@@ -137,44 +137,11 @@
 %=========================================================================================================================
 \section{Klassische Methoden}
 
-
-\subsection{Datenvorverarbeitung}
-
-\begin{frame}{Datenvorverarbeitung}
-  \fontsize{10pt}{12pt}\selectfont
-  \vspace{0.3cm}
-
- \begin{table}[]
-      \centering
-      \renewcommand{\arraystretch}{1.2}
-      \begin{tabular}{l|p{7.5cm}}
-          \hline
-          & \textbf{Beispiel (Sentiment140)} \\
-          \hline
-          \textbf{Original-Tweet} & \textit{\glqq @user I love this movie! :) http://example.com\grqq{}} \\
-          \hline
-          \textbf{Bereinigung} & \textit{\glqq I love this movie\grqq} \\
-          \hline
-          \textbf{Tokenisierung} & \textit{[\glqq I\grqq, \glqq love\grqq, \glqq this\grqq, \glqq movie\grqq]} \\
-          \hline
-          \textbf{Transformation} & Lemmatization: \textit{[\glqq I\grqq, \glqq love\grqq, \glqq this\grqq, \glqq movie\grqq]} \newline
-          Stemming: \textit{[\glqq I\grqq, \glqq lov\grqq, \glqq thi\grqq, \glqq movi\grqq]} \\
-          \hline
-          \textbf{Stopword-Handling} & Ohne Stoppwörter: \textit{[\glqq love\grqq, \glqq movie\grq']} \\
-          \hline
-          \textbf{Merkmalsextraktion} & TF-IDF Beispiel: \newline
-          \textit{(love: 0.75, movie: 0.85)} \\
-          \hline
-      \end{tabular}
-  \end{table}
-
-\end{frame}
-
 \begin{frame}{Klassische Methoden}
   \fontsize{10pt}{12pt}\selectfont
   \vspace{0.3cm}
 
-  \begin{columns}
+  \begin{columns}[t]
       % Linke Spalte: Methoden
       \column{0.45\textwidth}
       \textbf{Klassische Methoden}
@@ -184,7 +151,7 @@
           \item \textbf{\textit{Support Vector Machine (SVM)}}
           \item \textbf{Naiver Bayes}
           \item \textcolor{gray}{Entscheidungsbäume}
-          \item \textcolor{gray}{Random Forests}
+          \item \textcolor{gray}{Entscheidungswälder}
           \item \textcolor{gray}{K-nächste Nachbarn}
       \end{itemize}
       \vspace{0.5cm}
@@ -195,14 +162,43 @@
       \textbf{Parameter}
       \vspace{0.3cm}
       \begin{itemize}
-    \item \texttt{Vektorisierungsmethode}
-    \item \texttt{Normalisierungsstrategie}
-    \item \texttt{Strategie zur Entfernung von Stoppwörtern}
-    \item \texttt{N-Gramm-Bereich}
-    \item \texttt{Maximale Anzahl an Merkmalen}
-    \item \texttt{Anzahl der verwendeten Rechenkerne}
+    \item Vektorisierungsmethode
+    \item Normalisierungsstrategie
+    \item Strategie zur Entfernung von Stoppwörtern
+    \item N-Gramm-Bereich
+    \item Maximale Anzahl an Merkmalen
 \end{itemize}
   \end{columns}
+\end{frame}
+
+\begin{frame}{Datenvorverarbeitung}
+  \fontsize{10pt}{12pt}\selectfont
+  \vspace{0.3cm}
+
+ \begin{table}[]
+      \centering
+      \renewcommand{\arraystretch}{1.2}
+      \begin{tabular}{l|p{7.5cm}}
+          \hline
+          & \textbf{Beispiel} \\
+          \hline
+          \textbf{Original-Tweet} & \textit{\glqq @user I love this movie! http://example.com\grqq{}} \\
+          \hline
+          \textbf{Bereinigung} & \textit{\glqq I love this movie\grqq} \\
+          \hline
+          \textbf{Tokenisierung} & \textit{[\glqq I\grqq, \glqq love\grqq, \glqq this\grqq, \glqq movie\grqq]} \\
+          \hline
+          \textbf{Transformation} & Lemmatization: \textit{[\glqq I\grqq, \glqq love\grqq, \glqq this\grqq, \glqq movie\grqq]} \newline
+          Stemming: \textit{[\glqq I\grqq, \glqq lov\grqq, \glqq thi\grqq, \glqq movi\grqq]} \\
+          \hline
+          \textbf{Stoppwörter Behandlung} & Ohne Stoppwörter: \textit{[\glqq love\grqq, \glqq movie\grq']} \\
+          \hline
+          \textbf{Merkmalsextraktion} & TF-IDF Beispiel: \newline
+          \textit{(love: 0.75, movie: 0.85)} \\
+          \hline
+      \end{tabular}
+  \end{table}
+
 \end{frame}
 
 % - Text Accuracy in Genauigkeit umändern
@@ -219,14 +215,20 @@
 \section{Deep Learning}
 
 
-\subsection{Bert-Modelle}
+\subsection{BERT-Modelle}
 
 \begin{frame}{BERT}
     \begin{itemize}
         \item 2018 von Google entwickelt
-        \item Bidirectional encoder representations from transformers (BERT)
-        \item LLM
-        \item Encoder
+        \item \textit{Bidirectional encoder representations from transformers} (BERT)
+        \item Werden in zwei Phasen trainiert
+        \begin{itemize}
+          \item \textit{Pretraining} 
+          \item \textit{Finetuning}
+        \end{itemize}
+        \item Mit großem textuellen Korpus vortrainiert
+        \item 110 Mio. Parameter
+        \item Etabliert in der natürlichen Sprachverarbeitung (NLP)
     \end{itemize}
 \end{frame}
 
@@ -252,8 +254,8 @@
         \item Auf Twitter-Daten trainiertes RoBERTa-Modell
         \item \textbf{Eigenschaften}:
           \begin{itemize}
-          \item Mit 58M englischsprachigen Tweets weitertrainiert
-          \item Fine-Tuned mit einem Stimmungsanalyse-Datensatz
+          \item Mit 58 Mio. englischsprachigen Tweets weitertrainiert
+          \item \textit{Finetuning} mit einem Stimmungsanalyse-Datensatz
           \end{itemize}
         \end{itemize}
         \vfill
@@ -262,20 +264,21 @@
 \end{frame}
 
 
-\subsection{Fine-Tuning BERT-Modelle}
+\subsection{\textit{Finetuning} BERT-Modelle}
 
-\begin{frame}{Fine-Tuning BERT-Modelle}
+\begin{frame}{\textit{Finetuning} BERT-Modelle}
 \begin{itemize}
         \item \textbf{Methode}
             \begin{itemize}
+                \item \textit{Finetuning} der Modelle mit Sentiment140
                 \item Huggingface \textit{transformers} Bibliothek
             \end{itemize}
-        \item \textbf{Untersuchte Parameter:}
+        \item \textbf{Untersuchte Parameter}
         \begin{itemize}
             \item Initiale Lernrate
             \item Größe des Trainingsdatensatzes
         \end{itemize}
-        \item \textbf{Evaluationsmetrik:}
+        \item \textbf{Evaluationsmetrik}
         \begin{itemize}
             \item Genauigkeit
         \end{itemize}
@@ -294,14 +297,14 @@
 \begin{itemize}
 \item \textbf{Reasoning-Modell}
 \item Basiert auf Transformer Architektur
-\item Trainiert mit Hilfe von Reinforcement Learning
+\item Trainiert mit Hilfe von \textit{Reinforcement Learning}
 \item 671 Mrd. Parameter
 \item Destillierte Modelle verfügbar
 \end{itemize}
 \vspace{0.4cm}
 
 \begin{itemize}
-    \item \textbf{Fine-Tuning Ansatz}
+    \item \textbf{\textit{Finetuning} Ansatz}
     \begin{itemize}
         \item \textit{DeepSeek-R1-Distill-Qwen-1.5B}
         \item Aufgrund von Hardwareanforderungen verworfen
@@ -378,9 +381,9 @@
         \vspace{0.4cm}
         \item \textbf{Ausblick:}
         \begin{itemize}
-            \item Noisy-Label
-            \item Aspect-Based-Sentiment-Analysis (ABSA)
-            \item Große Deep Learning Modelle
+            \item \textit{Noisy-Label}
+            \item \textit{Aspect-Based-Sentiment-Analysis} (ABSA)
+            \item Große \textit{Deep Learning} Modelle
         \end{itemize}
     \end{itemize}
 
