@@ -113,3 +113,19 @@ mit
 Trotz der naiven Unabhängigkeitsannahme führt dieses Verfahren in der Praxis für eine Vielzahl von Anwendungsfällen zu guten Ergebnissen \cite{hand2001idiot}. Der naive Bayes-Klassifikator wird daher neben der Sentimentanalyse häufig auch für andere Textklassifikationsaufgaben eingesetzt. Eine typische Anwendung ist z.B. die Spam-Filterung \cite{sahami1998bayesian}.
 
 \subsection{Deep Learning Ansätze}
+Als Deep Learning Ansatz haben wir uns nach Literaturrecherche für das auf Twitter-Daten vortrainierte \gls{llm} RoBERTa \cite{liu2019roberta} entschieden.  RoBERTa ist ein auf Twitterdaten trainiertes und auf Stimmungsanalyse feinabgestimmtes \gls{bert}-Modell \cite{devlin2018bert}. Zusätzlich haben wir das von \gls{bert} destillierte Modell DistillBert \cite{sanh2019distilbert} als Vergleich ausgewählt.
+Beide Modelle haben wir durch \textit{Finetuning} mit dem Datensatz sentiment140 trainiert. \gls{llm} sind Modelle des maschinellen Lernens, die für \gls{nlp}-Aufgaben entworfen wurden.
+BERT-Modelle basieren auf der von Vaswani et al. beschriebenen Architektur \textit{Multi-layer Bidirectional Transformer Encoder} \cite{vaswani2017attention}, nutzen aber nur den \textit{Encoder}.
+
+Im eigenen Ansatz verwenden wir verschiedene vom Deepseek-R1-Modell destillierte Modelle \cite{deepseekai2025deepseekr1incentivizingreasoningcapability}. Diese wurden in einem ersten Ansatz versucht, mit \textit{Finetuning} zu trainieren. Das haben wir aufgrund der Anforderungen an die Hardware verworfen. In einem zweiten Ansatz haben wir die Deepseek-R1-Modelle nur ausgeführt und mit einem aspektbasierten, Zero-Shot Verfahren angefragt.
+\subsubsection{Transformer}
+Die Architektur eines \textit{Multi-layer Bidirectional Transformer Encoder} besteht aus einen \textit{Encoder}, der eine Eingabe von Symbolen $(x_1,...,x_n)$ auf eine kontinuierliche Repräsentation $(z_1,...,z_n)$ abbildet
+und einem \textit{Decoder}, der aus dieser kontinuierlichen Repräsentation eine Ausgabesequenz aus Symbolen $(y_1,...,y_n)$ generiert. Für jedem Schritt verwendet der
+\textit{Decoder} seine Ausgabe aus dem vorherigen Schritt.
+\textit{Encoder} besteht aus $N$ gleichen Schichten, die jeweils aus einem \textit{Multi-head Self-Attention}-Mechanismus und einem vollvernetzten Neuronalen Netz bestehen.
+Der \textit{Decoder} besteht aus $N$ gleichen Schichten, bestehend aus einer Schicht \textit{Multi-head Self-Attention} und einem vollvernetzten Neuronalen Netz. zusätzlich kommt eine weitere Schicht \textit{Multi-head Self-Attention},
+welche die Ausgabe des \textit{Encoders} verarbeitet.
+\subsubsection{Training von Tranformern}
+Das Training von Transformer-Modellen besteht aus zwei Schritten, dem \textit{Pre-Training} und dem \textit{Finetuning} \cite{Radford2018ImprovingLU}. Beim \textit{Pre-Training} wird das Modell unüberwacht mit großen Datenmengen trainiert. Im zweiten Schritt, dem \textit{Finetuning} wird das Modell mit überwachten Lernverfahren oder \textit{Reinforcement Learning} \cite{deepseekai2025deepseekr1incentivizingreasoningcapability} auf den Anwendungsfall fein abgestimmt.
+\subsubsection{Modelldestillation}
+Bei der Modelldestillation wird ein kleines Modell darauf trainiert, das Verhalten eines großen Modells zu replizieren \cite{sanh2019distilbert}.
