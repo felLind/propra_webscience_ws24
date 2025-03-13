@@ -9,7 +9,7 @@ Für die Experimente wurden unterschiedliche Schritte in Abhängigkeit der Verfa
 Für die klassischen Verfahren wurde neben der Genauigkeit der Klassifikation für unterschiedliche Modelle auch analysiert, inwiefern Vorverarbeitungsschritte und Token\-isier\-ungs\-verfahren die Genauigkeit der Klassifikation beeinflussen.
 Die Schritte für die Experimente sind in Unterabschnitt~\ref{sec:klassische-ansaetze} beschrieben.
 
-Für die \gls{dl} Ansätze wurden die Standard-Tokenizer der \textit{Hugging Face} Modelle verwendet, so dass keine weiteren Vorverarbeitungsschritte oder Vektorisierungsverfahren durchgeführt wurden.
+Für die \gls{dl} Ansätze, bei denen \gls{bert}-basierte Modelle verwendet wurden, wurden die Standard-Tokenizer der \textit{Hugging Face} Modelle verwendet, so dass keine weiteren Vorverarbeitungsschritte oder Vektorisierungsverfahren durchgeführt wurden.
 Die Schritte für die Experimente sind in Unterabschnitt~\ref{sec:deep-learning-ansaetze} beschrieben.
 
 \subsubsection{Klassische Ansätze}\label{sec:klassische-ansaetze}
@@ -20,15 +20,16 @@ Für die klassischen Ansätze wurden Sensitivitätsanalysen durchgeführt, um di
 \paragraph{Datenvorverarbeitung}
 Im Rahmen der Datenvorverarbeitung wurden die verwendeten Stoppwörter und Normalisierungsverfahren variiert.
 
-Nach \cite[S.27]{manning2009introduction} werden unter dem Begriff \textbf{Stoppwörter}\footnote{Beispiele sind \textit{und} sowie \textit{oder}.} Wörter verstanden, die einen geringen Informationsgehalt haben und deshalb aus den Texten entfernt werden.
+Nach \cite[S.27]{manning2009introduction} werden unter dem Begriff Stoppwörter\footnote{Beispiele sind \textit{und} sowie \textit{oder}.} Wörter verstanden, die einen geringen Informationsgehalt haben und deshalb aus Texten entfernt werden.
 Es wurden die folgenden Ausprägungen von Stoppwortlisten verwendet:
+% TODO: Abschließend entscheiden - Listen ggf. durch platzsparendere Tabelle ersetzen
 \begin{itemize}
     \item keine Stoppwortliste
     \item Standard-\gls{nltk} Stoppwortliste
     \item Eigene Stoppwortliste
 \end{itemize}
 
-\textbf{Normalisierungsverfahren} dienen dazu, die Worte oder Token in Texten zu vereinheitlichen \cite[S.28]{manning2009introduction}.
+Normalisierungsverfahren dienen dazu, die Worte oder Token in Texten zu vereinheitlichen \cite[S.28]{manning2009introduction}.
 Es wurden die folgenden Normalisierungsverfahren angewandt:
 \begin{itemize}
     \item Keine Normalisierung
@@ -42,7 +43,7 @@ Zur Vorverarbeitung der Daten wurde Algorithmus~\ref{alg:data-preparation} durch
 \paragraph{Training und Evaluation}
 Auf Basis der vorverarbeiteten Daten wurden die Modelle trainiert und evaluiert.
 
-Die Texte der vorverarbeiteten Tweets wereden mittels \textbf{Vektorisierungsverfahren} in numerische Repräsentationen bzw. Vektoren transformiert.
+Die Texte der vorverarbeiteten Tweets werden mittels Vektorisierungsverfahren in numerische Repräsentationen bzw. Vektoren transformiert.
 Aus den Vektoren der einzelnen Tweets setzt sich das Vokabular zusammen, das die Worte der Tweets enthält.
 Es wurden zwei Vektorisierungsverfahren verwendet:
 \begin{itemize}
@@ -50,27 +51,46 @@ Es wurden zwei Vektorisierungsverfahren verwendet:
     \item Hash-basierte Vektorisierung (mittels \textit{HashingVectorizer} in der \textit{Python}-Bibliothek \textit{scikit-learn})
 \end{itemize}
 Für die verwendeten Vektorisierungsverfahren wurden unterschiedliche Konfigurationen von n-Grammen verwendet.
-\textbf{n-Gramme} bezeichnen nach \cite[S.33]{jm3}, die Sequenz von $n$ aufeinanderfolgenden Wörtern.
+n-Gramme bezeichnen nach \cite[S.33]{jm3}, die Sequenz von $n$ aufeinanderfolgenden Wörtern.
 Für die Vektorisierungsverfahren wurden Instanzen mit Kombinationen von 1-Grammen, 2-Grammen und 3-Grammen\footnote{Diese n-Gramme werden auch als Uni-, Bi- und Trigramme bezeichnet.} verwendet.
-Beispielsweise hat der Satz \glqq Das ist ein Test\grqq  die folgenden n-Gramme:
-\begin{itemize}
-    \item 1-Gramme (Unigramme): \glqq Das\grqq, \glqq ist\grqq, \glqq ein\grqq, \glqq Test\grqq
-    \item 2-Gramme (Bigramme): \glqq Das ist\grqq, \glqq ist ein\grqq, \glqq ein Test\grqq
-    \item 3-Gramme (Trigramme): \glqq Das ist ein\grqq, \glqq ist ein Test\grqq
-\end{itemize}
 
 Während des Trainings werden die Modelle auf den Trainingsdaten trainiert und auf den Validierungsdaten evaluiert.
 Die Genauigkeit der Modelle wird abschließend auf den Testdaten evaluiert.
 Algorithmus~\ref{alg:model-training} beschreibt die Schritte für das Training und die Evaluation der Modelle.
 
 \subsubsection{Deep Learning Ansätze} \label{sec:deep-learning-ansaetze}
+Die BERT-Modelle \textit{twitter-roberta-base-sentiment} und \textit{distilbert-base-uncased} wurden über die \textit{Hugging Face}-Python-Bibliothek trainiert und ausgeführt.
+Für das \textit{Finetuning} wurde die Standardkonfiguration der Bibliothek mit den Parametern Datensatzgröße und Lernrate in allen Kombinationen mit den Werten aus Tabelle \ref{tab:dl-params} verwendet.
+Die Werte orientieren sich an dem Vorgehen von Barbieri et al. \cite{barbieri2020tweeteval}.
+\begin{table}
+    \begin{tabular}{ll}
+        \toprule
+        Parameter       & Werte                                                   \\
+        \midrule
+        Datensatzgröße  & 2500, 5000, 7500, 10000, 15000, 20000                   \\
+        Lernrate        & $1e^{-4}$, $5e^{-5}$ , $1e^{-5}$, $5e^{-6}$, $1e^{-6}$  \\
+        \bottomrule
+    \end{tabular}
+    \caption{Parameter für das \textit{Finetuning} der \gls{bert}-Modelle}
+    \label{tab:dl-params}
+\end{table}
+
+
+Für den eigenen Ansatz haben wir zuerst versucht, die von Deepseek-R1 destillierten Modelle durch \textit{Finetuning} auf den Datensatz zu trainieren. Dafür wurde dem Modell eine zusätzliche Schicht in Form eines KNN mit einer Eingabeschicht mit der Ausgabe des Modells als Eingabe und zwei Neuronen für die Sentimentklassifizierung als Ausgabe.
+Das war für für Deepseek-R1:1.5B noch möglich. Ab dem Modell Deepseek-R1:7B wurden die Hardware-Anforderungen zu groß. (Vgl. mit SGD Optimierung: 7Mrd. Parameter * 2 Byte je Gewicht * 2 Byte je Grandient = 26GB)
+Als weiteren Ansatz verwendeten wir die Deepseek-R1-Modelle nur in der Ausführung und ließen das Sentiment per Prompt klassifizieren. Die modelle wurden mit Ollama ausgeführt und per Pythonskript angefragt. Dabei verwendet wir den im Testdatensatz enthaltenen Query-Term um zusätzlich einen aspekt-basierten Ansatz zu testen.
+Die Modelle wurden jeweils mit und ohne dem Query-Term angefragt. Eine Anfrage mit dem Query-Term hat folgende Struktur:
+
+\textbf{Prompt:} \greyhl{Tweet sentiment? Sentiment Topic: \{Query-Term\} \\
+  Answer with positive or negative. Provide reasoning in JSON.\\
+    Tweet: \glqq\{tweet\}\grqq}
 
 \subsection{Modell-Parameter und Evaluationsmetriken}
 
-Für die ausgewählten Modelle wurden die \textbf{Standard-Parameterwerte} von \textit{scikit-learn} verwendet.
+Für die ausgewählten Modelle wurden die Standard-Parameterwerte von \textit{scikit-learn} verwendet.
 
-Nach~\cite{wankhade2022survey} werden für die Evaluierung von Klassifikationsmodellen vor allem das \textit{Genauigkeitsmaß}, die \textit{Präzision} oder das \textit{F1-Maß} verwendet.
-Weil die Klassenverteilung für die Trainingsdaten ausgeglichen ist, wurde aufgrund der einfachen Interpretierbarkeit das \textit{Genauigkeitsmaß} als \textbf{Evaluationsmetrik} verwendet.
+Nach~\cite{wankhade2022survey} werden für die Evaluierung von Klassifikationsmodellen vor allem das \textit{Genauig\-keits\-maß}, die \textit{Präzision} oder das \textit{F1-Maß} verwendet.
+Weil die Klassenverteilung für die Trainingsdaten ausgeglichen ist, wurde aufgrund der einfachen Interpretierbarkeit das \textit{Genauigkeitsmaß} als Evaluationsmetrik verwendet.
 
 \subsection{Ergebnisse}
 
@@ -149,5 +169,28 @@ Für alle Modelle steigt die Genauigkeit mit der Anzahl an berücksichtigten Mer
 
 Für alle Modelle ist die Genauigkeit höher, wenn zusätzlich Bi- und Trigramme berücksichtigt werden.
 Die Berücksichtigung von Bi- und Trigrammen führt im Mittel zu den höchsten Genauigkeiten.
-
+$1e^{-4}$, $5e^{-5}$ , $1e^{-5}$, $5e^{-6}$, $1e^{-6}$
 \subsubsection{Deep Learning Ansätze}
+\begin{table}
+    \begin{tabular}{lrrr}
+        \toprule
+        Modell      & Datensatzgröße & Lernrate  & Genauigkeit \\
+        \midrule
+        RoBERTA     & -              & -         & 0.830       \\
+        RoBERTA     & 7500           & $1e^{-6}$ & 0.922       \\
+        RoBERTA     & 2500           & $1e^{-5}$ & 0.919       \\
+        RoBERTA     & 2500           & $5e^{-6}$ & 0.919       \\
+        RoBERTA     & 5000           & $5e^{-6}$ & 0.919       \\
+        DistillBert & -              & -         & 0.490       \\
+        DistillBert & 20000          & $5e^{-6}$ & 0.849       \\
+        DistillBert & 10000          & $5e^{-5}$ & 0.846       \\
+        DistillBert & 10000          & $1e^{-5}$ & 0.846       \\
+        DistillBert & 2500           & $1e^{-5}$ & 0.844       \\
+        \bottomrule
+    \end{tabular}
+    \caption{
+        Vergleich RoBERTA und DistillBert nach Testgenauigkeit. Jeweils als Baseline und die vier besten Ergebnisse.
+    }
+    \label{tab:top-models-dl}
+\end{table}
+Die Tabelle \ref{tab:top-models-dl} zeigt ganz klar, dass die auf den Anwendungsfall angepasst Modelle bessere Ergebnisse liefern, als Basistrainierte und auf den Datensatz feinangepasste Modelle.
