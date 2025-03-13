@@ -59,7 +59,9 @@ Die Genauigkeit der Modelle wird abschließend auf den Testdaten evaluiert.
 Algorithmus~\ref{alg:model-training} beschreibt die Schritte für das Training und die Evaluation der Modelle.
 
 \subsubsection{Deep Learning Ansätze} \label{sec:deep-learning-ansaetze}
-Die BERT-Modelle \textit{twitter-roberta-base-sentiment} und \textit{distilbert-base-uncased} wurden über die \textit{Hugging Face}-Python-Bibliothek trainiert und ausgeführt. Für das \textit{Finetuning} wurde die Standardkonfiguration der Bibliothek mit den Parametern Datensatzgröße und Lernrate in allen Kombinationen mit den Werten aus Tabelle \ref{tab:dl-params} verwendet.
+Die BERT-Modelle \textit{twitter-roberta-base-sentiment} und \textit{distilbert-base-uncased} wurden über die \textit{Hugging Face}-Python-Bibliothek trainiert und ausgeführt.
+Für das \textit{Finetuning} wurde die Standardkonfiguration der Bibliothek mit den Parametern Datensatzgröße und Lernrate in allen Kombinationen mit den Werten aus Tabelle \ref{tab:dl-params} verwendet.
+Die Werte orientieren sich an dem Vorgehen von Barbieri et al. \cite{barbieri2020tweeteval}.
 \begin{table}
     \begin{tabular}{ll}
         \toprule
@@ -69,9 +71,7 @@ Die BERT-Modelle \textit{twitter-roberta-base-sentiment} und \textit{distilbert-
         Lernrate        & $1e^{-4}$, $5e^{-5}$ , $1e^{-5}$, $5e^{-6}$, $1e^{-6}$  \\
         \bottomrule
     \end{tabular}
-    \caption{
-        Parameter für das \textit{Finetuning} der \gls{bert}-Modelle
-    }
+    \caption{Parameter für das \textit{Finetuning} der \gls{bert}-Modelle}
     \label{tab:dl-params}
 \end{table}
 
