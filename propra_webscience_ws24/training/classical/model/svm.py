@@ -1,5 +1,8 @@
 from sklearn.svm import LinearSVC
-from propra_webscience_ws24.training.model.model_base import ModelBase, ModelType
+from propra_webscience_ws24.training.classical.model.model_base import (
+    ModelBase,
+    ModelType,
+)
 
 
 class SVM(ModelBase[LinearSVC]):

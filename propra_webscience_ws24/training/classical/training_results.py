@@ -5,7 +5,9 @@ This module provides functionality to store and retrieve classification results.
 import os
 import pandas as pd
 from propra_webscience_ws24 import constants
-from propra_webscience_ws24.training.training_combinations import TrainingCombination
+from propra_webscience_ws24.training.classical.training_combinations import (
+    TrainingCombination,
+)
 
 
 import dataclasses
