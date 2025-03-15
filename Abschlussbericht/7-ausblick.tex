@@ -1,0 +1,42 @@
+\section{Ausblick}
+% Was wurde nicht geschafft bzw. hat nicht funktioniert? Warum?
+% Was kann noch verbessert werden? Wie?
+
+%- keine Noisy Labels verwenden, sondern bessere Sentiments verwenden
+%- Training mit Query Terms, vgl. Aspect-based Sentiment Analysis
+%??- andere LLMs verwenden BERT Varianten
+%- Besseres DeepSeek Modell verwenden (benötigt mehr Rechnerkapazitäten)
+%??- Modells for different languages or multiple languages
+
+Bei unserem Vorgehen gibt es mehrere Punkte, an denen man ansetzen kann, um die Sentimentanalyse zu verbessern und möglicherweise bessere Ergebnisse zu erzielen.
+
+\subsection{\textit{Noisy Label}}
+Wie in Abschnitt \ref{traindata} beschrieben, führt die Art, wie der Trainingsdatensatz \textit{Sentiment140} erstellt wurde, zu \textit{Noisy Label}. Dies kann nach Fr{\'e}nay and Kab{\'a}n \cite{NoisyLabel2014} beispielsweise dazu führen, dass die Vorhersage neuer Daten zu schlechteren Ergebnissen führt, im Vergleich zu Vorhersagen eines Modells, dass auf einem Trainingsdatensatz ohne \textit{Noisy Label} trainiert wurde. Dies sieht man an den moderaten Genauigkeiten der klassischen Verfahren, die in unseren Experimenten erzielten wurden ($\approx{85} \%$). Zusätzlich kann sich dadurch die Anzahl der benötigten Trainingsdaten erhöhen und die Komplexität der Modelle kann im Zuge dessen steigen.
+
+Es gibt verschiedene Ansätze, wie man mit solchen Datensätzen umgehen kann. Es können Modelle verwendet werden, die robuster gegenüber \textit{Noisy Label} sind, indem sie ein \textit{Overfitting} vermeiden. Auch kann man versuchen mit Hilfe von zur Anomalieerkennung ähnlicher Methoden, die Beispiele des Trainingsdatensatzes zu entfernen, die vermutlich falsch klassifiziert wurden. Alternativ können sogenannte Semi-überwachte Lernverfahren angewendet werden, die sowohl Trainigsbeispiele mit Klassifizierung, als auch Trainingsbeispiele ohne Klassifizierung verwenden. 
+
+Eine grundsätzlich andere Herangehensweise wäre, zu Beginn einen Datensatz mit höherer Datenqualität zu wählen, dessen Trainingsdaten anders klassifiziert wurden, und so das Problem der \textit{Noisy Label} gänzlich zu vermeiden.
+
+
+
+\subsection{\textit{Aspect Based Sentiment Analysis}}
+Insbesondere bei den Versuchen mit \textit{DeepSeek} ist klar geworden, dass die Ergebnisse deutlich verbessert werden können, wenn zusätzlich zum Tweet an sich weitere Informationen, bzw. Merkmale verwendet werden. Bei der sogenannten \textit{Aspect Based Sentiment Analysis} werden zunächst explizite oder implizite Begriffe (\textit{aspects}) aus dem Tweet extrahiert und dann die Stimmung bzgl. dieses Begiffes klassifiziert.
+Es kann also dazu kommen, dass einem Tweet je nach Begriff unterschiedliche Polaritäten zugeordnet werden.
+
+Dies wird in einem Beispiel aus \cite{Hua_2024} deutlich. Dem Satz
+\begin{quote}
+\glqq The restaurant was expensive, but the menu was great.\grqq 
+\end{quote}
+werden der explizite Begriff \textit{menu} und der implizite Begriff \textit{price} zugeordnet. 
+Der Satz wird allerdings bzgl. \textit{menu} als positiv klassifiziert und bzgl. \textit{price} als negativ.
+
+
+\subsection{Große \textit{Deep Learning} Modelle}
+Bei dem Versuch unterschiedliche DeepSeek Modelle mit dem \textit{Sentiment140} Datensatz fein abzustimmen, ist es schnell zu Problemen gekommen, da sowohl die lokalen, als auch die von der Fernuniversität bereit gestellten Rechenkapazitäten nicht ausgereicht haben. 
+Für das kleinste Modell \textit{DeepSeek-R1-1.5B} konnte die Feinabstimmung noch durchführt werden. Alle größeren Modelle (\textit{DeepSeek-R1-8B}, \textit{DeepSeek-R1-32B}, \textit{DeepSeek-R1-70B}) haben hierfür zu viele Parameter. 
+
+Der Einsatz von mehr Rechenkapazitäten ist daher eine Möglichkeit Modelle mit höherer Parameteranzahl nutzen zu können. 
+
+Daneben können auch Methoden wie die \textit{Low Rank Adaptation} (LoRA) \cite{lora2021} verwendet werden, bei der die Parameter eines vortrainierten Transformer-Modells festgehalten werden und nur eine deutlich kleinere Anzahl an neu eingeführten Parameter zur Feinabstimmung genutzt werden.
+
+%Diese liefern im Allgemeinen auch bessere Ergebnisse.??

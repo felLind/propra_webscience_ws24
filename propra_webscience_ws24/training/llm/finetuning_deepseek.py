@@ -1,3 +1,7 @@
+"""
+Module for fine-tuning DeepSeek models on the sentiment140 dataset.
+"""
+
 import dataclasses
 import statistics
 import time
@@ -46,6 +50,16 @@ logger.info(f"cuda enabled: {torch.cuda.is_available()}")
 
 
 def map_sentiment(example, mapper):
+    """
+    Map the sentiment label of the example using the provided mapper.
+
+    Args:
+        example: The example for which to map the sentiment label.
+        mapper: A dictionary mapping the old sentiment labels to the new ones.
+
+    Returns:
+        The modified example with the mapped sentiment label.
+    """
     example["label"] = mapper[example["label"]]
     return example
 
@@ -60,6 +74,17 @@ class EvalResult:
 
 
 def create_deepseek_classifier_model(model_name, output_dim=1536, n_labels=2):
+    """
+    Create a DeepSeek classifier model with a custom classification head.
+
+    Args:
+        model_name: Name of the pre-trained model to use.
+        output_dim: Dimension of the output embeddings of the model.
+        n_labels: Number of classification labels.
+
+    Returns:
+        The model with a custom classification head.
+    """
     model = AutoModelForSequenceClassification.from_pretrained(model_name, num_labels=2)
 
     class CustomHead(nn.Module):
@@ -89,6 +114,18 @@ def create_deepseek_classifier_model(model_name, output_dim=1536, n_labels=2):
 
 
 def get_original_model_output_dim(model_name) -> int:
+    """
+    Get the original output dimension of the model.
+
+    Args:
+        model_name: Name of the model.
+
+    Returns:
+        The output dimension of the model.
+
+    Raises:
+        ValueError: If the model is not defined in the ORIGINAL_MODEL_OUTPUT_DIM map.
+    """
     try:
         return ORIGINAL_MODEL_OUTPUT_DIM[model_name]
     except KeyError:
@@ -101,6 +138,20 @@ def get_original_model_output_dim(model_name) -> int:
 def train_classifier_and_evaluate(
     model_name, dataset_size, ds_train, ds_eval, ds_test, learning_rate
 ):
+    """
+    Train the classifier model and evaluate it on the test set.
+
+    Args:
+        model_name: Name of the model to train.
+        dataset_size: Size of the training dataset.
+        ds_train: Training dataset.
+        ds_eval: Evaluation dataset.
+        ds_test: Test dataset.
+        learning_rate: Learning rate for training.
+
+    Returns:
+        The evaluation results.
+    """
     model = create_deepseek_classifier_model(
         model_name, output_dim=get_original_model_output_dim(model_name)
     )
