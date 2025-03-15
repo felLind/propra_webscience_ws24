@@ -2,7 +2,10 @@
 % Welche klassischen, Deep Learning -, und eigenen Ansätze wurde verwendet?
 % Kurze Beschreibung neuer Techniken und Ideen
 
-\subsection{Klassische Ansätze}
+In diesem Abschnitt werden die Ansätze zur Stimmungsanalyse von Tweets beschrieben, die wir verwendet haben.
+In den Unterabschnitten \ref{subsec:klassische-ansaetze} und \ref{subsec:deep-learning-ansaetze} werden die verwendeten klassischen Ansätze und \gls{dl} basierten Ansätze beschrieben.
+
+\subsection{Klassische Ansätze}\label{subsec:klassische-ansaetze}
 
 Als klassische Ansätze zur Stimmungsanalyse von Tweets wurden folgende überwachten Lernverfahren ausgewählt, weil diese besonders häufig in der Literatur zu finden sind \cite{wankhade2022survey, medhat2014sentiment, zimbra2018state}:
 
@@ -12,7 +15,9 @@ Als klassische Ansätze zur Stimmungsanalyse von Tweets wurden folgende überwac
     \item Naiver Bayes Klassifikator
 \end{itemize}
 
-\redhl{TODO: Ggf. Anmerkung ergänzen, dass zwei weitere klassische Ansätze evaluiert wurden.}
+Die Verfahren \gls{knn} und Entscheidungsbäume wurden verworfen, weil diese auf dem von uns verwendeten Datensatz schlechtere Ergebnisse erzielten und darüber hinaus längere Laufzeiten benötigten.
+
+In den folgenden Absätzen sind die drei ausgewählten klassischen Verfahren kurz beschrieben.
 
 \subsubsection{Logistische Regression}
 
@@ -25,7 +30,7 @@ Die logistische Regression ist ein Verfahren zur Klassifikation, das auf der Sig
 wodurch Werte aus dem gesamten Zahlenraum auf das Intervall $(0,1)$ abgebildet werden. Die Entscheidungsregel für einen Datenpunkt $x$ ergibt sich durch:
 
 \begin{equation*}
-    h_{\theta}(x) = \sigma(\theta \cdot x + b), \text{ wobei } \theta \in \mathbb{R}^{n}, b \in \mathbb{R}
+    h_{\theta}(x) = \sigma(\theta^T x + b), \text{ wobei } \theta \in \mathbb{R}^{n}, b \in \mathbb{R}
 \end{equation*}
 
 Ein Datenpunkt wird dabei der Klasse 1 zugeordnet, wenn $h_{\theta}(x) \geq 0.5$, ansonsten der Klasse 0:
@@ -44,21 +49,15 @@ Zur Bestimmung der Parameter $\theta$ und $b$ wird die logistische Verlustfunkti
     \min_{\theta, b} \frac{1}{m} \sum_{i=1}^{m} \left[-y_i \log h_{\theta}(x_i) - (1 - y_i) \log(1 - h_{\theta}(x_i))\right]
 \end{equation*}
 
-Dieses Optimierungsproblem ist konvex und wird mithilfe des \textit{Gradient Descent} gelöst. Dabei werden die Parameter iterativ durch:
-
-\begin{equation*}
-    \theta \leftarrow \theta - \alpha \nabla_{\theta} L
-\end{equation*}
-
-aktualisiert, wobei $\alpha > 0$ die Lernrate ist. Eine Regularisierung kann durch einen zusätzlichen Term $\lambda \lVert\theta\rVert^2$ eingeführt werden, um Überanpassung zu vermeiden.
+Dieses Optimierungsproblem ist konvex und kann mithilfe des \textit{Gradient Descent} Verfahren gelöst werden (siehe beispielsweise \cite{jm3}).
 
 \subsubsection{\textit{Support Vector Machine}}
 
-Die \gls{svm} wird oftmals zur Klassifikation verwendet.
-Die Klassifikation erfolgt dabei durch die Bestimmung einer Hyperebene, die die Daten in zwei Klassen trennt.
+Die \gls{svm} wird oftmals zur Klassifikation verwendet \cite{medhat2014sentiment, wankhade2022survey}.
+Die binäre Klassifikation erfolgt dabei durch die Bestimmung einer Hyperebene, die die Daten in zwei Klassen trennt.
 Eine Hyperebene in $\mathbb{R}^{n}$ ist definiert als die Menge aller Punkte $x\in\mathbb{R}^n$ für die gilt:
 \begin{equation*}
-    \theta \cdot x - b = 0, \text{ wobei } \theta \in \mathbb{R}^{n}, b\in\mathbb{R}
+    \theta^T x - b = 0, \text{ wobei } \theta \in \mathbb{R}^{n}, b\in\mathbb{R}
 \end{equation*}
 
 Für linear nicht separierbare Datensätze, lässt sich keine Hyperebene finden, die die Daten perfekt trennt.
@@ -77,7 +76,7 @@ Die binäre Klassifikation von Datenpunkten erfolgt dann durch die Bestimmung de
 \begin{equation*}
     clf_{\theta, b}(x) =
     \begin{cases}
-        1, & \text{wenn } \theta \cdot x - b \geq 0 \\
+        1, & \text{wenn } \theta^T x - b \geq 0 \\
         -1, & \text{sonst}
     \end{cases}
 \end{equation*}
@@ -85,7 +84,9 @@ Die binäre Klassifikation von Datenpunkten erfolgt dann durch die Bestimmung de
 \subsubsection{Naiver Bayes Klassifikator}
 Der \textit{naive Bayes-Klassifikator}, benannt nach dem englischen Mathematiker Thomas Bayes, ist ein maschinelles Lernverfahren, das aufgrund seiner Einfachheit und Effizienz häufig für Klassifikationsprobleme eingesetzt wird \cite{wankhade2022survey, medhat2014sentiment, zimbra2018state}.
 
-Das Ziel ist es, für einen \textit{Trainingsdatensatz} $D$ eine optimale \textit{Hypothese} $h$ zu finden. Das Verfahren basiert auf dem \textit{Bayes-Theorem}, welches uns ermöglicht, uns der gesuchten optimalen Wahrscheinlichkeit $P(h|D)$ anzunähern. Dabei ist $P(h|D)$ die Wahrscheinlichkeit von $h$, gegeben der Beobachtung $D$:
+Das Ziel ist es, für einen \textit{Trainingsdatensatz} $D$ eine optimale \textit{Hypothese} $h$ zu finden.
+Das Verfahren basiert auf dem \textit{Bayes-Theorem}, welches uns ermöglicht, uns der gesuchten optimalen Wahrscheinlichkeit $P(h|D)$ anzunähern.
+Dabei ist $P(h|D)$ die Wahrscheinlichkeit von $h$, gegeben der Beobachtung $D$:
 
 \begin{equation*}
     P(h|D) = \frac{P(D|h)P(h)}{P(D)}
@@ -110,22 +111,56 @@ mit
     P(x_i|c,D) = \frac{|\{(z^\prime,c)\in D| z^\prime = (z_1, \dots, z_n), z_i=x_i \}|}{|\{(z,c)\in D\}|} \quad \text{für} \: i = 1, \dots, n
 \end{equation*}
 
-Trotz der naiven Unabhängigkeitsannahme führt dieses Verfahren in der Praxis für eine Vielzahl von Anwendungsfällen zu guten Ergebnissen \cite{hand2001idiot}. Der naive Bayes-Klassifikator wird daher neben der Sentimentanalyse häufig auch für andere Textklassifikationsaufgaben eingesetzt. Eine typische Anwendung ist z.B. die Spam-Filterung \cite{sahami1998bayesian}.
+Trotz der naiven Unabhängigkeitsannahme führt dieses Verfahren in der Praxis für eine Vielzahl von Anwendungsfällen zu guten Ergebnissen \cite{hand2001idiot}.
+Der naive Bayes-Klassifikator wird daher neben der Sentimentanalyse häufig auch für andere textbasierte Klassifikationsprobleme eingesetzt.
+Eine typische Anwendung ist z.B. die Spam-Filterung \cite{sahami1998bayesian}.
 
-\subsection{Deep Learning Ansätze}
-Als Deep Learning Ansatz haben wir uns nach Literaturrecherche für das auf Twitter-Daten vortrainierte \gls{llm} RoBERTa \cite{liu2019roberta} entschieden.  RoBERTa ist ein auf Twitterdaten trainiertes und auf Stimmungsanalyse feinabgestimmtes \gls{bert}-Modell \cite{devlin2018bert}. Zusätzlich haben wir das von \gls{bert} destillierte Modell DistillBert \cite{sanh2019distilbert} als Vergleich ausgewählt.
-Beide Modelle haben wir durch \textit{Finetuning} mit dem Datensatz sentiment140 trainiert. \gls{llm} sind Modelle des maschinellen Lernens, die für \gls{nlp}-Aufgaben entworfen wurden.
-BERT-Modelle basieren auf der von Vaswani et al. beschriebenen Architektur \textit{Multi-layer Bidirectional Transformer Encoder} \cite{vaswani2017attention}, nutzen aber nur den \textit{Encoder}.
+\subsection{Deep Learning Ansätze}\label{subsec:deep-learning-ansaetze}
 
-Im eigenen Ansatz verwenden wir verschiedene vom Deepseek-R1-Modell destillierte Modelle \cite{deepseekai2025deepseekr1incentivizingreasoningcapability}. Diese wurden in einem ersten Ansatz versucht, mit \textit{Finetuning} zu trainieren. Das haben wir aufgrund der Anforderungen an die Hardware verworfen. In einem zweiten Ansatz haben wir die Deepseek-R1-Modelle nur ausgeführt und mit einem aspektbasierten, Zero-Shot Verfahren angefragt.
-\subsubsection{Transformer}
-Die Architektur eines \textit{Multi-layer Bidirectional Transformer Encoder} besteht aus einen \textit{Encoder}, der eine Eingabe von Symbolen $(x_1,...,x_n)$ auf eine kontinuierliche Repräsentation $(z_1,...,z_n)$ abbildet
-und einem \textit{Decoder}, der aus dieser kontinuierlichen Repräsentation eine Ausgabesequenz aus Symbolen $(y_1,...,y_n)$ generiert. Für jedem Schritt verwendet der
-\textit{Decoder} seine Ausgabe aus dem vorherigen Schritt.
-\textit{Encoder} besteht aus $N$ gleichen Schichten, die jeweils aus einem \textit{Multi-head Self-Attention}-Mechanismus und einem vollvernetzten Neuronalen Netz bestehen.
-Der \textit{Decoder} besteht aus $N$ gleichen Schichten, bestehend aus einer Schicht \textit{Multi-head Self-Attention} und einem vollvernetzten Neuronalen Netz. zusätzlich kommt eine weitere Schicht \textit{Multi-head Self-Attention},
-welche die Ausgabe des \textit{Encoders} verarbeitet.
-\subsubsection{Training von Tranformern}
-Das Training von Transformer-Modellen besteht aus zwei Schritten, dem \textit{Pre-Training} und dem \textit{Finetuning} \cite{Radford2018ImprovingLU}. Beim \textit{Pre-Training} wird das Modell unüberwacht mit großen Datenmengen trainiert. Im zweiten Schritt, dem \textit{Finetuning} wird das Modell mit überwachten Lernverfahren oder \textit{Reinforcement Learning} \cite{deepseekai2025deepseekr1incentivizingreasoningcapability} auf den Anwendungsfall fein abgestimmt.
-\subsubsection{Modelldestillation}
+Nach Wankhade et al. \cite{wankhade2022survey} haben in den letzten Jahren \textit{Ţransformer} basierte Modelle \gls{lstm} und \gls{cnn} Modelle in der Stimmungsanalyse abgelöst.
+Aus diesem Grund haben wir uns für die Verwendung von \textit{Transformer} basierten \gls{llm} entschieden.
+
+Es wurden \gls{bert}-basierte und \textit{DeepSeek}-basierte Modelle als Vertreter der \textit{Transformer}-Modelle ausgewählt.\\
+\gls{bert}-basierte Modelle wurden ausgewählt, da diese in der Literatur als besonders erfolgreich in der Stimmungsanalyse beschrieben werden \cite{devlin2018bert}.
+Die \gls{bert}-basierten Modelle und Ansätze sind in Unterabschnitt \ref{subsec:bert} beschrieben.\\
+Die \textit{DeepSeek}-R1-basierten Modellen wurden im Rahmen des eigenes Ansatzes aufgrund ihrer Aktualität und der allgemein guten Ergebnisse für unsere Problemstellung evaluiert.
+Die Modelle und Ansätze sind in Unterabschnitt \ref{subsec:deepseek} beschrieben.
+
+\textit{Transformer} basieren auf der von Vaswani et al. beschriebenen Architektur \textit{Multi-layer Bidirectional Transformer Encoder} \cite{vaswani2017attention}.
+
+\paragraph{\textit{Transformer}-Architektur}
+Die Architektur eines \textit{Multi-layer Bidirectional Transformer Encoder} besteht aus einen \textit{Encoder}, der eine Eingabe von Symbolen $(x_1,...,x_n)$ auf eine kontinuierliche Repräsentation $(z_1,...,z_n)$ abbildet und einem \textit{Decoder}, der aus dieser kontinuierlichen Repräsentation eine Ausgabesequenz aus Symbolen $(y_1,...,y_n)$ generiert.
+In jedem Schritt verwendet der \textit{Decoder} seine Ausgabe aus dem vorherigen Schritt.
+\textit{Encoder} besteht aus $N$ gleichen Schichten, die jeweils aus einem \textit{Multi-head Self-Attention}-Mechanismus und einem voll-vernetzten Neuronalen Netz bestehen.
+Der \textit{Decoder} besteht aus $N$ gleichen Schichten, bestehend aus einer Schicht \textit{Multi-head Self-Attention} und einem voll-vernetzten Neuronalen Netz.
+Zusätzlich kommt eine weitere Schicht \textit{Multi-head Self-Attention}, welche die Ausgabe des \textit{Encoders} verarbeitet.
+
+\paragraph{Training von \textit{Transformern}}
+
+Das Training von Transformer-Modellen besteht aus zwei Schritten, dem \textit{Pre-Training} und dem \textit{Finetuning} \cite{Radford2018ImprovingLU}.
+Beim \textit{Pre-Training} wird das Modell un-überwacht mit großen Datenmengen trainiert.
+Im zweiten Schritt, dem \textit{Finetuning} wird das Modell mit überwachten Lernverfahren oder \textit{Reinforcement Learning} \cite{devlin2018bert, deepseekai2025deepseekr1incentivizingreasoningcapability} auf den jeweiligen Anwendungsfall angepasst.
+
+
+\subsubsection{\textit{BERT}-basierte Ansätze}\label{subsec:bert}
+
+\gls{bert} ist eine \textit{Transformer}-basierte \gls{llm} Variante, die von Devlin et al. entwickelt wurde \cite{devlin2018bert}.
+Devlin et al. haben gezeigt, dass die \gls{bert}-Modelle sehr gute Ergebnisse in der Stimmungsanalyse erzielen und durch \textit{Finetuning} mit vergleichsweise wenig Daten und Trainingszeit auf spezifische Anwendungen angepasst werden kann.
+Aufbauend auf \gls{bert} wurde von Liu et al. \cite{liu2019roberta} das Modell \gls{roberta} entwickelt, das durch Optimierungen im \textit{Pre-Training} und \textit{Finetuning} für viele Aufgaben bessere Ergebnisse erzielt.
+
+Von Barbieri et al. \cite{barbieri2020tweeteval} wurde gezeigt, dass für Twitter-spezifische Klassifikationsprobleme \gls{roberta}-basierte Modelle durch \textit{Finetuning} auf Twitter-Daten bessere Ergebnisse erzielen.
+Aus diesem Grund haben wir uns für die Verwendung des von Barbieri et al. entwickelten Modells entschieden, welches bereits mittels \textit{Finetuning} an Twitter-Daten angepasst wurde.\\
+Für dieses Modell wurden zwei Varianten evaluiert: Eine Verwendung ohne Anpassung auf dem Testdatensatz und eine Anpassung mittels \textit{Finetuning} auf dem Trainingsdatensatz mit anschließender Evaluation auf dem Testdatensatz.
+
+Zum Vergleich haben wir das von \gls{bert} destillierte Modell \textit{DistillBert} \cite{sanh2019distilbert} verwendet.
 Bei der Modelldestillation wird ein kleines Modell darauf trainiert, das Verhalten eines großen Modells zu replizieren \cite{sanh2019distilbert}.
+Auf diesem Modell wurde ebenfalls ein \textit{Finetuning} auf dem Trainingsdatensatz und eine Evaluation auf dem Testdatensatz durchgeführt.
+
+
+\subsubsection{\textit{DeepSeek}-basierte Ansätze}\label{subsec:deepseek}
+
+Als eigenen Ansatz haben wir verschiedene vom \textit{DeepSeek}-R1-Modell destillierte Modelle \cite{deepseekai2025deepseekr1incentivizingreasoningcapability} verwendet.
+Diese wurden in einem ersten Ansatz versucht, mit \textit{Finetuning} auf unseren Datensatz anzupassen.
+Aufgrund der hohen Anforderungen an die Hardware und der langen Trainingszeiten haben wir uns für einen zweiten Ansatz entschieden\footnote{Das \textit{Finetuning} konnten wir lediglich für das kleinste destillierte Modell ausführen.}.\\
+In einem zweiten Ansatz haben wir die \textit{DeepSeek}-R1-Modelle mittels \textit{Ollama}\footnote{https://ollama.com/} ausgeführt und mittels Prompt-Anfragen eine Klassifizierung der Tweets durch die Modelle durchgeführt.
+Die Prompt-Anfragen wurden dabei mit und ohne Verwendung des Query-Ausdrucks des Testdatensatzes ausgeführt.
