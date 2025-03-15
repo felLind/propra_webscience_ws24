@@ -1,19 +1,6 @@
 # Copied from the .gitignore templates from GitHub (Python version):
 # https://github.com/github/gitignore/blob/main/Python.gitignore
 
-# our datasets, but not the results
-datasets/sentiment140/**
-!datasets/sentiment140/results
-!datasets/sentiment140/results/classification-results.parquet
-
-# preliminary report
-Abschlussbericht
-!Abschlussbericht/figures
-!Abschlussbericht/abschlussbericht-stimmungsanalyse-mit-twitter.tex
-!Abschlussbericht/AIGpaper.cls
-!Abschlussbericht/Makefile
-!Abschlussbericht/references.bib
-
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
