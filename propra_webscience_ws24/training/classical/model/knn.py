@@ -4,7 +4,10 @@ Module containing the implementation of a K-Nearest Neighbors model.
 
 from sklearn.neighbors import KNeighborsClassifier
 
-from propra_webscience_ws24.training.model.model_base import ModelBase, ModelType
+from propra_webscience_ws24.training.classical.model.model_base import (
+    ModelBase,
+    ModelType,
+)
 
 
 class KNN(ModelBase[KNeighborsClassifier]):

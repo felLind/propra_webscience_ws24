@@ -4,7 +4,10 @@ Module containing the implementation of a Logistic Regression model.
 
 from sklearn.linear_model import LogisticRegression
 
-from propra_webscience_ws24.training.model.model_base import ModelBase, ModelType
+from propra_webscience_ws24.training.classical.model.model_base import (
+    ModelBase,
+    ModelType,
+)
 
 
 class LogisticRegressionModel(ModelBase[LogisticRegression]):

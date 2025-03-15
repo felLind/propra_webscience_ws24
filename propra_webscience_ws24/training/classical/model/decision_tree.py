@@ -1,6 +1,9 @@
 from sklearn.tree import DecisionTreeClassifier
 
-from propra_webscience_ws24.training.model.model_base import ModelBase, ModelType
+from propra_webscience_ws24.training.classical.model.model_base import (
+    ModelBase,
+    ModelType,
+)
 
 
 class DecisionTree(ModelBase[DecisionTreeClassifier]):

@@ -16,8 +16,12 @@ from abc import ABCMeta, abstractmethod
 from typing import Generic, TypeVar
 
 from propra_webscience_ws24 import constants
-from propra_webscience_ws24.training.training_results import ClassificationResult
-from propra_webscience_ws24.training.training_combinations import TrainingCombination
+from propra_webscience_ws24.training.classical.training_results import (
+    ClassificationResult,
+)
+from propra_webscience_ws24.training.classical.training_combinations import (
+    TrainingCombination,
+)
 
 
 class ModelType(Enum):
