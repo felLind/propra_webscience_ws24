@@ -1,26 +1,22 @@
 \section{Datensätze und Problemstellung}
-% Kurze Beschreibung der Datensätze
-% Welches Problem soll mithilfe der Datensätze gelöst werden?
 
 \subsection{Datensätze}
 
-Es wurden zwei Datensätze verwendet, die in den beiden folgenden Unterabschnitten beschrieben werden.
+Es wurden die separaten Trainings- und Testdatensätze des von Go et al. \cite{go2009twitter} erstellte \textit{Sentiment140} Datensatzes verwendet.
+Die beiden Datensätze werden in den beiden folgenden Unterabschnitten beschrieben.
 
-\redhl{TODO: Lizenzinformationen hinzufügen}
-
-\subsubsection{Trainingsdatensatz}\label{traindata}
-Der verwendete Datensatz \glqq Sentiment140\grqq{} wurde von Go et al. \cite{go2009twitter} erzeugt und enthält 1.600.000 modifizierte Tweets.
+\subsubsection{Trainingsdatensatz}\label{subsec:trainingsdatensatz}
+Der verwendete Datensatz \textit{Sentiment140} enthält 1.600.000 modifizierte Tweets.
 Die Tweets wurden im Zeitraum April 2009 bis Juni 2009 erstellt.
 Jedem Tweet im Datensatz ist eine Stimmungsklasse zugeordnet, die angibt, ob der Tweet eine positive oder negative Stimmung ausdrückt.
 
-Die Tweets wurden mit Hilfe der Twitter-API gesammelt, indem nach Tweets gesucht wurde, die bestimmte Emoticons mit positiver oder negativer Bedeutung enthalten.
-% Zitierung der Tabelle anpassen - ggf. Tabelle in Appendix einfügen.
-Die von Go et al. verwendeten Emoticons sind in Tabelle 3 \cite[S. 4]{go2009twitter} aufgeführt.
+Die Tweets wurden mit Hilfe der Twitter-API gesammelt, indem nach Tweets gesucht wurde, die bestimmte Emoticons mit positiver oder negativer Bedeutung enthalten (siehe Tabelle 3 im Artikel zum Datensatz \cite[S. 4]{go2009twitter}).
 Anhand der verwendeten Emoticons der Suchanfrage wurden die Tweets in Klassen mit positiver und negativer Stimmung eingeteilt.
 Tweets, die sowohl positive als auch negative Emoticons enthalten, sind nicht im Datensatz enthalten.
 Go et al. \cite{go2009twitter} weisen darauf hin, dass die Zuordnung der Stimmungsklassen nicht fehlerfrei ist\footnote{
-    Als Beispiel wird von Go et al. \cite{go2009twitter} ein Tweet mit dem Text \glqq @BATMANNN :( i love chutney.......\grqq{} genannt, der fälschlicherweise als negativ klassifiziert wird, dessen Inhalt aber eher als positiv angesehn würde.
+    Als Beispiel wird von Go et al. \cite{go2009twitter} ein Tweet mit dem Text \glqq @BATMANNN :( i love chutney.......\grqq{} genannt, der fälschlicherweise als negativ klassifiziert wird, dessen Inhalt aber eher als positiv angesehen würde.
 } und dass die Stimmungsklassen als Noisy Labels verwendet wurden.
+Als Noisy Labels werden Labels bezeichnet, die nicht fehlerfrei sind und die Qualität der Datensätze beeinträchtigen können \cite{song2022learning}.
 Für beide Stimmungsklassen enthält der Datensatz 800.000 Einträge.
 
 Die Tweet Texte im Datensatz wurden so angepasst, dass die Emoticons die zur Einteilung verwendet wurden, entfernt wurden.
@@ -31,15 +27,14 @@ Weiterhin enthält der Datensatz keine Re-Tweets\footnote{
 
 \subsubsection{Testdatensatz}
 
-% Ergänzung um Query-Terms
-Von Go et al. \cite{go2009twitter} wurde ein Testdatensatz mit 498 Tweets erstellt, der 177 Tweets mit positiver Stimmung und 189 Tweets mit negativer Stimmung enthält.
+Von Go et al. \cite{go2009twitter} wurde ein Testdatensatz mit 498 Tweets erstellt, der 177 Tweets mit positiver Stimmung und 182 Tweets mit negativer Stimmung enthält.
 Die restlichen Tweets sind als neutral klassifiziert.
-Die Tweets wurden manuell ausgewählt und mit Sentiment-Klassen versehen.
+Die Tweets wurden über die Twitter-API durch Anfrage mit spezifischen Query-Ausdrücken ausgewählt und manuell mit Sentiment-Klassen versehen.
+Die Query-Ausdrücke sind in Tabelle 4 des Artikels von Go et al. \cite[S. 5]{go2009twitter} aufgeführt und sind im Testdatensatz enthalten.
 Die Tweets enthielten nicht in jedem Fall Emoticons.
 
 \subsection{Problemstellung}
 
-% Folgenden Satz in Abschnitt zur Einleitung einfügen
 Stimmungsanalyse befasst sich mit der automatischen Erkennung von Stimmungen und deren Polarität in Texten \cite{giachanou2016like, jianqiang2017comparison, zimbra2018state}.
 
 Die Stimmungsanalyse von Tweets ist eine spezielle Form der Stimmungsanalyse.
@@ -55,7 +50,6 @@ Agarwal et al. \cite{agarwal2011sentiment} und Zimbra et al. \cite{zimbra2018sta
 Das Ziel dieser Arbeit ist es, bestehende Methoden zur automatischen Stimmungsanalyse von Tweets anzuwenden und zu evaluieren.
 Dabei sollen sowohl klassische maschinelle Lernverfahren als auch moderne Deep-Learning-Ansätze untersucht werden.
 
-% Problemstellung ggf. um Unterschiede zwischen klassichen und deep learning Verfahren erweitern
 Die zentrale Problemstellung lautet: Wie effektiv sind verschiedene maschinelle Lernverfahren bei der Stimmungsanalyse von Tweets?
 
 Insbesondere soll untersucht werden, welche Ansätze die besten Ergebnisse in Bezug auf die Genauigkeit der Klassifikation liefern.
