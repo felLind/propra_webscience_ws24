@@ -22,10 +22,12 @@ Die Verfahren \gls{knn} und Entscheidungsbäume wurden, mit dem Wissen, dass die
 Nach Wankhade et al. \cite{wankhade2022survey} haben in den letzten Jahren \textit{Ţransformer} basierte Modelle \gls{lstm} und \gls{cnn} Modelle in der Stimmungsanalyse abgelöst.
 Aus diesem Grund haben wir uns für die Verwendung von \textit{Transformer} basierten \gls{llm} entschieden.
 
-Es wurden \gls{bert}-basierte und \textit{DeepSeek}-basierte Modelle als Vertreter der \textit{Transformer}-Modelle ausgewählt.\\
+Es wurden \gls{bert}-basierte und \textit{DeepSeek}-basierte Modelle als Vertreter der \textit{Transformer}-Modelle ausgewählt.
+
 \gls{bert}-basierte Modelle wurden ausgewählt, da diese in der Literatur als besonders erfolgreich in der Stimmungsanalyse beschrieben werden \cite{devlin2018bert}.
-Die \gls{bert}-basierten Modelle und Ansätze sind in Unterabschnitt \ref{subsec:bert} beschrieben.\\
-Die \textit{DeepSeek}-R1-basierten Modellen wurden im Rahmen des eigenes Ansatzes aufgrund ihrer Aktualität und der allgemein guten Ergebnisse für unsere Problemstellung evaluiert.
+Die \gls{bert}-basierten Modelle und Ansätze sind in Unterabschnitt \ref{subsec:bert} beschrieben.
+
+Die \textit{DeepSeek}-R1-basierten Modelle wurden im Rahmen des eigenes Ansatzes aufgrund ihrer Aktualität und der allgemein guten Ergebnisse für unsere Problemstellung evaluiert.
 Die Modelle und Ansätze sind in Unterabschnitt \ref{subsec:deepseek} beschrieben.
 
 \textit{Transformer} basieren auf der von Vaswani et al. beschriebenen Architektur \textit{Multi-layer Bidirectional Transformer Encoder} \cite{vaswani2017attention}.
@@ -33,15 +35,15 @@ Die Modelle und Ansätze sind in Unterabschnitt \ref{subsec:deepseek} beschriebe
 \paragraph{\textit{Transformer}-Architektur}
 Die Architektur eines \textit{Multi-layer Bidirectional Transformer Encoder} besteht aus einen \textit{Encoder}, der eine Eingabe von Symbolen $(x_1,...,x_n)$ auf eine kontinuierliche Repräsentation $(z_1,...,z_n)$ abbildet und einem \textit{Decoder}, der aus dieser kontinuierlichen Repräsentation eine Ausgabesequenz aus Symbolen $(y_1,...,y_n)$ generiert.
 In jedem Schritt verwendet der \textit{Decoder} seine Ausgabe aus dem vorherigen Schritt.
-\textit{Encoder} besteht aus $N$ gleichen Schichten, die jeweils aus einem \textit{Multi-head Self-Attention}-Mechanismus und einem voll-vernetzten Neuronalen Netz bestehen.
-Der \textit{Decoder} besteht aus $N$ gleichen Schichten, bestehend aus einer Schicht \textit{Multi-head Self-Attention} und einem voll-vernetzten Neuronalen Netz.
-Zusätzlich kommt eine weitere Schicht \textit{Multi-head Self-Attention}, welche die Ausgabe des \textit{Encoders} verarbeitet.
+
+Der \textit{Encoder} besteht aus $N$ gleichen Schichten, die jeweils aus einem \textit{Multi-head Self-Attention}-Mechanismus und einem voll-vernetzten Neuronalen Netz bestehen.
+Der \textit{Decoder} besteht ebenfalls aus $N$ gleichen Schichten, die sich allerdings aus einer Schicht \textit{Multi-head Self-Attention}, einem voll-vernetzten Neuronalen Netz und zusätzlich einer weiteren Schicht \textit{Multi-head Self-Attention}, welche die Ausgabe des \textit{Encoders} verarbeitet, zusammensetzt.
 
 \paragraph{Training von \textit{Transformern}}
 
-Das Training von Transformer-Modellen besteht aus zwei Schritten, dem \textit{Pre-Training} und dem \textit{Finetuning} \cite{Radford2018ImprovingLU}.
+Das Training von \textit{Transformer}-Modellen besteht aus zwei Schritten, dem \textit{Pre-Training} und dem \textit{Finetuning} \cite{Radford2018ImprovingLU}.
 Beim \textit{Pre-Training} wird das Modell un-überwacht mit großen Datenmengen trainiert.
-Im zweiten Schritt, dem \textit{Finetuning} wird das Modell mit überwachten Lernverfahren oder \textit{Reinforcement Learning} \cite{devlin2018bert, deepseekai2025deepseekr1incentivizingreasoningcapability} auf den jeweiligen Anwendungsfall angepasst.
+Im zweiten Schritt, dem \textit{Finetuning} wird das Modell mit überwachten Lernverfahren oder \textit{Reinforcement Learning} \cite{deepseekai2025deepseekr1incentivizingreasoningcapability, devlin2018bert} auf den jeweiligen Anwendungsfall angepasst.
 
 
 \subsubsection{\textit{BERT}-basierte Ansätze}\label{subsec:bert}
