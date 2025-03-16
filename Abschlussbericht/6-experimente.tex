@@ -6,50 +6,34 @@
 
 Für die Experimente wurden unterschiedliche Schritte in Abhängigkeit der Verfahren durchgeführt.
 
-Für die klassischen Verfahren wurde neben der Genauigkeit der Klassifikation für unterschiedliche Modelle auch analysiert, inwiefern Vorverarbeitungsschritte und Token\-isier\-ungs\-verfahren die Genauigkeit der Klassifikation beeinflussen.
-Die Schritte für die Experimente sind in Unterabschnitt~\ref{sec:klassische-ansaetze} beschrieben.
-
 Für die \gls{dl} Ansätze, bei denen \gls{bert}-basierte Modelle verwendet wurden, wurden die Standard-Tokenizer der \textit{Hugging Face} Modelle verwendet, so dass keine weiteren Vorverarbeitungsschritte oder Vektorisierungsverfahren durchgeführt wurden.
 Die Schritte für die Experimente sind in Unterabschnitt~\ref{sec:deep-learning-ansaetze} beschrieben.
 
 \subsubsection{Klassische Ansätze}\label{sec:klassische-ansaetze}
 
-Für die klassischen Ansätze wurden Sensitivitätsanalysen durchgeführt, um die Auswirkung unterschiedlicher Vorverarbeitungsschritte und Vektorisierungsverfahren auf die Genauigkeit zu analysieren.
-
+Für die klassischen Verfahren wurde neben der Genauigkeit der Klassifikation für unterschiedliche Modelle auch analysiert, inwiefern Vorverarbeitungsschritte und Tokeni\-sie\-rungs\-verfahren die Genauigkeit der Klassifikation beeinflussen.
 
 \paragraph{Datenvorverarbeitung}
 Im Rahmen der Datenvorverarbeitung wurden die verwendeten Stoppwörter und Normalisierungsverfahren variiert.
 
 Nach \cite[S.27]{manning2009introduction} werden unter dem Begriff Stoppwörter\footnote{Beispiele sind \textit{und} sowie \textit{oder}.} Wörter verstanden, die einen geringen Informationsgehalt haben und deshalb aus Texten entfernt werden.
-Es wurden die folgenden Ausprägungen von Stoppwortlisten verwendet:
-% TODO: Abschließend entscheiden - Listen ggf. durch platzsparendere Tabelle ersetzen
-\begin{itemize}
-    \item keine Stoppwortliste
-    \item Standard-\gls{nltk} Stoppwortliste
-    \item Eigene Stoppwortliste
-\end{itemize}
+Es wurden drei verschiedene Verfahren zur Entfernung von Stoppwörtern verwendet: Beibehaltung aller Stoppwörter, Verwendung der Standard-\gls{nltk} Stoppwortliste und Verwendung einer eigenen Stoppwortliste.
 
 Normalisierungsverfahren dienen dazu, die Worte oder Token in Texten zu vereinheitlichen \cite[S.28]{manning2009introduction}.
-Es wurden die folgenden Normalisierungsverfahren angewandt:
-\begin{itemize}
-    \item Keine Normalisierung
-    \item Lemmatisierung mit \textit{WordNet} Lemmatizer
-    \item Stemming mit \textit{Porter} Stemmer
-\end{itemize}
+Es wurden drei verschiedene Verfahren zur Normalisierung der Worte verwendet: keine Normalisierung, Lemmatisierung (mit \textit{WordNet Lemmatizer}) und Stemming (mit \textit{Porter Stemmer}).
 
 Das Training der Modelle wurde auf Basis der vorverarbeiteten Daten durchgeführt.
-Zur Vorverarbeitung der Daten wurde Algorithmus~\ref{alg:data-preparation} durchgeführt.
+Im Rahmen der Vorverarbeitung der Daten wurden die Tweets bereinigt, die einzelnen Token normalisiert und abschließend die Stoppwörter entfernt.
+In Abschnitt \ref{subsec:appendix-data-preparation} im Appendix ist der Algorithmus detaillierter beschrieben (s. Algorithmus~\ref{alg:data-preparation}) und ein Verarbeitungsbeispiel gegeben.
 
 \paragraph{Training und Evaluation}
 Auf Basis der vorverarbeiteten Daten wurden die Modelle trainiert und evaluiert.
 
 Die Texte der vorverarbeiteten Tweets werden mittels Vektorisierungsverfahren in numerische Repräsentationen bzw. Vektoren transformiert.
-Aus den Vektoren der einzelnen Tweets setzt sich das Vokabular zusammen, das die Worte der Tweets enthält.
-Es wurden zwei Vektorisierungsverfahren verwendet:
-\begin{itemize}
-    \item \gls{tfidf}-Vektorisierung (mittels \textit{TfidfVectorizer} in der \textit{Python}-Bibliothek \textit{scikit-learn})
-    \item Hash-basierte Vektorisierung (mittels \textit{HashingVectorizer} in der \textit{Python}-Bibliothek \textit{scikit-learn})
-\end{itemize}
+Es wurden zwei Vekto\-risierungs\-verfahren verwendet: die \gls{tfidf}-Vek\-to\-ri\-sie\-rung und eine \textit{Hash}-basierte Vektorisierung\footnote{Für beide Verfahren wurden die Implementierungen der \textit{scikit-learn} Bibliothek verwendet.}.
+\gls{tfidf} Vektorisierung ist ein Verfahren zur Gewichtung von Termen in Texten, das die Häufigkeit der Terme in einem Dokument und die inverse Häufigkeit von Dokumenten mit diesem Termen berücksichtigt \cite[S. 119]{manning2009introduction}.
+Die \textit{Hash}-basierte Vektorisierung ist ein Verfahren, das die Wörter in einem Dokument in numerische Werte umwandelt, indem es eine Hash-Funktion verwendet, um die Wörter in einen Vektor (mit fester Länge) zu kodieren\footnote{https://scikit-learn.org/stable/api/sklearn.feature\_extraction.html}.
+
 Für die verwendeten Vektorisierungsverfahren wurden unterschiedliche Konfigurationen von n-Grammen verwendet.
 n-Gramme bezeichnen nach \cite[S.33]{jm3}, die Sequenz von $n$ aufeinanderfolgenden Wörtern.
 Für die Vektorisierungsverfahren wurden Instanzen mit Kombinationen von 1-Grammen, 2-Grammen und 3-Grammen\footnote{Diese n-Gramme werden auch als Uni-, Bi- und Trigramme bezeichnet.} verwendet.
@@ -59,9 +43,16 @@ Die Genauigkeit der Modelle wird abschließend auf den Testdaten evaluiert.
 Algorithmus~\ref{alg:model-training} beschreibt die Schritte für das Training und die Evaluation der Modelle.
 
 \subsubsection{Deep Learning Ansätze} \label{sec:deep-learning-ansaetze}
-Die BERT-Modelle \textit{twitter-roberta-base-sentiment} und \textit{distilbert-base-uncased} wurden über die \textit{Hugging Face}-Python-Bibliothek trainiert und ausgeführt.
-Für das \textit{Finetuning} wurde die Standardkonfiguration der Bibliothek mit den Parametern Datensatzgröße und Lernrate in allen Kombinationen mit den Werten aus Tabelle \ref{tab:dl-params} verwendet.
-Die Werte orientieren sich an dem Vorgehen von Barbieri et al. \cite{barbieri2020tweeteval}.
+
+\paragraph{\textit{Finetuning} der \gls{bert}-Modelle}
+
+Die gls{bert}-basierten Modelle \textit{twitter-roberta-base-sentiment} und \textit{distilbert-base-uncased} wurden über die \textit{Transfomers} Python-Bibliothek von \textit{Hugging Face} trainiert und ausgeführt.
+Mit der Bibliothek lassen sich bereits initialisierte Modelle und passende Tokenisierungs-Funktionen laden.
+
+Für das \textit{Finetuning} wurde die Standardkonfiguration der Bibliothek verwendet.
+Variiert wurden die Datensatzgröße und die Lernrate.
+Die Datensatzgröße bezieht sich auf die Anzahl der Tweets, die für das \textit{Finetuning} verwendet wurden.
+Die Parameterkombinationen für die Lernrate und die Datensatzgröße sind in Tabelle \ref{tab:dl-params} aufgeführt und orientieren sich an dem Vorgehen von Barbieri et al. \cite{barbieri2020tweeteval}.
 \begin{table}
     \begin{tabular}{ll}
         \toprule
@@ -75,15 +66,26 @@ Die Werte orientieren sich an dem Vorgehen von Barbieri et al. \cite{barbieri202
     \label{tab:dl-params}
 \end{table}
 
+\paragraph{Verwendung der \textit{Deepseek}-Modelle}
 
-Für den eigenen Ansatz haben wir zuerst versucht, die von Deepseek-R1 destillierten Modelle durch \textit{Finetuning} auf den Datensatz zu trainieren. Dafür wurde dem Modell eine zusätzliche Schicht in Form eines KNN mit einer Eingabeschicht mit der Ausgabe des Modells als Eingabe und zwei Neuronen für die Sentimentklassifizierung als Ausgabe.
-Das war für für Deepseek-R1:1.5B noch möglich. Ab dem Modell Deepseek-R1:7B wurden die Hardware-Anforderungen zu groß. (Vgl. mit SGD Optimierung: 7Mrd. Parameter * 2 Byte je Gewicht * 2 Byte je Grandient = 26GB)
-Als weiteren Ansatz verwendeten wir die Deepseek-R1-Modelle nur in der Ausführung und ließen das Sentiment per Prompt klassifizieren. Die modelle wurden mit Ollama ausgeführt und per Pythonskript angefragt. Dabei verwendet wir den im Testdatensatz enthaltenen Query-Term um zusätzlich einen aspekt-basierten Ansatz zu testen.
-Die Modelle wurden jeweils mit und ohne dem Query-Term angefragt. Eine Anfrage mit dem Query-Term hat folgende Struktur:
+Für den eigenen Ansatz haben wir zuerst versucht, die von \textit{Deepseek}-R1 destillierten Modelle durch \textit{Finetuning} auf den Datensatz zu trainieren.
+Dafür wurde dem Modell zwei zusätzliche voll-vernetzte Schichten angefügt.
+Diese Architektur entspricht dem Aufbaue des \textit{twitter-roberta-base-sentiment} Modells für die Sentiment-Analyse.
+Die erste voll-vernetzte Schicht hatte als Ein- und Ausgabe die Dimensionen der letzten Schicht des Modells.
+Die zweite voll-vernetzte Schicht hatte als Eingabe die Ausgabe der ersten voll-vernetzten Schicht und als Ausgabe die Anzahl der Klassen.
 
-\textbf{Prompt:} \greyhl{Tweet sentiment? Sentiment Topic: \{Query-Term\} \\
-  Answer with positive or negative. Provide reasoning in JSON.\\
-    Tweet: \glqq\{tweet\}\grqq}
+Die Durchführung des \textit{Finetunings} war für das kleinste destillierte \textit{Deepseek}-R1 Modell mit 1,5 Milliarden Parametern noch möglich.
+Ab dem nächstgrößerem Modell (\textit{Deepseek-R1:7B}) wurden die Hardware-Anforderungen zu groß\footnote{Vergleich. mit \gls{sgd} Optimierung: 7Mrd. Parameter * 2 Byte je Gewicht * 2 Byte je Grandient = 26GB}.
+
+Als weiteren Ansatz verwendeten wir die Deepseek-R1-Modelle nur in der Ausführung und ließen das Sentiment per Prompt klassifizieren.
+Die Modelle wurden mit Ollama ausgeführt und per Pythonskript angefragt.
+Die Anfragen wurden mit und ohne Query-Ausdruck (siehe Abschnitt \ref{subsec:testdata}) durchgeführt.\\
+Die Anfragen mit Query-Ausdruck hatten folgende Struktur (wobie die Platzhalter $QueryTerm$ und $Tweet$ durch die entsprechenden Werte ersetzt wurden):
+\begin{quote}
+    Tweet sentiment? Sentiment Topic: $QueryTerm$\\
+    Answer with positive or negative. Provide reasoning in JSON.\\
+    Tweet: $Tweet$
+\end{quote}
 
 \subsection{Modell-Parameter und Evaluationsmetriken}
 

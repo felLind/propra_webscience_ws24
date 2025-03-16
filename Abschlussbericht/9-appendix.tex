@@ -1,11 +1,13 @@
 \section{Algorithmen}
 
-\subsection{Datenaufbereitung}
+\subsection{Datenaufbereitung}\label{subsec:appendix-data-preparation}
 
 \textit{Hinweis}: Die Datensätze enthalten weitere Daten je Tweet, wie beispielsweise die Sentiment Klasse.
 Der Umgang mit diesen Daten wurde hier aus Gründen der Übersichtlichkeit nicht aufgeführt.
 
 Für die unterschiedlichen Parameter-Ausprägungen für die Normalisierungsverfahren und Stoppwortlisten wurden separate Datensätze erstellt.
+
+\subsubsection{Datenaufbereitung - Algorithmus}
 Die Datensätze wurden gemäß des folgenden Algorithmus erzeugt.
 \begin{algorithm}
     \caption{Datenaufbereitung}
@@ -35,6 +37,22 @@ Die Datensätze wurden gemäß des folgenden Algorithmus erzeugt.
     \end{algorithmic}
     \label{alg:data-preparation}
 \end{algorithm}
+
+\subsubsection{Datenaufbereitung - Beispiel}
+
+Im folgenden ist ein Beispiel für die Datenaufbereitung eines Tweets dargestellt.
+\begin{itemize}
+    \item \textbf{Original-Tweet}: \textit{\glqq @user I love this movie! http://example.com\grqq}
+    \item \textbf{Bereinigung}: \textit{\glqq I love this movie\grqq}
+    \item \textbf{Tokenisierung}: \textit{\glqq I\grqq, \glqq love\grqq, \glqq this\grqq, \glqq movie\grqq}
+    \item \textbf{Normalisierung}:
+    \begin{itemize}
+        \item \textit{Lemmatisierung}: \textit{\glqq I\grqq, \glqq love\grqq, \glqq this\grqq, \glqq movie\grqq}
+        \item \textit{Stemming}: \textit{\glqq I\grqq, \glqq lov\grqq, \glqq thi\grqq, \glqq movi\grqq}
+    \end{itemize}
+    \item \textbf{Stoppwörter Behandlung}: Ohne Stoppwörter \glqq{}I\grqq{} und \glqq{}this\grqq{}: \textit{\glqq love\grqq, \glqq movie\grqq}
+    \item \textbf{Aufbereiteter Text}: \textit{\glqq love movie\grqq}
+\end{itemize}
 
 \subsection{Training und Evaluation der Modelle}
 
