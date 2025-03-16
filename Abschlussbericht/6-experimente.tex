@@ -6,9 +6,6 @@
 
 Für die Experimente wurden unterschiedliche Schritte in Abhängigkeit der Verfahren durchgeführt.
 
-Für die \gls{dl} Ansätze, bei denen \gls{bert}-basierte Modelle verwendet wurden, wurden die Standard-Tokenizer der \textit{Hugging Face} Modelle verwendet, so dass keine weiteren Vorverarbeitungsschritte oder Vektorisierungsverfahren durchgeführt wurden.
-Die Schritte für die Experimente sind in Unterabschnitt~\ref{sec:deep-learning-ansaetze} beschrieben.
-
 \subsubsection{Klassische Ansätze}\label{sec:klassische-ansaetze}
 
 Für die klassischen Verfahren wurde neben der Genauigkeit der Klassifikation für unterschiedliche Modelle auch analysiert, inwiefern Vorverarbeitungsschritte und Tokeni\-sie\-rungs\-verfahren die Genauigkeit der Klassifikation beeinflussen.
@@ -44,6 +41,8 @@ Algorithmus~\ref{alg:model-training} beschreibt die Schritte für das Training u
 
 \subsubsection{Deep Learning Ansätze} \label{sec:deep-learning-ansaetze}
 
+Für die \gls{dl} Ansätze, bei denen \gls{bert}-basierte Modelle verwendet wurden, wurden die Standard-Tokenizer der \textit{Hugging Face} Modelle verwendet, so dass keine weiteren Vorverarbeitungsschritte oder Vektorisierungsverfahren durchgeführt wurden.
+
 \paragraph{\textit{Finetuning} der \gls{bert}-Modelle}
 
 Die \gls{bert}-basierten Modelle \textit{twitter-roberta\hyp{}base\hyp{}sentiment} und \textit{distilbert-base-uncased} wurden über die \textit{Transfomers} Python-Bibliothek von \textit{Hugging Face} trainiert und ausgeführt.
@@ -53,7 +52,7 @@ Für das \textit{Finetuning} wurde die Standardkonfiguration der Bibliothek verw
 Variiert wurden die Datensatzgröße und die Lernrate.
 Die Datensatzgröße bezieht sich auf die Anzahl der Tweets, die für das \textit{Finetuning} verwendet wurden.
 Die Parameterkombinationen für die Lernrate und die Datensatzgröße sind in Tabelle \ref{tab:dl-params} aufgeführt und orientieren sich an dem Vorgehen von Barbieri et al. \cite{barbieri2020tweeteval}.
-\begin{table}
+\begin{table}[H]
     \begin{tabular}{ll}
         \toprule
         Parameter       & Werte                                                   \\
