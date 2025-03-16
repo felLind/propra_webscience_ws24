@@ -39,7 +39,7 @@ Die Architektur eines \textit{Multi-layer Bidirectional Transformer Encoder} bes
 In jedem Schritt verwendet der \textit{Decoder} seine Ausgabe aus dem vorherigen Schritt.
 
 Der \textit{Encoder} besteht aus $N$ gleichen Schichten, die jeweils aus einem \textit{Multi-head Self-Attention}-Mechanismus und einem voll-vernetzten Neuronalen Netz bestehen.
-Der \textit{Decoder} besteht ebenfalls aus $N$ gleichen Schichten, die sich allerdings aus einer Schicht \textit{Multi-head Self-Attention}, einem voll-vernetzten Neuronalen Netz und zusätzlich einer weiteren Schicht \textit{Multi-head Self-Attention}, welche die Ausgabe des \textit{Encoders} verarbeitet, zusammensetzt.
+Der \textit{Decoder} besteht ebenfalls aus $N$ gleichen Schichten, die sich zusammensatzen aus einer Schicht \textit{Multi-head Self-Attention}, einem voll-vernetzten Neuronalen Netz und zusätzlich einer weiteren Schicht \textit{Multi-head Self-Attention}, welche die Ausgabe des \textit{Encoders} verarbeitet.
 
 \paragraph{Training von \textit{Transformern}}
 
@@ -51,12 +51,13 @@ Im zweiten Schritt, dem \textit{Finetuning} wird das Modell mit überwachten Ler
 \subsubsection{\textit{BERT}-basierte Ansätze}\label{subsec:bert}
 
 \gls{bert} ist eine \textit{Transformer}-basierte \gls{llm} Variante, die von Devlin et al. entwickelt wurde \cite{devlin2018bert}.
-Devlin et al. haben gezeigt, dass die \gls{bert}-Modelle sehr gute Ergebnisse in der Stimmungsanalyse erzielen und durch \textit{Finetuning} mit vergleichsweise wenig Daten und Trainingszeit auf spezifische Anwendungen angepasst werden kann.
+Devlin et al. haben gezeigt, dass die \gls{bert}-Modelle sehr gute Ergebnisse in der Stimmungsanalyse erzielen und durch \textit{Finetuning} mit vergleichsweise wenig Daten und Trainingszeit auf spezifische Anwendungen angepasst werden können.
 Aufbauend auf \gls{bert} wurde von Liu et al. \cite{liu2019roberta} das Modell \gls{roberta} entwickelt, das durch Optimierungen im \textit{Pre-Training} und \textit{Finetuning} für viele Aufgaben bessere Ergebnisse erzielt.
 
 Von Barbieri et al. \cite{barbieri2020tweeteval} wurde gezeigt, dass für Twitter-spezifische Klassifikationsprobleme \gls{roberta}-basierte Modelle durch \textit{Finetuning} auf Twitter-Daten bessere Ergebnisse erzielen.
-Aus diesem Grund haben wir uns für die Verwendung des von Barbieri et al. entwickelten Modells entschieden, welches bereits mittels \textit{Finetuning} an Twitter-Daten angepasst wurde.\\
-Für dieses Modell wurden zwei Varianten evaluiert: Eine Verwendung ohne Anpassung auf dem Testdatensatz und eine Anpassung mittels \textit{Finetuning} auf dem Trainingsdatensatz mit anschließender Evaluation auf dem Testdatensatz.
+Aus diesem Grund haben wir uns für die Verwendung des von Barbieri et al. entwickelten Modells entschieden, welches bereits mittels \textit{Finetuning} an Twitter-Daten angepasst wurde.
+
+Das Modell wurde zum einen ohne weitere Anpassungen an dem Testdatensatz evaluiert und zum anderen nach einer Anpassung mittels \textit{Finetuning} an den Trainingsdatensatz ebenfalls an dem Testdatensatz ausgewertet.
 
 Zum Vergleich haben wir das von \gls{bert} destillierte Modell \textit{DistillBert} \cite{sanh2019distilbert} verwendet.
 Bei der Modelldestillation wird ein kleines Modell darauf trainiert, das Verhalten eines großen Modells zu replizieren \cite{sanh2019distilbert}.
@@ -66,7 +67,8 @@ Auf diesem Modell wurde ebenfalls ein \textit{Finetuning} auf dem Trainingsdaten
 \subsubsection{\textit{DeepSeek}-basierte Ansätze}\label{subsec:deepseek}
 
 Als eigenen Ansatz haben wir verschiedene vom \textit{DeepSeek}-R1-Modell destillierte Modelle \cite{deepseekai2025deepseekr1incentivizingreasoningcapability} verwendet.
-Diese wurden in einem ersten Ansatz versucht, mit \textit{Finetuning} auf unseren Datensatz anzupassen.
-Aufgrund der hohen Anforderungen an die Hardware und der langen Trainingszeiten haben wir uns für einen zweiten Ansatz entschieden\footnote{Das \textit{Finetuning} konnten wir lediglich für das kleinste destillierte Modell ausführen.}.\\
+Es wurde versucht diese in einem ersten Ansatz mit \textit{Finetuning} auf unseren Datensatz anzupassen.
+Aufgrund der hohen Anforderungen an die Hardware und der langen Trainingszeiten haben wir uns für einen anderen Ansatz entschieden\footnote{Das \textit{Finetuning} konnten wir lediglich für das kleinste destillierte Modell ausführen.}.
+
 In einem zweiten Ansatz haben wir die \textit{DeepSeek}-R1-Modelle mittels \textit{Ollama}\footnote{https://ollama.com/} ausgeführt und mittels Prompt-Anfragen eine Klassifizierung der Tweets durch die Modelle durchgeführt.
-Die Prompt-Anfragen wurden dabei mit und ohne Verwendung des Query-Ausdrucks des Testdatensatzes ausgeführt.
+Die Prompt-Anfragen wurden dabei mit und ohne Verwendung des \textit{Query}-Ausdrucks des Testdatensatzes ausgeführt.
