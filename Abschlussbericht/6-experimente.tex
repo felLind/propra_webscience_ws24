@@ -17,7 +17,7 @@ Für die klassischen Verfahren wurde neben der Genauigkeit der Klassifikation f�
 Im Rahmen der Datenvorverarbeitung wurden die verwendeten Stoppwörter und Normalisierungsverfahren variiert.
 
 Nach \cite[S.27]{manning2009introduction} werden unter dem Begriff Stoppwörter\footnote{Beispiele sind \textit{und} sowie \textit{oder}.} Wörter verstanden, die einen geringen Informationsgehalt haben und deshalb aus Texten entfernt werden.
-Es wurden drei verschiedene Verfahren zur Entfernung von Stoppwörtern verwendet: Beibehaltung aller Stoppwörter, Verwendung der Standard-\gls{nltk} Stoppwortliste und Verwendung einer eigenen Stoppwortliste.
+Es wurden drei verschiedene Verfahren zur Behandlung von Stoppwörtern verwendet: Beibehaltung aller Stoppwörter, Verwendung der Standard-\gls{nltk} Stoppwortliste und Verwendung einer eigenen Stoppwortliste zur Entfernung spezifischer Stoppwörter.
 
 Normalisierungsverfahren dienen dazu, die Worte oder Token in Texten zu vereinheitlichen \cite[S.28]{manning2009introduction}.
 Es wurden drei verschiedene Verfahren zur Normalisierung der Worte verwendet: keine Normalisierung, Lemmatisierung (mit \textit{WordNet Lemmatizer}) und Stemming (mit \textit{Porter Stemmer}).
@@ -46,7 +46,7 @@ Algorithmus~\ref{alg:model-training} beschreibt die Schritte für das Training u
 
 \paragraph{\textit{Finetuning} der \gls{bert}-Modelle}
 
-Die gls{bert}-basierten Modelle \textit{twitter-roberta-base-sentiment} und \textit{distilbert-base-uncased} wurden über die \textit{Transfomers} Python-Bibliothek von \textit{Hugging Face} trainiert und ausgeführt.
+Die \gls{bert}-basierten Modelle \textit{twitter-roberta-base-sentiment} und \textit{distilbert-base-uncased} wurden über die \textit{Transfomers} Python-Bibliothek von \textit{Hugging Face} trainiert und ausgeführt.
 Mit der Bibliothek lassen sich bereits initialisierte Modelle und passende Tokenisierungs-Funktionen laden.
 
 Für das \textit{Finetuning} wurde die Standardkonfiguration der Bibliothek verwendet.
@@ -80,7 +80,7 @@ Ab dem nächstgrößerem Modell (\textit{Deepseek-R1:7B}) wurden die Hardware-An
 Als weiteren Ansatz verwendeten wir die Deepseek-R1-Modelle nur in der Ausführung und ließen das Sentiment per Prompt klassifizieren.
 Die Modelle wurden mit Ollama ausgeführt und per Pythonskript angefragt.
 Die Anfragen wurden mit und ohne Query-Ausdruck (siehe Abschnitt \ref{subsec:testdata}) durchgeführt.\\
-Die Anfragen mit Query-Ausdruck hatten folgende Struktur (wobie die Platzhalter $QueryTerm$ und $Tweet$ durch die entsprechenden Werte ersetzt wurden):
+Die Anfragen mit Query-Ausdruck hatten folgende Struktur (wobie die Platzhalter $Query\-Term$ und $Tweet$ durch die entsprechenden Werte ersetzt wurden):
 \begin{quote}
     Tweet sentiment? Sentiment Topic: $QueryTerm$\\
     Answer with positive or negative. Provide reasoning in JSON.\\
@@ -160,7 +160,7 @@ Die Naive Bayes Modelle erzielen im Mittel die niedrigsten Genauigkeiten, wobei 
 \paragraph{Sensitivität Umgang mit Stoppwörtern}
 
 Über alle Parameter-Kombinationen ist die Genauigkeit im Mittel für die Datensätze mit Entfernung der Stoppwörter höher als für die Modelle ohne Entfernung der Stoppwörter.
-Weiterhin ist die Genauigkeit mit den Datensätzes, bei denen die Stoppwörter entfernt wurden, die in der eigens definierten Stoppwortliste enthalten sind, höher als bei Verwendung der \gls{nltk} Stoppwortliste.
+Weiterhin ist die Genauigkeit mit den Datensätzen, bei denen die Stoppwörter entfernt wurden, die in der eigens definierten Stoppwortliste enthalten sind, höher als bei Verwendung der \gls{nltk} Stoppwortliste.
 
 \paragraph{Sensitivität Normalisierungsverfahren}
 
@@ -174,7 +174,6 @@ Für alle Modelle steigt die Genauigkeit mit der Anzahl an berücksichtigten Mer
 
 Für alle Modelle ist die Genauigkeit höher, wenn zusätzlich Bi- und Trigramme berücksichtigt werden.
 Die Berücksichtigung von Bi- und Trigrammen führt im Mittel zu den höchsten Genauigkeiten.
-$1e^{-4}$, $5e^{-5}$ , $1e^{-5}$, $5e^{-6}$, $1e^{-6}$
 \subsubsection{Deep Learning Ansätze}
 \begin{table}
     \begin{tabular}{lrrr}
