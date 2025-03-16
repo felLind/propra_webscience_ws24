@@ -10,18 +10,18 @@ Der verwendete Datensatz \textit{Sentiment140} enthält 1.600.000 modifizierte T
 Die Tweets wurden im Zeitraum April 2009 bis Juni 2009 erstellt.
 Jedem Tweet ist eine binäre Stimmungsklasse (positiv/negativ) zugeordnet.
 
-Die Tweets wurden mit Hilfe der Twitter-API gesammelt, indem nach Tweets gesucht wurde, die bestimmte Emoticons mit positiver oder negativer Bedeutung enthalten (siehe Tabelle 3 im Artikel zum Datensatz \cite[S. 4]{go2009twitter}).
+Die Tweets wurden mithilfe der Twitter-API gesammelt, indem nach Tweets gesucht wurde, die bestimmte Emoticons mit positiver oder negativer Bedeutung enthalten (siehe Tabelle 3 im Artikel zum Datensatz \cite[S. 4]{go2009twitter}).
 Anhand der verwendeten Emoticons der Suchanfrage wurden die Tweets in Klassen mit positiver und negativer Stimmung eingeteilt.
 Tweets, die sowohl positive als auch negative Emoticons enthalten, sind nicht im Datensatz enthalten.
 Go et al. \cite{go2009twitter} weisen darauf hin, dass die Zuordnung der Stimmungsklassen nicht fehlerfrei ist\footnote{
     Als Beispiel wird von Go et al. \cite{go2009twitter} ein Tweet mit dem Text \glqq @BATMANNN :( i love chutney.......\grqq{} genannt, der fälschlicherweise als negativ klassifiziert wird, dessen Inhalt aber eher als positiv angesehen würde.
 } und dass die Stimmungsklassen als Noisy Labels verwendet wurden.
 Als Noisy Labels werden Labels bezeichnet, die nicht fehlerfrei sind und die Qualität der Datensätze beeinträchtigen können \cite{song2022learning}.
-Für beide Stimmungsklassen enthält der Datensatz 800.000 Einträge.
+Für beide Stimmungsklassen enthält der Datensatz jeweils 800.000 Einträge.
 
 Die Tweet Texte im Datensatz wurden so angepasst, dass die Emoticons die zur Einteilung verwendet wurden, entfernt wurden.
 Weiterhin enthält der Datensatz keine Retweets\footnote{
-    Zum Zeitpunkt der Datenerstellung gab es keine automatisierte Möglichkeit Tweets zu teilen.
+    Zum Zeitpunkt der Datenerstellung gab es keine automatisierte Möglichkeit, Tweets zu teilen.
     Um Tweets zu teilen wurde deshalb dem Tweet Text die Kennzeichnung \textit{RT} und der Benutzername des ursprünglichen Autors vorangestellt.
 } und keine Duplikate.
 
