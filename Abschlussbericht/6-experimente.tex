@@ -89,10 +89,13 @@ Die Anfragen mit Query-Ausdruck hatten folgende Struktur (wobie die Platzhalter 
 
 \subsection{Modell-Parameter und Evaluationsmetriken}
 
-Für die ausgewählten Modelle wurden die Standard-Parameterwerte von \textit{scikit-learn} verwendet.
+Für die ausgewählten klassischen Modelle wurden die Standard-Parameterwerte von \textit{scikit-learn} verwendet.
+Für die \gls{bert}-basierten Modelle und die \textit{Deepseek}-Modelle wurden die veröffentlichten Modelle verwendet bzw. auf diesen im Rahmen des \textit{Finetunings} aufgesetzt.
 
 Nach~\cite{wankhade2022survey} werden für die Evaluierung von Klassifikationsmodellen vor allem das \textit{Genauig\-keits\-maß}, die \textit{Präzision} oder das \textit{F1-Maß} verwendet.
-Weil die Klassenverteilung für die Trainingsdaten ausgeglichen ist, wurde aufgrund der einfachen Interpretierbarkeit das \textit{Genauigkeitsmaß} als Evaluationsmetrik verwendet.
+Die Klassenverteilung für die positive und negative Klasse der Trainingsdaten ist ausgeglichen und die Verteilung der Testdaten ist ebenfalls relativ ausgeglichen (5 Tweets mehr für die positive Klasse).
+Weil die Klassenverteilung für die Trainingsdaten ausgeglichen und für den Testdatensatz lediglich ein Unterschied von 4 Tweets zwischen der pos
+Aufgrund der einfachen Interpretierbarkeit wurde deshalb das \textit{Genauigkeitsmaß} als Evaluationsmetrik verwendet.
 
 \subsection{Ergebnisse}
 
