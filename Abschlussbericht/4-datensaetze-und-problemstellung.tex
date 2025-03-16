@@ -15,8 +15,8 @@ Anhand der verwendeten Emoticons der Suchanfrage wurden die Tweets in Klassen mi
 Tweets, die sowohl positive als auch negative Emoticons enthalten, sind nicht im Datensatz enthalten.
 Go et al. \cite{go2009twitter} weisen darauf hin, dass die Zuordnung der Stimmungsklassen nicht fehlerfrei ist\footnote{
     Als Beispiel wird von Go et al. \cite{go2009twitter} ein Tweet mit dem Text \glqq @BATMANNN :( i love chutney.......\grqq{} genannt, der fälschlicherweise als negativ klassifiziert wird, dessen Inhalt aber eher als positiv angesehen würde.
-} und dass die Stimmungsklassen als Noisy Labels verwendet wurden.
-Als Noisy Labels werden Labels bezeichnet, die nicht fehlerfrei sind und die Qualität der Datensätze beeinträchtigen können \cite{song2022learning}.
+}, also sogenannte \textit{Noisy Labels} sind.
+Als \textit{Noisy Labels} werden Klassenzuordnungen bezeichnet, die nicht fehlerfrei sind und die Qualität eines Datensatzes beeinträchtigen können \cite{song2022learning}.
 Für beide Stimmungsklassen enthält der Datensatz 800.000 Einträge.
 
 Die Tweet Texte im Datensatz wurden so angepasst, dass die Emoticons die zur Einteilung verwendet wurden, entfernt wurden.
@@ -28,19 +28,21 @@ Weiterhin enthält der Datensatz keine Retweets\footnote{
 \subsubsection{Testdatensatz}
 
 Von Go et al. \cite{go2009twitter} wurde ein Testdatensatz mit 498 Tweets erstellt, der 177 Tweets mit positiver Stimmung und 182 Tweets mit negativer Stimmung enthält.
-Die restlichen Tweets sind als neutral klassifiziert.
-Die Tweets wurden über die Twitter-API durch Anfrage mit spezifischen Query-Ausdrücken ausgewählt und manuell mit Sentiment-Klassen versehen.
-Die Query-Ausdrücke sind in Tabelle 4 des Artikels von Go et al. \cite[S. 5]{go2009twitter} aufgeführt und sind im Testdatensatz enthalten.
+Die restlichen Tweets sind als neutral klassifiziert und wurden bei der Evaluierung der Modelle nicht berücksichtigt.
+Die Tweets wurden über die Twitter-API durch Anfragen mit spezifischen \textit{Query}-Ausdrücken ausgewählt und manuell mit Sentimentklassen versehen.
+Die \textit{Query}-Ausdrücke sind in Tabelle 4 des Artikels von Go et al. \cite[S. 5]{go2009twitter} aufgeführt und sind im Testdatensatz enthalten.
 Die Tweets enthielten nicht in jedem Fall Emoticons.
 
 \subsection{Problemstellung}
 
-Stimmungsanalyse befasst sich mit der automatischen Erkennung von Stimmungen und deren Polarität in Texten \cite{giachanou2016like, jianqiang2017comparison, zimbra2018state}.
+%Stimmungsanalyse befasst sich mit der automatischen Erkennung von Stimmungen und deren Polarität in Texten \cite{giachanou2016like, jianqiang2017comparison, zimbra2018state}.
 
-Die Stimmungsanalyse von Tweets ist eine spezielle Form der Stimmungsanalyse.
-Nach Zimbra et al. \cite{zimbra2018state} wird im Rahmen der Stimmungsanalyse für Twitter häufig versucht die Tweets in zwei oder mehr Klassen einzuteilen (wie in den ausgewählten Trainings- und Testdatensätzen).
+%Die Stimmungsanalyse von Tweets ist eine spezielle Form der Stimmungsanalyse.
+%Nach Zimbra et al. \cite{zimbra2018state} wird im Rahmen der Stimmungsanalyse für Twitter häufig versucht die Tweets in zwei oder mehr Klassen einzuteilen (wie in den ausgewählten Trainings- und Testdatensätzen).
 
-Die Analyse der Stimmung von Tweets wird als besonders herausfordernd angesehen \cite{agarwal2011sentiment, giachanou2016like, zimbra2018state}.
+Im Rahmen der Stimmungsanalyse für Twitter wird versucht die Tweets in zwei oder mehr Klassen einzuteilen \cite{zimbra2018state}.
+
+Die Analyse der Stimmung von Tweets wird allerdings als besonders herausfordernd angesehen \cite{agarwal2011sentiment, giachanou2016like, zimbra2018state}.
 Giachanou und Crestani \cite{giachanou2016like} nennen neben der Längenbeschränkung von Tweets auf 140 Zeichen\footnote{
     Seit November 2017 sind 280 Unicode-Zeichen pro Tweet erlaubt.
 } insbesondere die informelle Art von Tweets als Herausforderung in Bezug auf Stimmungsanalysen.
