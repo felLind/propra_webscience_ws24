@@ -1,12 +1,10 @@
 \section{Experimente}
-% Wie ist der Experimentaufbau, welche Evaluationsmetriken betrachten Sie?
-% Beschreibung und Interpretation der Ergebnisse
 
 \subsection{Experimentaufbau}
 
 Für die Experimente wurden unterschiedliche Schritte in Abhängigkeit der Verfahren durchgeführt.
 
-\subsubsection{Klassische Ansätze}\label{subsubsec:klassische-ansaetze}
+\subsubsection{Klassische Ansätze}\label{subsubsec:experimente-klassische-ansaetze}
 
 Für die klassischen Verfahren wurde neben der Genauigkeit der Klassifikation für unterschiedliche Modelle auch analysiert, inwiefern Vorverarbeitungsschritte und Tokeni\-sie\-rungs\-verfahren die Genauigkeit der Klassifikation beeinflussen.
 
@@ -39,14 +37,13 @@ Während des Trainings werden die Modelle auf den Trainingsdaten trainiert und a
 Die Genauigkeit der Modelle wird abschließend auf den Testdaten evaluiert.
 Algorithmus~\ref{alg:model-training} beschreibt die Schritte für das Training und die Evaluation der Modelle.
 
-\subsubsection{Deep Learning Ansätze} \label{subsubsec:deep-learning-ansaetze}
+\subsubsection{Deep Learning Ansätze} \label{subsubsec:experimente-deep-learning-ansaetze}
 
 Für die \gls{dl} Ansätze, bei denen \gls{bert}-basierte Modelle verwendet wurden, wurden die Standard-Tokenizer der \textit{Hugging Face} Modelle verwendet, so dass keine weiteren Vorverarbeitungsschritte oder Vektorisierungsverfahren durchgeführt wurden.
 
 \paragraph{\textit{Finetuning} der \gls{bert}-Modelle}
 
 Die \gls{bert}-basierten Modelle \textit{twitter-roberta\hyp{}base\hyp{}sentiment} und \textit{distilbert-base-uncased} wurden über die \textit{Transfomers} Python-Bibliothek von \textit{Hugging Face} zunächst mit Hilfe des Trainingsdatensatzes trainiert und ausgeführt.
-%Mit der Bibliothek lassen sich bereits initialisierte Modelle und passende Tokenisierungs-Funktionen laden.
 
 Für das \textit{Finetuning} wurde die Standardkonfiguration der Bibliothek verwendet.
 Variiert wurden die Datensatzgröße, also die Anzahl der Tweets, die für das \textit{Finetuning} verwendet wurden, und die Lernrate.
@@ -83,26 +80,25 @@ Die Anfragen wurden mit und ohne \textit{Query}-Ausdruck (siehe Abschnitt \ref{s
 
 Die Anfragen mit Query-Ausdruck hatten folgende Struktur (wobei die Platzhalter $Query\-Term$ und $Tweet$ durch die entsprechenden Werte ersetzt wurden):
 \begin{quote}
-    Tweet sentiment? Sentiment Topic: $Query-Term$\\
+    Tweet sentiment? Sentiment Topic: $QueryTerm$\\
     Answer with positive or negative. Provide reasoning in JSON.\\
     Tweet: $Tweet$
 \end{quote}
 
-\subsection{Modell-Parameter und Evaluationsmetriken}
+\subsection{Modell-Parameter und Evaluationsmetriken}\label{subsec:modell-parameter-und-evaluationsmetriken}
 
 Für die ausgewählten klassischen Modelle wurden die Standard-Parameterwerte von \textit{scikit-learn} verwendet.
 Für die \gls{bert}-basierten Modelle und die \textit{DeepSeek}-Modelle wurden die veröffentlichten Modelle verwendet bzw. auf diesen im Rahmen des \textit{Finetunings} aufgesetzt.
 
 Nach~\cite{wankhade2022survey} werden für die Evaluierung von Klassifikationsmodellen vor allem das \textit{Genauig\-keits\-maß}, die \textit{Präzision} oder das \textit{F1-Maß} verwendet.
 Die Klassenverteilung für die positive und negative Klasse der Trainingsdaten ist ausgeglichen und die Verteilung der Testdaten ist ebenfalls relativ ausgeglichen.
-%Weil die Klassenverteilung für die Trainingsdaten ausgeglichen und für den Testdatensatz lediglich ein Unterschied von 4 Tweets zwischen der pos
 Aufgrund der einfachen Interpretierbarkeit wurde deshalb das \textit{Genauigkeitsmaß} als Evaluationsmetrik verwendet.
 
 \subsection{Ergebnisse}
 
 Eine Übersicht über die maximalen Genauigkeiten je Modell und Ansatz ist im Anhang in Diagramm~\ref{fig:results} dargestellt.
 
-\subsubsection{Klassische Ansätze}
+\subsubsection{Klassische Ansätze}\label{subsubsec:ergebnisse-klassische-ansaetze}
 
 \begin{table}
     \center
@@ -123,8 +119,7 @@ Eine Übersicht über die maximalen Genauigkeiten je Modell und Ansatz ist im An
         \bottomrule
     \end{tabular}
     \caption{
-        Top 10 Modelle nach Testgenauigkeit angeordnet(Mittelwerte von drei Ausführungen).
-        Die Modelle \textit{LR}, \textit{SVM} und \textit{NB} bezeichnen die Modelle logistische Regression, \textit{Support Vector Machine} und Naiver Bayes Klassifikator.
+        Top 10 Modelle nach Testgenauigkeit angeordnet (Mittelwerte von drei Ausführungen).
         Die Bezeichner $(1, n)$ in der Spalte \textit{n-Gramme} geben an, dass n-Gramme mit $n\in\lbrace1,\cdots,3\rbrace$ verwendet wurden.
     }
     \label{tab:top-10-models}
@@ -134,10 +129,10 @@ In Tabelle~\ref{tab:top-10-models} sind die Top 10 Modelle nach Testgenauigkeit 
 Die maximal erzielte Genauigkeit beträgt $0,859$.
 
 \paragraph{Sensitivität Modell}
-In Tabelle~\ref{tab:stats-per-model} sind die Statistiken der Testgenauigkeit für die Modelle \textit{LinearSVC}, \textit{LogisticRegression} und \textit{NaiveBayes} über alle Parameter-Kombinationen aufgeführt.
+In Tabelle~\ref{tab:stats-per-model} sind die Statistiken der Testgenauigkeit für die Modelle \gls{svm}, \gls{lr} und \gls{nb} über alle Parameter-Kombinationen aufgeführt.
 
 Die logistischen Regressions-Modelle erzielen im Mittel die höchsten Genauigkeiten über alle Parameter-Kombinationen.
-Weiterhin ist die Standardabweichung der Genauigkeiten für die logistische Regression mit $0,022$ am niedrigsten.
+Weiterhin ist die Standardabweichung der Genauigkeiten für die \gls{lr} mit $0,022$ am niedrigsten.
 
 Modelle auf Basis der \gls{svm} erzielen im Mittel die zweithöchsten Genauigkeiten, wobei Mittelwert und Median $~1\%$ niedriger liegen.
 
@@ -154,7 +149,7 @@ Die Naive Bayes Modelle erzielen im Mittel die niedrigsten Genauigkeiten: hier i
         NB                 & 0.778      & 0.784  & 0.049           & 0.685   & 0.852 \\
         \bottomrule
     \end{tabular}
-    \caption{Statistiken der Testgenauigkeit über alle Parameter-Kombinationen für die Modelle \textit{SVM}, Logistische Regression und Naiver Bayes, die durch die Kürzel LR, SVM und NB dargestellt sind.}
+    \caption{Statistiken der Testgenauigkeit über alle Parameter-Kombinationen für die Modelle \textit{SVM}, Logistische Regression und Naiver Bayes.}
     \label{tab:stats-per-model}
 \end{table}
 
@@ -174,7 +169,7 @@ Für alle Modelle ist die Genauigkeit höher, wenn das \gls{tfidf}-Vektorisierun
 Für alle Modelle steigt die Genauigkeit mit der Anzahl an berücksichtigten Merkmalen und, wenn mehr als nur Unigramme berücksichtigt werden.
 Die Verwendung von Uni- und Bigrammen führt im Mittel zu den höchsten Genauigkeiten.
 
-\subsubsection{\textit{Deep Learning} Ansätze}
+\subsubsection{\textit{Deep Learning} Ansätze}\label{subsubsec:ergebnisse-deep-learning-ansaetze}
 
 \paragraph{\textit{Finetuning} der \gls{bert}-Modelle}
 Mit dem auf aktuelleren Twitter-Daten trainierten Modell \textit{twitter-roberta-base-sentiment} wurden Genauigkeiten von $0,83$ auf dem Testdatensatz erzielt.
