@@ -7,18 +7,18 @@ Wie in Abschnitt \ref{traindata} beschrieben, führt die Art, wie der Trainingsd
 Dies kann nach Fr{\'e}nay and Kab{\'a}n \cite{NoisyLabel2014} beispielsweise dazu führen, dass die Vorhersage neuer Daten zu schlechteren Ergebnissen führt.
 Dies sieht man an den moderaten Genauigkeiten von $\approx{85}\%$ der klassischen Verfahren, die in unseren Experimenten erzielten wurden und an den von Go et al. \cite{go2009twitter} berichteten Ergebnissen von $\approx{80-82}\%$.
 
-Um mit \textit{Noisy Labels} umzugehen, können robustere Modelle verwendet werden, die \textit{Overfitting} vermeiden.
-Alternativ können Anomalieerkennungsmethoden eingesetzt werden, um falsch klassifizierte Beispiele zu entfernen.
-Eine andere Herangehensweise wäre die Verwendung eines Datensatzes mit höherer Datenqualität, um \textit{Noisy Labels} zu vermeiden.
+Um mit \textit{Noisy Labels} umzugehen, können robustere Modelle verwendet werden, die ein \textit{Overfitting} vermeiden.
+Alternativ können Methoden, die ähnlich zur Anomalieerkennung sind, eingesetzt werden, um falsch klassifizierte Beispiele zu entfernen.
+Eine grundsätzlich andere Herangehensweise wäre die Verwendung eines Datensatzes mit höherer Datenqualität, um \textit{Noisy Labels} zu vermeiden.
 
 \subsection{\textit{Aspect Based Sentiment Analysis}}
 
-Die Ergebnisse können durch die Verwendung zusätzlicher Informationen, wie die Ergebnisse für die Experimente mit den \textit{DeepSeek}-basierten Modellen zeigen, verbessert werden.
+Die erlangten Ergebnisse der unterschiedichen Modelle können durch die Verwendung zusätzlicher Informationen, wie die Ergebnisse für die Experimente mit den \textit{DeepSeek}-basierten Modellen zeigen, verbessert werden.
 Bei der \textit{Aspect Based Sentiment Analysis} werden explizite oder implizite Begriffe (\textit{aspects}) aus dem Tweet extrahiert und die Stimmung bezüglich dieser Begriffe klassifiziert.
-Ein Beispiel aus \cite{Hua_2024} zeigt, dass der Satz \glqq The restaurant was expensive, but the menu was great.\grqq{} bezüglich \textit{menu} positiv und bezüglich \textit{price} negativ klassifiziert wird.
+Ein Beispiel aus \cite{Hua_2024} zeigt, dass der Satz \glqq The restaurant was expensive, but the menu was great.\grqq{} bezüglich dem expliziten Begriff \textit{menu} positiv und bezüglich dem impliziten Begriff \textit{price} negativ klassifiziert wird.
 
 \subsection{Große \textit{Deep Learning} Modelle}
 
 Die Feinabstimmung großer \textit{DeepSeek} Modelle mit dem \textit{Sentiment140} Datensatz stieß auf Rechenkapazitätsgrenzen.
-Während das Modell \textit{DeepSeek-R1-1.5B} noch abgestimmt werden konnte, waren die Speicheranforderung während des Trainings für die größeren Modelle mit 8 oder 32 Milliarden Parametern zu hoch für die zur Verfügung stehenden Rechenressourcen.
+Während das Modell \textit{DeepSeek-R1-1.5B} noch abgestimmt werden konnte, waren die Speicheranforderung während des Trainings für die größeren Modelle mit 8 oder 32 Mrd. Parametern zu hoch für die zur Verfügung stehenden Rechenressourcen.
 Mehr Rechenkapazitäten oder Methoden wie \textit{Low Rank Adaptation} (LoRA) \cite{lora2021}, bei der nur eine kleine Anzahl neuer Parameter zur Feinabstimmung genutzt wird, könnten Abhilfe schaffen.
