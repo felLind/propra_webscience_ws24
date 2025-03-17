@@ -102,10 +102,9 @@
 \begin{frame}{Daten - Testdatensatz}
 	\textbf{Eigenschaften:}
 	\begin{itemize}
-		\item Enthält \textbf{359} manuell gesammelte Tweets
+		\item Enthält \textbf{498} manuell gesammelte Tweets
 		\item \textbf{177} negative und \textbf{182} positive Tweets
 		\item Keine automatische Annotation durch Emoticons
-		\item Dient zur unabhängigen Evaluierung von Modellen
 		\item Testdatensatz enthält zusätzlich \textit{Query-Terms}
 	\end{itemize}
 
@@ -201,6 +200,30 @@
 %=========================================================================================================================
 \section{Deep Learning}
 
+\subsection{Transformer}
+
+\begin{frame}{Deep Learning - Transformer}
+	\begin{columns}[T]
+		\column{0.5\textwidth}
+		\begin{itemize}
+			\item Artikel: \glqq Attention Is All You Need\grqq
+			\item Zwei Bestandteile
+			\begin{itemize}
+				\item Kodierer 
+				\item Dekodierer 
+			\end{itemize}
+			\item Mehrere Schichten bestehend aus \textit{Attention}-Mechanismus und voll-vernetztem Neuronalen Netz
+			\item Training in zwei Phasen
+			\begin{itemize}
+				\item \textit{Pre-Training}
+				\item \textit{Finetuning}
+			\end{itemize}
+		\end{itemize}
+		\column{0.5\textwidth}
+		\centering
+		\includegraphics[scale=0.55]{transformer.png}
+	\end{columns}
+\end{frame}
 
 \subsection{BERT-Modelle}
 

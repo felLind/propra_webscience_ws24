@@ -6,64 +6,54 @@
 
 Für die Experimente wurden unterschiedliche Schritte in Abhängigkeit der Verfahren durchgeführt.
 
-Für die klassischen Verfahren wurde neben der Genauigkeit der Klassifikation für unterschiedliche Modelle auch analysiert, inwiefern Vorverarbeitungsschritte und Token\-isier\-ungs\-verfahren die Genauigkeit der Klassifikation beeinflussen.
-Die Schritte für die Experimente sind in Unterabschnitt~\ref{sec:klassische-ansaetze} beschrieben.
+\subsubsection{Klassische Ansätze}\label{subsubsec:klassische-ansaetze}
 
-Für die \gls{dl} Ansätze, bei denen \gls{bert}-basierte Modelle verwendet wurden, wurden die Standard-Tokenizer der \textit{Hugging Face} Modelle verwendet, so dass keine weiteren Vorverarbeitungsschritte oder Vektorisierungsverfahren durchgeführt wurden.
-Die Schritte für die Experimente sind in Unterabschnitt~\ref{sec:deep-learning-ansaetze} beschrieben.
-
-\subsubsection{Klassische Ansätze}\label{sec:klassische-ansaetze}
-
-Für die klassischen Ansätze wurden Sensitivitätsanalysen durchgeführt, um die Auswirkung unterschiedlicher Vorverarbeitungsschritte und Vektorisierungsverfahren auf die Genauigkeit zu analysieren.
-
+Für die klassischen Verfahren wurde neben der Genauigkeit der Klassifikation für unterschiedliche Modelle auch analysiert, inwiefern Vorverarbeitungsschritte und Tokeni\-sie\-rungs\-verfahren die Genauigkeit der Klassifikation beeinflussen.
 
 \paragraph{Datenvorverarbeitung}
 Im Rahmen der Datenvorverarbeitung wurden die verwendeten Stoppwörter und Normalisierungsverfahren variiert.
 
-Nach \cite[S.27]{manning2009introduction} werden unter dem Begriff Stoppwörter\footnote{Beispiele sind \textit{und} sowie \textit{oder}.} Wörter verstanden, die einen geringen Informationsgehalt haben und deshalb aus Texten entfernt werden.
-Es wurden die folgenden Ausprägungen von Stoppwortlisten verwendet:
-% TODO: Abschließend entscheiden - Listen ggf. durch platzsparendere Tabelle ersetzen
-\begin{itemize}
-    \item keine Stoppwortliste
-    \item Standard-\gls{nltk} Stoppwortliste
-    \item Eigene Stoppwortliste
-\end{itemize}
+Nach \cite[S.27]{manning2009introduction} werden unter dem Begriff Stoppwörter Wörter verstanden, die einen geringen Informationsgehalt haben und deshalb aus Texten entfernt werden, wie beispielsweise \textit{und} oder \textit{oder}.
+Es wurden drei verschiedene Verfahren zur Behandlung von Stoppwörtern verwendet: Beibehaltung aller Stoppwörter, Verwendung der Standard-\gls{nltk} Stoppwortliste und Verwendung einer eigenen Stoppwortliste zur Entfernung spezifischer Stoppwörter.
 
 Normalisierungsverfahren dienen dazu, die Worte oder Token in Texten zu vereinheitlichen \cite[S.28]{manning2009introduction}.
-Es wurden die folgenden Normalisierungsverfahren angewandt:
-\begin{itemize}
-    \item Keine Normalisierung
-    \item Lemmatisierung mit \textit{WordNet} Lemmatizer
-    \item Stemming mit \textit{Porter} Stemmer
-\end{itemize}
+Es wurden drei verschiedene Verfahren zur Normalisierung der Worte verwendet: keine Normalisierung, Lemmatisierung (mit \textit{WordNet Lemmatizer}) und Stemming (mit \textit{Porter Stemmer}).
 
 Das Training der Modelle wurde auf Basis der vorverarbeiteten Daten durchgeführt.
-Zur Vorverarbeitung der Daten wurde Algorithmus~\ref{alg:data-preparation} durchgeführt.
+Im Rahmen der Vorverarbeitung der Daten wurden die Tweets bereinigt, die einzelnen Token normalisiert und abschließend die Stoppwörter entfernt.
+In Abschnitt \ref{subsec:appendix-data-preparation} im Appendix ist der Algorithmus detaillierter beschrieben (s. Algorithmus~\ref{alg:data-preparation}) und ein Verarbeitungsbeispiel gegeben.
 
 \paragraph{Training und Evaluation}
 Auf Basis der vorverarbeiteten Daten wurden die Modelle trainiert und evaluiert.
 
 Die Texte der vorverarbeiteten Tweets werden mittels Vektorisierungsverfahren in numerische Repräsentationen bzw. Vektoren transformiert.
-Aus den Vektoren der einzelnen Tweets setzt sich das Vokabular zusammen, das die Worte der Tweets enthält.
-Es wurden zwei Vektorisierungsverfahren verwendet:
-\begin{itemize}
-    \item \gls{tfidf}-Vektorisierung (mittels \textit{TfidfVectorizer} in der \textit{Python}-Bibliothek \textit{scikit-learn})
-    \item Hash-basierte Vektorisierung (mittels \textit{HashingVectorizer} in der \textit{Python}-Bibliothek \textit{scikit-learn})
-\end{itemize}
+Es wurden zwei Vekto\-risierungs\-verfahren verwendet: \gls{tfidf}-Vek\-to\-ri\-sie\-rung und \textit{Hash}-basierte Vektorisierung\footnote{Für beide Verfahren wurden die Implementierungen der \textit{scikit-learn} Bibliothek verwendet.}.
+\gls{tfidf} Vektorisierung ist ein Verfahren zur Gewichtung von Termen in Texten, das die Häufigkeit der Terme in einem Dokument und die inverse Häufigkeit von Dokumenten mit diesem Termen berücksichtigt \cite[S. 119]{manning2009introduction}.
+Die \textit{Hash}-basierte Vektorisierung ist ein Verfahren, das die Wörter in einem Dokument in numerische Werte umwandelt, indem es eine Hash-Funktion verwendet, um die Wörter in einen Vektor (mit fester Länge) zu kodieren\footnote{https://scikit-learn.org/stable/api/sklearn.feature\_extraction.html}.
+
 Für die verwendeten Vektorisierungsverfahren wurden unterschiedliche Konfigurationen von n-Grammen verwendet.
-n-Gramme bezeichnen nach \cite[S.33]{jm3}, die Sequenz von $n$ aufeinanderfolgenden Wörtern.
+n-Gramme bezeichnen nach \cite[S.33]{jm3}, eine Sequenz von $n$ aufeinanderfolgenden Wörtern.
 Für die Vektorisierungsverfahren wurden Instanzen mit Kombinationen von 1-Grammen, 2-Grammen und 3-Grammen\footnote{Diese n-Gramme werden auch als Uni-, Bi- und Trigramme bezeichnet.} verwendet.
 
 Während des Trainings werden die Modelle auf den Trainingsdaten trainiert und auf den Validierungsdaten evaluiert.
 Die Genauigkeit der Modelle wird abschließend auf den Testdaten evaluiert.
 Algorithmus~\ref{alg:model-training} beschreibt die Schritte für das Training und die Evaluation der Modelle.
 
-\subsubsection{Deep Learning Ansätze} \label{sec:deep-learning-ansaetze}
-Die BERT-Modelle \textit{twitter-roberta-base-sentiment} und \textit{distilbert-base-uncased} wurden über die \textit{Hugging Face}-Python-Bibliothek trainiert und ausgeführt.
-Für das \textit{Finetuning} wurde die Standardkonfiguration der Bibliothek mit den Parametern Datensatzgröße und Lernrate in allen Kombinationen mit den Werten aus Tabelle \ref{tab:dl-params} verwendet.
-Die Werte orientieren sich an dem Vorgehen von Barbieri et al. \cite{barbieri2020tweeteval}.
+\subsubsection{Deep Learning Ansätze} \label{subsubsec:deep-learning-ansaetze}
+
+Für die \gls{dl} Ansätze, bei denen \gls{bert}-basierte Modelle verwendet wurden, wurden die Standard-Tokenizer der \textit{Hugging Face} Modelle verwendet, so dass keine weiteren Vorverarbeitungsschritte oder Vektorisierungsverfahren durchgeführt wurden.
+
+\paragraph{\textit{Finetuning} der \gls{bert}-Modelle}
+
+Die \gls{bert}-basierten Modelle \textit{twitter-roberta\hyp{}base\hyp{}sentiment} und \textit{distilbert-base-uncased} wurden über die \textit{Transfomers} Python-Bibliothek von \textit{Hugging Face} zunächst mit Hilfe des Trainingsdatensatzes trainiert und ausgeführt.
+%Mit der Bibliothek lassen sich bereits initialisierte Modelle und passende Tokenisierungs-Funktionen laden.
+
+Für das \textit{Finetuning} wurde die Standardkonfiguration der Bibliothek verwendet.
+Variiert wurden die Datensatzgröße, also die Anzahl der Tweets, die für das \textit{Finetuning} verwendet wurden, und die Lernrate.
+Die Parameterkombinationen für die Lernrate und die Datensatzgröße sind in Tabelle \ref{tab:dl-params} aufgeführt und orientieren sich an dem Vorgehen von Barbieri et al. \cite{barbieri2020tweeteval}.
 \begin{table}
-    \begin{tabular}{ll}
+    \center
+    \begin{tabular}{lc}
         \toprule
         Parameter       & Werte                                                   \\
         \midrule
@@ -75,87 +65,103 @@ Die Werte orientieren sich an dem Vorgehen von Barbieri et al. \cite{barbieri202
     \label{tab:dl-params}
 \end{table}
 
+\paragraph{Verwendung der \textit{DeepSeek}-Modelle}
 
-Für den eigenen Ansatz haben wir zuerst versucht, die von Deepseek-R1 destillierten Modelle durch \textit{Finetuning} auf den Datensatz zu trainieren. Dafür wurde dem Modell eine zusätzliche Schicht in Form eines KNN mit einer Eingabeschicht mit der Ausgabe des Modells als Eingabe und zwei Neuronen für die Sentimentklassifizierung als Ausgabe.
-Das war für für Deepseek-R1:1.5B noch möglich. Ab dem Modell Deepseek-R1:7B wurden die Hardware-Anforderungen zu groß. (Vgl. mit SGD Optimierung: 7Mrd. Parameter * 2 Byte je Gewicht * 2 Byte je Grandient = 26GB)
-Als weiteren Ansatz verwendeten wir die Deepseek-R1-Modelle nur in der Ausführung und ließen das Sentiment per Prompt klassifizieren. Die modelle wurden mit Ollama ausgeführt und per Pythonskript angefragt. Dabei verwendet wir den im Testdatensatz enthaltenen Query-Term um zusätzlich einen aspekt-basierten Ansatz zu testen.
-Die Modelle wurden jeweils mit und ohne dem Query-Term angefragt. Eine Anfrage mit dem Query-Term hat folgende Struktur:
+Für den eigenen Ansatz haben wir zuerst versucht, die von \textit{DeepSeek}-R1 destillierten Modelle durch \textit{Finetuning} auf den Datensatz zu trainieren.
+Dafür wurde den Modellen jeweils zwei zusätzliche voll-vernetzte Schichten angefügt.
+Diese Architektur entspricht dem Aufbau des \textit{twitter-roberta-base-sentiment} Modells.
 
-\textbf{Prompt:} \greyhl{Tweet sentiment? Sentiment Topic: \{Query-Term\} \\
-  Answer with positive or negative. Provide reasoning in JSON.\\
-    Tweet: \glqq\{tweet\}\grqq}
+Die erste voll-vernetzte Schicht hatte als Ein- und Ausgabe die Dimensionen der letzten Schicht der Modelle.
+Die zweite voll-vernetzte Schicht hatte als Eingabe die Ausgabe der ersten voll-vernetzten Schicht und als Ausgabe die Anzahl der Klassen.
+
+Die Durchführung des \textit{Finetunings} war für das kleinste destillierte \textit{DeepSeek}-R1-Modell mit 1,5 Milliarden Parametern noch möglich.
+Ab dem nächstgrößerem Modell (\textit{DeepSeek-R1:7B}) wurden die Hardware-Anforderungen zu groß\footnote{Vergleiche mit \gls{sgd} Optimierung: 7 Mrd. Parameter $\times$ 2 Byte je Gewicht $\times$ 2 Byte je Gradient = 26 GB}.
+
+Als weiteren Ansatz verwendeten wir die DeepSeek-R1-Modelle nur in der Ausführung und ließen die Stimmung per Prompt klassifizieren.
+Die Modelle wurden mit \textit{Ollama} ausgeführt und per Pythonskript angefragt.
+Die Anfragen wurden mit und ohne \textit{Query}-Ausdruck (siehe Abschnitt \ref{subsec:testdata}) durchgeführt.
+
+Die Anfragen mit Query-Ausdruck hatten folgende Struktur (wobei die Platzhalter $Query\-Term$ und $Tweet$ durch die entsprechenden Werte ersetzt wurden):
+\begin{quote}
+    Tweet sentiment? Sentiment Topic: $Query-Term$\\
+    Answer with positive or negative. Provide reasoning in JSON.\\
+    Tweet: $Tweet$
+\end{quote}
 
 \subsection{Modell-Parameter und Evaluationsmetriken}
 
-Für die ausgewählten Modelle wurden die Standard-Parameterwerte von \textit{scikit-learn} verwendet.
+Für die ausgewählten klassischen Modelle wurden die Standard-Parameterwerte von \textit{scikit-learn} verwendet.
+Für die \gls{bert}-basierten Modelle und die \textit{DeepSeek}-Modelle wurden die veröffentlichten Modelle verwendet bzw. auf diesen im Rahmen des \textit{Finetunings} aufgesetzt.
 
 Nach~\cite{wankhade2022survey} werden für die Evaluierung von Klassifikationsmodellen vor allem das \textit{Genauig\-keits\-maß}, die \textit{Präzision} oder das \textit{F1-Maß} verwendet.
-Weil die Klassenverteilung für die Trainingsdaten ausgeglichen ist, wurde aufgrund der einfachen Interpretierbarkeit das \textit{Genauigkeitsmaß} als Evaluationsmetrik verwendet.
+Die Klassenverteilung für die positive und negative Klasse der Trainingsdaten ist ausgeglichen und die Verteilung der Testdaten ist ebenfalls relativ ausgeglichen.
+%Weil die Klassenverteilung für die Trainingsdaten ausgeglichen und für den Testdatensatz lediglich ein Unterschied von 4 Tweets zwischen der pos
+Aufgrund der einfachen Interpretierbarkeit wurde deshalb das \textit{Genauigkeitsmaß} als Evaluationsmetrik verwendet.
 
 \subsection{Ergebnisse}
+
+Eine Übersicht über die maximalen Genauigkeiten je Modell und Ansatz ist im Anhang in Diagramm~\ref{fig:results} dargestellt.
 
 \subsubsection{Klassische Ansätze}
 
 \begin{table}
-    \begin{tabular}{lllllllrr}
+    \center
+    \begin{tabular}{lccccc}
         \toprule
         Modell & Normalisierung & Stoppwortliste   & Anz. Merkmale & n-Gramme & Genauigkeit \\
         \midrule
-        LR     & Porter         & eig. Liste       & 250.000       & (1,2)    & 0.861       \\
-        LR     & WordNet        & -                & maximal       & (1,3)    & 0.858       \\
-        SVM    & Porter         & -                & maximal       & (1,3)    & 0.858       \\
-        SVM    & WordNet        & -                & maximal       & (1,3)    & 0.858       \\
-        SVM    & Porter         & eig. Liste       & 50.000        & (1,2)    & 0.858       \\
-        LR     & Porter         & eig. Liste       & 250.000       & (1,3)    & 0.855       \\
-        LR     & -              & \gls{nltk} Liste & maximal       & (1,3)    & 0.855       \\
-        SVM    & Porter         & -                & maximal       & (1,2)    & 0.855       \\
-        LR     & Porter         & eig. Liste       & 50.000        & (1,2)    & 0.852       \\
-        SVM    & -              & -                & maximal       & (1,3)    & 0.852       \\
-        NB     & -              & -                & maximal       & (1,2)    & 0.852       \\
+        LR  & Porter  & eig. Liste & 250.000 & (1,2) & 0.859 \\
+        SVM & Porter  & -          & maximal & (1,3) & 0.858 \\
+        SVM & Porter  & eig. Liste & 50.000  & (1,2) & 0.858 \\
+        LR  & WordNet & -          & maximal & (1,3) & 0.858 \\
+        SVM & WordNet & -          & maximal & (1,3) & 0.858 \\
+        LR  & Porter  & eig. Liste & 250.000 & (1,3) & 0.856 \\
+        SVM & Porter  & -          & maximal & (1,2) & 0.855 \\
+        LR  & -       & NLTK-Liste & maximal & (1,3) & 0.853 \\
+        NB  & -       & -          & maximal & (1,2) & 0.852 \\
+        SVM & -       & -          & maximal & (1,3) & 0.852 \\
         \bottomrule
     \end{tabular}
     \caption{
-        Top 10 Modelle nach Testgenauigkeit.
-        Die Modelle \textit{LR}, \textit{SVM} und \textit{NB} bezeichnen die Modelle \textit{Logistische Regression}, \textit{Support Vector Machine} und \textit{Naiver Bayes Klassifikator}.
-        Die Bezeichner (1, k) in der Spalte \textit{n-Gramme} geben an, dass n-Gramme mit $N\in\lbrace1,\cdots,k\rbrace$ verwendet wurden.
+        Top 10 Modelle nach Testgenauigkeit angeordnet(Mittelwerte von drei Ausführungen).
+        Die Modelle \textit{LR}, \textit{SVM} und \textit{NB} bezeichnen die Modelle logistische Regression, \textit{Support Vector Machine} und Naiver Bayes Klassifikator.
+        Die Bezeichner $(1, n)$ in der Spalte \textit{n-Gramme} geben an, dass n-Gramme mit $n\in\lbrace1,\cdots,3\rbrace$ verwendet wurden.
     }
     \label{tab:top-10-models}
 \end{table}
 
-In Tabelle~\ref{tab:top-10-models} sind die Top 10 Modelle nach Testgenauigkeit aufgeführt.
-Die maximal erzielte Genauigkeit beträgt $0,861$.
-Diese Genauigkeit wurde für ein Modell erzielt, bei dem die Normalisierung der Worte mit dem \textit{Porter} Stemmer durchgeführt wurde, die Stoppwörter gemäß einer eigens erstellten Stoppwortliste entfernt wurden, die Anzahl der Merkmale auf $250.000$ beschränkt wurde und Unigramme und Bigramme berücksichtigt wurden.
+In Tabelle~\ref{tab:top-10-models} sind die Top 10 Modelle nach Testgenauigkeit sortiert aufgeführt.
+Die maximal erzielte Genauigkeit beträgt $0,859$.
 
 \paragraph{Sensitivität Modell}
-In Tabelle~\ref{tab:stats-per-model} sind die Statistiken der Test Genauigkeit für die Modelle \textit{LinearSVC}, \textit{LogisticRegression} und \textit{NaiveBayes} über alle Parameter-Kombinationen aufgeführt.
+In Tabelle~\ref{tab:stats-per-model} sind die Statistiken der Testgenauigkeit für die Modelle \textit{LinearSVC}, \textit{LogisticRegression} und \textit{NaiveBayes} über alle Parameter-Kombinationen aufgeführt.
 
-Die Logistische Regressions-Modelle erzielen im Mittel die höchsten Genauigkeiten über alle Parameter-Kombinationen.
-Weiterhin ist die Standardabweichung der Genauigkeiten für die Logistische Regression mit $0,022$ am niedrigsten.
+Die logistischen Regressions-Modelle erzielen im Mittel die höchsten Genauigkeiten über alle Parameter-Kombinationen.
+Weiterhin ist die Standardabweichung der Genauigkeiten für die logistische Regression mit $0,022$ am niedrigsten.
 
 Modelle auf Basis der \gls{svm} erzielen im Mittel die zweithöchsten Genauigkeiten, wobei Mittelwert und Median $~1\%$ niedriger liegen.
 
-Die Naive Bayes Modelle erzielen im Mittel die niedrigsten Genauigkeiten, wobei die Standardabweichung mit $0,049$ am höchsten ist.
+Die Naive Bayes Modelle erzielen im Mittel die niedrigsten Genauigkeiten: hier ist die Standardabweichung mit $0,049$ am höchsten.
 \begin{table}
     \center
-
     \begin{tabular}{lccccc}
         \toprule
-        & \multicolumn{5}{c}{Test Genauigkeit} \\
+        & \multicolumn{5}{c}{Testgenauigkeit} \\
         Modell             & Mittelwert & Median & Std.-Abweichung & Minimum & Maximum \\
         \midrule
-        LogisticRegression & 0.818      & 0.820  & 0.022           & 0.727   & 0.861   \\
-        LinearSVC          & 0.809      & 0.813  & 0.024           & 0.730   & 0.858   \\
-        NaiveBayes         & 0.778      & 0.784  & 0.049           & 0.685   & 0.852   \\
+        LR                 & 0.819      & 0.822  & 0.022           & 0.727   & 0.861 \\
+        SVM                & 0.809      & 0.813  & 0.024           & 0.730   & 0.858 \\
+        NB                 & 0.778      & 0.784  & 0.049           & 0.685   & 0.852 \\
         \bottomrule
     \end{tabular}
-    \caption{Statistiken der Test Genauigkeit für die Modelle \textit{LinearSVC}, \textit{LogisticRegression} und \textit{NaiveBayes} über alle Parameter-Kombinationen.}
+    \caption{Statistiken der Testgenauigkeit über alle Parameter-Kombinationen für die Modelle \textit{SVM}, Logistische Regression und Naiver Bayes, die durch die Kürzel LR, SVM und NB dargestellt sind.}
     \label{tab:stats-per-model}
 \end{table}
 
 \paragraph{Sensitivität Umgang mit Stoppwörtern}
 
-Über alle Parameter-Kombinationen ist die Genauigkeit im Mittel für die Datensätze mit Entfernung der Stoppwörter höher als für die Modelle ohne Entfernung der Stoppwörter.
-Weiterhin ist die Genauigkeit mit den Datensätzes, bei denen die Stoppwörter entfernt wurden, die in der eigens definierten Stoppwortliste enthalten sind, höher als bei Verwendung der \gls{nltk} Stoppwortliste.
+Über alle Parameter-Kombinationen hinweg ist die Genauigkeit im Mittel für die Datensätze mit Entfernung der Stoppwörter höher als für die Modelle ohne Entfernung der Stoppwörter.
+Weiterhin ist die Genauigkeit mit der eigens definierten Stoppwortliste höher als mit der \gls{nltk}-Liste.
 
 \paragraph{Sensitivität Normalisierungsverfahren}
 
@@ -163,34 +169,44 @@ Für die unterschiedlichen Normalisierungsverfahren ergeben sich keine signifika
 
 \paragraph{Sensitivität Vektorisierungsverfahren und n-Gramme}
 
-Für alle Modelle ist die Genauigkeit höher, wenn der \gls{tfidf}-Vektorizer, anstelle des Hash-basierten verwendet wird
+Für alle Modelle ist die Genauigkeit höher, wenn das \gls{tfidf}-Vektorisierungsverfahren verwendet wird.
 
-Für alle Modelle steigt die Genauigkeit mit der Anzahl an berücksichtigten Merkmalen.
+Für alle Modelle steigt die Genauigkeit mit der Anzahl an berücksichtigten Merkmalen und, wenn mehr als nur Unigramme berücksichtigt werden.
+Die Verwendung von Uni- und Bigrammen führt im Mittel zu den höchsten Genauigkeiten.
 
-Für alle Modelle ist die Genauigkeit höher, wenn zusätzlich Bi- und Trigramme berücksichtigt werden.
-Die Berücksichtigung von Bi- und Trigrammen führt im Mittel zu den höchsten Genauigkeiten.
-$1e^{-4}$, $5e^{-5}$ , $1e^{-5}$, $5e^{-6}$, $1e^{-6}$
-\subsubsection{Deep Learning Ansätze}
+\subsubsection{\textit{Deep Learning} Ansätze}
+
+\paragraph{\textit{Finetuning} der \gls{bert}-Modelle}
+Mit dem auf aktuelleren Twitter-Daten trainierten Modell \textit{twitter-roberta-base-sentiment} wurden Genauigkeiten von $0,83$ auf dem Testdatensatz erzielt.
+Durch \textit{Finetuning} wurden Genauigkeiten von $0,922$ für das Modell \textit{twitter-roberta-base-sentiment} und $0,849$ für das Modell \textit{distilbert-base-uncased} erreicht.
+
+Kleinere Lernraten führen zu höheren Genauigkeiten für das Modell \textit{twitter-roberta-base-sentiment}, während für das Modell \textit{distilbert-base-uncased} höhere Lernraten zu besseren Ergebnissen führen.
+Dies ist vermutlich darauf zurückzuführen, dass das Modell \textit{twitter-roberta-base-sentiment} bereits auf Twitter-Daten trainiert wurde und das \textit{distilbert-base-uncased} Modell lediglich auf einem allgemeinen Korpus.
+
+\paragraph{Verwendung der \textit{DeepSeek}-Modelle}
+Das \textit{Finetuning} des kleinsten \textit{DeepSeek}-Modells lieferte Genauigkeiten von bis zu $0,866$.
+
+Für die Verwendung der \textit{DeepSeek}-Modelle ohne \textit{Finetuning} mittels direkter Anfragen wurden Genauigkeiten bis zu $0,977$ erzielt.
+Hier gilt, dass die Genauigkeit steigt je mehr Parameter das destillierte Modell hat.
+Weiterhin ist die Genauigkeit höher, wenn die Anfragen mit einem \textit{Query}-Term durchgeführt werden.
+
+Die Ergebnisse sind in Tabelle~\ref{tab:deepseek-results} zusammengefasst.
 \begin{table}
-    \begin{tabular}{lrrr}
+    \center
+    \begin{tabular}{lcc}
         \toprule
-        Modell      & Datensatzgröße & Lernrate  & Genauigkeit \\
+        Modell           & Genauigkeit & Verwendung Query-Ausdruck\\
         \midrule
-        RoBERTA     & -              & -         & 0.830       \\
-        RoBERTA     & 7500           & $1e^{-6}$ & 0.922       \\
-        RoBERTA     & 2500           & $1e^{-5}$ & 0.919       \\
-        RoBERTA     & 2500           & $5e^{-6}$ & 0.919       \\
-        RoBERTA     & 5000           & $5e^{-6}$ & 0.919       \\
-        DistillBert & -              & -         & 0.490       \\
-        DistillBert & 20000          & $5e^{-6}$ & 0.849       \\
-        DistillBert & 10000          & $5e^{-5}$ & 0.846       \\
-        DistillBert & 10000          & $1e^{-5}$ & 0.846       \\
-        DistillBert & 2500           & $1e^{-5}$ & 0.844       \\
+        DeepSeek-r1:70B  & 0.977       & Ja \\
+        DeepSeek-r1:32B  & 0.966       & Ja \\
+        DeepSeek-r1:8B   & 0.955       & Ja \\
+        DeepSeek-r1:1.5B & 0.883       & Ja \\
+        DeepSeek-r1:70B  & 0.930       & Nein \\
+        DeepSeek-r1:32B  & 0.927       & Nein \\
+        DeepSeek-r1:8B   & 0.916       & Nein \\
+        DeepSeek-r1:1.5B & 0.824       & Nein \\
         \bottomrule
     \end{tabular}
-    \caption{
-        Vergleich RoBERTA und DistillBert nach Testgenauigkeit. Jeweils als Baseline und die vier besten Ergebnisse.
-    }
-    \label{tab:top-models-dl}
+    \caption{Genauigkeit bei Verwendung der \textit{DeepSeek}-Modelle ohne \textit{Finetuning}}
+    \label{tab:deepseek-results}
 \end{table}
-Die Tabelle \ref{tab:top-models-dl} zeigt ganz klar, dass die auf den Anwendungsfall angepasst Modelle bessere Ergebnisse liefern, als Basistrainierte und auf den Datensatz feinangepasste Modelle.

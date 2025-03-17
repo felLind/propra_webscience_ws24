@@ -16,6 +16,10 @@
 \usepackage{algorithm}                      % for creating pseudo-code
 \usepackage{algpseudocode}                  % for creating pseudo-code
 \usepackage{multicol}                       % for creating multi-column environments
+\usepackage{enumitem}                       % for reducing space in lists
+\usepackage{hyphenat}                       % for hyphenation
+
+\setlist{noitemsep}
 
 \newcommand{\redhl}{\sethlcolor{red}\hl}
 \newcommand{\greyhl}{\sethlcolor{lightgray}\hl}
@@ -29,19 +33,27 @@
 %%%% Glossary %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \newacronym{bert}{BERT}{\textit{Bidirectional Encoder Representations from Transformers}}
+\newacronym{cnn}{CNN}{\textit{Convolutional Neural Network}}
 \newacronym{cl}{CL}{Computerlinguistik}
 \newacronym{dl}{DL}{\textit{Deep Learning}}
 \newacronym{llm}{LLM}{\textit{Large Language Model}}
+\newacronym{lstm}{LSTM}{\textit{Long Short-Term Memory}}
 \newacronym{ml}{ML}{Maschinelles Lernen}
 \newacronym{nlp}{NLP}{\textit{Natural Language Processing}}
 \newacronym{nltk}{NLTK}{\textit{Natural Language Toolkit}}
+\newacronym{roberta}{RoBERTa}{\textit{Robustly optimized BERT approach}}
+\newacronym{sgd}{SGD}{\textit{Stochastic Gradient Descent}}
 \newacronym{svm}{SVM}{\textit{Support Vector Machine}}
-\newacronym{tfidf}{TFIDF}{\textit{Term Frequency-Inverse Document Frequency}}
+\newacronym{tfidf}{TF-IDF}{\textit{Term Frequency-Inverse Document Frequency}}
 
 %%%% Abstract %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \germanabstract{
-    \redhl{TODO: Zusammenfassung formulieren...}
+    Dieser Bericht beschreibt die Durchführung und Ergebnisse eines Projekts zur Stimmungsanalyse von Tweets.
+    Ziel des Projekts war es, die Effektivität verschiedener maschineller Lernverfahren, einschließlich klassischer Methoden und Deep-Learning-Ansätze, bei der Klassifizierung der Stimmung von Tweets zu untersuchen.
+    Dazu wurden verschiedene Vorverarbeitungsschritte und Vektorisierungsverfahren für klassische Methoden angwendet und evaluiert.
+    Für die Deep-Learning Ansätze wurden \textit{Finetuning} Ansätze für \textit{BERT}-basierte Modelle und \textit{DeepSeek}-R1 basierte Modelle verwendet. Des Weiteren wurde ein aspekt-basierter Ansatz mit den \textit{DeepSeek}-R1 basierten Modellen untersucht.
+    Die Ergebnisse zeigen, dass Deep-Learning-Modelle, insbesondere fein-abgestimmte \textit{BERT}-basierte Modelle sowie aktuelle \textit{LLMs}, eine höhere Genauigkeit bei der Stimmungsanalyse erzielen als klassische maschinelle Lernverfahren.
 }
 
 

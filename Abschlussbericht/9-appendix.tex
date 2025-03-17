@@ -1,11 +1,13 @@
 \section{Algorithmen}
 
-\subsection{Datenaufbereitung}
+\subsection{Datenaufbereitung}\label{subsec:appendix-data-preparation}
 
 \textit{Hinweis}: Die Datensätze enthalten weitere Daten je Tweet, wie beispielsweise die Sentiment Klasse.
 Der Umgang mit diesen Daten wurde hier aus Gründen der Übersichtlichkeit nicht aufgeführt.
 
 Für die unterschiedlichen Parameter-Ausprägungen für die Normalisierungsverfahren und Stoppwortlisten wurden separate Datensätze erstellt.
+
+\subsubsection{Datenaufbereitung - Algorithmus}
 Die Datensätze wurden gemäß des folgenden Algorithmus erzeugt.
 \begin{algorithm}
     \caption{Datenaufbereitung}
@@ -36,6 +38,22 @@ Die Datensätze wurden gemäß des folgenden Algorithmus erzeugt.
     \label{alg:data-preparation}
 \end{algorithm}
 
+\subsubsection{Datenaufbereitung - Beispiel}
+
+Im folgenden ist ein Beispiel für die Datenaufbereitung eines Tweets dargestellt.
+\begin{itemize}
+    \item \textbf{Original-Tweet}: \textit{\glqq @user I love this movie! http://example.com\grqq}
+    \item \textbf{Bereinigung}: \textit{\glqq I love this movie\grqq}
+    \item \textbf{Tokenisierung}: \textit{\glqq I\grqq, \glqq love\grqq, \glqq this\grqq, \glqq movie\grqq}
+    \item \textbf{Normalisierung}:
+    \begin{itemize}
+        \item \textit{Lemmatisierung}: \textit{\glqq I\grqq, \glqq love\grqq, \glqq this\grqq, \glqq movie\grqq}
+        \item \textit{Stemming}: \textit{\glqq I\grqq, \glqq lov\grqq, \glqq thi\grqq, \glqq movi\grqq}
+    \end{itemize}
+    \item \textbf{Stoppwörter Behandlung}: Ohne Stoppwörter \glqq{}I\grqq{} und \glqq{}this\grqq{}: \textit{\glqq love\grqq, \glqq movie\grqq}
+    \item \textbf{Aufbereiteter Text}: \textit{\glqq love movie\grqq}
+\end{itemize}
+
 \subsection{Training und Evaluation der Modelle}
 
 Die Schritte für das Training und die Evaluation der Modelle sind, aufbauend auf dem durch Algorithmus \ref{alg:data-preparation} erzeugten Datensätzen wie folgt:
@@ -44,7 +62,7 @@ Die Schritte für das Training und die Evaluation der Modelle sind, aufbauend au
     \begin{algorithmic}[1]
         \Procedure{ModelTraining}{$dataset, vectorizer, model$}
             \State $X, y \gets$ Extrahiere Texte und Labels aus $dataset$
-            \State $X \gets$ Transformiere Texte in $X$ in Vektoren mit Vektorizer $tokenizer$
+            \State $X \gets$ Transformiere Texte in $X$ in Vektoren mit Vektorizer $vectorizer$
             \State $X_{train}, X_{test}, y_{train}, y_{test} \gets$ Teile $X$ und $y$ in Trainings- und Testdaten
             \State $model \gets$ Trainiere $model$ auf $X_{train}$ und $y_{train}$
             \State $accuracy \gets$ Evaluiere $model$ auf $X_{test}$ und $y_{test}$
@@ -53,3 +71,14 @@ Die Schritte für das Training und die Evaluation der Modelle sind, aufbauend au
     \end{algorithmic}
     \label{alg:model-training}
 \end{algorithm}
+
+\section{Diagramme}
+
+Im folgenden Diagramm sind für alle Modelle und Verfahren die maximalen Genauigkeiten dargestellt.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1.0\textwidth]{figures/alle-übersicht-genauigkeit-alle-modelle.png}
+    \caption{Maximale Genauigkeit der Modelle und Verfahren}
+    \label{fig:results}
+\end{figure}
