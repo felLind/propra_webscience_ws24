@@ -10,14 +10,14 @@ In den Unterabschnitten \ref{subsec:klassische-ansaetze} und \ref{subsec:deep-le
 Als klassische Ansätze zur Stimmungsanalyse von Tweets wurden folgende überwachten Lernverfahren ausgewählt, da diese besonders häufig in der Literatur zu finden sind \cite{medhat2014sentiment, wankhade2022survey, zimbra2018state}:
 
 \begin{itemize}
-    \item Logistische Regression
+    \item \gls{lr}
     \item \gls{svm}
-    \item Naiver Bayes Klassifikator
+    \item \gls{nb} Klassifikator
 \end{itemize}
 
 Die Verfahren \gls{knn} und Entscheidungsbäume wurden, mit dem Wissen, dass diese vermutlich nicht für die Stimmungsanalyse geeignet sind, ebenfalls überprüft, aber verworfen, da diese auf dem von uns verwendeten Datensatz schlechtere Ergebnisse erzielten und darüber hinaus längere Laufzeiten benötigten.
 
-Eine detaillierte, mathematische Einführung in die genannten klassichen Verfahren ist zu finden in \cite[vgl. die Kapitel 4.4 für logistische Regression, 4.5 und 12 für \gls{svm}, 6.6.3 für den Naiven Bayes Klassifikator, 13.3 für \gls{knn} und 9.2 für Entscheidungsbäume]{Hastie.2009}
+Eine detaillierte, mathematische Einführung in die genannten klassichen Verfahren ist zu finden in \cite[vgl. die Kapitel 4.4 für \gls{lr}, 4.5 und 12 für \gls{svm}, 6.6.3 für den \gls{nb} Klassifikator, 13.3 für \gls{knn} und 9.2 für Entscheidungsbäume]{hastie2009elements}
 
 \subsection{Deep Learning Ansätze}\label{subsec:deep-learning-ansaetze}
 
@@ -44,7 +44,7 @@ Der \textit{Decoder} besteht ebenfalls aus $N$ gleichen Schichten, die sich zusa
 \paragraph{Training von \textit{Transformern}}
 
 Das Training von \textit{Transformer}-Modellen besteht aus zwei Schritten, dem \textit{Pre-Training} und dem \textit{Finetuning} \cite{Radford2018ImprovingLU}.
-Beim \textit{Pre-Training} wird das Modell un-überwacht mit großen Datenmengen trainiert.
+Beim \textit{Pre-Training} wird das Modell unüberwacht mit großen Datenmengen trainiert.
 Im zweiten Schritt, dem \textit{Finetuning} wird das Modell mit überwachten Lernverfahren oder \textit{Reinforcement Learning} \cite{deepseekai2025deepseekr1incentivizingreasoningcapability, devlin2018bert} auf den jeweiligen Anwendungsfall angepasst.
 
 
