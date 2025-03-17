@@ -171,7 +171,10 @@ if __name__ == "__main__":
         for model_name in MODEL_NAMES:
             ds_train_, ds_test = get_train_and_test_datasets(SENTIMENT_MAPS[model_name])
 
-            if dataset_size == DATASET_SIZES[0]:
+            # the DistilBERT model does not have trained weights for the
+            # classification layers. Therefore, the model evaluation without fine-
+            # tuning is skipped.
+            if dataset_size == DATASET_SIZES[0] and model_name == ROBERTA_MODEL_NAME:
                 result = evaluate_default_model(model_name, ds_test)
                 eval_results.append(result)
 

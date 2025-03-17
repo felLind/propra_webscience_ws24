@@ -10,9 +10,9 @@ import click
 
 from propra_webscience_ws24 import constants
 from propra_webscience_ws24.data import data_preprocessing
-from propra_webscience_ws24.training.model.model_base import ModelType
-from propra_webscience_ws24.training.model.model_factory import model_factory
-from propra_webscience_ws24.training.training_combinations import (
+from propra_webscience_ws24.training.classical.model.model_base import ModelType
+from propra_webscience_ws24.training.classical.model.model_factory import model_factory
+from propra_webscience_ws24.training.classical.training_combinations import (
     USE_ALL_FEATURES_SPECIFIER,
     TrainingCombination,
     was_combination_already_processed,
@@ -20,7 +20,7 @@ from propra_webscience_ws24.training.training_combinations import (
     VectorizerConfig,
     MAX_FEATURES_LIST,
 )
-from propra_webscience_ws24.training.training_results import (
+from propra_webscience_ws24.training.classical.training_results import (
     ClassificationResult,
     add_classification_results_to_df,
     get_existing_classification_results,
