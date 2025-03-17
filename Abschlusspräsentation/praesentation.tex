@@ -7,6 +7,8 @@
 \usepackage{array}
 \usepackage{booktabs}
 \usepackage{amsmath}
+\usepackage[backend=biber]{biblatex}
+\addbibresource{references.bib}
 
 \usetheme{aig}
 
@@ -398,6 +400,15 @@
 	\pause
 	{\large \textbf{Vielen Dank für Ihre Aufmerksamkeit!}} \\[0.1cm]
 	\textit{Fragen?}
+\end{frame}
+
+%=========================================================================================================================
+
+\begin{frame}[allowframebreaks, noframenumbering, t]{Referenzen} 
+    
+	\printbibliography
+	\nocite{*}
+	
 \end{frame}
 
 \end{document}
