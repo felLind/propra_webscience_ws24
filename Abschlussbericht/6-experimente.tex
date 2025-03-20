@@ -190,16 +190,12 @@ Die Ergebnisse sind in Tabelle~\ref{tab:deepseek-results} zusammengefasst.
     \center
     \begin{tabular}{lcc}
         \toprule
-        Modell           & Genauigkeit & Verwendung Query-Ausdruck\\
+        Modell           & Genauigkeit ohne Query-Ausdruck & Genauigkeit mit Query-Ausdruck \\
         \midrule
-        DeepSeek-r1:70B  & 0.977       & Ja \\
-        DeepSeek-r1:32B  & 0.966       & Ja \\
-        DeepSeek-r1:8B   & 0.955       & Ja \\
-        DeepSeek-r1:1.5B & 0.883       & Ja \\
-        DeepSeek-r1:70B  & 0.930       & Nein \\
-        DeepSeek-r1:32B  & 0.927       & Nein \\
-        DeepSeek-r1:8B   & 0.916       & Nein \\
-        DeepSeek-r1:1.5B & 0.824       & Nein \\
+        DeepSeek-r1-70B  & 0.977                           &  0.930                         \\
+        DeepSeek-r1-32B  & 0.966                           &  0.927                         \\
+        DeepSeek-r1-8B   & 0.955                           &  0.916                         \\
+        DeepSeek-r1-1.5B & 0.883                           &  0.824                         \\
         \bottomrule
     \end{tabular}
     \caption{Genauigkeit bei Verwendung der \textit{DeepSeek}-Modelle ohne \textit{Finetuning}}
