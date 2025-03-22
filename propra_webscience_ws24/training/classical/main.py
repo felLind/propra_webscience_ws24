@@ -223,11 +223,38 @@ def _load_preprocessed_datasets(
         )
 
     df_train = pd.read_parquet(train_path)
+    # balance the classes (they are not balanced after preprocessing)
+    df_train = _balance_classes(df_train)
 
     df_test = pd.read_parquet(test_path)
     df_test = df_test.loc[(df_test.sentiment == 0) | (df_test.sentiment == 4), :]
 
     return df_train, df_test
+
+
+def _balance_classes(df: pd.DataFrame) -> pd.DataFrame:
+    """
+    Balance the DataFrame s.t. both classes have equal number of entries.
+
+    Args:
+        df: pandas DataFrame
+
+    Returns:
+        Balanced DataFrame
+    """
+    class_column = "sentiment"
+    class_counts = df[class_column].value_counts()
+
+    min_class_size = class_counts.min()
+
+    balanced_df = pd.DataFrame()
+
+    for class_value in df[class_column].unique():
+        class_df = df[df[class_column] == class_value]
+        sampled_df = class_df.sample(min_class_size, random_state=42)
+        balanced_df = pd.concat([balanced_df, sampled_df])
+
+    return balanced_df
 
 
 if __name__ == "__main__":
