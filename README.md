@@ -122,7 +122,7 @@ Es können die folgenden ML Methoden trainiert werden:
 ### Fine-Tuning von BERT-basierten Modellen
 
 Für das Fine-Tuning von BERT-basierten Modellen wird die Bibliothek `transformers` von _Hugging Face_ verwendet, um auf bereits vortrainierte Modell zuzugreifen.
-Es werden die vortrainierten Modelle `distilbert-base-uncased` und `roberta-base` verwendet.
+Es werden die vortrainierten Modelle `distilbert-base-uncased` und `cardiffnlp/twitter-roberta-base-sentiment` verwendet.
 
 - [`cardiffnlp/twitter-roberta-base-sentiment`](https://huggingface.co/cardiffnlp/twitter-roberta-base-sentiment)
 
