@@ -27,7 +27,7 @@ Auf Basis der vorverarbeiteten Daten wurden die Modelle trainiert und evaluiert.
 Die Texte der vorverarbeiteten Tweets werden mittels Vektorisierungsverfahren in numerische Repräsentationen bzw. Vektoren transformiert.
 Es wurden zwei Vekto\-risierungs\-verfahren verwendet: \gls{tfidf}-Vek\-to\-ri\-sie\-rung und \textit{Hash}-basierte Vektorisierung\footnote{Für beide Verfahren wurden die Implementierungen der \textit{scikit-learn} Bibliothek verwendet.}.
 \gls{tfidf} Vektorisierung ist ein Verfahren zur Gewichtung von Termen in Texten, das die Häufigkeit der Terme in einem Dokument und die inverse Häufigkeit von Dokumenten mit diesem Termen berücksichtigt \cite[S. 119]{manning2009introduction}.
-Die \textit{Hash}-basierte Vektorisierung ist ein Verfahren, das die Wörter in einem Dokument in numerische Werte umwandelt, indem es eine Hash-Funktion verwendet, um die Wörter in einen Vektor (mit fester Länge) zu kodieren\footnote{https://scikit-learn.org/stable/api/sklearn.feature\_extraction.html}.
+Die \textit{Hash}-basierte Vektorisierung ist ein Verfahren, das die Wörter in einem Dokument in numerische Werte umwandelt, indem es eine Hash-Funktion verwendet, um die Wörter in einen Vektor (mit fester Länge) zu kodieren \cite{sklearnextraction2025}.
 
 Für die verwendeten Vektorisierungsverfahren wurden unterschiedliche Konfigurationen von n-Grammen verwendet.
 n-Gramme bezeichnen nach \cite[S.33]{jm3}, eine Sequenz von $n$ aufeinanderfolgenden Wörtern.
