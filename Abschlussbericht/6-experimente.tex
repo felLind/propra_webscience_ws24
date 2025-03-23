@@ -19,7 +19,7 @@ Es wurden drei verschiedene Verfahren zur Normalisierung der Worte verwendet: ke
 
 Das Training der Modelle wurde auf Basis der vorverarbeiteten Daten durchgeführt.
 Im Rahmen der Vorverarbeitung der Daten wurden die Tweets bereinigt, die einzelnen Token normalisiert und abschließend die Stoppwörter entfernt.
-In Abschnitt \ref{subsec:appendix-data-preparation} im Appendix ist der Algorithmus detaillierter beschrieben (s. Algorithmus~\ref{alg:data-preparation}) und ein Verarbeitungsbeispiel gegeben.
+In Abschnitt \ref{subsec:appendix-data-preparation} im Appendix ist der Algorithmus detaillierter beschrieben (s. Algorithmus~\ref{alg:data-preparation}) und ein Beispiel gegeben.
 
 \paragraph{Training und Evaluation}
 Auf Basis der vorverarbeiteten Daten wurden die Modelle trainiert und evaluiert.
@@ -53,7 +53,7 @@ Die Werte für die Lernrate liegen zwischen $1e^{-4}$ und $1e^{-6}$ und die Date
 
 Für den eigenen Ansatz haben wir zuerst versucht, die von \textit{DeepSeek}-R1 destillierten Modelle durch \textit{Finetuning} auf den Datensatz zu trainieren.
 Dafür wurde den Modellen jeweils zwei zusätzliche voll-vernetzte Schichten angefügt.
-Diese Architektur entspricht dem Aufbau des \textit{twitter-roberta-base-sentiment} Modells.
+Diese Architektur entspricht dem Aufbau des \textit{twitter-roberta-base-sentiment} Modells zur Klassifikation.
 
 Die erste voll-vernetzte Schicht hatte als Ein- und Ausgabe die Dimensionen der letzten Schicht der Modelle.
 Die zweite voll-vernetzte Schicht hatte als Eingabe die Ausgabe der ersten voll-vernetzten Schicht und als Ausgabe die Anzahl der Klassen.
@@ -102,7 +102,7 @@ Eine Übersicht über die maximalen Genauigkeiten je Modell und Ansatz ist im An
     \end{tabular}
     \caption{
         Top 5 Modelle nach Testgenauigkeit angeordnet (Mittelwerte von drei Ausführungen).
-        Die Bezeichner $(1, n)$ in der Spalte \textit{n-Gramme} geben an, dass n-Gramme mit $n\in\lbrace1,\cdots,3\rbrace$ verwendet wurden.
+        Die Bezeichner $(1, k)$ in der Spalte \textit{n-Gramme} geben an, dass k-Gramme mit $k\in\lbrace1,\cdots,3\rbrace$ verwendet wurden.
     }
     \label{tab:top-5-models}
 \end{table}
@@ -137,7 +137,7 @@ Mit \gls{nb}-Modelle wurden im Mittel die niedrigsten Genauigkeiten erreicht, wo
 
 \paragraph{Sensitivität Umgang mit Stoppwörtern}
 
-Über alle Parameter-Kombinationen hinweg ist die Genauigkeit im Mittel für die Datensätze mit Entfernung der Stoppwörter höher als für die Modelle ohne Entfernung der Stoppwörter.
+Über alle Parameter-Kombinationen hinweg ist die Genauigkeit im Mittel für die Datensätze mit Entfernung der Stoppwörter höher als für die Datensätze ohne Entfernung.
 Weiterhin ist die Genauigkeit mit der eigens definierten Stoppwortliste höher als mit der \gls{nltk}-Liste.
 
 \paragraph{Sensitivität Normalisierungsverfahren}
@@ -146,7 +146,7 @@ Für die unterschiedlichen Normalisierungsverfahren ergeben sich keine signifika
 
 \paragraph{Sensitivität Vektorisierungsverfahren und n-Gramme}
 
-Für alle Modelle ist die Genauigkeit höher, wenn das \gls{tfidf}-Vektorisierungsverfahren verwendet wird.
+Für alle Modelle ist die Ge\-nauig\-keit höher, wenn das \gls{tfidf}-Vektorisierungsverfahren verwendet wird.
 
 Für alle Modelle steigt die Genauigkeit mit der Anzahl an berücksichtigten Merkmalen und, wenn mehr als nur Unigramme berücksichtigt werden.
 Die Verwendung von Uni- und Bigrammen führt im Mittel zu den höchsten Genauigkeiten.
@@ -157,7 +157,7 @@ Die Verwendung von Uni- und Bigrammen führt im Mittel zu den höchsten Genauigk
 Mit dem auf aktuelleren Twitter-Daten trainierten Modell \textit{twitter-roberta-base-sentiment} wurden Genauigkeiten von $0,83$ auf dem Testdatensatz erzielt.
 Durch \textit{Finetuning} wurden Genauigkeiten von $0,922$ für das Modell \textit{twitter-roberta-base-sentiment} und $0,849$ für das Modell \textit{distilbert-base-uncased} erreicht.
 
-Kleinere Lernraten führen zu höheren Genauigkeiten für das Modell \textit{twitter-roberta-base-sentiment}, während für das Modell \textit{distilbert-base-uncased} höhere Lernraten zu besseren Ergebnissen führen.
+Kleinere Lernraten führen zu höheren Genauigkeiten für das Modell \textit{twitter-roberta-base-sentiment}, während für das Modell \textit{distilbert-base-uncased} höhere Lernraten zu bes\-se\-ren Ergebnissen führen.
 Dies ist vermutlich darauf zurückzuführen, dass das Modell \textit{twitter-roberta-base-sentiment} bereits auf Twitter-Daten trainiert wurde und das \textit{distilbert-base-uncased} Modell lediglich auf einem allgemeinen Korpus.
 
 \paragraph{Verwendung der \textit{DeepSeek}-Modelle}
@@ -166,7 +166,6 @@ Das \textit{Finetuning} des kleinsten \textit{DeepSeek}-Modells lieferte Genauig
 Für die Verwendung der \textit{DeepSeek}-Modelle ohne \textit{Finetuning} mittels direkter Anfragen wurden Genauigkeiten bis zu $0,977$ erzielt.
 Hier gilt, dass die Genauigkeit steigt je mehr Parameter das destillierte Modell hat.
 Weiterhin ist die Genauigkeit höher, wenn die Anfragen mit einem \textit{Query}-Term durchgeführt werden.
-
 Die Ergebnisse sind in Tabelle~\ref{tab:deepseek-results} zusammengefasst.
 \begin{table}
     \center

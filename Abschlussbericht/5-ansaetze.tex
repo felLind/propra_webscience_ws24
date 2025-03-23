@@ -15,7 +15,7 @@ Als klassische Ansätze zur Stimmungsanalyse von Tweets wurden folgende überwac
 
 Die Verfahren \gls{knn} und Entscheidungsbäume wurden, mit dem Wissen, dass diese vermutlich nicht für die Stimmungsanalyse geeignet sind, ebenfalls überprüft, aber verworfen, da diese auf dem von uns verwendeten Datensatz schlechtere Ergebnisse erzielten und darüber hinaus längere Laufzeiten benötigten.
 
-Eine detaillierte, mathematische Einführung in die genannten klassichen Verfahren ist zu finden in \cite[vgl. die Kapitel 4.4 für \gls{lr}, 4.5 und 12 für \gls{svm}, 6.6.3 für den \gls{nb} Klassifikator, 13.3 für \gls{knn} und 9.2 für Entscheidungsbäume]{hastie2009elements}
+Eine detaillierte, mathematische Einführung in die genannten klassischen Verfahren ist zu finden in \cite[vgl. die Kapitel 4.4 für \gls{lr}, 4.5 und 12 für \gls{svm}, 6.6.3 für den \gls{nb} Klassifikator, 13.3 für \gls{knn} und 9.2 für Entscheidungsbäume]{hastie2009elements}.
 
 \subsection{Deep Learning Ansätze}\label{subsec:deep-learning-ansaetze}
 
@@ -37,7 +37,7 @@ Die Architektur eines \textit{Multi-layer Bidirectional Transformer Encoder} bes
 In jedem Schritt verwendet der \textit{Decoder} seine Ausgabe aus dem vorherigen Schritt.
 
 Der \textit{Encoder} besteht aus $N$ gleichen Schichten, die jeweils aus einem \textit{Multi-head Self-Attention}-Mechanismus und einem voll-vernetzten Neuronalen Netz bestehen.
-Der \textit{Decoder} besteht ebenfalls aus $N$ gleichen Schichten, die sich zusammensatzen aus einer Schicht \textit{Multi-head Self-Attention}, einem voll-vernetzten Neuronalen Netz und zusätzlich einer weiteren Schicht \textit{Multi-head Self-Attention}, welche die Ausgabe des \textit{Encoders} verarbeitet.
+Der \textit{Decoder} besteht ebenfalls aus $N$ gleichen Schichten, die sich zusammensätzen aus einer Schicht \textit{Multi-head Self-Attention}, einem voll-vernetzten Neuronalen Netz und zusätzlich einer Schicht \textit{Multi-head Self-Attention}, welche die Ausgabe des \textit{Encoders} verarbeitet.
 
 \paragraph{Training von \textit{Transformern}}
 
