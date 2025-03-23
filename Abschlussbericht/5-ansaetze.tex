@@ -33,7 +33,7 @@ Die Modelle und Ansätze sind in Unterabschnitt \ref{subsec:deepseek} beschriebe
 \textit{Transformer} basieren auf der von Vaswani et al. beschriebenen Architektur \textit{Multi-layer Bidirectional Transformer Encoder} \cite{vaswani2017attention}.
 
 \paragraph{\textit{Transformer}-Architektur}
-Die Architektur eines \textit{Multi-layer Bidirectional Transformer Encoder} besteht aus einen \textit{Encoder}, der eine Eingabe von Symbolen $(x_1,...,x_n)$ auf eine kontinuierliche Repräsentation $(z_1,...,z_n)$ abbildet und einem \textit{Decoder}, der aus dieser kontinuierlichen Repräsentation eine Ausgabesequenz aus Symbolen $(y_1,...,y_n)$ generiert.
+Die Architektur eines \textit{Multi-layer Bidirectional Transformer Encoder} besteht aus einen \textit{Encoder}, der eine Eingabe auf eine interne Repräsentation abbildet und einem \textit{Decoder}, der aus dieser internen Repräsentation eine Ausgabesequenz generiert.
 In jedem Schritt verwendet der \textit{Decoder} seine Ausgabe aus dem vorherigen Schritt.
 
 Der \textit{Encoder} besteht aus $N$ gleichen Schichten, die jeweils aus einem \textit{Multi-head Self-Attention}-Mechanismus und einem voll-vernetzten Neuronalen Netz bestehen.
