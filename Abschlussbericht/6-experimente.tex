@@ -113,17 +113,17 @@ Die maximal erzielte Genauigkeit beträgt $0,859$.
 \paragraph{Sensitivität Modell}
 In Tabelle~\ref{tab:stats-per-model} sind die Statistiken der Testgenauigkeit für die Modelle \gls{svm}, \gls{lr} und \gls{nb} über alle Parameter-Kombinationen aufgeführt.
 
-Die logistischen Regressions-Modelle erzielen im Mittel die höchsten Genauigkeiten über alle Parameter-Kombinationen.
+Die \gls{lr}-Modelle erzielen im Mittel die höchsten Genauigkeiten über alle Parameter-Kombinationen.
 Weiterhin ist die Standardabweichung der Genauigkeiten für die \gls{lr} mit $0,022$ am niedrigsten.
 
-Modelle auf Basis der \gls{svm} erzielen im Mittel die zweithöchsten Genauigkeiten, wobei Mittelwert und Median $~1\%$ niedriger liegen.
+Modelle auf Basis der \gls{svm} erzielen im Mittel und im Median 1\% niedrigere Genauigkeiten.
+Mit \gls{nb}-Modelle wurden im Mittel die niedrigsten Genauigkeiten erreicht, wobei die Standardabweichung am höchsten war.
 
-Die Naive Bayes Modelle erzielen im Mittel die niedrigsten Genauigkeiten: hier ist die Standardabweichung mit $0,049$ am höchsten.
 \begin{table}
     \center
     \begin{tabular}{lccccc}
         \toprule
-        & \multicolumn{5}{c}{Testgenauigkeit} \\
+        & \multicolumn{5}{c}{Testgenauigkeit über alle Parameter-Kombinationen} \\
         Modell             & Mittelwert & Median & Std.-Abweichung & Minimum & Maximum \\
         \midrule
         LR                 & 0.819      & 0.822  & 0.022           & 0.727   & 0.861 \\
@@ -131,7 +131,7 @@ Die Naive Bayes Modelle erzielen im Mittel die niedrigsten Genauigkeiten: hier i
         NB                 & 0.778      & 0.784  & 0.049           & 0.685   & 0.852 \\
         \bottomrule
     \end{tabular}
-    \caption{Statistiken der Testgenauigkeit über alle Parameter-Kombinationen für die Modelle \textit{SVM}, Logistische Regression und Naiver Bayes.}
+    \caption{Statistiken der Testgenauigkeit für die Modelle \gls{lr}, \gls{svm} und \gls{nb}.}
     \label{tab:stats-per-model}
 \end{table}
 
