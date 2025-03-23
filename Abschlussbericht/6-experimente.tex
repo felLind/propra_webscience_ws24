@@ -19,6 +19,7 @@ Es wurden drei verschiedene Verfahren zur Normalisierung der Worte verwendet: ke
 
 Das Training der Modelle wurde auf Basis der vorverarbeiteten Daten durchgeführt.
 Im Rahmen der Vorverarbeitung der Daten wurden die Tweets bereinigt, die einzelnen Token normalisiert und abschließend die Stoppwörter entfernt.
+Weiterhin wurden leere Tweets und Duplikate nach der Bereinigung entfernt.
 In Abschnitt \ref{subsec:appendix-data-preparation} im Appendix ist der Algorithmus detaillierter beschrieben (s. Algorithmus~\ref{alg:data-preparation}) und ein Beispiel gegeben.
 
 \paragraph{Training und Evaluation}
@@ -47,7 +48,8 @@ Die \gls{bert}-basierten Modelle \textit{twitter-roberta\hyp{}base\hyp{}sentimen
 
 Für das \textit{Finetuning} wurde die Standardkonfiguration der Bibliothek verwendet.
 Variiert wurden die Datensatzgröße, also die Anzahl der Tweets, die für das \textit{Finetuning} verwendet wurden, und die Lernrate.
-Die Werte für die Lernrate lagen zwischen $10^{-4}$ und $10^{-6}$ und die Datensatzgröße zwischen 2500 und 20000. Die Werte sind in Tabelle \ref{tab:dl-params} aufgeführt und orientieren sich an dem Vorgehen von Barbieri et al. \cite{barbieri2020tweeteval}.
+Die Werte für die Lernrate lagen zwischen $10^{-4}$ und $10^{-6}$ und die Datensatzgröße zwischen 2.500 und 20.000.
+Die Werte sind in Tabelle \ref{tab:dl-params} aufgeführt und orientieren sich an dem Vorgehen von Barbieri et al. \cite{barbieri2020tweeteval}.
 
 \paragraph{Verwendung der \textit{DeepSeek}-Modelle}
 
@@ -78,11 +80,11 @@ Die Anfragen mit Query-Ausdruck hatten folgende Struktur (wobei die Platzhalter 
         \toprule
         Modell & Normalisierung & Stoppwortliste   & Anz. Merkmale & n-Gramme & Genauigkeit \\
         \midrule
-        LR  & Porter  & eig. Liste & 250.000 & (1,2) & 0.859 \\
-        SVM & Porter  & -          & maximal & (1,3) & 0.858 \\
-        SVM & Porter  & eig. Liste & 50.000  & (1,2) & 0.858 \\
-        LR  & WordNet & -          & maximal & (1,3) & 0.858 \\
-        SVM & WordNet & -          & maximal & (1,3) & 0.858 \\
+        SVM & Porter  & -          & maximal & (1,3) & 0.852 \\
+        LR  & -       & -          & maximal & (1,3) & 0.852 \\
+        LR  & WordNet & eig. Liste & maximal & (1,2) & 0.850 \\
+        NB  & -       & eig. Liste & 10.000  & (1,2) & 0.850 \\
+        SVM & WordNet & -          & 50.000  & (1,2) & 0.850 \\
         \bottomrule
     \end{tabular}
     \caption{
@@ -108,13 +110,13 @@ Eine Übersicht über die maximalen Genauigkeiten je Modell und Ansatz ist im An
 \subsubsection{Klassische Ansätze}\label{subsubsec:ergebnisse-klassische-ansaetze}
 
 In Tabelle~\ref{tab:top-5-models} sind die Top 5 Modelle nach Testgenauigkeit sortiert aufgeführt.
-Die maximal erzielte Genauigkeit beträgt $0,859$.
+Die maximal erzielte Genauigkeit beträgt $0,852$.
 
 \paragraph{Sensitivität Modell}
 In Tabelle~\ref{tab:stats-per-model} sind die Statistiken der Testgenauigkeit für die Modelle \gls{svm}, \gls{lr} und \gls{nb} über alle Parameter-Kombinationen aufgeführt.
 
 Die \gls{lr}-Modelle erzielen im Mittel die höchsten Genauigkeiten über alle Parameter-Kombinationen.
-Weiterhin ist die Standardabweichung der Genauigkeiten für die \gls{lr} mit $0,022$ am niedrigsten.
+Weiterhin ist die Standardabweichung der Genauigkeiten für die \gls{lr} mit $0,02$ am niedrigsten.
 
 Modelle auf Basis der \gls{svm} erzielen im Mittel und im Median 1\% niedrigere Genauigkeiten.
 Mit \gls{nb}-Modelle wurden im Mittel die niedrigsten Genauigkeiten erreicht, wobei die Standardabweichung am höchsten war.
@@ -126,9 +128,9 @@ Mit \gls{nb}-Modelle wurden im Mittel die niedrigsten Genauigkeiten erreicht, wo
         & \multicolumn{5}{c}{Testgenauigkeit über alle Parameter-Kombinationen} \\
         Modell             & Mittelwert & Median & Std.-Abweichung & Minimum & Maximum \\
         \midrule
-        LR                 & 0.819      & 0.822  & 0.022           & 0.727   & 0.861 \\
-        SVM                & 0.809      & 0.813  & 0.024           & 0.730   & 0.858 \\
-        NB                 & 0.778      & 0.784  & 0.049           & 0.685   & 0.852 \\
+        LR                 & 0.815      & 0.818  & 0.020           & 0.733   & 0.852 \\
+        SVM                & 0.805      & 0.805  & 0.022           & 0.727   & 0.852 \\
+        NB                 & 0.778      & 0.779  & 0.046           & 0.674   & 0.850 \\
         \bottomrule
     \end{tabular}
     \caption{Statistiken der Testgenauigkeit für die Modelle \gls{lr}, \gls{svm} und \gls{nb}.}
@@ -142,13 +144,13 @@ Weiterhin ist die Genauigkeit mit der eigens definierten Stoppwortliste höher a
 
 \paragraph{Sensitivität Normalisierungsverfahren}
 
-Für die unterschiedlichen Normalisierungsverfahren ergeben sich keine signifikanten Unterschiede in der Genauigkeit der Modelle.
+Für die unterschiedlichen Normalisierungsverfahren ergeben sich keine signifikanten Unterschiede (relative Abweichungen zwischen 1-8\textperthousand) in der Genauigkeit der Modelle.
 
 \paragraph{Sensitivität Vektorisierungsverfahren und n-Gramme}
 
 Für alle Modelle ist die Ge\-nauig\-keit höher, wenn das \gls{tfidf}-Vektorisierungsverfahren verwendet wird.
 
-Für alle Modelle steigt die Genauigkeit mit der Anzahl an berücksichtigten Merkmalen und, wenn mehr als nur Unigramme berücksichtigt werden.
+Für alle Modelle steigt die Genauigkeit, wenn mehr als nur Unigramme berücksichtigt werden.
 Die Verwendung von Uni- und Bigrammen führt im Mittel zu den höchsten Genauigkeiten.
 
 \subsubsection{\textit{Deep Learning} Ansätze}\label{subsubsec:ergebnisse-deep-learning-ansaetze}
