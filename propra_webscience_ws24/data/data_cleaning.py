@@ -64,6 +64,25 @@ def _get_or_create_cleaned_tweet_data(
             else constants.TEST_DATASET_FILE_PATH
         )
         df_cleaned["cleaned_text"] = df_cleaned[text_column].apply(_sanitize_tweets)
+
+        # remove empty tweets that only consist of whitespace after cleaning
+        logger.info(f"#Tweets after cleaning: {len(df_cleaned)}")
+        df_cleaned = df_cleaned[df_cleaned["cleaned_text"].str.strip() != ""]
+
+        # remove duplicates
+        logger.info(f"#Tweets after removing empty ones: {len(df_cleaned)}")
+        df_cleaned = df_cleaned.drop_duplicates(subset=["cleaned_text", "sentiment"])
+
+        # remove tweets having the same cleaned text but different sentiment
+        logger.info(
+            f"#Tweets after removing duplicates (with the same class): {len(df_cleaned)}"
+        )
+        df_cleaned = df_cleaned[
+            ~df_cleaned.duplicated(subset=["cleaned_text"], keep=False)
+        ]
+        logger.info(
+            f"#Tweets after removing tweets with ambiguous classes: {len(df_cleaned)}"
+        )
         df_cleaned.to_parquet(cleaned_df_file_path)
 
     return dataframe_created, df_cleaned
