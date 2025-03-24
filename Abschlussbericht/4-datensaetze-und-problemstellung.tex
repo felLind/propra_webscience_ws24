@@ -12,9 +12,7 @@ Jedem Tweet ist eine binäre Stimmungsklasse (positiv/negativ) zugeordnet.
 Die Tweets wurden mithilfe der Twitter-API gesammelt, indem nach Tweets gesucht wurde, die bestimmte Emoticons mit positiver oder negativer Bedeutung enthalten (siehe Tabelle 3 im Artikel zum Datensatz \cite[S. 4]{go2009twitter}).
 Anhand der verwendeten Emoticons wurden die Tweets in Klassen mit positiver und negativer Stimmung eingeteilt.
 Tweets, die sowohl positive als auch negative Emoticons enthalten, sind nicht im Datensatz enthalten.
-Go et al. \cite{go2009twitter} weisen darauf hin, dass die Stimmungsklassen nicht fehlerfrei sind\footnote{
-    Als Beispiel wird von Go et al. \cite{go2009twitter} ein Tweet mit dem Text \glqq @BATMANNN :( i love chutney.......\grqq{} genannt, der fälschlicherweise als negativ klassifiziert wird, dessen Inhalt aber eher als positiv angesehen würde.
-} und es sich um \textit{Noisy Labels} handelt.
+Go et al. \cite{go2009twitter} weisen darauf hin, dass die Stimmungsklassen nicht fehlerfrei sind (vgl. Abschnitt 2.2 in \cite{gow009twitter}) und es sich um \textit{Noisy Labels} handelt.
 Als \textit{Noisy Labels} werden Klassenzuordnungen bezeichnet, die nicht fehlerfrei sind und die Qualität eines Datensatzes beeinträchtigen können \cite{song2022learning}.
 Für beide Stimmungsklassen enthält der Datensatz jeweils 800.000 Einträge.
 
@@ -37,9 +35,7 @@ Die Tweets enthielten nicht in jedem Fall Emoticons.
 Im Rahmen der Stimmungsanalyse für Twitter wird versucht die Tweets in zwei oder mehr Klassen einzuteilen \cite{zimbra2018state}.
 
 Die Analyse der Stimmung von Tweets wird allerdings als besonders herausfordernd angesehen \cite{agarwal2011sentiment, giachanou2016like, zimbra2018state}.
-Giachanou und Crestani \cite{giachanou2016like} nennen neben der Längenbeschränkung von Tweets auf 140 Zeichen\footnote{
-    Seit November 2017 sind 280 Unicode-Zeichen pro Tweet erlaubt.
-} insbesondere die informelle Art von Tweets als Herausforderung in Bezug auf Stimmungsanalysen.
+Giachanou und Crestani \cite{giachanou2016like} nennen neben der Längenbeschränkung von Tweets auf 140 Zeichen (bzw. 280 seit 2017) insbesondere die informelle Art von Tweets als Herausforderung in Bezug auf Stimmungsanalysen.
 Agarwal et al. \cite{agarwal2011sentiment} und Zimbra et al. \cite{zimbra2018state} weisen darauf hin, dass aufgrund der Längenbeschränkung besonders häufig Abkürzungen, Emoticons und andere Zeichen mit spezieller Bedeutung oder Umgangssprache in Tweets verwendet werden.
 
 Das Ziel dieser Arbeit ist es, bestehende Methoden zur automatischen Stimmungsanalyse von Tweets anzuwenden und zu evaluieren.
