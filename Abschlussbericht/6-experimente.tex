@@ -31,7 +31,7 @@ Die \textit{Hash}-basierte Vektorisierung ist ein Verfahren, das die Wörter in 
 
 Für die verwendeten Vektorisierungsverfahren wurden unterschiedliche Konfigurationen von n-Grammen verwendet.
 n-Gramme bezeichnen nach \cite[S.33]{jm3}, eine Sequenz von $n$ aufeinanderfolgenden Wörtern.
-Für die Vektorisierungsverfahren wurden Instanzen mit Kombinationen von 1-Grammen, 2-Grammen und 3-Grammen\footnote{Diese n-Gramme werden auch als Uni-, Bi- und Trigramme bezeichnet.} verwendet.
+Für die Vektorisierungsverfahren wurden Instanzen mit Kombinationen von 1-Grammen, 2-Grammen und 3-Grammen verwendet.
 
 Während des Trainings werden die Modelle auf den Trainingsdaten trainiert und auf den Validierungsdaten evaluiert.
 Die Genauigkeit der Modelle wird abschließend auf den Testdaten evaluiert.
@@ -72,21 +72,6 @@ Die Anfragen mit Query-Ausdruck hatten folgende Struktur (wobei die Platzhalter 
     Tweet: $Tweet$
 \end{quote}
 
-\subsection{Modell-Parameter und Evaluationsmetriken}\label{subsec:modell-parameter-und-evaluationsmetriken}
-
-Für die ausgewählten klassischen Modelle wurden die Standard-Parameterwerte von \textit{scikit-learn} verwendet.
-Für die \gls{bert}-basierten Modelle und die \textit{DeepSeek}-Modelle wurden die veröffentlichten Modelle verwendet bzw. auf diesen im Rahmen des \textit{Finetunings} aufgesetzt.
-
-Nach~\cite{wankhade2022survey} werden für die Evaluierung von Klassifikationsmodellen vor allem das \textit{Genauig\-keits\-maß}, die \textit{Präzision} oder das \textit{F1-Maß} verwendet.
-Die Klassenverteilung für die positive und negative Klasse der Trainingsdaten ist ausgeglichen und die Verteilung der Testdaten ist ebenfalls relativ ausgeglichen.
-Aufgrund der einfachen Interpretierbarkeit wurde deshalb das \textit{Genauigkeitsmaß} als Evaluationsmetrik verwendet.
-
-\subsection{Ergebnisse}
-
-Eine Übersicht über die maximalen Genauigkeiten je Modell und Ansatz ist im Anhang in Diagramm~\ref{fig:results} dargestellt.
-
-\subsubsection{Klassische Ansätze}\label{subsubsec:ergebnisse-klassische-ansaetze}
-
 \begin{table}
     \center
     \begin{tabular}{lccccc}
@@ -106,6 +91,21 @@ Eine Übersicht über die maximalen Genauigkeiten je Modell und Ansatz ist im An
     }
     \label{tab:top-5-models}
 \end{table}
+
+\subsection{Modell-Parameter und Evaluationsmetriken}\label{subsec:modell-parameter-und-evaluationsmetriken}
+
+Für die ausgewählten klassischen Modelle wurden die Standard-Parameterwerte von \textit{scikit-learn} verwendet.
+Für die \gls{bert}-basierten Modelle und die \textit{DeepSeek}-Modelle wurden die veröffentlichten Modelle verwendet bzw. auf diesen im Rahmen des \textit{Finetunings} aufgesetzt.
+
+Nach~\cite{wankhade2022survey} werden für die Evaluierung von Klassifikationsmodellen vor allem das \textit{Genauig\-keits\-maß}, die \textit{Präzision} oder das \textit{F1-Maß} verwendet.
+Die Klassenverteilung für die positive und negative Klasse der Trainingsdaten ist ausgeglichen und die Verteilung der Testdaten ist ebenfalls relativ ausgeglichen.
+Aufgrund der einfachen Interpretierbarkeit wurde deshalb das \textit{Genauigkeitsmaß} als Evaluationsmetrik verwendet.
+
+\subsection{Ergebnisse}
+
+Eine Übersicht über die maximalen Genauigkeiten je Modell und Ansatz ist im Anhang in Diagramm~\ref{fig:results} dargestellt.
+
+\subsubsection{Klassische Ansätze}\label{subsubsec:ergebnisse-klassische-ansaetze}
 
 In Tabelle~\ref{tab:top-5-models} sind die Top 5 Modelle nach Testgenauigkeit sortiert aufgeführt.
 Die maximal erzielte Genauigkeit beträgt $0,859$.
