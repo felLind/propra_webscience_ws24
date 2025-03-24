@@ -4,9 +4,9 @@ In diesem Projekt wurden verschiedene Methoden des maschinellen Lernens zur Stim
 Drei klassische Algorithmen – \gls{lr}, \gls{svm} und \gls{nb}-Klassifikator – erreichten maximale Genauigkeiten von bis zu 85\%.
 Zwei Transformer-Modelle (\emph{distilbert-base-uncased} und \emph{twitter-roberta-base-sentiment}) wurden durch \textit{Finetuning} angepasst und erzielten Genauigkeiten von 85\% bzw. 92\%.
 Zusätzlich wurde versucht, die durch Modelldestillation erzeugten \emph{DeepSeek-R1}-Modelle mittels \textit{Finetuning} anzupassen.
-Aufgrund der benötigten Hardware-Ressourcen war dies lediglich für die kleinste Variante (\emph{Deepseek-R1-1.5B}) möglich, die Genauigkeiten von bis zu 87\% lieferte.
+Aufgrund der benötigten Hardware-Res\-sour\-cen war dies lediglich für die kleinste Variante (\emph{Deepseek-R1-1.5B}) möglich, die Genauigkeiten von bis zu 87\% lieferte.
 Das größte verwendete \emph{DeepSeek-R1} basierte Modell erreichte die höchste Genauigkeit mit 93\% im \textit{Zero-Shot}-Ansatz.
 Mit einem aspektbasierten Ansatz wurden mit den \emph{DeepSeek-R1} basierten Modellen Genauigkeiten bis zu 98\% erzielt.
 
-Die Ergebnisse zeigen, dass domänenspezifische Transformer-Modelle bei der Stimmungsanalyse höhere Genauigkeiten erzielen als die analysierten klassischen maschinellen Lernverfahren.
+Die Ergebnisse zeigen, dass domänenspezifische Transformer-Modelle bei der Stimmungsanalyse höhere Genauigkeiten erzielen als die analysierten klassischen \gls{ml}-Verfahren.
 Obwohl die LLM mit den meisten Parametern die höchsten Genauigkeiten erreichten, kann in der Praxis der Einsatz vortrainierter kleinerer Transformer-Modelle (z. B. \emph{RoBERTa}) für Twitter-Stimmungsanalysen vorteilhafter sein – insbesondere bei begrenzten Hardware-Ressourcen oder dem Einsatz in Anwendungen mit strengen Latenzanforderungen.

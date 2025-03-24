@@ -72,6 +72,24 @@ Die Schritte für das Training und die Evaluation der Modelle sind, aufbauend au
     \label{alg:model-training}
 \end{algorithm}
 
+\section{Tabellen}
+
+Die folgende Tabelle zeigt die einzelnen Werte für Datensatzgröße und Lernrate, welche für das \textit{Finetuning} der DL-Ansätze verwendet wurden.
+
+\begin{table}[h]
+    \center
+    \begin{tabular}{lc}
+        \toprule
+        Parameter       & Werte                                                   \\
+        \midrule
+        Datensatzgröße  & 2500, 5000, 7500, 10000, 15000, 20000                   \\
+        Lernrate        & $10^{-4}$, $5\cdot 10^{-5}$ , $10^{-5}$, $5\cdot 10^{-6}$, $10^{-6}$  \\
+        \bottomrule
+    \end{tabular}
+    \caption{Parameter für das \textit{Finetuning} der \gls{bert}-Modelle}
+    \label{tab:dl-params}
+\end{table}
+
 \section{Diagramme}
 
 Im folgenden Diagramm sind für alle Modelle und Verfahren die maximalen Genauigkeiten dargestellt.
