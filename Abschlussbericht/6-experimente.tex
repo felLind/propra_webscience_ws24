@@ -2,16 +2,16 @@
 
 \subsection{Experimentaufbau}
 
-Für die Experimente wurden unterschiedliche Schritte in Abhängigkeit der Verfahren durchgeführt.
+Für die Experimente wurden unterschiedliche Schritte in Abhängigkeit der Ansätze durchgeführt.
 
 \subsubsection{Klassische Ansätze}\label{subsubsec:experimente-klassische-ansaetze}
 
-Für die klassischen Verfahren wurde neben der Genauigkeit der Klassifikation für unterschiedliche Modelle auch analysiert, inwiefern Vorverarbeitungsschritte und Tokeni\-sie\-rungs\-verfahren die Genauigkeit der Klassifikation beeinflussen.
+Für die klassischen Ansätze wurde neben der Genauigkeit der Klassifikation für unterschiedliche Modelle auch analysiert, inwiefern Vorverarbeitungsschritte und Tokeni\-sie\-rungs\-verfahren die Genauigkeit der Klassifikation beeinflussen.
 
 \paragraph{Datenvorverarbeitung}
 Im Rahmen der Datenvorverarbeitung wurden die verwendeten Stoppwörter und Normalisierungsverfahren variiert.
 
-Nach \cite[S.27]{manning2009introduction} werden unter dem Begriff Stoppwörter Wörter verstanden, die einen geringen Informationsgehalt haben und deshalb aus Texten entfernt werden, wie beispielsweise \textit{und} oder \textit{oder}.
+Nach Manning \cite[S.27]{manning2009introduction} werden unter dem Begriff Stoppwörter Wörter verstanden, die einen geringen Informationsgehalt haben und deshalb aus Texten entfernt werden, wie beispielsweise \textit{und} oder \textit{oder}.
 Es wurden drei verschiedene Verfahren zur Behandlung von Stoppwörtern verwendet: Beibehaltung aller Stoppwörter, Verwendung der vordefinierten \gls{nltk}-Stoppwortliste und Verwendung einer eigenen Stoppwortliste zur Entfernung spezifischer Stoppwörter.
 
 Normalisierungsverfahren dienen dazu, die Worte oder Token in Texten zu vereinheitlichen \cite[S.28]{manning2009introduction}.
@@ -43,11 +43,12 @@ Für die \gls{dl}-Ansätze, bei denen \gls{bert}-basierte Modelle verwendet wurd
 
 \paragraph{\textit{Finetuning} der \gls{bert}-Modelle}
 
-Die \gls{bert}-basierten Modelle \textit{twitter-roberta\hyp{}base\hyp{}sentiment} und \textit{distilbert-base-uncased} wurden über die \textit{Transfomers} Python-Bibliothek von \textit{Hugging Face} zunächst mit Hilfe des Trainingsdatensatzes trainiert und ausgeführt.
-
-Für das \textit{Finetuning} wurde die Standardkonfiguration der Bibliothek verwendet.
+Die \gls{bert}-basierten Modelle \textit{twitter-roberta\hyp{}base\hyp{}sentiment} und \textit{distilbert-base-uncased} wurden über die \textit{Transfomers} Python-Bibliothek von \textit{Hugging Face} mittels \textit{Finetuning} auf dem Trainingsdatensatz trainiert.
+Dazu wurde die Standardkonfiguration der Bibliothek verwendet.
 Variiert wurden die Datensatzgröße, also die Anzahl der Tweets, die für das \textit{Finetuning} verwendet wurden, und die Lernrate.
-Die Werte für die Lernrate lagen zwischen $10^{-4}$ und $10^{-6}$ und die Datensatzgröße zwischen 2500 und 20000. Die Werte sind in Tabelle \ref{tab:dl-params} aufgeführt und orientieren sich an dem Vorgehen von Barbieri et al. \cite{barbieri2020tweeteval}.
+Die Werte für die Lernrate lagen zwischen $10^{-4}$ und $10^{-6}$ und orientieren sich an den Werten von Barbieri et al. \cite{barbieri2020tweeteval}.
+Die Anzahl der verwendeten Tweets lag zwischen 2500 und 20000.
+Alle Parameter-Ausprägungen sind in Tabelle \ref{tab:dl-params} im Anhang aufgeführt.
 
 \paragraph{Verwendung der \textit{DeepSeek}-Modelle}
 
@@ -58,10 +59,10 @@ Diese Architektur entspricht dem Aufbau des \textit{twitter-roberta-base-sentime
 Die erste voll-vernetzte Schicht hatte als Ein- und Ausgabe die Dimensionen der letzten Schicht der Modelle.
 Die zweite voll-vernetzte Schicht hatte als Eingabe die Ausgabe der ersten voll-vernetzten Schicht und als Ausgabe die Anzahl der Klassen.
 
-Die Durchführung des \textit{Finetunings} war für das kleinste destillierte \textit{DeepSeek}-R1-Modell mit 1,5 Milliarden Parametern noch möglich.
-Ab dem nächstgrößeren Modell (\textit{DeepSeek-R1:7B}) wurden die Hardware-Anforderungen zu groß\footnote{Vergleiche mit \gls{sgd}-Optimierung: 7 Mrd. Parameter $\times$ 2 Byte je Gewicht $\times$ 2 Byte je Gradient = 26 GB}.
+Die Durchführung des \textit{Finetunings} war lediglich für das kleinste destillierte \textit{DeepSeek}-R1-Modell mit 1,5 Milliarden Parametern möglich.
+Ab dem nächstgrößeren Modell (\textit{DeepSeek-R1:7B}) reichten die vorhandenen Hardware-Ressourcen nicht mehr aus\footnote{Vergleiche mit \gls{sgd}-Optimierung: 7 Mrd. Parameter $\times$ 2 Byte je Gewicht $\times$ 2 Byte je Gradient = 26 GB}.
 
-Als weiteren Ansatz verwendeten wir die DeepSeek-R1-Modelle nur in der Ausführung und ließen die Stimmung per Anfrage klassifizieren.
+Als weiteren Ansatz wurden die DeepSeek-R1-Modelle lokal ausgeführt um mittels Anfragen Klassifikationen der Tweets zu erhalten.
 Die Modelle wurden mit \textit{Ollama} ausgeführt und per Pythonskript angefragt.
 Die Anfragen wurden mit und ohne \textit{Query}-Ausdruck (siehe Abschnitt \ref{subsec:testdata}) durchgeführt.
 
@@ -87,7 +88,7 @@ Die Anfragen mit Query-Ausdruck hatten folgende Struktur (wobei die Platzhalter 
     \end{tabular}
     \caption{
         Top 5 Modelle nach Testgenauigkeit angeordnet (Mittelwerte von drei Ausführungen).
-        Die Bezeichner $(1, k)$ in der Spalte \textit{n-Gramme} geben an, dass k-Gramme mit $k\in\lbrace1,\cdots,3\rbrace$ verwendet wurden.
+        Die Bezeichner $(1, k)$ in der Spalte \textit{n-Gramme} geben an, dass Kombinationen von n-Grammen verwendet wurden mit $n\in\lbrace1,\cdots,k\rbrace$.
     }
     \label{tab:top-5-models}
 \end{table}
@@ -97,7 +98,7 @@ Die Anfragen mit Query-Ausdruck hatten folgende Struktur (wobei die Platzhalter 
 Für die ausgewählten klassischen Modelle wurden die Standard-Parameterwerte von \textit{scikit-learn} verwendet.
 Für die \gls{bert}-basierten Modelle und die \textit{DeepSeek}-Modelle wurden die veröffentlichten Modelle verwendet bzw. auf diesen im Rahmen des \textit{Finetunings} aufgesetzt.
 
-Nach~\cite{wankhade2022survey} werden für die Evaluierung von Klassifikationsmodellen vor allem das \textit{Genauig\-keits\-maß}, die \textit{Präzision} oder das \textit{F1-Maß} verwendet.
+Nach Wankhade et al.~\cite{wankhade2022survey} werden für die Evaluierung von Klassifikationsmodellen vor allem das \textit{Genauig\-keits\-maß}, die \textit{Präzision} oder das \textit{F1-Maß} verwendet.
 Die Klassenverteilung für die positive und negative Klasse der Trainingsdaten ist ausgeglichen und die Verteilung der Testdaten ist ebenfalls relativ ausgeglichen.
 Aufgrund der einfachen Interpretierbarkeit wurde deshalb das \textit{Genauigkeitsmaß} als Evaluationsmetrik verwendet.
 
@@ -171,7 +172,7 @@ Die Ergebnisse sind in Tabelle~\ref{tab:deepseek-results} zusammengefasst.
     \center
     \begin{tabular}{lcc}
         \toprule
-        Modell           & Genauigkeit mit Query-Ausdruck & Genauigkeit ohne Query-Ausdruck \\
+        Modell           & Mit Query-Ausdruck & Ohne Query-Ausdruck \\
         \midrule
         DeepSeek-r1-70B  & 0,977                           &  0,930                         \\
         DeepSeek-r1-32B  & 0,966                           &  0,927                         \\

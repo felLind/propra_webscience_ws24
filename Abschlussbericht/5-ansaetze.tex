@@ -13,9 +13,10 @@ Als klassische Ansätze zur Stimmungsanalyse von Tweets wurden folgende überwac
     \item \textbf{\gls{nb} Klassifikator} \hspace{\fill}\makebox[7cm][l]{\textit{Scikit-learn}-Modell \textit{BernoulliNB}}
 \end{itemize}
 
-Die Verfahren \gls{knn} und Entscheidungsbäume wurden, mit dem Wissen, dass diese vermutlich nicht für die Stimmungsanalyse geeignet sind, ebenfalls überprüft, aber verworfen, da diese auf dem von uns verwendeten Datensatz schlechtere Ergebnisse erzielten und darüber hinaus längere Laufzeiten benötigten.
+Die Ansätze \gls{knn} und Entscheidungsbäume wurden ebenfalls überprüft.
+Weil diese Ansätze auf dem verwendeten Datensatz schlechtere Ergebnisse erzielten und darüber hinaus längere Laufzeiten benötigten, wurden sie verworfen.
 
-Eine detaillierte, mathematische Einführung in die genannten klassischen Verfahren ist zu finden in \cite[vgl. die Kapitel 4.4 für \gls{lr}, 4.5 und 12 für \gls{svm}, 6.6.3 für den \gls{nb}-Klassifikator, 13.3 für \gls{knn} und 9.2 für Entscheidungsbäume]{hastie2009elements}.
+Eine detaillierte, mathematische Einführung in die genannten klassischen Ansätze ist zu finden in \cite[Kapitel 4.4 für \gls{lr}, 4.5 und 12 für \gls{svm}, 6.6.3 für den \gls{nb}-Klassifikator, 13.3 für \gls{knn} und 9.2 für Entscheidungsbäume]{hastie2009elements}.
 
 \subsection{Deep Learning Ansätze}\label{subsec:deep-learning-ansaetze}
 
@@ -27,7 +28,7 @@ Es wurden \gls{bert}-basierte und \textit{DeepSeek}-basierte Modelle als Vertret
 \gls{bert}-basierte Modelle wurden ausgewählt, da diese in der Literatur als besonders erfolgreich in der Stimmungsanalyse beschrieben werden \cite{devlin2018bert}.
 Die \gls{bert}-basierten Modelle und Ansätze sind in Unterabschnitt \ref{subsec:bert} beschrieben.
 
-Die \textit{DeepSeek}-R1-basierten Modelle wurden im Rahmen des eigenen Ansatzes aufgrund ihrer Aktualität und der allgemein guten Ergebnisse für unsere Problemstellung evaluiert.
+Die \textit{DeepSeek}-R1-basierten Modelle wurden im Rahmen des eigenen Ansatzes aufgrund ihrer Aktualität und der guten Ergebnisse in diversen Benchmarks und Aufgaben \cite{deepseekai2025deepseekr1incentivizingreasoningcapability} für unsere Problemstellung evaluiert.
 Die Modelle und Ansätze sind in Unterabschnitt \ref{subsec:deepseek} beschrieben.
 
 \textit{Transformer} basieren auf der von Vaswani et al. beschriebenen Architektur \textit{Multi-layer Bidirectional Transformer Encoder} \cite{vaswani2017attention}.
@@ -55,7 +56,7 @@ Aufbauend auf \gls{bert} wurde von Liu et al. \cite{liu2019roberta} das Modell \
 Von Barbieri et al. \cite{barbieri2020tweeteval} wurde gezeigt, dass für Twitter-spezifische Klassifikationsprobleme \gls{roberta}-basierte Modelle durch \textit{Finetuning} auf Twitter-Daten bessere Ergebnisse erzielen.
 Aus diesem Grund haben wir uns für die Verwendung des von Barbieri et al. entwickelten Modells entschieden, welches bereits mittels \textit{Finetuning} an Twitter-Daten angepasst wurde.
 
-Das Modell wurde zum einen ohne weitere Anpassungen an dem Testdatensatz evaluiert und zum anderen nach einer Anpassung mittels \textit{Finetuning} an den Trainingsdatensatz ebenfalls an dem Testdatensatz ausgewertet.
+Das Modell wurde zum einen ohne weitere Anpassungen auf dem Testdatensatz evaluiert und zum anderen nach einer Anpassung mittels \textit{Finetuning} an den Trainingsdatensatz ebenfalls auf dem Testdatensatz evaluiert.
 
 Zum Vergleich haben wir das von \gls{bert} destillierte Modell \textit{DistilBert} \cite{sanh2019distilbert} verwendet.
 Bei der Modelldestillation wird ein kleines Modell darauf trainiert, das Verhalten eines großen Modells zu replizieren \cite{sanh2019distilbert}.
@@ -66,7 +67,8 @@ Auf diesem Modell wurde ebenfalls ein \textit{Finetuning} auf dem Trainingsdaten
 
 Als eigenen Ansatz haben wir verschiedene vom \textit{DeepSeek}-R1-Modell destillierte Modelle \cite{deepseekai2025deepseekr1incentivizingreasoningcapability} verwendet.
 Es wurde versucht, diese in einem ersten Ansatz mit \textit{Finetuning} auf unseren Datensatz anzupassen.
-Aufgrund der hohen Anforderungen an die Hardware und der langen Trainingszeiten haben wir uns für einen anderen Ansatz entschieden. Das \textit{Finetuning} konnten wir lediglich für das kleinste destillierte Modell ausführen.
+Mit den zur Verfügung stehenden Hardware-Ressourcen war es lediglich möglich, das kleinste destillierte Modell \textit{DeepSeek-R1-1.5B} zu verwenden.
+Deshalb wurde dieser Ansatz nicht für die größeren Modelle durchgeführt und ein zweiter Ansatz gewählt.
 
 In einem zweiten Ansatz haben wir die \textit{DeepSeek}-R1-Modelle mittels \textit{Ollama} \cite{ollama2025meta} ausgeführt und mittels Anfragen eine Klassifizierung der Tweets durch die Modelle durchgeführt.
 Die Anfragen wurden dabei mit und ohne Verwendung des \textit{Query}-Ausdrucks des Testdatensatzes ausgeführt.
