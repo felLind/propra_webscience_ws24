@@ -1,7 +1,7 @@
 Modell,Genauigkeit,Finetuning,Mit Query-Ausdruck
-LinearSVC,0.8579387186629527,,
-LogisticRegression,0.8588672237697308,,
-NaiveBayes,0.8523676880222841,,
+LinearSVC,0.8523676880222841,,
+LogisticRegression,0.8523676880222841,,
+NaiveBayes,0.8495821727019499,,
 cardiffnlp/twitter-roberta-base-sentiment,0.83008356545961,False,
 cardiffnlp/twitter-roberta-base-sentiment,0.9220055710306406,True,
 distilbert-base-uncased,0.8495821727019499,True,
