@@ -61,7 +61,7 @@ Die zweite voll-vernetzte Schicht hatte als Eingabe die Ausgabe der ersten voll-
 Die Durchführung des \textit{Finetunings} war für das kleinste destillierte \textit{DeepSeek}-R1-Modell mit 1,5 Milliarden Parametern noch möglich.
 Ab dem nächstgrößeren Modell (\textit{DeepSeek-R1:7B}) wurden die Hardware-Anforderungen zu groß\footnote{Vergleiche mit \gls{sgd}-Optimierung: 7 Mrd. Parameter $\times$ 2 Byte je Gewicht $\times$ 2 Byte je Gradient = 26 GB}.
 
-Als weiteren Ansatz verwendeten wir die DeepSeek-R1-Modelle nur in der Ausführung und ließen die Stimmung per Prompt klassifizieren.
+Als weiteren Ansatz verwendeten wir die DeepSeek-R1-Modelle nur in der Ausführung und ließen die Stimmung per Anfrage klassifizieren.
 Die Modelle wurden mit \textit{Ollama} ausgeführt und per Pythonskript angefragt.
 Die Anfragen wurden mit und ohne \textit{Query}-Ausdruck (siehe Abschnitt \ref{subsec:testdata}) durchgeführt.
 
