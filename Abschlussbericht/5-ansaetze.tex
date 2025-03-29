@@ -1,11 +1,11 @@
 \section{Ansätze}
 
 In diesem Abschnitt werden die Ansätze zur Stimmungsanalyse von Tweets beschrieben, die wir verwendet haben.
-In den Unterabschnitten \ref{subsec:klassische-ansaetze} und \ref{subsec:deep-learning-ansaetze} werden die verwendeten klassischen Ansätze und \gls{dl} basierten Ansätze aufgezählt und beschrieben.
+In den Unterabschnitten \ref{subsec:klassische-ansaetze} und \ref{subsec:deep-learning-ansaetze} werden die verwendeten klassischen Ansätze und \gls{dl}-basierten Ansätze aufgezählt und beschrieben.
 
 \subsection{Klassische Ansätze}\label{subsec:klassische-ansaetze}
 
-Als klassische Ansätze zur Stimmungsanalyse von Tweets wurden folgende überwachten Lernverfahren ausgewählt, da diese besonders häufig in der Literatur zu finden sind \cite{medhat2014sentiment, wankhade2022survey, zimbra2018state}:
+Als klassische Ansätze zur Stimmungsanalyse von Tweets wurden folgende überwachte Lernverfahren ausgewählt, da diese besonders häufig in der Literatur zu finden sind \cite{medhat2014sentiment, wankhade2022survey, zimbra2018state}:
 
 \begin{itemize}
     \item \textbf{\gls{lr}}  \hspace{\fill}\makebox[7cm][l]{\textit{Scikit-learn}-Modell \textit{LogisticRegression}}
@@ -15,40 +15,40 @@ Als klassische Ansätze zur Stimmungsanalyse von Tweets wurden folgende überwac
 
 Die Verfahren \gls{knn} und Entscheidungsbäume wurden, mit dem Wissen, dass diese vermutlich nicht für die Stimmungsanalyse geeignet sind, ebenfalls überprüft, aber verworfen, da diese auf dem von uns verwendeten Datensatz schlechtere Ergebnisse erzielten und darüber hinaus längere Laufzeiten benötigten.
 
-Eine detaillierte, mathematische Einführung in die genannten klassischen Verfahren ist zu finden in \cite[vgl. die Kapitel 4.4 für \gls{lr}, 4.5 und 12 für \gls{svm}, 6.6.3 für den \gls{nb} Klassifikator, 13.3 für \gls{knn} und 9.2 für Entscheidungsbäume]{hastie2009elements}.
+Eine detaillierte, mathematische Einführung in die genannten klassischen Verfahren ist zu finden in \cite[vgl. die Kapitel 4.4 für \gls{lr}, 4.5 und 12 für \gls{svm}, 6.6.3 für den \gls{nb}-Klassifikator, 13.3 für \gls{knn} und 9.2 für Entscheidungsbäume]{hastie2009elements}.
 
 \subsection{Deep Learning Ansätze}\label{subsec:deep-learning-ansaetze}
 
-Nach Wankhade et al. \cite{wankhade2022survey} haben in den letzten Jahren \textit{Ţransformer} basierte Modelle \gls{lstm} und \gls{cnn} Modelle in der Stimmungsanalyse abgelöst.
-Aus diesem Grund haben wir uns für die Verwendung von \textit{Transformer} basierten \gls{llm} entschieden.
+Nach Wankhade et al. \cite{wankhade2022survey} haben in den letzten Jahren \textit{Transformer}-basierte Modelle \gls{lstm} und \gls{cnn}-Modelle in der Stimmungsanalyse abgelöst.
+Aus diesem Grund haben wir uns für die Verwendung von \textit{Transformer}-basierten \glspl{llm} entschieden.
 
 Es wurden \gls{bert}-basierte und \textit{DeepSeek}-basierte Modelle als Vertreter der \textit{Transformer}-Modelle ausgewählt.
 
 \gls{bert}-basierte Modelle wurden ausgewählt, da diese in der Literatur als besonders erfolgreich in der Stimmungsanalyse beschrieben werden \cite{devlin2018bert}.
 Die \gls{bert}-basierten Modelle und Ansätze sind in Unterabschnitt \ref{subsec:bert} beschrieben.
 
-Die \textit{DeepSeek}-R1-basierten Modelle wurden im Rahmen des eigenes Ansatzes aufgrund ihrer Aktualität und der allgemein guten Ergebnisse für unsere Problemstellung evaluiert.
+Die \textit{DeepSeek}-R1-basierten Modelle wurden im Rahmen des eigenen Ansatzes aufgrund ihrer Aktualität und der allgemein guten Ergebnisse für unsere Problemstellung evaluiert.
 Die Modelle und Ansätze sind in Unterabschnitt \ref{subsec:deepseek} beschrieben.
 
 \textit{Transformer} basieren auf der von Vaswani et al. beschriebenen Architektur \textit{Multi-layer Bidirectional Transformer Encoder} \cite{vaswani2017attention}.
 
 \paragraph{\textit{Transformer}-Architektur}
-Die Architektur eines \textit{Multi-layer Bidirectional Transformer Encoder} besteht aus einen \textit{Encoder}, der eine Eingabe auf eine interne Repräsentation abbildet und einem \textit{Decoder}, der aus dieser internen Repräsentation eine Ausgabesequenz generiert.
+Die Architektur eines \textit{Multi-layer Bidirectional Transformer Encoder} besteht aus einem \textit{Encoder}, der eine Eingabe auf eine interne Repräsentation abbildet, und einem \textit{Decoder}, der aus dieser internen Repräsentation eine Ausgabesequenz generiert.
 In jedem Schritt verwendet der \textit{Decoder} seine Ausgabe aus dem vorherigen Schritt.
 
-Der \textit{Encoder} besteht aus $N$ gleichen Schichten, die jeweils aus einem \textit{Multi-head Self-Attention}-Mechanismus und einem voll-vernetzten Neuronalen Netz bestehen.
-Der \textit{Decoder} besteht ebenfalls aus $N$ gleichen Schichten, die sich zusammensetzen aus einer Schicht \textit{Multi-head Self-Attention}, einem voll-vernetzten Neuronalen Netz und zusätzlich einer Schicht \textit{Multi-head Self-Attention}, welche die Ausgabe des \textit{Encoders} verarbeitet.
+Der \textit{Encoder} besteht aus $N$ gleichen Schichten, die jeweils aus einem \textit{Multi-head Self-Attention}-Mechanismus und einem voll-vernetzten neuronalen Netz bestehen.
+Der \textit{Decoder} besteht ebenfalls aus $N$ gleichen Schichten, die sich zusammensetzen aus einer Schicht \textit{Multi-head Self-Attention}, einem voll-vernetzten neuronalen Netz und zusätzlich einer Schicht \textit{Multi-head Self-Attention}, welche die Ausgabe des \textit{Encoders} verarbeitet.
 
 \paragraph{Training von \textit{Transformern}}
 
 Das Training von \textit{Transformer}-Modellen besteht aus zwei Schritten, dem \textit{Pre-Training} und dem \textit{Finetuning} \cite{Radford2018ImprovingLU}.
 Beim \textit{Pre-Training} wird das Modell unüberwacht mit großen Datenmengen trainiert.
-Im zweiten Schritt, dem \textit{Finetuning} wird das Modell mit überwachten Lernverfahren oder \textit{Reinforcement Learning} \cite{deepseekai2025deepseekr1incentivizingreasoningcapability, devlin2018bert} auf den jeweiligen Anwendungsfall angepasst.
+Im zweiten Schritt, dem \textit{Finetuning}, wird das Modell mit überwachten Lernverfahren oder \textit{Reinforcement Learning} \cite{deepseekai2025deepseekr1incentivizingreasoningcapability, devlin2018bert} auf den jeweiligen Anwendungsfall angepasst.
 
 
 \subsubsection{\textit{BERT}-basierte Ansätze}\label{subsec:bert}
 
-\gls{bert} ist eine \textit{Transformer}-basierte \gls{llm} Variante, die von Devlin et al. entwickelt wurde \cite{devlin2018bert}.
+\gls{bert} ist eine \textit{Transformer}-basierte \gls{llm}-Variante, die von Devlin et al. entwickelt wurde \cite{devlin2018bert}.
 Devlin et al. haben gezeigt, dass die \gls{bert}-Modelle sehr gute Ergebnisse in der Stimmungsanalyse erzielen und durch \textit{Finetuning} mit vergleichsweise wenig Daten und Trainingszeit auf spezifische Anwendungen angepasst werden können.
 Aufbauend auf \gls{bert} wurde von Liu et al. \cite{liu2019roberta} das Modell \gls{roberta} entwickelt, das durch Optimierungen im \textit{Pre-Training} und \textit{Finetuning} für viele Aufgaben bessere Ergebnisse erzielt.
 
@@ -65,7 +65,7 @@ Auf diesem Modell wurde ebenfalls ein \textit{Finetuning} auf dem Trainingsdaten
 \subsubsection{\textit{DeepSeek}-basierte Ansätze}\label{subsec:deepseek}
 
 Als eigenen Ansatz haben wir verschiedene vom \textit{DeepSeek}-R1-Modell destillierte Modelle \cite{deepseekai2025deepseekr1incentivizingreasoningcapability} verwendet.
-Es wurde versucht diese in einem ersten Ansatz mit \textit{Finetuning} auf unseren Datensatz anzupassen.
+Es wurde versucht, diese in einem ersten Ansatz mit \textit{Finetuning} auf unseren Datensatz anzupassen.
 Aufgrund der hohen Anforderungen an die Hardware und der langen Trainingszeiten haben wir uns für einen anderen Ansatz entschieden. Das \textit{Finetuning} konnten wir lediglich für das kleinste destillierte Modell ausführen.
 
 In einem zweiten Ansatz haben wir die \textit{DeepSeek}-R1-Modelle mittels \textit{Ollama} \cite{ollama2025meta} ausgeführt und mittels Prompt-Anfragen eine Klassifizierung der Tweets durch die Modelle durchgeführt.
