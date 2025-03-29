@@ -12,16 +12,16 @@ Jedem Tweet ist eine binäre Stimmungsklasse (positiv/negativ) zugeordnet.
 Die Tweets wurden mithilfe der Twitter-API gesammelt, indem nach Tweets gesucht wurde, die bestimmte Emoticons mit positiver oder negativer Bedeutung enthalten (siehe Tabelle 3 im Artikel zum Datensatz \cite[S. 4]{go2009twitter}).
 Anhand der verwendeten Emoticons wurden die Tweets in Klassen mit positiver und negativer Stimmung eingeteilt.
 Tweets, die sowohl positive als auch negative Emoticons enthalten, sind nicht im Datensatz enthalten.
-Go et al. \cite{go2009twitter} weisen darauf hin, dass die Stimmungsklassen nicht fehlerfrei sind (\cite[Abschnitt 2.2]{go2009twitter}) und es sich um \textit{Noisy Labels} handelt.
+Go et al. \cite{go2009twitter} weisen darauf hin, dass die Stimmungsklassen nicht fehlerfrei sind \cite[Abschn. 2.2]{go2009twitter} und es sich um \textit{Noisy Labels} handelt.
 Als \textit{Noisy Labels} werden Klassenzuordnungen bezeichnet, die nicht fehlerfrei sind und die Qualität eines Datensatzes beeinträchtigen können \cite{song2022learning}.
 Für beide Stimmungsklassen enthält der Datensatz jeweils 800.000 Einträge.
 
 Die Tweet-Texte im Datensatz wurden so angepasst, dass die Emoticons, die zur Einteilung verwendet wurden, entfernt wurden.
-Weiterhin enthält der Datensatz keine Retweets und wenige Duplikate (weniger als 2\textperthousand{} der Daten).
+Weiterhin enthält der Datensatz keine Retweets und wenige Duplikate (weniger als $2\%$ der Daten).
 
 \subsubsection{Testdatensatz}\label{subsec:testdata}
 
-Von Go et al. \cite{go2009twitter} wurde ein Testdatensatz mit 498 Tweets erstellt, der 177 Tweets mit positiver Stimmung und 182 Tweets mit negativer Stimmung enthält.
+Von Go et al. \cite{go2009twitter} wurde zusätzlich ein Testdatensatz mit 498 Tweets erstellt, der 177 Tweets mit positiver Stimmung und 182 Tweets mit negativer Stimmung enthält.
 Die restlichen Tweets sind als neutral klassifiziert und wurden bei der Evaluierung der Modelle nicht berücksichtigt.
 Die Tweets wurden über die Twitter-API durch Anfragen mit spezifischen \textit{Query}-Ausdrücken ausgewählt und manuell mit Stimmungsklassen versehen.
 Die \textit{Query}-Ausdrücke sind in Tabelle 4 des Artikels von Go et al. \cite[S. 5]{go2009twitter} aufgeführt und sind im Testdatensatz enthalten.
