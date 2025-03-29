@@ -5,8 +5,8 @@
 Es wurden die separaten Trainings- und Testdatensätze des von Go et al. \cite{go2009twitter} erstellten \textit{Sentiment140}-Datensatzes verwendet.
 
 \subsubsection{Trainingsdatensatz}\label{subsec:trainingsdatensatz}
-Der verwendete Datensatz \textit{Sentiment140} enthält 1.600.000 modifizierte Tweets.
-Die Tweets wurden im Zeitraum April 2009 bis Juni 2009 erstellt.
+Der verwendete Datensatz \textit{Sentiment140} enthält 1,6 Mio. modifizierte Tweets.
+Die Tweets wurden im Zeitraum von April 2009 bis Juni 2009 erstellt.
 Jedem Tweet ist eine binäre Stimmungsklasse (positiv/negativ) zugeordnet.
 
 Die Tweets wurden mithilfe der Twitter-API gesammelt, indem nach Tweets gesucht wurde, die bestimmte Emoticons mit positiver oder negativer Bedeutung enthalten (siehe Tabelle 3 im Artikel zum Datensatz \cite[S. 4]{go2009twitter}).
@@ -16,7 +16,7 @@ Go et al. \cite{go2009twitter} weisen darauf hin, dass die Stimmungsklassen nich
 Als \textit{Noisy Labels} werden Klassenzuordnungen bezeichnet, die nicht fehlerfrei sind und die Qualität eines Datensatzes beeinträchtigen können \cite{song2022learning}.
 Für beide Stimmungsklassen enthält der Datensatz jeweils 800.000 Einträge.
 
-Die Tweet Texte im Datensatz wurden so angepasst, dass die Emoticons die zur Einteilung verwendet wurden, entfernt wurden.
+Die Tweet-Texte im Datensatz wurden so angepasst, dass die Emoticons, die zur Einteilung verwendet wurden, entfernt wurden.
 Weiterhin enthält der Datensatz keine Retweets und keine Duplikate.
 
 \subsubsection{Testdatensatz}\label{subsec:testdata}
@@ -29,7 +29,7 @@ Die Tweets enthielten nicht in jedem Fall Emoticons.
 
 \subsection{Problemstellung}
 
-Im Rahmen der Stimmungsanalyse für Twitter wird versucht die Tweets in zwei oder mehr Klassen einzuteilen \cite{zimbra2018state}.
+Im Rahmen der Stimmungsanalyse für Twitter wird versucht, die Tweets in zwei oder mehr Klassen einzuteilen \cite{zimbra2018state}.
 
 Die Analyse der Stimmung von Tweets wird allerdings als besonders herausfordernd angesehen \cite{agarwal2011sentiment, giachanou2016like, zimbra2018state}.
 Giachanou und Crestani \cite{giachanou2016like} nennen neben der Längenbeschränkung von Tweets auf 140 Zeichen (bzw. 280 seit 2017) insbesondere die informelle Art von Tweets als Herausforderung in Bezug auf Stimmungsanalysen.
