@@ -2,17 +2,17 @@
 
 Es gibt mehrere Ansätze, um die Vorgehensweise und die Ergebnisse der Stimmungsanalyse zu optimieren.
 
-\subsection{\textit{Noisy Label}}
-Wie in Abschnitt \ref{subsec:trainingsdatensatz} beschrieben, führt die Art, wie der Trainingsdatensatz \textit{Sentiment140} erstellt wurde, zu \textit{Noisy Label}.
+\subsection{\textit{Noisy Labels}}
+Wie in Abschnitt \ref{subsec:trainingsdatensatz} beschrieben, führt die Art, wie der Trainingsdatensatz \textit{Sentiment140} erstellt wurde, zu \textit{Noisy Labels}.
 Dies kann bei der Verwendung einfacherer Modelle zu schlechteren Klassifikationsergebnissen führen sowie die Anzahl der benötigten Trainingsbeispiele oder die Komplexität der Modelle erhöhen \cite{NoisyLabel2014}, wie man auch an den moderaten Ergebnissen der verwendeten klassischen Verfahren ($\approx{85}\%$) und den Resultaten von Go et al. ($79-83\%$) sieht (vgl. Tabelle 6 in \cite{go2009twitter}).
 
-Um mit \textit{Noisy Labels} umzugehen, können robustere Modelle oder Methoden der Datenbereinigung verwendet werden, also Datensätze zu entfernen oder sogenannte Semi-überwachte Lernverfahren anzuwenden. Alternativ können auch \textit{Label Noise} tolerante Lernverfahren angewandt werden (vgl. Abschnitt 3 in \cite{NoisyLabel2014}).
+Um mit \textit{Noisy Labels} umzugehen, können robustere Modelle oder Methoden der Datenbereinigung verwendet werden, also Datensätze entfernt oder sogenannte semi-überwachte Lernverfahren angewendet werden. Alternativ können auch \textit{Label Noise} tolerante Lernverfahren angewandt werden (vgl. Abschnitt 3 in \cite{NoisyLabel2014}).
 
 Eine grundsätzlich andere Herangehensweise ist die Verwendung eines Datensatzes mit höherer Datenqualität, um \textit{Noisy Labels} zu vermeiden.
 
 \subsection{\textit{Aspect Based Sentiment Analysis}}
 
-Die erlangten Ergebnisse der unterschiedichen Modelle können durch die Verwendung zusätzlicher Informationen verbessert werden, wie die Ergebnisse der Experimente mit den \textit{DeepSeek}-basierten Modellen zeigen.
+Die erlangten Ergebnisse der unterschiedlichen Modelle können durch die Verwendung zusätzlicher Informationen verbessert werden, wie die Ergebnisse der Experimente mit den \textit{DeepSeek}-basierten Modellen zeigen.
 
 Bei der \textit{Aspect Based Sentiment Analysis} werden explizite oder implizite Begriffe (\textit{aspects}) aus dem Tweet extrahiert und die Stimmung des Tweets bezüglich dieser Begriffe klassifiziert \cite{Hua_2024}.
 
@@ -20,8 +20,7 @@ Ein Beispiel aus \cite{Hua_2024} zeigt, dass der Satz \glqq \textit{The restaura
 
 \subsection{Große \textit{Deep Learning} Modelle}
 
-Die Feinabstimmung großer \textit{DeepSeek} Modelle mit dem \textit{Sentiment140} Datensatz stieß auf Rechenkapazitätsgrenzen.
-Während das Modell \textit{DeepSeek-R1-1.5B} noch abgestimmt werden konnte, waren die Speicheranforderung während des Trainings für die größeren Modelle mit 8, 32 oder 70 Mrd. Parametern zu hoch für die zur Verfügung stehenden Rechenressourcen.
+Die Feinabstimmung großer \textit{DeepSeek}-Modelle mit dem \textit{Sentiment140}-Datensatz stieß auf Rechenkapazitätsgrenzen.
+Während das Modell \textit{DeepSeek-R1-1.5B} noch abgestimmt werden konnte, waren die Speicheranforderungen während des Trainings für die größeren Modelle mit 8, 32 oder 70 Mrd. Parametern zu hoch für die zur Verfügung stehenden Rechenressourcen.
 
-Mehr Rechenkapazitäten oder Methoden wie  die \textit{Low Rank Adaptation} (LoRA) \cite{lora2021}, bei der nur eine kleine Anzahl neuer Parameter zur Feinabstimmung genutzt wird, können hier Abhilfe schaffen.
-
+Mehr Rechenkapazitäten oder Methoden wie die \textit{Low Rank Adaptation} (LoRA) \cite{lora2021}, bei der nur eine kleine Anzahl neuer Parameter zur Feinabstimmung genutzt wird, können hier Abhilfe schaffen.
