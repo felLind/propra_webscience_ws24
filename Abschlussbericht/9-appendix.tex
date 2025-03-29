@@ -32,6 +32,8 @@ Die Datensätze wurden gemäß des folgenden Algorithmus erzeugt.
                 \State $dataset[i]$ $\gets$ \Call{SanitizeTweet}{$dataset[i]$}
                 \State $dataset[i]$ $\gets$ \Call{NormalizeTweet}{$dataset[i], normalizerFunction, stoppwords$}
             \EndFor
+
+            \State $dataset$ $\gets$ Entferne leere Tweets aus $dataset$ und bereinige Duplikate
             \State save $dataset$
         \EndProcedure
     \end{algorithmic}
@@ -100,7 +102,7 @@ Im folgenden Diagramm sind für alle Modelle und Ansätze die maximalen Genauigk
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=1.0\textwidth]{figures/alle-übersicht-genauigkeit-alle-modelle.png}
-    \caption{Maximale Genauigkeit der Modelle und Ansätze}
+    \includegraphics[width=1.0\textwidth]{../datasets/sentiment140/results/plots/alle-übersicht-genauigkeit-alle-modelle.png}
+    \caption{Maximale Genauigkeit der Modelle und Verfahren}
     \label{fig:results}
 \end{figure}

@@ -116,13 +116,13 @@ Es können die folgenden ML Methoden trainiert werden:
 
   Beispiel um alle Kombinationen für ein lineares _Support-Vector-Machine_ Modell zu trainieren, bei dem die Token nicht normalisiert wurden, alle Stoppwörter enthalten sind und ein `TfidfVectorizer` verwendet wird:
   ```bash
-  python -m propra_webscience_ws24.training.classical.main.py --model-type LINEAR_SVC --normalization-strategy=NONE --stopword-removal-strategy=KEEP --vectorizer=TFIDF --max-workers 4
+  python -m propra_webscience_ws24.training.classical.main --model-type LINEAR_SVC --normalization-strategy=NONE --stopword-removal-strategy=KEEP --vectorizer=TFIDF --max-workers 4
   ```
 
 ### Fine-Tuning von BERT-basierten Modellen
 
 Für das Fine-Tuning von BERT-basierten Modellen wird die Bibliothek `transformers` von _Hugging Face_ verwendet, um auf bereits vortrainierte Modell zuzugreifen.
-Es werden die vortrainierten Modelle `distilbert-base-uncased` und `roberta-base` verwendet.
+Es werden die vortrainierten Modelle `distilbert-base-uncased` und `cardiffnlp/twitter-roberta-base-sentiment` verwendet.
 
 - [`cardiffnlp/twitter-roberta-base-sentiment`](https://huggingface.co/cardiffnlp/twitter-roberta-base-sentiment)
 
