@@ -24,13 +24,13 @@ In Abschnitt \ref{subsec:appendix-data-preparation} im Anhang ist der Algorithmu
 \paragraph{Training und Evaluation}
 Auf Basis der vorverarbeiteten Daten wurden die Modelle trainiert und evaluiert.
 
-Die Texte der vorverarbeiteten Tweets werden mittels Vektorisierungsverfahren in numerische Repräsentationen bzw. Vektoren transformiert.
+Die Texte der vorverarbeiteten Tweets wurden mittels Vektorisierungsverfahren in numerische Repräsentationen bzw. Vektoren transformiert.
 Es wurden zwei Vekto\-risierungs\-verfahren verwendet: \gls{tfidf}-Vek\-to\-ri\-sie\-rung und \textit{Hash}-basierte Vektorisierung\footnote{Für beide Verfahren wurden die Implementierungen der \textit{scikit-learn} Bibliothek verwendet.}.
 \gls{tfidf} Vektorisierung ist ein Verfahren zur Gewichtung von Termen in Texten, das die Häufigkeit der Terme in einem Dokument und die inverse Häufigkeit von Dokumenten mit diesem Termen berücksichtigt \cite[S. 119]{manning2009introduction}.
 Die \textit{Hash}-basierte Vektorisierung ist ein Verfahren, das die Wörter in einem Dokument mittels einer Hash-Funktion in numerische Werte umwandelt, um die Wörter in einen Vektor fester Länge zu kodieren \cite{sklearnextraction2025}.
 
 Für die verwendeten Vektorisierungsverfahren wurden unterschiedliche Konfigurationen von n-Grammen verwendet.
-n-Gramme bezeichnen nach \cite[S.33]{jm3} eine Sequenz von $n$ aufeinanderfolgenden Wörtern.
+N-Gramme bezeichnen nach \cite[S.33]{jm3} eine Sequenz von $n$ aufeinanderfolgenden Wörtern.
 Für die Vektorisierungsverfahren wurden Instanzen mit Kombinationen von 1-Grammen, 2-Grammen und 3-Grammen verwendet.
 
 Während des Trainings werden die Modelle auf den Trainingsdaten trainiert und auf den Validierungsdaten evaluiert.
@@ -59,14 +59,14 @@ Diese Architektur entspricht dem Aufbau des \textit{twitter-roberta-base-sentime
 Die erste voll-vernetzte Schicht hatte als Ein- und Ausgabe die Dimensionen der letzten Schicht der Modelle.
 Die zweite voll-vernetzte Schicht hatte als Eingabe die Ausgabe der ersten voll-vernetzten Schicht und als Ausgabe die Anzahl der Klassen.
 
-Die Durchführung des \textit{Finetunings} war lediglich für das kleinste destillierte \textit{DeepSeek}-R1-Modell mit 1,5 Milliarden Parametern möglich.
+Die Durchführung des \textit{Finetunings} war lediglich für das kleinste destillierte \textit{DeepSeek}-R1-Modell mit 1,5 Mrd. Parametern möglich.
 Ab dem nächstgrößeren Modell (\textit{Deep\hyp{}Seek-R1-7B}) reichten die vorhandenen Hardware-Ressourcen nicht mehr aus\footnote{Vergleiche mit \gls{sgd}-Optimierung: 7 Mrd. Parameter $\times$ 2 Byte je Gewicht $\times$ 2 Byte je Gradient = 26 GB}.
 
 Als weiteren Ansatz wurden die DeepSeek-R1-Modelle lokal ausgeführt, um mittels Anfragen Klassifikationen der Tweets zu erhalten.
 Die Modelle wurden mit \textit{Ollama} ausgeführt und per Pythonskript angefragt.
-Die Anfragen wurden mit und ohne \textit{Query}-Ausdruck (siehe Abschnitt \ref{subsec:testdata}) durchgeführt.
+Die Anfragen wurden mit und ohne \textit{Query}-Ausdruck (s. Abschnitt \ref{subsec:testdata}) durchgeführt.
 
-Die Anfragen mit Query-Ausdruck hatten folgende Struktur (wobei die Platzhalter $Query\-Term$ und $Tweet$ durch die entsprechenden Werte ersetzt wurden):
+Die Anfragen mit \textit{Query}-Ausdruck hatten folgende Struktur (wobei die Platzhalter $Query\-Term$ und $Tweet$ durch die entsprechenden Werte ersetzt wurden):
 \begin{quote}
     Tweet sentiment? Sentiment Topic: $QueryTerm$\\
     Answer with positive or negative. Provide reasoning in JSON.\\
@@ -113,8 +113,8 @@ In Tabelle~\ref{tab:top-5-models} sind die Top 5 Modelle nach Genauigkeit sortie
 \paragraph{Sensitivität Modell}
 In Tabelle~\ref{tab:stats-per-model} sind die Statistiken der Testgenauigkeit für die Modelle \gls{svm}, \gls{lr} und \gls{nb} über alle Parameter-Kombinationen aufgeführt.
 
-Die \gls{lr}-Modelle erzielen im Mittel die höchsten Genauigkeiten über alle Parameter-Kombinationen (max. $0,852$).
-Weiterhin ist die Standardabweichung der Genauigkeiten für die \gls{lr} mit $0,02$ am niedrigsten.
+Die \gls{lr}-Modelle erzielen im Mittel die höchsten Genauigkeiten über alle Parameter-Kombinationen (max. 0,852).
+Weiterhin ist die Standardabweichung der Genauigkeiten für die \gls{lr} mit 0,02 am niedrigsten.
 
 Modelle auf Basis der \gls{svm} erzielen im Mittel und im Median 1\% niedrigere Genauigkeiten.
 Mit \gls{nb}-Modellen wurden im Mittel die niedrigsten Genauigkeiten erreicht, wobei die Standardabweichung am höchsten war.
@@ -153,16 +153,16 @@ Für alle Modelle steigt die Genauigkeit, wenn mehr als nur 1-Gramme berücksich
 \subsubsection{\textit{Deep Learning} Ansätze}\label{subsubsec:ergebnisse-deep-learning-ansaetze}
 
 \paragraph{\textit{Finetuning} der \gls{bert}-Modelle}
-Mit dem auf aktuelleren Twitter-Daten trainierten Modell \textit{twitter-roberta-base-sentiment} wurden Genauigkeiten von $0,83$ auf dem Testdatensatz erzielt.
-Durch \textit{Finetuning} wurden Genauigkeiten von $0,922$ für das Modell \textit{twitter-roberta-base-sentiment} und $0,849$ für das Modell \textit{distilbert-base-uncased} erreicht.
+Mit dem auf aktuelleren Twitter-Daten trainierten Modell \textit{twitter-roberta-base-sentiment} wurden Genauigkeiten von 0,83 auf dem Testdatensatz erzielt.
+Durch \textit{Finetuning} wurden Genauigkeiten von 0,922 für das Modell \textit{twitter-roberta-base-sentiment} und 0,849 für das Modell \textit{distilbert-base-uncased} erreicht.
 
 Kleinere Lernraten führen zu höheren Genauigkeiten für das Modell \textit{twitter-roberta-base-sentiment}, während für das Modell \textit{distilbert-base-uncased} höhere Lernraten zu bes\-se\-ren Ergebnissen führen.
 Dies ist vermutlich darauf zurückzuführen, dass das Modell \textit{twitter-roberta-base-sentiment} bereits auf Twitter-Daten trainiert wurde und das \textit{distilbert-base-uncased} Modell lediglich auf einem allgemeinen Korpus.
 
 \paragraph{Verwendung der \textit{DeepSeek}-Modelle}
-Das \textit{Finetuning} des kleinsten \textit{DeepSeek}-Modells lieferte Genauigkeiten von bis zu $0,866$.
+Das \textit{Finetuning} des kleinsten \textit{DeepSeek}-Modells lieferte Genauigkeiten von bis zu 0,866.
 
-Für die Verwendung der \textit{DeepSeek}-Modelle ohne \textit{Finetuning} mittels direkter Anfragen wurden Genauigkeiten bis zu $0,977$ erzielt.
+Für die Verwendung der \textit{DeepSeek}-Modelle ohne \textit{Finetuning} mittels direkter Anfragen wurden Genauigkeiten bis zu 0,977 erzielt.
 Hier gilt, dass die Genauigkeit steigt, je mehr Parameter das destillierte Modell hat.
 Weiterhin ist die Genauigkeit höher, wenn die Anfragen mit einem \textit{Query}-Term durchgeführt werden.
 Die Ergebnisse sind in Tabelle~\ref{tab:deepseek-results} zusammengefasst.
