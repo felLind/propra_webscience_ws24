@@ -12,14 +12,14 @@ Für die klassischen Verfahren wurde neben der Genauigkeit der Klassifikation f�
 Im Rahmen der Datenvorverarbeitung wurden die verwendeten Stoppwörter und Normalisierungsverfahren variiert.
 
 Nach \cite[S.27]{manning2009introduction} werden unter dem Begriff Stoppwörter Wörter verstanden, die einen geringen Informationsgehalt haben und deshalb aus Texten entfernt werden, wie beispielsweise \textit{und} oder \textit{oder}.
-Es wurden drei verschiedene Verfahren zur Behandlung von Stoppwörtern verwendet: Beibehaltung aller Stoppwörter, Verwendung der Standard-\gls{nltk} Stoppwortliste und Verwendung einer eigenen Stoppwortliste zur Entfernung spezifischer Stoppwörter.
+Es wurden drei verschiedene Verfahren zur Behandlung von Stoppwörtern verwendet: Beibehaltung aller Stoppwörter, Verwendung der vordefinierten \gls{nltk}-Stoppwortliste und Verwendung einer eigenen Stoppwortliste zur Entfernung spezifischer Stoppwörter.
 
 Normalisierungsverfahren dienen dazu, die Worte oder Token in Texten zu vereinheitlichen \cite[S.28]{manning2009introduction}.
 Es wurden drei verschiedene Verfahren zur Normalisierung der Worte verwendet: keine Normalisierung, Lemmatisierung (mit \textit{WordNet Lemmatizer}) und Stemming (mit \textit{Porter Stemmer}).
 
 Das Training der Modelle wurde auf Basis der vorverarbeiteten Daten durchgeführt.
 Im Rahmen der Vorverarbeitung der Daten wurden die Tweets bereinigt, die einzelnen Token normalisiert und abschließend die Stoppwörter entfernt.
-In Abschnitt \ref{subsec:appendix-data-preparation} im Appendix ist der Algorithmus detaillierter beschrieben (s. Algorithmus~\ref{alg:data-preparation}) und ein Beispiel gegeben.
+In Abschnitt \ref{subsec:appendix-data-preparation} im Anhang ist der Algorithmus detaillierter beschrieben (s. Algorithmus~\ref{alg:data-preparation}) und ein Beispiel gegeben.
 
 \paragraph{Training und Evaluation}
 Auf Basis der vorverarbeiteten Daten wurden die Modelle trainiert und evaluiert.
@@ -30,7 +30,7 @@ Es wurden zwei Vekto\-risierungs\-verfahren verwendet: \gls{tfidf}-Vek\-to\-ri\-
 Die \textit{Hash}-basierte Vektorisierung ist ein Verfahren, das die Wörter in einem Dokument mittels einer Hash-Funktion in numerische Werte umwandelt, um die Wörter in einen Vektor fester Länge zu kodieren \cite{sklearnextraction2025}.
 
 Für die verwendeten Vektorisierungsverfahren wurden unterschiedliche Konfigurationen von n-Grammen verwendet.
-n-Gramme bezeichnen nach \cite[S.33]{jm3}, eine Sequenz von $n$ aufeinanderfolgenden Wörtern.
+n-Gramme bezeichnen nach \cite[S.33]{jm3} eine Sequenz von $n$ aufeinanderfolgenden Wörtern.
 Für die Vektorisierungsverfahren wurden Instanzen mit Kombinationen von 1-Grammen, 2-Grammen und 3-Grammen verwendet.
 
 Während des Trainings werden die Modelle auf den Trainingsdaten trainiert und auf den Validierungsdaten evaluiert.
@@ -39,7 +39,7 @@ Algorithmus~\ref{alg:model-training} beschreibt die Schritte für das Training u
 
 \subsubsection{Deep Learning Ansätze} \label{subsubsec:experimente-deep-learning-ansaetze}
 
-Für die \gls{dl} Ansätze, bei denen \gls{bert}-basierte Modelle verwendet wurden, wurden die Standard-Tokenizer der \textit{Hugging Face} Modelle verwendet, so dass keine weiteren Vorverarbeitungsschritte oder Vektorisierungsverfahren durchgeführt wurden.
+Für die \gls{dl}-Ansätze, bei denen \gls{bert}-basierte Modelle verwendet wurden, wurden die Standard-Tokenizer der \textit{Hugging Face} Modelle verwendet, sodass keine weiteren Vorverarbeitungsschritte oder Vektorisierungsverfahren durchgeführt wurden.
 
 \paragraph{\textit{Finetuning} der \gls{bert}-Modelle}
 
@@ -52,14 +52,14 @@ Die Werte für die Lernrate lagen zwischen $10^{-4}$ und $10^{-6}$ und die Daten
 \paragraph{Verwendung der \textit{DeepSeek}-Modelle}
 
 Für den eigenen Ansatz haben wir zuerst versucht, die von \textit{DeepSeek}-R1 destillierten Modelle durch \textit{Finetuning} auf den Datensatz zu trainieren.
-Dafür wurde den Modellen jeweils zwei zusätzliche voll-vernetzte Schichten angefügt.
+Dafür wurden den Modellen jeweils zwei zusätzliche voll-vernetzte Schichten angefügt.
 Diese Architektur entspricht dem Aufbau des \textit{twitter-roberta-base-sentiment} Modells zur Klassifikation.
 
 Die erste voll-vernetzte Schicht hatte als Ein- und Ausgabe die Dimensionen der letzten Schicht der Modelle.
 Die zweite voll-vernetzte Schicht hatte als Eingabe die Ausgabe der ersten voll-vernetzten Schicht und als Ausgabe die Anzahl der Klassen.
 
 Die Durchführung des \textit{Finetunings} war für das kleinste destillierte \textit{DeepSeek}-R1-Modell mit 1,5 Milliarden Parametern noch möglich.
-Ab dem nächstgrößerem Modell (\textit{DeepSeek-R1:7B}) wurden die Hardware-Anforderungen zu groß\footnote{Vergleiche mit \gls{sgd} Optimierung: 7 Mrd. Parameter $\times$ 2 Byte je Gewicht $\times$ 2 Byte je Gradient = 26 GB}.
+Ab dem nächstgrößeren Modell (\textit{DeepSeek-R1:7B}) wurden die Hardware-Anforderungen zu groß\footnote{Vergleiche mit \gls{sgd}-Optimierung: 7 Mrd. Parameter $\times$ 2 Byte je Gewicht $\times$ 2 Byte je Gradient = 26 GB}.
 
 Als weiteren Ansatz verwendeten wir die DeepSeek-R1-Modelle nur in der Ausführung und ließen die Stimmung per Prompt klassifizieren.
 Die Modelle wurden mit \textit{Ollama} ausgeführt und per Pythonskript angefragt.
@@ -117,7 +117,7 @@ Die \gls{lr}-Modelle erzielen im Mittel die höchsten Genauigkeiten über alle P
 Weiterhin ist die Standardabweichung der Genauigkeiten für die \gls{lr} mit $0,022$ am niedrigsten.
 
 Modelle auf Basis der \gls{svm} erzielen im Mittel und im Median 1\% niedrigere Genauigkeiten.
-Mit \gls{nb}-Modelle wurden im Mittel die niedrigsten Genauigkeiten erreicht, wobei die Standardabweichung am höchsten war.
+Mit \gls{nb}-Modellen wurden im Mittel die niedrigsten Genauigkeiten erreicht, wobei die Standardabweichung am höchsten war.
 
 \begin{table}
     \center
@@ -126,9 +126,9 @@ Mit \gls{nb}-Modelle wurden im Mittel die niedrigsten Genauigkeiten erreicht, wo
         & \multicolumn{5}{c}{Testgenauigkeit über alle Parameter-Kombinationen} \\
         Modell             & Mittelwert & Median & Std.-Abweichung & Minimum & Maximum \\
         \midrule
-        LR                 & 0.819      & 0.822  & 0.022           & 0.727   & 0.861 \\
-        SVM                & 0.809      & 0.813  & 0.024           & 0.730   & 0.858 \\
-        NB                 & 0.778      & 0.784  & 0.049           & 0.685   & 0.852 \\
+        LR                 & 0,819      & 0,822  & 0,022           & 0,727   & 0,861 \\
+        SVM                & 0,809      & 0,813  & 0,024           & 0,730   & 0,858 \\
+        NB                 & 0,778      & 0,784  & 0,049           & 0,685   & 0,852 \\
         \bottomrule
     \end{tabular}
     \caption{Statistiken der Testgenauigkeit für die Modelle \gls{lr}, \gls{svm} und \gls{nb}.}
@@ -164,7 +164,7 @@ Dies ist vermutlich darauf zurückzuführen, dass das Modell \textit{twitter-rob
 Das \textit{Finetuning} des kleinsten \textit{DeepSeek}-Modells lieferte Genauigkeiten von bis zu $0,866$.
 
 Für die Verwendung der \textit{DeepSeek}-Modelle ohne \textit{Finetuning} mittels direkter Anfragen wurden Genauigkeiten bis zu $0,977$ erzielt.
-Hier gilt, dass die Genauigkeit steigt je mehr Parameter das destillierte Modell hat.
+Hier gilt, dass die Genauigkeit steigt, je mehr Parameter das destillierte Modell hat.
 Weiterhin ist die Genauigkeit höher, wenn die Anfragen mit einem \textit{Query}-Term durchgeführt werden.
 Die Ergebnisse sind in Tabelle~\ref{tab:deepseek-results} zusammengefasst.
 \begin{table}
@@ -173,10 +173,10 @@ Die Ergebnisse sind in Tabelle~\ref{tab:deepseek-results} zusammengefasst.
         \toprule
         Modell           & Genauigkeit mit Query-Ausdruck & Genauigkeit ohne Query-Ausdruck \\
         \midrule
-        DeepSeek-r1-70B  & 0.977                           &  0.930                         \\
-        DeepSeek-r1-32B  & 0.966                           &  0.927                         \\
-        DeepSeek-r1-8B   & 0.955                           &  0.916                         \\
-        DeepSeek-r1-1.5B & 0.883                           &  0.824                         \\
+        DeepSeek-r1-70B  & 0,977                           &  0,930                         \\
+        DeepSeek-r1-32B  & 0,966                           &  0,927                         \\
+        DeepSeek-r1-8B   & 0,955                           &  0,916                         \\
+        DeepSeek-r1-1.5B & 0,883                           &  0,824                         \\
         \bottomrule
     \end{tabular}
     \caption{Genauigkeit bei Verwendung der \textit{DeepSeek}-Modelle ohne \textit{Finetuning}}
