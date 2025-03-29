@@ -60,7 +60,7 @@ Die erste voll-vernetzte Schicht hatte als Ein- und Ausgabe die Dimensionen der 
 Die zweite voll-vernetzte Schicht hatte als Eingabe die Ausgabe der ersten voll-vernetzten Schicht und als Ausgabe die Anzahl der Klassen.
 
 Die Durchführung des \textit{Finetunings} war lediglich für das kleinste destillierte \textit{DeepSeek}-R1-Modell mit 1,5 Milliarden Parametern möglich.
-Ab dem nächstgrößeren Modell (\textit{DeepSeek-R1:7B}) reichten die vorhandenen Hardware-Ressourcen nicht mehr aus\footnote{Vergleiche mit \gls{sgd}-Optimierung: 7 Mrd. Parameter $\times$ 2 Byte je Gewicht $\times$ 2 Byte je Gradient = 26 GB}.
+Ab dem nächstgrößeren Modell (\textit{DeepSeek-R1-7B}) reichten die vorhandenen Hardware-Ressourcen nicht mehr aus\footnote{Vergleiche mit \gls{sgd}-Optimierung: 7 Mrd. Parameter $\times$ 2 Byte je Gewicht $\times$ 2 Byte je Gradient = 26 GB}.
 
 Als weiteren Ansatz wurden die DeepSeek-R1-Modelle lokal ausgeführt um mittels Anfragen Klassifikationen der Tweets zu erhalten.
 Die Modelle wurden mit \textit{Ollama} ausgeführt und per Pythonskript angefragt.
@@ -173,10 +173,10 @@ Die Ergebnisse sind in Tabelle~\ref{tab:deepseek-results} zusammengefasst.
         \toprule
         Modell           & Mit Query-Ausdruck & Ohne Query-Ausdruck \\
         \midrule
-        DeepSeek-r1-70B  & 0,977                           &  0,930                         \\
-        DeepSeek-r1-32B  & 0,966                           &  0,927                         \\
-        DeepSeek-r1-8B   & 0,955                           &  0,916                         \\
-        DeepSeek-r1-1.5B & 0,883                           &  0,824                         \\
+        DeepSeek-R1-70B  & 0,977                           &  0,930                         \\
+        DeepSeek-R1-32B  & 0,966                           &  0,927                         \\
+        DeepSeek-R1-8B   & 0,955                           &  0,916                         \\
+        DeepSeek-R1-1.5B & 0,883                           &  0,824                         \\
         \bottomrule
     \end{tabular}
     \caption{Genauigkeit bei Verwendung der \textit{DeepSeek}-Modelle ohne \textit{Finetuning}}
