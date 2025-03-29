@@ -65,7 +65,7 @@ Fehlende Personen: niemand
 
 
 ### Links:
-- [Sentiment140 dataset with 1.6 million tweets (kaggle)](https://www.kaggle.com/datasets/kazanova/sentiment140/code?datasetId=2477&sortBy=commentCount) oder [Sentiment140 Datensatz (zip-file)](https://www.google.com/url?q=https%3A%2F%2Fcs.stanford.edu%2Fpeople%2Falecmgo%2Ftrainingandtestdata.zip)
+- [Sentiment140 dataset with 1.6 million tweets (kaggle)](https://www.kaggle.com/datasets/kazanova/sentiment140/code?datasetId=2477&sortBy=commentCount) oder [Sentiment140 Datensatz (zip-file)](https://cs.stanford.edu/people/alecmgo/trainingandtestdata.zip)
 - [Sentiment140 paper: TwitterDistantSupervision09.pdf](https://www-cs.stanford.edu/people/alecmgo/papers/TwitterDistantSupervision09.pdf)
 - [Data Science Life Cycle](Data_Science_Life_Cycle.png)
 - [felLind/propra_webscience_ws24 (GitHub Repo)](https://github.com/felLind/propra_webscience_ws24/tree/main)
