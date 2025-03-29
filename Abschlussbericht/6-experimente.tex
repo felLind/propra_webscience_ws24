@@ -19,7 +19,6 @@ Es wurden drei verschiedene Verfahren zur Normalisierung der Worte verwendet: ke
 
 Das Training der Modelle wurde auf Basis der vorverarbeiteten Daten durchgeführt.
 Im Rahmen der Vorverarbeitung der Daten wurden die Tweets bereinigt, die einzelnen Token normalisiert und abschließend die Stoppwörter entfernt.
-Weiterhin wurden leere Tweets und Duplikate nach der Bereinigung entfernt.
 In Abschnitt \ref{subsec:appendix-data-preparation} im Appendix ist der Algorithmus detaillierter beschrieben (s. Algorithmus~\ref{alg:data-preparation}) und ein Beispiel gegeben.
 
 \paragraph{Training und Evaluation}
@@ -109,7 +108,7 @@ Eine Übersicht über die maximalen Genauigkeiten je Modell und Ansatz ist im An
 
 \subsubsection{Klassische Ansätze}\label{subsubsec:ergebnisse-klassische-ansaetze}
 
-In Tabelle~\ref{tab:top-5-models} sind die Top 5 Modelle nach Testgenauigkeit sortiert aufgeführt.
+In Tabelle~\ref{tab:top-combination-per-model} sind die besten Kombinationen für die drei Ansätze nach Testgenauigkeit sortiert aufgeführt.
 Die maximal erzielte Genauigkeit beträgt $0,852$.
 
 \paragraph{Sensitivität Modell}
@@ -150,8 +149,7 @@ Für die unterschiedlichen Normalisierungsverfahren ergeben sich keine signifika
 
 Für alle Modelle ist die Ge\-nauig\-keit höher, wenn das \gls{tfidf}-Vektorisierungsverfahren verwendet wird.
 
-Für alle Modelle steigt die Genauigkeit, wenn mehr als nur Unigramme berücksichtigt werden.
-Die Verwendung von Uni- und Bigrammen führt im Mittel zu den höchsten Genauigkeiten.
+Für alle Modelle steigt die Genauigkeit, wenn mehr als nur 1-Gramme berücksichtigt werden und ist am höchsten, wenn 1- und 2-Gramme verwendet werden.
 
 \subsubsection{\textit{Deep Learning} Ansätze}\label{subsubsec:ergebnisse-deep-learning-ansaetze}
 
