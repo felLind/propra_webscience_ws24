@@ -206,7 +206,7 @@
                 Seminar
             \else
                 \ifresearchlab%
-                    Fachpraktikum
+                    Projektpraktikum
                 \else
                     \PackageError{AIGthesis}{Unsupported document type for creating statement}{Statement is only required for bachelor, master, seminar and researchlab}
                 \fi
