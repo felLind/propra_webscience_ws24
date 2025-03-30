@@ -60,7 +60,7 @@ Die erste voll-vernetzte Schicht hatte als Ein- und Ausgabe die Dimensionen der 
 Die zweite voll-vernetzte Schicht hatte als Eingabe die Ausgabe der ersten voll-vernetzten Schicht und als Ausgabe die Anzahl der Klassen.
 
 Die Durchführung des \textit{Finetunings} war lediglich für das kleinste destillierte \textit{DeepSeek}-R1-Modell mit 1,5 Mrd. Parametern möglich.
-Ab dem nächstgrößeren Modell (\textit{Deep\hyp{}Seek-R1-7B}) reichten die vorhandenen Hardware-Ressourcen nicht mehr aus\footnote{Vergleiche mit \gls{sgd}-Optimierung: 7 Mrd. Parameter $\times$ 2 Byte je Gewicht $\times$ 2 Byte je Gradient = 26 GB}.
+Ab dem nächstgrößeren Modell (\textit{Deep\hyp{}Seek-R1-7B}) reichten die vorhandenen Hardware-Ressourcen nicht mehr aus\footnote{Vergleiche mit Speicheranforderungen für \textit{Stochastic Gradient Descent}: 7 Mrd. Parameter $\times$ 2 Byte je Gewicht $\times$ 2 Byte je Gradient = 28 GB}.
 
 Als weiteren Ansatz wurden die DeepSeek-R1-Modelle lokal ausgeführt, um mittels Anfragen Klassifikationen der Tweets zu erhalten.
 Die Modelle wurden mit \textit{Ollama} ausgeführt und per Pythonskript angefragt.
