@@ -7,7 +7,7 @@ Wie in Abschnitt \ref{subsec:trainingsdatensatz} beschrieben, führt die Art, wi
 Dies kann bei der Verwendung einfacherer Modelle zu schlechteren Klassifikationsergebnissen führen und die Anzahl der benötigten Trainingsbeispiele oder die Komplexität der Modelle erhöhen \cite{NoisyLabel2014}.
 Die erzielten Genauigkeiten der klassischen Ansätze (bis zu 85\%) und die Ergebnisse von  Go et al. ($79-83\%$, vgl. Tabelle 6 in \cite{go2009twitter}) bestätigen diese Aussage.
 
-Um den Effekt von \textit{Noisy Labels} zu verringern, können robustere Modelle oder Methoden der Datenbereinigung verwendet werden, also Datensätze entfernt oder sogenannte semi-überwachte Lernverfahren angewendet werden. Alternativ können auch tolerante Lernverfahren angewandt werden (vgl. Abschnitt 3 in \cite{NoisyLabel2014}).
+Um den Effekt von \textit{Noisy Labels} zu verringern, können robustere Modelle oder Methoden der Datenbereinigung verwendet werden, also Datensätze entfernt oder sogenannte semi-überwachte Lernverfahren angewendet werden. Alternativ können auch Lernverfahren angewandt werden, die tolerant gegenüber \textit{Noisy Labels} sind \cite[Abschn. 3]{NoisyLabel2014}.
 
 Eine grundsätzlich andere Herangehensweise ist die Verwendung eines Datensatzes mit höherer Datenqualität, um \textit{Noisy Labels} zu vermeiden.
 
@@ -22,5 +22,6 @@ Ein Beispiel aus \cite{Hua_2024} zeigt, dass der Satz \glqq \textit{The restaura
 \subsection{Große \textit{Deep Learning} Modelle}
 
 Das \textit{Finetuning} der größeren \textit{DeepSeek}-Modelle mit dem \textit{Sentiment140}-Datensatz stieß auf Rechenkapazitätsgrenzen.
+Während das Modell \textit{DeepSeek-R1-1.5B} noch abgestimmt werden konnte, waren die Speicheranforderungen während des Trainings für die größeren Modelle mit 8, 32 oder 70 Mrd. Parametern zu hoch für die zur Verfügung stehenden Rechenressourcen.
 
 Mehr Rechenkapazitäten oder Methoden wie die \textit{Low Rank Adaptation} (LoRA) \cite{lora2021}, bei der nur eine kleine Anzahl neuer Parameter zur Feinabstimmung genutzt wird, könnten hier Abhilfe schaffen.
