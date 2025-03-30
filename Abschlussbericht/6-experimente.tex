@@ -144,6 +144,22 @@ Weiterhin ist die Genauigkeit mit der eigens definierten Stoppwortliste höher a
 
 Für die unterschiedlichen Normalisierungsverfahren ergeben sich keine signifikanten Unterschiede (relative Abweichungen zwischen 1-8\textperthousand) in der Genauigkeit der Modelle.
 
+\begin{table}
+    \center
+    \begin{tabular}{lcc}
+        \toprule
+        Modell           & Mit Query-Ausdruck & Ohne Query-Ausdruck \\
+        \midrule
+        DeepSeek-R1-70B  & 0,977                           &  0,930                         \\
+        DeepSeek-R1-32B  & 0,966                           &  0,927                         \\
+        DeepSeek-R1-8B   & 0,955                           &  0,916                         \\
+        DeepSeek-R1-1.5B & 0,883                           &  0,824                         \\
+        \bottomrule
+    \end{tabular}
+    \caption{Genauigkeit bei Verwendung der \textit{DeepSeek}-Modelle ohne \textit{Finetuning}}
+    \label{tab:deepseek-results}
+\end{table}
+
 \paragraph{Sensitivität Vektorisierungsverfahren und n-Gramme}
 
 Für alle Modelle ist die Ge\-nauig\-keit höher, wenn das \gls{tfidf}-Vektorisierungsverfahren verwendet wird.
@@ -166,18 +182,3 @@ Für die Verwendung der \textit{DeepSeek}-Modelle ohne \textit{Finetuning} mitte
 Hier gilt, dass die Genauigkeit steigt, je mehr Parameter das destillierte Modell hat.
 Weiterhin ist die Genauigkeit höher, wenn die Anfragen mit einem \textit{Query}-Term durchgeführt werden.
 Die Ergebnisse sind in Tabelle~\ref{tab:deepseek-results} zusammengefasst.
-\begin{table}
-    \center
-    \begin{tabular}{lcc}
-        \toprule
-        Modell           & Mit Query-Ausdruck & Ohne Query-Ausdruck \\
-        \midrule
-        DeepSeek-R1-70B  & 0,977                           &  0,930                         \\
-        DeepSeek-R1-32B  & 0,966                           &  0,927                         \\
-        DeepSeek-R1-8B   & 0,955                           &  0,916                         \\
-        DeepSeek-R1-1.5B & 0,883                           &  0,824                         \\
-        \bottomrule
-    \end{tabular}
-    \caption{Genauigkeit bei Verwendung der \textit{DeepSeek}-Modelle ohne \textit{Finetuning}}
-    \label{tab:deepseek-results}
-\end{table}
