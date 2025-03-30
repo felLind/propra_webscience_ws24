@@ -14,7 +14,7 @@ Als klassische Ansätze zur Stimmungsanalyse von Tweets wurden folgende überwac
 \end{itemize}
 
 Die Ansätze \gls{knn} und Entscheidungsbäume wurden ebenfalls überprüft.
-Weil diese Ansätze auf dem verwendeten Datensatz schlechtere Ergebnisse erzielten und darüber hinaus längere Laufzeiten benötigten, wurden sie verworfen.
+Weil diese Ansätze auf dem, durch die verwendeten Vorverarbeitungsschritten, hochdimensionalen Datensatz schlechtere Ergebnisse erzielten und darüber hinaus längere Laufzeiten benötigten, wurden sie verworfen.
 
 Eine detaillierte, mathematische Einführung in die genannten klassischen Ansätze ist zu finden in \cite[Kapitel 4.4 für \gls{lr}, 4.5 und 12 für \gls{svm}, 6.6.3 für den \gls{nb}-Klassifikator, 13.3 für \gls{knn} und 9.2 für Entscheidungsbäume]{hastie2009elements}.
 
@@ -47,7 +47,7 @@ Beim \textit{Pre-Training} wird das Modell unüberwacht mit großen Datenmengen 
 Im zweiten Schritt, dem \textit{Finetuning}, wird das Modell mit überwachten Lernverfahren oder \textit{Reinforcement Learning} \cite{deepseekai2025deepseekr1incentivizingreasoningcapability, devlin2018bert} auf den jeweiligen Anwendungsfall angepasst.
 
 
-\subsubsection{\textit{BERT}-basierte Ansätze}\label{subsec:bert}
+\subsubsection{BERT-basierte Ansätze}\label{subsec:bert}
 
 \gls{bert} ist eine \textit{Transformer}-basierte \gls{llm}-Variante, die von Devlin et al. entwickelt wurde \cite{devlin2018bert}.
 Devlin et al. haben gezeigt, dass die \gls{bert}-Modelle sehr gute Ergebnisse in der Stimmungsanalyse erzielen und durch \textit{Finetuning} mit vergleichsweise wenig Daten und Trainingszeit auf spezifische Anwendungen angepasst werden können.
